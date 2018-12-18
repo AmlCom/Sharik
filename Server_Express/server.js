@@ -22,5 +22,5 @@ if (process.env.NODE_ENV === 'production') {
   app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, '../react-client/build', 'index.html'));
   });
-}
+ }
 app.listen(port, () => console.log(`Listening on port ${port}`));
