@@ -4,7 +4,7 @@ var mysql = require('mysql');
 var db = require('../connect');
 
 // Creating Database 'sharik_db':
-var sqlQueryCreateDB = "CREATE SCHEMA IF NOT EXISTS `sharik_db` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin";
+var sqlQueryCreateDB = "CREATE database IF NOT EXISTS `sharik_db` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin";
 
 db.query(sqlQueryCreateDB,
 	function (err, sqlQueryResult) {
