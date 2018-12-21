@@ -7,7 +7,6 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import {Link} from 'react-router-dom'
 
 const styles = {
   root: {
@@ -22,38 +21,30 @@ const styles = {
   },
 };
 
-function Nav(props) {
+function ButtonAppBar(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      {/* <AppBar position="static">
         <Toolbar>
           <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="inherit" className={classes.grow}>
-          <Link to= '/'>Home</Link>
+            News
           </Typography>
-          <Button color="inherit">
-          <Link to='/signin'>Signin</Link>
-          </Button>
-          <Button color="inherit">
-          <Link to ='/signup'>Signup</Link>
-          </Button>
-          <Button color="inherit">
-          <Link to ='/contact'>Contact</Link>
-          </Button>
-          <Button color="inherit">
-          <Link to ='/about'>About</Link>
-          </Button>
+          <Button color="inherit">Login</Button>
+          <Button color="inherit">Log out</Button>
+          <Button color="inherit">About</Button>
         </Toolbar>
-      </AppBar>
+      </AppBar> */}
+      <p>Hello word </p>
     </div>
   );
 }
 
-Nav.propTypes = {
+ButtonAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Nav);
+export default withStyles(styles)(ButtonAppBar);
