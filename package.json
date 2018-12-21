@@ -9,6 +9,7 @@
     "heroku-postbuild": "cd react-client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "mysql": "^2.16.0"
