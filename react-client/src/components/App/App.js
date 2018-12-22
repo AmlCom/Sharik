@@ -6,8 +6,8 @@ import Signup from '../singup'
 import HomePage from '../HomePage'
 import Nav from '../Nav'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
+// import TabContainer from '../Footer/footer'
 import './App.css';
-import TabContainer from '../Footer/footer'
 
 
 
@@ -25,11 +25,10 @@ class App extends Component {
           <div>
 
 
-         
+         <div style={{ height: '100%' }}>
             <Nav />
-            {/* <div style={{ marginTop: '100px' , position: "fixed", width:'100%'}}>
-            <TabContainer/>
-            </div> */}
+         </div>
+           
            
 
             <Switch>
@@ -37,7 +36,10 @@ class App extends Component {
               <Route path='/HomePage' exact component={HomePage} />
               <Route path='/Signup' exact  component={Signup} />
               <Route path='/signin' exact component={Signin} />
+              <div  style={{ marginTop: '40px' }}>
               <Route path='/profile' exact component={Profile} />
+              </div>
+              
             </Switch>
           </div>
 
