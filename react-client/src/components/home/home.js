@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-
+import Slideshow from '../slideshow'
+import { Divider } from '@material-ui/core';
 const Home = () => {
     return (
-        <h1>This is the Home page </h1>
+       <div>
+           <Slideshow />
+       </div>
     )
 }
 

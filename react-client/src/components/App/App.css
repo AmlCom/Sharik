@@ -30,3 +30,13 @@
     transform: rotate(360deg);
   }
 }
+
+.each-fade{
+  height: 700px;
+  
+    }
+.each-fade img{
+      width: 100%;
+  
+  
+    }
