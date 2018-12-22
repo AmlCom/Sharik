@@ -26,5 +26,6 @@ yarn-error.log*
 # Others:
 yarn.lock
 package-lock.json
+git.sh
 
 DB/MySQL/connect/index.js
