@@ -3,25 +3,27 @@ var mysql = require('mysql');
 var db = require('../connect');
 
 /*
-CREATE TABLE IF NOT EXISTS `sharik`.`users` (
-    `id` INT NOT NULL AUTO_INCREMENT,
-    `usernam` VARCHAR(45) NOT NULL,
-    `name` VARCHAR(45) NULL,
-    `email` VARCHAR(45) NULL,
-    `mobile_phone` INT NULL,
-    `password` VARCHAR(45) NOT NULL,
-    PRIMARY KEY (`id`),
-    UNIQUE INDEX `usernam_UNIQUE` (`usernam` ASC),
-    UNIQUE INDEX `id_UNIQUE` (`id` ASC));
+CREATE TABLE IF NOT EXISTS `sharik_db`.`users` (
+	  `id` INT(11) NOT NULL AUTO_INCREMENT,
+	  `username` VARCHAR(45) NOT NULL,
+	  `name` VARCHAR(45) NOT NULL,
+	  `email` VARCHAR(100) NOT NULL,
+	  `mobile_phone` INT(11) NULL DEFAULT NULL,
+	  `password` VARCHAR(200) NOT NULL,
+	  PRIMARY KEY (`id`),
+	  UNIQUE INDEX `usernam_UNIQUE` (`username` ASC) ,
+	  UNIQUE INDEX `id_UNIQUE` (`id` ASC) ,
+	  UNIQUE INDEX `email_UNIQUE` (`email` ASC) )
+	DEFAULT CHARACTER SET = utf8
+	COLLATE = utf8_bin;
 */
 
 module.exports = {
 
-    selectAllUsers: function (callback) {
+    selectAllUsers: function (sqlQuery, callback) {
 
         console.log("Sharik/DB/MySQL/queries/users.js - function - selectAllUsers:")
 
-        var sqlQuery = `SELECT * FROM users`;
 
         db.query(sqlQuery,
             function (err, sqlQueryResult) {
@@ -45,13 +47,10 @@ module.exports = {
         )
     },
 
-    createUser: function (req, callback) {
+    createUser: function (sqlQuery, quValue, callback) {
 
-        console.log("Sharik/DB/MySQL/queries/users.js - function - createUser: req.body")
-        console.log(req.body);
-
-        var sqlQuery= `INSERT INTO users (\`usernam\`, \`name\`, \`email\`, \`mobile_phone\`, \`password\`) VALUES (?, ?, ?, ?, ?)`;
-        var quValue = [req.body.usernam, req.body.name, req.body.emaile, req.body.mobile_phone, req.body.password]
+		console.log("Sharik/DB/MySQL/queries/users.js - function - createUser: req.sqlQuery, quValue");
+		console.log(sqlQuery, quValue);
 
         db.query(sqlQuery, quValue,
             function (err, sqlQueryResult) {
@@ -73,7 +72,8 @@ module.exports = {
 
                     callback(null, sqlQueryResult);
                 }
-            })
+			}
+		);
     },
 
     // Delete Admin by ID: 
@@ -105,29 +105,9 @@ module.exports = {
 
 	},
 	
-	searchUser: function (req, callback) {
+	searchUser: function (sqlQuery, quValue, callback) {
     
 		console.log("Sharik/DB/MySQL/queries/users.js - function - searchUser : ")
-		var sqlQuery = `SELECT * FROM users WHERE `;
-		var quColumn = [];
-		var quValue = [];
-		var quColumnStr = '';
-	
-		for (key in req.body) {
-		  if (req.body[key]) {
-			quColumn.push(key + ' = ?')
-			quValue.push(req.body[key])
-		  }
-		}
-	
-		quColumnStr = quColumn.join(' && ');
-		console.log("sqlQuery: ", sqlQuery);
-		console.log("quColumnStr: ", quColumnStr);
-
-		sqlQuery = sqlQuery.concat(quColumnStr);
-		console.log("sqlQuery Concat: ", sqlQuery);
-		console.log("quColumn", quColumn);
-		console.log("quValue", quValue);
 	
 		db.query(sqlQuery, quValue,
 		  function (err, sqlQueryResult) {

@@ -4,6 +4,8 @@ import Profile from '../profile'
 import Signin from '../singin'
 import Signup from '../singup'
 import HomePage from '../HomePage'
+import About from '../about'
+import Contact from '../contact'
 import Nav from '../Nav'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 // import TabContainer from '../Footer/footer'
@@ -34,6 +36,8 @@ class App extends Component {
             <Switch>
               <Route path='/' exact component={Home} />
               <Route path='/HomePage' exact component={HomePage} />
+              <Route path='/about' exact  component={About} />
+              <Route path='/contact' exact  component={Contact} />
               <Route path='/Signup' exact  component={Signup} />
               <Route path='/signin' exact component={Signin} />
               <div  style={{ marginTop: '40px' }}>
