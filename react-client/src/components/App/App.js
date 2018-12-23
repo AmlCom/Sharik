@@ -7,8 +7,8 @@ import HomePage from '../HomePage'
 import About from '../about'
 import Contact from '../contact'
 import Nav from '../Nav'
-import Teachers from '../Teachers';
-import Teacher from '../Teacher';
+import Teachers from '../Teachers/Teachers';
+import Teacher from '../Teachers/Teacher';
 
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
