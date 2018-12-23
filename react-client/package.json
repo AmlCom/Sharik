@@ -7,8 +7,11 @@
     "@material-ui/icons": "^3.0.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "jquery": "^3.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
+    "react-slideshow-image": "^1.0.10",
+    "bootstrap": "4",
     "reactstrap": "^6.5.0"
   },
   "scripts": {
