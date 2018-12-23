@@ -57,11 +57,11 @@ module.exports = {
 					phonenumber: data["phonenumber"]
 				});
 
-				user.save(function (saveErr) {
-					if (saveErr) {
-						callback(saveErr, null);
+				user.save(function (createUserErr, createUserResult) {
+					if (createUserErr) {
+						callback(createUserErr, null);
 					} else {
-						callback(null, user);
+						callback(null, createUserResult);
 					}
 
 				});
