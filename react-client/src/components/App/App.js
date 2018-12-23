@@ -7,7 +7,9 @@ import HomePage from '../HomePage'
 import About from '../about'
 import Contact from '../contact'
 import Nav from '../Nav'
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Teachers from '../Teachers/Teachers';
+import Teacher from '../Teachers/Teacher';
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 // import TabContainer from '../Footer/footer'
 import './App.css';
 
@@ -40,9 +42,9 @@ class App extends Component {
               <Route path='/contact' exact  component={Contact} />
               <Route path='/Signup' exact  component={Signup} />
               <Route path='/signin' exact component={Signin} />
+              <Route path ='/teachers' exact component = {Teachers} />
               <Route path='/profile' exact component={Profile} />
-              
-              
+              <Route path='/Teacher' exact component={Teacher}/>
             </Switch>
           </div>
 
