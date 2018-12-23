@@ -31,28 +31,6 @@ db.once("open", function () {
 
 });
 
-// ***************************************************************
-
-// Tables:
-// ------------------------
-
-// Read - MongooseJS model Docs:
-// https://mongoosejs.com/docs/models.html
-
-// Read - MongooseJS model Docs Create / save:
-// https://mongoosejs.com/docs/models.html#constructing-documents
-
-// Read - MongooseJS model Docs Query (find, findById, findOne, where):
-// https://mongoosejs.com/docs/models.html#querying
-
-// Read - MongooseJS model Docs Query (findOneAndUpdate):
-// https://mongoosejs.com/docs/api.html#model_Model.findOneAndUpdate
-
-// Read - MongooseJS model (deleting) Docs:
-// https://mongoosejs.com/docs/models.html#deleting
-
-// Read - MongooseJS model (updating) Docs:
-// https://mongoosejs.com/docs/models.html#updating
 
 // ***************************************************************
 
@@ -90,16 +68,14 @@ const UserSchema = new Schema({
 });
 
 // 1.2 Model Constructor:
-// const User = mongoose.model("User", UserSchema);
+const User = mongoose.model("User", UserSchema);
 
-module.exports = {
-	// 1.2 Model Constructor:
-	User:  mongoose.model("User", UserSchema),
-}
+module.exports = User;
 
-
-
-
-
+// *** NOT WORKING YET *** Object Moduling:
+// module.exports = {
+// 	// 1.2 Model Constructor:
+// 	User:  mongoose.model("User", UserSchema),
+// }
 
 // ***************************************************************

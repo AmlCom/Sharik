@@ -1,4 +1,8 @@
 
+const bcrypt = require("bcrypt");
+const SALT_WORK_FACTOR = 10;
+// Read - bcrypt Docs:
+// https://www.npmjs.com/package/bcrypt
 
 var db = require('../connect');
 var User = require('../schema/sharik_db__users_schema.js');
@@ -7,12 +11,36 @@ var User = require('../schema/sharik_db__users_schema.js');
 
 */
 
+// ***************************************************************
+
+// Tables:
+// ------------------------
+
+// Read - MongooseJS model Docs:
+// https://mongoosejs.com/docs/models.html
+
+// Read - MongooseJS model Docs Create / save:
+// https://mongoosejs.com/docs/models.html#constructing-documents
+
+// Read - MongooseJS model Docs Query (find, findById, findOne, where):
+// https://mongoosejs.com/docs/models.html#querying
+
+// Read - MongooseJS model Docs Query (findOneAndUpdate):
+// https://mongoosejs.com/docs/api.html#model_Model.findOneAndUpdate
+
+// Read - MongooseJS model (deleting) Docs:
+// https://mongoosejs.com/docs/models.html#deleting
+
+// Read - MongooseJS model (updating) Docs:
+// https://mongoosejs.com/docs/models.html#updating
+
 module.exports = {
 	// 1.3 Table User Functions:
 	// ------------------------
 
 	// 1.3.1 Create (Save) a user in the DB User table:
 	createUser: function (data, callback) {
+		console.log("DB/MongoDB/queries/users.js - createUser:")
 		this.hashPassword(data["password"], function (hashErr, hashedPassword) {
 			if (hashErr) {
 				console.log("HashPassword Error: ");
@@ -55,12 +83,17 @@ module.exports = {
 	
 
 	// Delete User:
-	deletePark: function (parkId, callback) {
-		User.deleteOne({ "_id": ObjectId(parkId) }, (err, res) => {
-			if (err) {
-				console.log("delete error", err)
+	deleteUser: function (user_id, callback) {
+		User.deleteOne({ "_id": ObjectId(user_id) }, (deleteUserErr, deleteUsersQueryResulte) => {
+			if (deleteUserErr) {
+				console.log("deleteUserErr:");
+				console.log(err);
+				callback(deleteUserErr, null);
+			} else {
+				console.log("deleteUsersQueryResulte:");
+				console.log(deleteUsersQueryResulte);
+				callback(null, deleteUsersQueryResulte)
 			}
-			callback(res)
 		});
 	},
 
@@ -72,9 +105,13 @@ module.exports = {
 	// x.1 Generating hash password using bcrypt (For User Table):
 
 	hashPassword: function (password, callback) {
+		console.log(" +++++ hashPassword Functiobn:")
+		console.log(password)
 		bcrypt.genSalt(SALT_WORK_FACTOR, function (bcryptGenSaltErr, salt) {
 			if (bcryptGenSaltErr) {
-				throw bcryptGenSaltErr;
+				console.log("bcryptGenSaltErr")
+				console.log(bcryptGenSaltErr);
+				callback(bcryptGenSaltErr, null)
 			} else {
 				bcrypt.hash(password, salt, function (bcryptErr, hashedPassword) {
 					if (bcryptErr) {
