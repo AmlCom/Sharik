@@ -90,7 +90,7 @@ function ProductCategories(props) {
     {
       url:
         'https://images.unsplash.com/photo-1534081333815-ae5019106622?auto=format&fit=crop&w=400&q=80',
-      title: 'Snorkeling',
+      title: 'Teaching',
       width: '40%',
     },
     {
@@ -152,7 +152,8 @@ function ProductCategories(props) {
 
         <br/>
         <br/>
-        <button type="button" class="btn btn-info btn-lg">Create Service</button>
+        <a href="./" class="badge badge-info">Create Service</a>
+
         <br/>
       </Typography>
       <div className={classes.images}>
