@@ -4,11 +4,15 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
     googleId: {
         type: String,
-        required: [true, 'Name Field is Required']
+        required: [true, 'googleId Field is Required']
     },
     displayName: {
         type: String,
         required: [true, 'Name Field is Required']
+    },
+    imageURL:  {
+        type: String,
+        required: [true, 'imageURL Field is Required']
     }
 });
 
