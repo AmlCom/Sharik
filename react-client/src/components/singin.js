@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom'
-import React from 'react';
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -134,6 +133,8 @@ function Signin(props) {
             Sign in
           </Button>
         </form>
+        <a href="/auth/google"><button>Sign In with Google</button></a>
+
       </Paper>
     </main>
   );

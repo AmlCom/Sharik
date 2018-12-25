@@ -23,7 +23,7 @@ router.get('/google/redirect',
  function(req, res) {
   //  console.log('reqUser987', req.user);
   // req.session.user = req.user;
-   res.redirect('/');
+   res.redirect('/HomePage');
  });
 
 
