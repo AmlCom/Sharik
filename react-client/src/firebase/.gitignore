@@ -25,6 +25,6 @@ yarn-error.log*
 # Others:
 yarn.lock
 package-lock.json
-
+index.js
 
 
