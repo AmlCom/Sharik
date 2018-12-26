@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -45,8 +45,15 @@ const styles = theme => ({
   },
 });
 
-function Signin(props) {
-  const { classes } = props;
+
+class Singin extends Component {
+  state = {
+      sent: false,
+    };
+  
+
+  render(){
+    const { classes } = this.props;
 
   return (
     <main className={classes.main}>
@@ -67,10 +74,10 @@ function Signin(props) {
             <InputLabel htmlFor="password">Password</InputLabel>
             <Input name="password" type="password" id="password" autoComplete="current-password" />
           </FormControl>
-          <FormControlLabel
+          {/* <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
-          />
+          /> */}
           <Button
             type="submit"
             fullWidth
@@ -85,9 +92,6 @@ function Signin(props) {
     </main>
   );
 }
+}
 
-Signin.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(Signin);
+export default withStyles(styles)(Singin);
