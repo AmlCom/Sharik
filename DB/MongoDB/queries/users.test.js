@@ -3,19 +3,10 @@ var db = require('../connect');
 
 var usersTable = require('./users.js');
 
+// var reqArrList = require('./users.data.js');
+// var usersData = reqArrList.reqArrList()
 
-// usersTable.selectAllUsers(
-// 	function (allUsersQueryErr, allUsersQueryResulte) {
-// 		if (allUsersQueryErr) {
-// 			console.log('Sharik/DB/MongoDB/queries/users.js - function - selectAllUsers - allUsersQueryErr: ');
-// 			console.log(allUsersQueryErr);
-// 		} else {
-// 			console.log('Sharik/DB/MongoDB/queries/users.js - function - selectAllUsers - allUsersQueryResulte: ');
-// 			console.log(allUsersQueryResulte);
-// 		}
-// 	}
-// );
-
+var usersData = require('../../fakeData/MOCK_DATA.json');
 
 // req.body.usernam, req.body.name, req.body.emaile, req.body.mobile_phone, req.body.password
 /* 
@@ -29,48 +20,40 @@ phonenumber: { type: String, required: true }
 
 */
 
-var reqArrList = [];
-var req = {};
-req.body = {};
+// Create Users:
 
+// console.log('Sharik/DB/MongoDB/queries/users.test.js - usersData: ');
+// console.log(usersData);
 
-for (var i = 0; i < 10; i++) {
-	req.body.username = "User_" + i.toString();
-	req.body.email = "user_" + i.toString() + "@abc.xyz";
-	req.body.firstname = "firstname_" + i.toString();
-	req.body.middlenames = "middlenames_" + i.toString();
-	req.body.lastname = "lastname_" + i.toString();
-	req.body.password = "password" + i.toString();
-	req.body.phonenumber = Math.floor(Math.random() * 1000000000);;
+for (var i = 0; i < usersData.length; i++) {
+// for (var i = 0; i < 2; i++) {
+	usersTable.createUser(usersData[i],
+		function (createUserQueryErr, createUserQueryResult) {
 
-	reqArrList.push(req.body)
-	// console.log("+++++++++++++++Test req:")
-	// console.log(req.body)
-}
-
-console.log(reqArrList);
-
-async function CreateUsersTest(reqArrList) {
-	for (var j = 0; j < reqArrList.length; j++) {
-		await usersTable.createUser(reqArrList[j],
-			function (createUserQueryErr, createUserQueryResult) {
-
-				if (createUserQueryErr) {
-					console.log('Sharik/DB/MongoDB/queries/users.js - function - createUser - QueryErr`: ');
-					console.log(createUserQueryErr);
-				} else {
-					console.log('Sharik/DB/MongoDB/queries/users.js - function - createUser - QueryResult: ');
-					console.log(createUserQueryResult);
-				}
+			if (createUserQueryErr) {
+				console.log('Sharik/DB/MongoDB/queries/users.js - function - createUser - QueryErr`: ');
+				console.log(createUserQueryErr);
+			} else {
+				console.log('Sharik/DB/MongoDB/queries/users.test.js - function - createUser - QueryResult: ');
+				console.log(createUserQueryResult);
 			}
-		);
-
-
-	}
+		}
+	);
 }
 
-CreateUsersTest(reqArrList);
 
 
 
+// // Select All Users:
+// usersTable.selectAllUsers(
+// 	function (allUsersQueryErr, allUsersQueryResulte) {
+// 		if (allUsersQueryErr) {
+// 			console.log('Sharik/DB/MongoDB/queries/users.js - function - selectAllUsers - allUsersQueryErr: ');
+// 			console.log(allUsersQueryErr);
+// 		} else {
+// 			console.log('Sharik/DB/MongoDB/queries/users.js - function - selectAllUsers - allUsersQueryResulte: ');
+// 			console.log(allUsersQueryResulte);
+// 		}
+// 	}
+// );
 

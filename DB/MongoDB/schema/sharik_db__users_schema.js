@@ -39,29 +39,35 @@ db.once("open", function () {
 
 const UserSchema = new Schema({
 
-	username: {
+	user_name: {
 		type: String,
-		required: true
+		required: true,
+		unique: true
 	},
-
 
 	email: {
 		type: String,
-		required: true
+		required: true,
+		unique: true
 	},
-
-	firstname: String,
-
-	middlenames: String,
-
-	lastname: String,
 
 	password: {
 		type: String,
 		required: true
 	},
 
-	phonenumber: {
+	first_name: String,
+
+	middle_names: String,
+
+	last_name: String,
+
+	gender: {
+		type: String, 
+		enum: ['Male', 'Female', 'Other']
+	},
+
+	phone_number: {
 		type: String,
 		required: true
 	}
