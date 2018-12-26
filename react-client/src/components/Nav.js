@@ -36,6 +36,9 @@ function Nav(props) {
           <Link to= '/'>Home</Link>
           </Typography>
           <Button color="inherit">
+          <Link to ='/Student'>Student</Link>
+          </Button>
+          <Button color="inherit">
           <Link to='/signin'>Signin</Link>
           </Button>
           <Button color="inherit">
