@@ -25,4 +25,5 @@ yarn-error.log*
 # Others:
 yarn.lock
 package-lock.json
+./src/firebase/index
 
