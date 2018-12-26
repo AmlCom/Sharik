@@ -7,6 +7,12 @@ import HomePage from '../HomePage'
 import About from '../about'
 import Contact from '../contact'
 import Nav from '../Nav'
+import Teachers from '../Teachers/Teachers';
+import Teacher from '../Teachers/Teacher';
+import CreateTeacher from '../CreateTeacher'
+import Search from '../search'
+
+
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 // import TabContainer from '../Footer/footer'
 import './App.css';
@@ -40,10 +46,11 @@ class App extends Component {
               <Route path='/contact' exact  component={Contact} />
               <Route path='/Signup' exact  component={Signup} />
               <Route path='/signin' exact component={Signin} />
-              <div  style={{ marginTop: '40px' }}>
+              <Route path ='/teachers' exact component = {Teachers} />
               <Route path='/profile' exact component={Profile} />
-              </div>
-              
+              <Route path='/Teacher' exact component={Teacher}/>
+              <Route path= '/CreateTeacher' exact component={CreateTeacher}/>
+              <Route path='/search' exact component={Search}/>
             </Switch>
           </div>
 

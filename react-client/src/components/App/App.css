@@ -31,6 +31,10 @@
   }
 }
 
+
+.container {
+  margin-top: 40px;
+}
 .each-fade{
   height: 700px;
   

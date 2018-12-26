@@ -90,7 +90,7 @@ function ProductCategories(props) {
     {
       url:
         'https://images.unsplash.com/photo-1534081333815-ae5019106622?auto=format&fit=crop&w=400&q=80',
-      title: 'Snorkeling',
+      title: 'Teaching',
       width: '40%',
     },
     {
@@ -144,9 +144,17 @@ function ProductCategories(props) {
   ];
 
   return (
+    
     <LayoutBody className={classes.root} component="section" width="large">
       <Typography variant="h4" marked="center" align="center" component="h2">
-        For all tastes and all desires
+    
+        For all tastes and all desires 
+
+        <br/>
+        <br/>
+        <a href="./" class="badge badge-info">Create Service</a>
+
+        <br/>
       </Typography>
       <div className={classes.images}>
         {images.map(image => (

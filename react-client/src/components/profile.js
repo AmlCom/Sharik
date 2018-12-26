@@ -11,6 +11,21 @@ class Profile extends Component {
     }
 
 
+// class  Profile extends Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//             isLoggedin: false
+//         }
+//     }
+//     render() {
+//         return (
+//             <div>
+//             <h1>This is the Profile page </h1>
+//             {/* <p>{this.props.location.state.referrer}</p> */}
+//             </div>
+//         )
+//     }
 
 
     uploadImage = (e) => {
@@ -19,7 +34,6 @@ class Profile extends Component {
             image: e.target.files[0]
         })
     }
-
     submitImage = () => {
         var image = this.state.image
     const uploadTask = storage.ref(`images/${image.name}`).put(image)
@@ -47,11 +61,10 @@ class Profile extends Component {
 
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-3"  >
+
 
                 <img src={this.state.image} alt="" class="rounded"/>
-
-  
                 <br />
                 <br />
                 <input  type='file' onChange = {this.uploadImage}/><br></br>
@@ -63,11 +76,11 @@ class Profile extends Component {
                         <a href="" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Messages <span class="badge">12</span></a>
                         <a href="" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Comments <span class="badge">33</span></a>
                         <a href="" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> SOMETHING <span class="badge">203</span></a>
-                   </div>
+                    </div>
 
 
 
-                </div>
+             </div>
                 <div class="col-md-9">
                     <div class="panel panel-default">
                         <div class="panel-heading ">
@@ -85,7 +98,7 @@ class Profile extends Component {
                                     <th></th>
                                 </tr>
                                 <tr>
-                                    <td>Name 1</td> 
+                                    <td>Name 1</td>
                                     <td>@gmail.com</td>
                                     <td><a class="btn btn-success" href="">Accept</a> <a class="btn btn-danger" href="#">Reject</a></td>
                                 </tr>
