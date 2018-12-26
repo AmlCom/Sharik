@@ -9,6 +9,7 @@ import Contact from '../contact'
 import Nav from '../Nav'
 import Teachers from '../Teachers/Teachers';
 import Teacher from '../Teachers/Teacher';
+import CreateTeacher from '../CreateTeacher'
 import Search from '../search'
 
 
@@ -48,6 +49,7 @@ class App extends Component {
               <Route path ='/teachers' exact component = {Teachers} />
               <Route path='/profile' exact component={Profile} />
               <Route path='/Teacher' exact component={Teacher}/>
+              <Route path= '/CreateTeacher' exact component={CreateTeacher}/>
               <Route path='/search' exact component={Search}/>
             </Switch>
           </div>
