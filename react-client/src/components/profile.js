@@ -1,4 +1,15 @@
 import React, { Component } from 'react';
+import { storage } from '../firebase/index'
+
+
+class Profile extends Component {
+    constructor(props) {
+        super(props)
+        this.state={
+            image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNimrjRZN3jIxU-D90rCnZ6pZvp9QF4t55QWP6PdOrCcyWpsvT"
+        }
+    }
+
 
 // class  Profile extends Component {
 //     constructor(props) {
@@ -16,19 +27,48 @@ import React, { Component } from 'react';
 //         )
 //     }
 
-const Profile = () => {
-    return (
 
+    uploadImage = (e) => {
+        //console.log('image',e.target.files[0]);
+        this.setState({
+            image: e.target.files[0]
+        })
+    }
+    submitImage = () => {
+        var image = this.state.image
+    const uploadTask = storage.ref(`images/${image.name}`).put(image)
+    uploadTask.on('state_changed', (snapshot) => {
+
+}, (error) => {
+    console.log(error)
+}, () => {
+    storage.ref('images').child(image.name).getDownloadURL().then(url => {
+        console.log('url',url)
+        this.setState({
+          image:url
+        })
+     //request to the database update the profile picture
+    })
+});
+
+
+    }
+
+
+    render(){
+        console.log('state',this.state.image)
+    return (
 
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-3"  >
 
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNimrjRZN3jIxU-D90rCnZ6pZvp9QF4t55QWP6PdOrCcyWpsvT" alt="" class="rounded" />
 
-                    <br />
-                    <br />
-
+                <img src={this.state.image} alt="" class="rounded"/>
+                <br />
+                <br />
+                <input  type='file' onChange = {this.uploadImage}/><br></br>
+                   <button onClick={this.submitImage}>Upload</button>
                     <div class="list-group">
                         <a href="" class="list-group-item active main-color-bg">
                             <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> The Name of the user
@@ -40,11 +80,7 @@ const Profile = () => {
 
 
 
-
-
-
-
-                </div>
+             </div>
                 <div class="col-md-9">
                     <div class="panel panel-default">
                         <div class="panel-heading ">
@@ -88,6 +124,7 @@ const Profile = () => {
             </div>
         </div>
     )
+}
 }
 
 export default Profile;
