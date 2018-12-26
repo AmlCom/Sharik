@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import axios from 'axios'
+//import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
@@ -81,6 +81,9 @@ import withStyles from '@material-ui/core/styles/withStyles';
 //         )
 //     }
 
+/////// MONGO
+///mongodb://sharik1:sharik1@ds163683.mlab.com:63683/mern-shoppling1
+
 
 const styles = theme => ({
   main: {
@@ -114,10 +117,16 @@ const styles = theme => ({
   },
 });
 
-function Signin(props) {
-  const { classes } = props;
+// function Signin(props) {
+//   const { classes } = props;
+class Singup extends Component {
+  state = {
+      sent: false,
+    };
 
-  return (
+    render(){
+      const { classes } = this.props;  
+      return (
     // <div className={classes.root}>
     //  <Grid container spacing={24}>
 
@@ -166,9 +175,7 @@ function Signin(props) {
     
   );
 }
+}
 
-Signin.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
-export default withStyles(styles)(Signin);
+export default withStyles(styles)(Singup);
