@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
+//import axios from 'axios'
+import { Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -11,6 +13,92 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
+// class Signup extends Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//           firstName: '',
+//           lastName: '',
+//           email: '',
+//           password: '',
+//           redirectTo: null
+//         }
+//     }
+
+//     handleChange = (event) => {
+//         this.setState({
+//           [event.target.name]: event.target.value
+//         })
+//       }
+    
+//     handleSubmit = (event) => {
+//         if (this.state.firstName === '') {alert('firstName cannot be empty');
+//         } else if (this.state.lastName === '') {alert('lastName cannot be empty');
+//         } else if (this.state.email === '') {alert('email cannot be empty');
+//         } else if (this.state.password === '') {alert('password cannot be empty');
+//         } else {
+//           event.preventDefault()
+//           const validate = {
+//             firstName: this.state.firstName,
+//             lastName: this.state.lastName,
+//             email: this.state.email,
+//             password: this.state.password
+//           } 
+      
+//           axios.post('/auth/signup', validate)
+//           .then(response => {
+//             console.log(response)
+//             if (!response.data.error) {
+//               console.log('youre good')
+//               this.setState({
+//                 redirectTo: '/login'
+//               })
+//             } else {
+//               console.log(response.data.error)
+//             }
+//           })
+//         }  
+//     }
+
+
+
+//     render() {
+//         if (this.redirectTo) {
+//             return <Redirect to={{ pathname: this.redirectTo }} />
+//           }
+//         return (
+//             <div>
+//             <h1>This is the Signup page </h1>
+//             <form action="/signup" method="post">
+//                 <div>
+//                     <label>First name</label>
+//                     <input type="text" name="firstName" onChange={this.handleChange}/>
+//                 </div>
+//                 <div>
+//                     <label>Last name</label>
+//                     <input type="text" name="lastName" onChange={this.handleChange}/>
+//                 </div>
+//                 <div>
+//                     <label>Email</label>
+//                     <input type="email" name="email" onChange={this.handleChange}/>
+//                 </div>
+//                 <div>
+//                     <label>Password:</label>
+//                     <input type="password" name="password" onChange={this.handleChange}/>
+//                 </div>
+                
+//                 <div>
+//                     <input type="button" onClick={this.handleSubmit} value="signup"/>
+//                 </div>
+//             </form>
+//         </div>
+//         )
+//     }
+// }
+// export default Signup;
+
+/////// MONGO
+///mongodb://sharik1:sharik1@ds163683.mlab.com:63683/mern-shoppling1
 
 
 const styles = theme => ({
@@ -45,10 +133,16 @@ const styles = theme => ({
   },
 });
 
-function Signin(props) {
-  const { classes } = props;
+// function Signin(props) {
+//   const { classes } = props;
+class Singup extends Component {
+  state = {
+      sent: false,
+    };
 
-  return (
+    render(){
+      const { classes } = this.props;  
+      return (
     // <div className={classes.root}>
     //  <Grid container spacing={24}>
 
@@ -97,9 +191,7 @@ function Signin(props) {
     
   );
 }
+}
 
-Signin.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
-export default withStyles(styles)(Signin);
+export default withStyles(styles)(Singup);
