@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+//import axios from 'axios';
 import { Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
@@ -91,14 +91,21 @@ const styles = theme => ({
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing.unit,
-  },
+  },//
   submit: {
     marginTop: theme.spacing.unit * 3,
   },
 });
 
-function Signin(props) {
-  const { classes } = props;
+
+class Singin extends Component {
+  state = {
+      sent: false,
+    };
+  
+
+  render(){
+    const { classes } = this.props;
 
   return (
     <main className={classes.main}>
@@ -119,10 +126,10 @@ function Signin(props) {
             <InputLabel htmlFor="password">Password</InputLabel>
             <Input name="password" type="password" id="password" autoComplete="current-password" />
           </FormControl>
-          <FormControlLabel
+          {/* <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
-          />
+          /> */}
           <Button
             type="submit"
             fullWidth
@@ -140,9 +147,6 @@ function Signin(props) {
     </main>
   );
 }
+}
 
-Signin.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(Signin);
+export default withStyles(styles)(Singin);
