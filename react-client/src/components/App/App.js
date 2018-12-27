@@ -11,6 +11,7 @@ import Teachers from '../Teachers/Teachers';
 import Teacher from '../Teachers/Teacher';
 import CreateTeacher from '../CreateTeacher'
 import Search from '../search'
+import Student from '../Students/Student.jsx'
 
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
@@ -51,10 +52,11 @@ class App extends Component {
               <Route path='/Teacher' exact component={Teacher}/>
               <Route path= '/CreateTeacher' exact component={CreateTeacher}/>
               <Route path='/search' exact component={Search}/>
+              <Route path='/Student' exact component={Student}/>
             </Switch>
           </div>
-
         </div>
+       
       </BrowserRouter>
     )
   }
