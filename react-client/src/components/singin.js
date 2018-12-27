@@ -140,7 +140,8 @@ class Singin extends Component {
             Sign in
           </Button>
         </form>
-        <a href="/auth/google"><button>Sign In with Google</button></a>
+        <a href="/auth/google"><button className={'btn btn-success'}>Sign In with Google</button></a>
+        <a href="/auth/facebook"><button className={'btn btn-danger'}>Login with Facebook</button></a>
 
       </Paper>
     </main>
