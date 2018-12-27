@@ -35,6 +35,9 @@ function Nav(props) {
           <Typography variant="h6" color="inherit" className={classes.grow}>
           <Link to= '/'>Home</Link>
           </Typography>
+          {/* <Button color="inherit">
+          <Link to ='/Student'>Student</Link>
+          </Button> */}
           <Button color="inherit">
           <Link to='/signin'>Signin</Link>
           </Button>
