@@ -35,7 +35,7 @@ db.on('error', function () {
 
 db.once('open', function () {
   console.log('mongoose connected successfully');
-});
+})
 
 // if (process.env.NODE_ENV === 'production') {
   // // Serve any static files

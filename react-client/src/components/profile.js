@@ -42,39 +42,39 @@ class Profile extends Component {
         console.log('state',this.state.image)
     return (
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3"  >
+        <div className="container">
+            <div className="row">
+                <div className="col-md-3"  >
 
 
-                <img src={this.state.image} alt="" class="rounded"/>
+                <img src={this.state.image} alt="" className="rounded"/>
                 <br />
                 <br />
                 <input  type='file' onChange = {this.uploadImage}/><br></br>
                    <button onClick={this.submitImage}>Upload</button>
-                    <div class="list-group">
-                        <a href="" class="list-group-item active main-color-bg">
-                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> The Name of the user
+                    <div className="list-group">
+                        <a href="" className="list-group-item active main-color-bg">
+                            <span className="glyphicon glyphicon-cog" aria-hidden="true"></span> The Name of the user
                         </a>
-                        <a href="" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Messages <span class="badge">12</span></a>
-                        <a href="" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Comments <span class="badge">33</span></a>
-                        <a href="" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> SOMETHING <span class="badge">203</span></a>
+                        <a href=". /Teacher" className="list-group-item"><span className="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Messages <span className="badge">12</span></a>
+                        <a href="" className="list-group-item"><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span> Comments <span className="badge">33</span></a>
+                        <a href="" className="list-group-item"><span className="glyphicon glyphicon-user" aria-hidden="true"></span> SOMETHING <span className="badge">203</span></a>
                     </div>
 
 
 
              </div>
-                <div class="col-md-9">
-                    <div class="panel panel-default">
-                        <div class="panel-heading ">
-                            <h3 class="panel-title border border-success">Your requests</h3>
+                <div className="col-md-9">
+                    <div className="panel panel-default">
+                        <div className="panel-heading ">
+                            <h3 className="panel-title border border-success">Your requests</h3>
                         </div>
-                        <div class="panel-body">
-                            <div class="row">
+                        <div className="panel-body">
+                            <div className="row">
 
                             </div>
                             <br />
-                            <table class="table table-striped table-hover">
+                            <table className="table table-striped table-hover">
                                 <tr>
                                     <th>Name</th>
                                     <th>Email</th>
@@ -83,22 +83,22 @@ class Profile extends Component {
                                 <tr>
                                     <td>Name 1</td>
                                     <td>@gmail.com</td>
-                                    <td><a class="btn btn-success" href="">Accept</a> <a class="btn btn-danger" href="#">Reject</a></td>
+                                    <td><a className="btn btn-success" href="">Accept</a> <a className="btn btn-danger" href="#">Reject</a></td>
                                 </tr>
                                 <tr>
                                     <td>Name 2</td>
                                     <td>@yahoo.com</td>
-                                    <td><a class="btn btn-success" href="">Accept</a> <a class="btn btn-danger" href="#">Reject</a></td>
+                                    <td><a className="btn btn-success" href="">Accept</a> <a className="btn btn-danger" href="#">Reject</a></td>
                                 </tr>
                                 <tr>
                                     <td>Name 3</td>
                                     <td>@yahoo.com</td>
-                                    <td><a class="btn btn-success" href="">Accept</a> <a class="btn btn-danger" href="#">Reject</a></td>
+                                    <td><a className="btn btn-success" href="">Accept</a> <a className="btn btn-danger" href="#">Reject</a></td>
                                 </tr>
                                 <tr>
                                     <td>Name 4</td>
                                     <td>@gmail.com</td>
-                                    <td><a class="btn btn-success" href="">Accept</a> <a class="btn btn-danger" href="#">Reject</a></td>
+                                    <td><a className="btn btn-success" href="">Accept</a> <a className="btn btn-danger" href="#">Reject</a></td>
                                 </tr>
                             </table>
                         </div>
