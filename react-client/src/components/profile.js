@@ -56,7 +56,7 @@ class Profile extends Component {
                         <a href="" className="list-group-item active main-color-bg">
                             <span className="glyphicon glyphicon-cog" aria-hidden="true"></span> The Name of the user
                         </a>
-                        <a href="" className="list-group-item"><span className="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Messages <span className="badge">12</span></a>
+                        <a href=". /Teacher" className="list-group-item"><span className="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Messages <span className="badge">12</span></a>
                         <a href="" className="list-group-item"><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span> Comments <span className="badge">33</span></a>
                         <a href="" className="list-group-item"><span className="glyphicon glyphicon-user" aria-hidden="true"></span> SOMETHING <span className="badge">203</span></a>
                     </div>
