@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-    googleId: {
+    generalId: {
         type: String,
-        required: [true, 'googleId Field is Required']
+        required: [true, 'generalId Field is Required']
     },
     displayName: {
         type: String,
