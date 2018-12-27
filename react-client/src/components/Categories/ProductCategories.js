@@ -144,9 +144,16 @@ function ProductCategories(props) {
   ];
 
   return (
+    
     <LayoutBody className={classes.root} component="section" width="large">
       <Typography variant="h4" marked="center" align="center" component="h2">
-        For all tastes and all desires
+    
+        For all tastes and all desires 
+
+        <br/>
+        <br/>
+        <button type="button" class="btn btn-info btn-lg">Create Service</button>
+        <br/>
       </Typography>
       <div className={classes.images}>
         {images.map(image => (

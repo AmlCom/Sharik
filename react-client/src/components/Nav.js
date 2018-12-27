@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import {Link} from 'react-router-dom'
+import  {InputBase } from '@material-ui/core'
 
 const styles = {
   root: {
@@ -46,6 +47,12 @@ function Nav(props) {
           <Button color="inherit">
           <Link to ='/about'>About</Link>
           </Button>
+            {/* <Button color="inherit">
+          
+            <InputBase  placeholder="  Search…" style= {{ backgroundColor:"white"}} />
+            <Button className={classes.button} variant="contained" color="inherit"><Link to ='/search'><i class="fa fa-search"></i></Link></Button>
+        
+          </Button> */}
         </Toolbar>
       </AppBar>
     </div>

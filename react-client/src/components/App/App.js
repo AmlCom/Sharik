@@ -9,6 +9,9 @@ import Contact from '../contact'
 import Nav from '../Nav'
 import Teachers from '../Teachers/Teachers';
 import Teacher from '../Teachers/Teacher';
+import Search from '../search'
+
+
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 // import TabContainer from '../Footer/footer'
 import './App.css';
@@ -45,6 +48,7 @@ class App extends Component {
               <Route path ='/teachers' exact component = {Teachers} />
               <Route path='/profile' exact component={Profile} />
               <Route path='/Teacher' exact component={Teacher}/>
+              <Route path='/search' exact component={Search}/>
             </Switch>
           </div>
 
