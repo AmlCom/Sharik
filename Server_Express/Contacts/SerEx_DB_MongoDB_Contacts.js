@@ -1,5 +1,5 @@
 
-var qu_tb_Contacts = require('../../DB/MongoDB/queries/Qu_Contacts.js');
+var qu_tb_Contacts = require('../../DB/MongoDB/queries/Qu_Contact.js');
 
 
 module.exports = {
