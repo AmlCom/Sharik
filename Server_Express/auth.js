@@ -3,6 +3,7 @@ const router = express.Router()
 const passport = require('passport');
 require('./passport/googleAuth.js');
 require('./passport/facebookAuth.js');
+require('./passport/local-strategyAuth.js');
 const User = require('../DB/MongoDB/index.js');
 const signupuser = require('../DB/MongoDB/schema/sharik_db__users_schema.js');
 const bcrypt = require("bcrypt-nodejs");
@@ -22,11 +23,11 @@ router.get('/google',
  passport.authenticate('google', { scope: ['profile'] }));
 
 router.get('/google/redirect', 
- passport.authenticate('google', { failureRedirect: '/singin', failureFlash: true
+ passport.authenticate('google', { failureRedirect: '/singin'
 }),
  function(req, res) {
   //  console.log('reqUser987', req.user);
-  // req.session.user = req.user;
+  req.session.user = req.user;
    res.redirect('/HomePage');
  });
 
@@ -39,10 +40,11 @@ router.get('/facebook/redirect',
 
 
 router.get('/checkLogging', (req, res) => {
+  console.log('321',req.session)
   if (req.session.passport) {
-    User.findById(req.session.passport.user, (err, user) => {
-     res.send(user);
-    })
+     res.send(req.session);
+  } else{
+    res.end();
   }
 })
 
@@ -52,26 +54,31 @@ router.get('/logout', (req, res, next) => {
 });
 
 router.post('/login',
-  passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/singin',
-                                   failureFlash: true })
+  passport.authenticate('local', { successRedirect: '/HomePage',
+                                   failureRedirect: '/singup'})
 );
+
 router.post('/signup', (req, res) => {
-  console.log('jhg', req);
-  var pass;
-  bcrypt.hash(req.body.password, null, null, function(err, hash) {
-    const signupuser1 = new signupuser({
-      firstname: req.body.firstName,
-      lastname: req.body.lastName,
-      email: req.body.email,
-      password:  hash
-    });
-    signupuser1.save(function (user) {
-      console.log(user)
-    });
-});
-  
-  res.send();
+  signupuser.findOne({ 'email': req.body.email }, (err, userMatch) => {
+    if (userMatch) {
+      console.log('user already exist: ', userMatch)
+      res.end();
+    } else {
+        const signupuser1 = new signupuser({
+          firstname: req.body.firstName,
+          lastname: req.body.lastName,
+          email: req.body.email,
+          password:  bcrypt.hashSync(req.body.password)
+        });
+        signupuser1.save().then((user) => {
+          // console.log('oii', user);
+          req.session.user = user;
+          // console.log('oii', req.session);
+
+          res.end();
+        });
+    };  
+  })
 })
 
 module.exports = router;

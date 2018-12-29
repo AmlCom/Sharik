@@ -48,7 +48,7 @@ class App extends Component {
               <Route path='/Signup' exact  component={Signup} />
               <Route path='/signin' exact component={Signin} />
               <Route path ='/teachers' exact component = {Teachers} />
-              <Route path='/profile' exact component={Profile} />
+              <Route path='/Profile' exact component={Profile} />
               <Route path='/Teacher' exact component={Teacher}/>
               <Route path= '/CreateTeacher' exact component={CreateTeacher}/>
               <Route path='/search' exact component={Search}/>

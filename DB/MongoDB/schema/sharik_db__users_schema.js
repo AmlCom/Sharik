@@ -38,6 +38,7 @@
 // 1.1 Tables Schema (Structure)
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const bcrypt = require("bcrypt-nodejs");
 
 const SignupSchema = new Schema({
 
@@ -68,6 +69,15 @@ const SignupSchema = new Schema({
 	// }
 });
 
+SignupSchema.methods = {
+	checkPassword: function(inputPassword, original) {
+	//   return bcrypt.compareSync(inputPassword, this.password)
+	//   return bcrypt.compare(inputPassword, this.password)
+	  return bcrypt.compare(inputPassword, original, function(err, res) {
+		return  res;
+	});
+	}
+  }
 // 1.2 Model Constructor:
 const User1 = mongoose.model("User1", SignupSchema);
 
