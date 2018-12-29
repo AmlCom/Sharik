@@ -1,18 +1,16 @@
 const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-const User = require('./../../DB/MongoDB/index.js');
+const FacebookStrategy = require('passport-facebook').Strategy;
+const User = require('../../DB/MongoDB/index.js');
 const keys = require('../keys.js');
 
-
-// Google strategy ////////////////////////////////////
-passport.use(new GoogleStrategy({
-    clientID: keys.google.clientID,
-    clientSecret: keys.google.clientSecret,
-    callbackURL: "/auth/google/redirect"
+passport.use(new FacebookStrategy({
+    clientID: keys.facebook.clientID,
+    clientSecret: keys.facebook.clientSecret,
+    callbackURL: "/auth/facebook/redirect",
+    profileFields: ['id', 'name', 'displayName', 'photos']
   },
   function(accessToken, refreshToken, profile, done) {
-    // console.log(profile);
-  
+      console.log(profile);
       User.findOne({ generalId: profile.id }, function (err, user) {
         if (err) {
           return done(err);
@@ -33,5 +31,4 @@ passport.use(new GoogleStrategy({
         }
       });
   }
-  ));
-
+));
