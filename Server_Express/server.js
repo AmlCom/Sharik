@@ -40,6 +40,21 @@ db.on('error', function () {
 
 db.once('open', function () {
   console.log('mongoose connected successfully');
+})
+
+// create contact message 
+var SerEx_DB_MongoDB_Contacts = require('./Contacts/SerEx_DB_MongoDB_Contacts.js')
+app.post('/S_Contact',function(req, res){
+  console.log(req.body)
+  SerEx_DB_MongoDB_Contacts.createContact(req, res,function(saveContactErr, saveContactResult){
+    if(saveContactErr){
+      console.log('err', saveContactErr)
+      res.end(JSON.stringify(saveContactErr))
+    }
+    console.log('save result', saveContactResult);
+    res.end(JSON.stringify(saveContactResult));
+  });
+
 });
 
 passport.serializeUser(function(user, done) {

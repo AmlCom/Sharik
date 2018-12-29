@@ -5,7 +5,7 @@ import Signin from '../singin'
 import Signup from '../singup'
 import HomePage from '../HomePage'
 import About from '../about'
-import Contact from '../contact'
+import Contact from '../Contact/Contact'
 import Nav from '../Nav'
 import Teachers from '../Teachers/Teachers';
 import Teacher from '../Teachers/Teacher';
@@ -44,7 +44,7 @@ class App extends Component {
               <Route path='/' exact component={Home} />
               <Route path='/HomePage' exact component={HomePage} />
               <Route path='/about' exact  component={About} />
-              <Route path='/contact' exact  component={Contact} />
+              <Route path='/Contact' exact  component={Contact} />
               <Route path='/Signup' exact  component={Signup} />
               <Route path='/signin' exact component={Signin} />
               <Route path ='/teachers' exact component = {Teachers} />

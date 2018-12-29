@@ -1,0 +1,10 @@
+.pic{
+    width: 200px;
+    height: 120px;
+}
+
+/* resize images */
+.pic img {
+    width: 100%;
+    height: auto;
+}

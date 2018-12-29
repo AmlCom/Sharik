@@ -1,4 +1,4 @@
-// ***************************************************************
+ // ***************************************************************
 
 // ***************************************************************
 
@@ -48,9 +48,16 @@ const SignupSchema = new Schema({
 	// },
 	firstname:  {
 		type: String,
-		required: true
+		required: true,
+		unique: true
 	},
 	lastname:  {
+		type: String,
+		required: true,
+		unique: true
+	},
+
+	password: {
 		type: String,
 		required: true
 	},
