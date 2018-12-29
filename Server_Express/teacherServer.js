@@ -12,8 +12,6 @@ mongoose.connect('mongodb://localhost/teacher')
 
 mongoose.Promise = global.Promise;
 
-
-
 var db = mongoose.connection;
 
 
@@ -28,10 +26,9 @@ db.once('open', function () {
 
 // get a list for all events from the db
 app.get('/teacher', function (req, res, next) {
-    res.send('hiiiii')
-//   Teacher.find({}).then(function (teacher) {
-//     res.send(teacher)
-//   }).catch(next)
+  Teacher.find({}).then(function (teacher) {
+    res.send(teacher)
+  }).catch(next)
 });
 
 
@@ -55,6 +52,6 @@ app.use(function(err,req,res,next){
 
 //listen for requests
 
-app.listen(process.env.port || 4000,function(){
+app.listen(process.env.port || 5000,function(){
     console.log('Now listening for requests');
 })
