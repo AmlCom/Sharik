@@ -6,27 +6,27 @@ const TeacherSchema = new Schema({
     teacherName: {
         type: String,
         required: [true, 'Name Field is Required']
+    },
+
+    teacherMajor: {
+        type: String,
+        required: [true, 'Name Field is Required']
+    },
+
+    info: {
+        type: String,
+        required: [true, 'Name Field is Required']
+    },
+
+    price: {
+        type: Number,
+        required: [true, 'Name Field is Required']
+    },
+
+    image: {
+        type: String,
+        required: [true, 'Name Field is Required']
     }
-
-    // teacherMajor: {
-    //     type: String,
-    //     required: [true, 'Name Field is Required']
-    // },
-
-    // info: {
-    //     type: String,
-    //     required: [true, 'Name Field is Required']
-    // },
-
-    // price: {
-    //     type: Number,
-    //     required: [true, 'Name Field is Required']
-    // },
-
-    // picURL: {
-    //     type: String,
-    //     required: [true, 'Name Field is Required']
-    // }
 });
 
 
