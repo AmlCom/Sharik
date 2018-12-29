@@ -26,17 +26,17 @@ module.exports = {
       message: data["message"]
     });
 
-    contact.save(function(saveErr) {
-      if (saveErr) {
-        callback(saveErr, null);
+    contact.save(function(saveContactErr, saveContactResult) {
+      if (saveContactErr) {
+        callback(saveContactErr, null);
       } else {
-        callback(null, user);
+        callback(null, saveContactResult);
       }
     });
   },
 
   // Select all Users:
-  selectAllUsers: function(callback) {
+  selectAllContacts: function(callback) {
     Contact.find({}, function(selectAllContactsErr, allContactsQueryResulte) {
       if (selectAllContactsErr) {
         callback(selectAllContactsErr, null);
