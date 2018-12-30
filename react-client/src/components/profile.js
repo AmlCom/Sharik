@@ -9,6 +9,8 @@ class Profile extends Component {
         super(props);
         this.state = {
             Loggedin: false,
+            email: '',
+          password: '',
             image: "",
             teacherName: "",
             teacherMajor: "",
@@ -32,25 +34,55 @@ class Profile extends Component {
                })
             }
         })
+        axios.get('/teacher').then((res) => {
+            console.log("res", res);
+            this.setState({
+                image: res.data[0].image,
+                teacherName: res.data[0].teacherName,
+                teacherMajor: res.data[0].teacherMajor,
+                info: res.data[0].info,
+                price: res.data[0].price
+            })
+
+        }).catch((err) => {
+            console.log('hi', err)
+        })
       }
 
-    // componentDidMount() {
-    //     axios.get('/teacher').then((res) => {
-    //         console.log("res", res);
-    //         this.setState({
-    //             image: res.data[0].image,
-    //             teacherName: res.data[0].teacherName,
-    //             teacherMajor: res.data[0].teacherMajor,
-    //             info: res.data[0].info,
-    //             price: res.data[0].price
-    //         })
 
-    //     }).catch((err) => {
-    //         console.log('hi', err)
-    //     })
+      handleChange = (event) => {
+        this.setState({
+          [event.target.name]: event.target.value
+        })
+      }
 
-    // }
-
+      handleSubmit = (event) => {
+        if (this.state.email === '') {alert('email cannot be empty');
+        } else if (this.state.password === '') {alert('password cannot be empty');
+        } else {
+          event.preventDefault()
+          const check = {
+            email: this.state.email,
+            password: this.state.password
+          } 
+      
+          axios.post('/asd', check)
+          .then(response => {
+            console.log('ert', response.data)
+            if (response.data) {
+              console.log('ezvfdgf')
+  
+              this.setState({
+                Loggedin: true
+            })
+            } else {
+              this.setState({
+                Loggedin: false
+            })
+            }
+          })
+        }  
+      }
 
     uploadImage = (e) => {
         //console.log('image',e.target.files[0]);
@@ -97,7 +129,7 @@ class Profile extends Component {
             return (
                 <div>
                     <h1>This is the Signin page </h1>
-                    <form action="/login" method="post">
+                    <form action="/asd" method="post">
                         <div>
                             <label>Email address:</label>
                             <input type="text" name="email" onChange={this.handleChange}/>

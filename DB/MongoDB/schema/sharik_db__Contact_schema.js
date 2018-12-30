@@ -2,9 +2,10 @@
 // Contact Table schema 
 // ***************************************************************
 
-var mongoose = require('../connect');
+// var mongoose = require('../connect');
 
 // ***************************************************************
+const mongoose = require('mongoose');
 
 const db = mongoose.connection;
 

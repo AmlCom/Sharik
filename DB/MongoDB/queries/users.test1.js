@@ -1,5 +1,5 @@
 
-var db = require('../connect');
+// var db = require('../connect');
 
 var usersTable = require('./users.js');
 
