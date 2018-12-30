@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { storage } from '../firebase/index';
+// import { storage } from '../firebase/index'
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 import './Profile.css'
 
 class Profile extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
+            Loggedin: false,
             image: "",
             teacherName: "",
             teacherMajor: "",
@@ -14,23 +16,40 @@ class Profile extends Component {
             price: ""
         }
     }
-
+    
     componentDidMount() {
-        axios.get('/teacher').then((res) => {
-            console.log("res", res);
-            this.setState({
-                image: res.data[0].image,
-                teacherName: res.data[0].teacherName,
-                teacherMajor: res.data[0].teacherMajor,
-                info: res.data[0].info,
-                price: res.data[0].price
-            })
-
-        }).catch((err) => {
-            console.log('hi', err)
+        axios.get('/auth/checkLogging').
+        then((x) => {
+            console.log('356', x.data);
+            if (x.data) {
+              console.log('dfgfcvm')
+                this.setState({
+                   Loggedin: true
+                })
+            } else {
+               this.setState({
+                   Loggedin: false
+               })
+            }
         })
+      }
 
-    }
+    // componentDidMount() {
+    //     axios.get('/teacher').then((res) => {
+    //         console.log("res", res);
+    //         this.setState({
+    //             image: res.data[0].image,
+    //             teacherName: res.data[0].teacherName,
+    //             teacherMajor: res.data[0].teacherMajor,
+    //             info: res.data[0].info,
+    //             price: res.data[0].price
+    //         })
+
+    //     }).catch((err) => {
+    //         console.log('hi', err)
+    //     })
+
+    // }
 
 
     uploadImage = (e) => {
@@ -55,14 +74,49 @@ class Profile extends Component {
                 //request to the database update the profile picture
             })
         });
-
-
     }
+// }, (error) => {
+//     console.log(error)
+// }, () => {
+//     storage.ref('images').child(image.name).getDownloadURL().then(url => {
+//         console.log('url',url)
+//         this.setState({
+//           image:url
+//         })
+//      //request to the database update the profile picture
+//     })
+// });
 
 
-    render() {
-        console.log('state', this.state)
-        return (
+//     }
+
+
+    render(){
+        {console.log('43', this.state.Loggedin)}
+        if (!this.state.Loggedin) {
+            return (
+                <div>
+                    <h1>This is the Signin page </h1>
+                    <form action="/login" method="post">
+                        <div>
+                            <label>Email address:</label>
+                            <input type="text" name="email" onChange={this.handleChange}/>
+                        </div>
+                        <div>
+                            <label>Password:</label>
+                            <input type="password" name="password" onChange={this.handleChange}/>
+                        </div>
+                        <div>
+                            <input type="submit" value="Log In" onClick={this.handleSubmit}/>
+                        </div>
+                    </form>
+                    <a href="/auth/google" ><button className={'btn btn-success'}>Sign In with Google</button></a>
+                    <a href="/auth/facebook" ><button className={'btn btn-danger'}>Sign In with Facebook</button></a>
+                </div>
+            )
+        } else {
+        console.log('state',this.state.image)
+    return (
 
             <div className="container">
                 <div className="row">
@@ -163,6 +217,7 @@ class Profile extends Component {
             </div>
         )
     }
+} 
 }
 
 export default Profile;

@@ -4,8 +4,12 @@ const path = require('path');
 const passport = require('passport');
 const keys = require('./keys.js');
 const mongoose = require('mongoose');
-const cookieSession = require('cookie-session')
-const auth = require('./auth.js')
+const cookieSession = require('cookie-session');
+const session = require('express-session');
+const auth = require('./auth.js');
+LocalStrategy = require('passport-local').Strategy;
+const signupuser = require('../DB/MongoDB/schema/sharik_db__users_schema.js');
+const bcrypt = require("bcrypt-nodejs");
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -16,6 +20,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(cookieSession({
   maxAge: 24 * 60 * 60 * 1000,
   keys: [keys.session.cookie] 
@@ -51,6 +56,48 @@ app.post('/S_Contact',function(req, res){
   });
 
 });
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
+
+passport.use(new LocalStrategy(
+  {
+    usernameField: 'email' // not necessary, DEFAULT
+  },
+  function(email, password, done) {
+    console.log('356',email, password )
+    signupuser.findOne({ 'email': email }, (err, userMatch) => {
+      if (err) {
+        return done(err)
+      }
+      if (!userMatch) {
+        return done(null, false, { message: 'Incorrect username' })
+      }
+      if (!bcrypt.compareSync(password, userMatch.password)) {
+        console.log('sg', bcrypt.compareSync(password, userMatch.password))
+        return done(null, false, { message: 'Incorrect password' })
+      }
+      return done(null, userMatch)
+    })
+  }
+));
+
+app.post('/asd',
+passport.authenticate('local'),
+(req, res) => {
+  console.log('hey')
+  // console.log('dtrt', req.session)
+  res.send(req.session)
+}
+);
+
 
 // if (process.env.NODE_ENV === 'production') {
   // // Serve any static files

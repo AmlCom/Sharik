@@ -152,7 +152,7 @@ function ProductCategories(props) {
 
         <br/>
         <br/>
-        <a href="./" class="badge badge-info">Create Service</a>
+        <a href="./" className="badge badge-info">Create Service</a>
 
         <br/>
       </Typography>
