@@ -12,9 +12,7 @@
 
 // mongoose.Promise = global.Promise;
 
-
-
-// var db = mongoose.connection;
+var db = mongoose.connection;
 
 
 // db.on('error', function () {
@@ -26,13 +24,12 @@
 // });
 
 
-// // get a list for all events from the db
-// app.get('/teacher', function (req, res, next) {
-//     res.send('hiiiii')
-// //   Teacher.find({}).then(function (teacher) {
-// //     res.send(teacher)
-// //   }).catch(next)
-// });
+// get a list for all events from the db
+app.get('/teacher', function (req, res, next) {
+  Teacher.find({}).then(function (teacher) {
+    res.send(teacher)
+  }).catch(next)
+});
 
 
 // //add new event to the db
@@ -55,6 +52,6 @@
 
 // //listen for requests
 
-// app.listen(process.env.port || 4000,function(){
-//     console.log('Now listening for requests');
-// })
+app.listen(process.env.port || 5000,function(){
+    console.log('Now listening for requests');
+})

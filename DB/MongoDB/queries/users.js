@@ -40,7 +40,10 @@ module.exports = {
 
 	// 1.3.1 Create (Save) a user in the DB User table:
 	createUser: function (data, callback) {
-		console.log("DB/MongoDB/queries/users.js - createUser:")
+		console.log("DB/MongoDB/queries/users.js - createUser:");
+		this.checkUsername(data["user_name"]), function (findOne_user_name_Err, findOne_user_name_Resulte) {
+
+		};
 		this.hashPassword(data["password"], function (hashErr, hashedPassword) {
 			if (hashErr) {
 				console.log("HashPassword Error: ");
@@ -57,11 +60,26 @@ module.exports = {
 					// phonenumber: data["phonenumber"]
 				});
 
-				user.save(function (saveErr) {
-					if (saveErr) {
-						callback(saveErr, null);
+				user.save(function (createUserErr, createUserResult) {
+					if (createUserErr) {
+						console.log("--------------------");
+						console.log("DB/MongoDB/queries/users.js - createUser:  save() - createUserErr");
+						console.log("Failed to Created User!");
+						console.log(createUserErr);
+						console.log("--------------------");
+						console.log("");
+						console.log("");
+
+						callback(createUserErr, null);
 					} else {
-						callback(null, user);
+						console.log("--------------------");
+						console.log("DB/MongoDB/queries/users.js - createUser:  save() - createUserResult");
+						console.log("User Created Successfully !");
+						console.log(createUserResult);
+						console.log("--------------------");
+						console.log("");
+						console.log("");
+						callback(null, createUserResult);
 					}
 
 				});
@@ -160,6 +178,8 @@ module.exports = {
 	// 		}
 	// 	});
 	// },
+
+
 
 
 }

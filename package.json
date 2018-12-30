@@ -2,6 +2,7 @@
   "name": "example-create-react-app-express",
   "version": "1.0.0",
   "scripts": {
+    "test": "mocha",
     "client": "cd react-client && yarn start",
     "server": "cd Server_Express && nodemon server.js",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
@@ -9,18 +10,23 @@
     "heroku-postbuild": "cd react-client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "dependencies": {
+    "assert": "^1.4.1",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
     "cookie-session": "^2.0.0-beta.3",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
+    "express-session": "^1.15.6",
     "faker": "^4.1.0",
+    "jquery": "^3.3.1",
+    "mocha": "^5.2.0",
     "mongoose": "^5.4.0",
     "mysql": "^2.16.0",
     "passport": "^0.4.0",
     "passport-facebook": "^2.1.1",
     "passport-google-oauth": "^1.0.0",
     "passport-local": "^1.0.0",
+    "supertest": "^3.3.0",
     "twilio": "^3.26.0"
   },
   "devDependencies": {
