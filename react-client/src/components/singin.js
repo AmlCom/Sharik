@@ -93,7 +93,7 @@ class Signin extends Component {
                         <input type="password" name="password" onChange={this.handleChange}/>
                     </div>
                     <div>
-                        <input type="submit" value="Log In" onClick={this.handleSubmit}/>
+                        <input type="button" value="Log In" onClick={this.handleSubmit}/>
                     </div>
                 </form>
                 <a href="/auth/google" ><button className={'btn btn-success'}>Sign In with Google</button></a>

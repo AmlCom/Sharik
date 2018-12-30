@@ -11,6 +11,8 @@ class HomePage extends Component {
       super(props);
       this.state = {
         Loggedin: false,
+        email: '',
+        password: ''
       }
   }
 
@@ -31,6 +33,41 @@ class HomePage extends Component {
     })
   }
 
+
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  handleSubmit = (event) => {
+    if (this.state.email === '') {alert('email cannot be empty');
+    } else if (this.state.password === '') {alert('password cannot be empty');
+    } else {
+      event.preventDefault()
+      const check = {
+        email: this.state.email,
+        password: this.state.password
+      } 
+  
+      axios.post('/asd', check)
+      .then(response => {
+        console.log('ert', response.data)
+        if (response.data) {
+          console.log('ezvfdgf')
+
+          this.setState({
+            Loggedin: true
+        })
+        } else {
+          this.setState({
+            Loggedin: false
+        })
+        }
+      })
+    }  
+  }
+
   render() {
     if (!this.state.Loggedin) {
       return (
@@ -46,7 +83,7 @@ class HomePage extends Component {
                       <input type="password" name="password" onChange={this.handleChange}/>
                   </div>
                   <div>
-                      <input type="submit" value="Log In" onClick={this.handleSubmit}/>
+                      <input type="button" value="Log In" onClick={this.handleSubmit}/>
                   </div>
               </form>
               <a href="/auth/google" ><button className={'btn btn-success'}>Sign In with Google</button></a>

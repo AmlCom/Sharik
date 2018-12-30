@@ -4,7 +4,7 @@ const SALT_WORK_FACTOR = 10;
 // Read - bcrypt Docs:
 // https://www.npmjs.com/package/bcrypt
 
-var db = require('../connect');
+// var db = require('../connect');
 var User = require('../schema/sharik_db__users_schema.js');
 
 /*
