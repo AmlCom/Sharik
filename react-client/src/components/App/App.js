@@ -11,7 +11,8 @@ import Teachers from '../Teachers/Teachers';
 import Teacher from '../Teachers/Teacher';
 import CreateTeacher from '../CreateTeacher'
 import Search from '../search'
-import Student from '../Students/Student.jsx'
+import Student from '../Students/Student.js'
+import VideoComponent from '../video/VideoComponent'
 
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
@@ -48,11 +49,12 @@ class App extends Component {
               <Route path='/Signup' exact  component={Signup} />
               <Route path='/signin' exact component={Signin} />
               <Route path ='/teachers' exact component = {Teachers} />
-              <Route path='/profile' exact component={Profile} />
+              <Route path='/Profile' exact component={Profile} />
               <Route path='/Teacher' exact component={Teacher}/>
               <Route path= '/CreateTeacher' exact component={CreateTeacher}/>
               <Route path='/search' exact component={Search}/>
               <Route path='/Student' exact component={Student}/>
+              <Route path='/video' exact component={VideoComponent} />
             </Switch>
           </div>
         </div>

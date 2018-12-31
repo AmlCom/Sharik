@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import { storage } from '../firebase/index';
+import { storage } from '../firebase/index'
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 import './Profile.css'
 
 class Profile extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
+            Loggedin: false,
+            email: '',
+          password: '',
             image: "",
             teacherName: "",
             teacherMajor: "",
@@ -14,8 +18,22 @@ class Profile extends Component {
             price: ""
         }
     }
-
+    
     componentDidMount() {
+        axios.get('/auth/checkLogging').
+        then((x) => {
+            console.log('356', x.data);
+            if (x.data) {
+              console.log('dfgfcvm')
+                this.setState({
+                   Loggedin: true
+                })
+            } else {
+               this.setState({
+                   Loggedin: false
+               })
+            }
+        })
         axios.get('/teacher').then((res) => {
             console.log("res", res);
             this.setState({
@@ -29,9 +47,42 @@ class Profile extends Component {
         }).catch((err) => {
             console.log('hi', err)
         })
+      }
 
-    }
 
+      handleChange = (event) => {
+        this.setState({
+          [event.target.name]: event.target.value
+        })
+      }
+
+      handleSubmit = (event) => {
+        if (this.state.email === '') {alert('email cannot be empty');
+        } else if (this.state.password === '') {alert('password cannot be empty');
+        } else {
+          event.preventDefault()
+          const check = {
+            email: this.state.email,
+            password: this.state.password
+          } 
+      
+          axios.post('/asd', check)
+          .then(response => {
+            console.log('ert', response.data)
+            if (response.data) {
+              console.log('ezvfdgf')
+  
+              this.setState({
+                Loggedin: true
+            })
+            } else {
+              this.setState({
+                Loggedin: false
+            })
+            }
+          })
+        }  
+      }
 
     uploadImage = (e) => {
         //console.log('image',e.target.files[0]);
@@ -55,14 +106,49 @@ class Profile extends Component {
                 //request to the database update the profile picture
             })
         });
-
-
     }
+// }, (error) => {
+//     console.log(error)
+// }, () => {
+//     storage.ref('images').child(image.name).getDownloadURL().then(url => {
+//         console.log('url',url)
+//         this.setState({
+//           image:url
+//         })
+//      //request to the database update the profile picture
+//     })
+// });
 
 
-    render() {
-        console.log('state', this.state)
-        return (
+//     }
+
+
+    render(){
+        {console.log('43', this.state.Loggedin)}
+        if (!this.state.Loggedin) {
+            return (
+                <div>
+                    <h1>This is the Signin page </h1>
+                    <form action="/asd" method="post">
+                        <div>
+                            <label>Email address:</label>
+                            <input type="text" name="email" onChange={this.handleChange}/>
+                        </div>
+                        <div>
+                            <label>Password:</label>
+                            <input type="password" name="password" onChange={this.handleChange}/>
+                        </div>
+                        <div>
+                            <input type="submit" value="Log In" onClick={this.handleSubmit}/>
+                        </div>
+                    </form>
+                    <a href="/auth/google" ><button className={'btn btn-success'}>Sign In with Google</button></a>
+                    <a href="/auth/facebook" ><button className={'btn btn-danger'}>Sign In with Facebook</button></a>
+                </div>
+            )
+        } else {
+        console.log('state',this.state.image)
+    return (
 
             <div className="container">
                 <div className="row">
@@ -163,6 +249,7 @@ class Profile extends Component {
             </div>
         )
     }
+} 
 }
 
 export default Profile;
