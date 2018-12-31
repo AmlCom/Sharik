@@ -66,7 +66,7 @@ describe('POST', function () {
         request('http://127.0.0.1:3000').post('/signup').expect(200).send({
             name: 'dana',
             major: 'hhhhh',
-             email: 'dana@gfgf.com',
+            email: 'dana@gfgf.com',
             username: 'dd',
             password: '3333',
             description:'wow',
@@ -81,10 +81,9 @@ describe('POST', function () {
 
     it('users login', function (done) {
         request("http://127.0.0.1:3000")
-          .post("/logn")
-          .expect(200)
+          .post("/login")
           .send({
-            username: "dana",
+            email: "dana",
             password: "1232"
           })
           .end(function(err, res) {

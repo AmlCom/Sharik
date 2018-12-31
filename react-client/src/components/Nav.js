@@ -38,18 +38,12 @@ function Nav(props) {
           {/* <Button color="inherit">
           <Link to ='/Student'>Student</Link>
           </Button> */}
-          <Button color="inherit">
-          <Link to='/signin'>Signin</Link>
-          </Button>
-          <Button color="inherit">
-          <Link to ='/signup'>Signup</Link>
-          </Button>
-          <Button color="inherit">
-          <Link to ='/contact'>Contact</Link>
-          </Button>
-          <Button color="inherit">
-          <Link to ='/about'>About</Link>
-          </Button>
+         
+          <Link to='/signin'> <Button color="inherit">Signin </Button></Link>
+          <Link to ='/signup'><Button color="inherit">Signup</Button></Link>
+          <Link to ='/contact'><Button color="inherit">Contact</Button></Link>
+          <Link to ='/about'><Button color="inherit">About</Button></Link>
+          
             {/* <Button color="inherit">
           
             <InputBase  placeholder="  Search…" style= {{ backgroundColor:"white"}} />
