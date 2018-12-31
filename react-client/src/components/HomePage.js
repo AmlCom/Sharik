@@ -50,7 +50,7 @@ class HomePage extends Component {
         password: this.state.password
       } 
   
-      axios.post('/asd', check)
+      axios.post('/auth/signin', check)
       .then(response => {
         console.log('ert', response.data)
         if (response.data) {
