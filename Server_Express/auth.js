@@ -10,7 +10,7 @@ const bcrypt = require("bcrypt-nodejs");
 
 
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+  done(null, user);
 });
 
 passport.deserializeUser(function(id, done) {
@@ -27,36 +27,17 @@ router.get('/google/redirect',
 }),
  function(req, res) {
   //  console.log('reqUser987', req.user);
-  req.session.user = req.user;
+  // req.session.user = req.user;
    res.redirect('/HomePage');
  });
 
-router.get('/facebook', passport.authenticate('facebook'));
 
+router.get('/facebook', passport.authenticate('facebook'));
 
 router.get('/facebook/redirect',
   passport.authenticate('facebook', { successRedirect: '/HomePage',
                                       failureRedirect: '/singin' }));
 
-
-router.get('/checkLogging', (req, res) => {
-  console.log('321',req.session)
-  if (req.session.passport) {
-     res.send(req.session);
-  } else{
-    res.end();
-  }
-})
-
-router.get('/logout', (req, res, next) => {
-  req.session = null;
-  res.redirect('/');
-});
-
-router.post('/login',
-  passport.authenticate('local', { successRedirect: '/HomePage',
-                                   failureRedirect: '/singup'})
-);
 
 router.post('/signup', (req, res) => {
   signupuser.findOne({ 'email': req.body.email }, (err, userMatch) => {
@@ -72,7 +53,7 @@ router.post('/signup', (req, res) => {
         });
         signupuser1.save().then((user) => {
           // console.log('oii', user);
-          req.session.user = user;
+          // req.session.user = user;
           // console.log('oii', req.session);
 
           res.end();
@@ -80,5 +61,30 @@ router.post('/signup', (req, res) => {
     };  
   })
 })
+
+
+router.post('/signin',
+passport.authenticate('local'),
+(req, res) => {
+  console.log('hey')
+  // console.log('dtrt', req.session)
+  res.send(req.session)
+}
+);
+
+router.get('/checkLogging', (req, res) => {
+  console.log('321',req.session)
+  if (req.session.passport) {
+     res.send(req.session);
+  } else{
+    res.end();
+  }
+})
+
+router.get('/logout', (req, res, next) => {
+  req.session = null;
+  res.redirect('/');
+});
+
 
 module.exports = router;
