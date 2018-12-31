@@ -14,6 +14,9 @@ import Profile from './Profile/Profile.jsx';
 import MySchedule from './MySchedule/MySchedule.jsx';
 import MyPayments from './MyPayments/MyPayments.jsx';
 
+const styles = theme => ({
+	
+});
 
 class Student extends Component {
 	constructor(props) {
@@ -59,6 +62,3 @@ class Student extends Component {
 
 export default withStyles(styles)(Student);
 
-const styles = theme => ({
-	
-  });

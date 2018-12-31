@@ -66,7 +66,7 @@ class Profile extends Component {
             password: this.state.password
           } 
       
-          axios.post('/asd', check)
+          axios.post('/auth/signin', check)
           .then(response => {
             console.log('ert', response.data)
             if (response.data) {
@@ -139,7 +139,7 @@ class Profile extends Component {
                             <input type="password" name="password" onChange={this.handleChange}/>
                         </div>
                         <div>
-                            <input type="submit" value="Log In" onClick={this.handleSubmit}/>
+                            <input type="button" value="Log In" onClick={this.handleSubmit}/>
                         </div>
                     </form>
                     <a href="/auth/google" ><button className={'btn btn-success'}>Sign In with Google</button></a>
