@@ -18,6 +18,7 @@ import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+import Student from './Students/Student.js'
 
 
 const styles = theme => ({
@@ -55,29 +56,33 @@ const styles = theme => ({
 
 class HomePage extends Component {
   constructor(props) {
-      super(props);
-      this.state = {
-        Loggedin: false,
-        email: '',
-        password: ''
-      }
+    super(props);
+    this.state = {
+      Loggedin: false,
+      email: '',
+      password: '',
+      isTeacher:false
+    }
   }
 
   componentDidMount() {
     axios.get('/auth/checkLogging').
-    then((x) => {
-        console.log('356', x.data);
+      then((x) => {
+        console.log('356', x.data.passport.user.isTeacher);
         if (x.data) {
-          console.log(this)
-            this.setState({
-               Loggedin: true
-            })
+          var yahya = x.data.passport.user.isTeacher
+          console.log('yahya',yahya)
+          this.setState({
+            Loggedin: true,
+            isTeacher:yahya
+          })
+         
         } else {
-           this.setState({
-               Loggedin: false
-           })
+          this.setState({
+            Loggedin: false
+          })
         }
-    })
+      })
   }
 
 
@@ -88,34 +93,38 @@ class HomePage extends Component {
   }
 
   handleSubmit = (event) => {
-    if (this.state.email === '') {alert('email cannot be empty');
-    } else if (this.state.password === '') {alert('password cannot be empty');
+    if (this.state.email === '') {
+      alert('email cannot be empty');
+    } else if (this.state.password === '') {
+      alert('password cannot be empty');
     } else {
       event.preventDefault()
       const check = {
         email: this.state.email,
         password: this.state.password
-      } 
-  
-      axios.post('/auth/signin', check)
-      .then(response => {
-        console.log('ert', response.data)
-        if (response.data) {
-          console.log('ezvfdgf')
+      }
 
-          this.setState({
-            Loggedin: true
+      axios.post('/auth/signin', check)
+        .then(response => {
+          console.log('ert', response.data)
+          if (response.data) {
+            console.log('ezvfdgf')
+
+            this.setState({
+              Loggedin: true
+            })
+          } else {
+            this.setState({
+              Loggedin: false
+            })
+          }
         })
-        } else {
-          this.setState({
-            Loggedin: false
-        })
-        }
-      })
-    }  
+    }
   }
 
   render() {
+    console.log('isTeacher',this.state.isTeacher)
+    console.log('islogin',this.state.Loggedin)
     const { classes } = this.props;
     if (!this.state.Loggedin) {
       return (
@@ -135,7 +144,7 @@ class HomePage extends Component {
               </FormControl>
               <FormControl margin="normal" required fullWidth>
                 <InputLabel htmlFor="password">Password</InputLabel>
-                <Input name="password" type="password" id="password" autoComplete="current-password" onChange={this.handleChange}/>
+                <Input name="password" type="password" id="password" autoComplete="current-password" onChange={this.handleChange} />
               </FormControl>
               {/* <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
@@ -156,15 +165,26 @@ class HomePage extends Component {
           </Paper>
         </main>
       )
-  } else {
-    return (
-      <React.Fragment>
+    } else if (this.state.Loggedin && this.state.isTeacher) {
+      return (
+        <React.Fragment>
 
-        <ProductCategories />
+          <ProductCategories />
 
-      </React.Fragment>
-    );
-  }
+        </React.Fragment>
+      );
+    }
+    else if(this.state.Loggedin && !this.state.isTeacher) {
+      return (
+        //browserHistory.push('/student')
+        // <React.Fragment>
+
+        //   <Student />
+
+        // </React.Fragment>
+        <Redirect to="/student" />
+      )
+    }
   }
 }
 

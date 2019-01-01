@@ -75,10 +75,10 @@ app.get("/token", function (request, response) {
 
 // create contact message 
 var SerEx_DB_MongoDB_Contacts = require('./Contacts/SerEx_DB_MongoDB_Contacts.js')
-app.post('/S_Contact',function(req, res){
+app.post('/S_Contact', function (req, res) {
   console.log(req.body)
-  SerEx_DB_MongoDB_Contacts.createContact(req, res,function(saveContactErr, saveContactResult){
-    if(saveContactErr){
+  SerEx_DB_MongoDB_Contacts.createContact(req, res, function (saveContactErr, saveContactResult) {
+    if (saveContactErr) {
       console.log('err', saveContactErr)
       res.end(JSON.stringify(saveContactErr))
     }
