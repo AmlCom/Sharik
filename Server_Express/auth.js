@@ -6,6 +6,7 @@ require('./passport/facebookAuth.js');
 require('./passport/local-strategyAuth.js');
 const User = require('../DB/MongoDB/index.js');
 const signupuser = require('../DB/MongoDB/schema/sharik_db__users_schema.js');
+const Teacher = require('../DB/MongoDB/schema/teacherSchema')
 const bcrypt = require("bcrypt-nodejs");
 
 
@@ -45,6 +46,24 @@ router.post('/signup', (req, res) => {
       console.log('user already exist: ', userMatch)
       res.end();
     } else {
+      console.log('bala',req.body.profession)
+
+      if (req.body.profession === "Teacher"){
+        const signupuser1 = new Teacher({
+          firstname: req.body.firstName,
+          lastname: req.body.lastName,
+          email: req.body.email,
+          password:  bcrypt.hashSync(req.body.password)
+        });
+        signupuser1.save().then((user) => {
+          // console.log('oii', user);
+          // req.session.user = user;
+          // console.log('oii', req.session);
+
+          res.end();
+        });
+      
+      } else  {
         const signupuser1 = new signupuser({
           firstname: req.body.firstName,
           lastname: req.body.lastName,
@@ -58,6 +77,9 @@ router.post('/signup', (req, res) => {
 
           res.end();
         });
+      }
+
+
     };  
   })
 })

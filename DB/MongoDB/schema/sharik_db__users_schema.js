@@ -45,11 +45,11 @@ const SignupSchema = new Schema({
 	// 	type: String,
 	// 	required: true
 	// },
-	firstname:  {
+	firstname: {
 		type: String,
 		required: true
 	},
-	lastname:  {
+	lastname: {
 		type: String,
 		required: true
 	},
