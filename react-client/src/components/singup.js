@@ -62,6 +62,7 @@ class Singup extends Component {
       password: '',
       profession: '',
       Loggedin: false,
+      Signedup: false
     }
   }
 
@@ -110,7 +111,7 @@ class Singup extends Component {
           if (!response.data.error) {
             console.log('youre good')
             this.setState({
-              redirectTo: '/singin'
+              Signedup: true
             })
           } else {
             console.log(response.data.error)
@@ -125,6 +126,8 @@ class Singup extends Component {
       const { classes } = this.props; 
       if (this.state.Loggedin) {
         return <Redirect to={{ pathname: '/HomePage', state: { referrer: this.state.test } }} />
+      } else if (this.state.Signedup) {
+        return <Redirect to={{ pathname: '/signin', state: { referrer: this.state.test } }} />
       } else { 
       return (
     // <div className={classes.root}>
@@ -167,7 +170,6 @@ class Singup extends Component {
             </select>
           </FormControl>
           <Button
-            type="submit"
             fullWidth
             variant="contained"
             color="primary"
