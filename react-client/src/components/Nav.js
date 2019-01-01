@@ -48,8 +48,9 @@ class Nav extends Component  {
   }
 
   render() {
+    {console.log('asdsa3', this.props.log)}
     const { classes } = this.props;
-    if (this.state.Loggedin) {
+    if (this.props.log) {
       return (
           <div className={classes.root}>
           <AppBar position="static">

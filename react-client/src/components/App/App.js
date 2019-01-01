@@ -33,11 +33,6 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <div>
-
-
-         <div style={{ height: '100%' }}>
-            <Nav />
-         </div>
            
            
 
