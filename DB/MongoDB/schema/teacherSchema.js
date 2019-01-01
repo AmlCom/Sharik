@@ -19,6 +19,10 @@ const TeacherSchema = new Schema({
 		type: String,
 		required: true
 	},
+	isTeacher: {
+		type: Boolean,
+		required: false
+	},
 	teacherMajor: {
 		type: String,
 		required: false
