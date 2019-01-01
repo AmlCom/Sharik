@@ -1,4 +1,6 @@
 import withRoot from './Categories/withRoot';
+import Nav from './Nav'
+
 // --- Post bootstrap -----
 import React, { Component } from 'react';
 import ProductCategories from './Categories/ProductCategories';
@@ -68,8 +70,8 @@ class HomePage extends Component {
   componentDidMount() {
     axios.get('/auth/checkLogging').
       then((x) => {
-        console.log('356', x.data.passport.user.isTeacher);
-        if (x.data) {
+        // console.log('356', x.data.passport.user.isTeacher);
+        if (x.data.passport) {
           var yahya = x.data.passport.user.isTeacher
           console.log('yahya',yahya)
           this.setState({
@@ -128,53 +130,61 @@ class HomePage extends Component {
     const { classes } = this.props;
     if (!this.state.Loggedin) {
       return (
-        <main className={classes.main}>
-          <CssBaseline />
-          <Paper className={classes.paper}>
-            <Avatar className={classes.avatar}>
-              <LockIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Sign in
-            </Typography>
-            <form className={classes.form}>
-              <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="email">Email Address</InputLabel>
-                <Input id="email" name="email" autoComplete="email" autoFocus onChange={this.handleChange} />
-              </FormControl>
-              <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="password">Password</InputLabel>
-                <Input name="password" type="password" id="password" autoComplete="current-password" onChange={this.handleChange} />
-              </FormControl>
-              {/* <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              /> */}
-              <Button
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-                onClick={this.handleSubmit}
-              >
+        <div>
+          <div style={{ height: '100%' }}>
+              <Nav />
+          </div>
+          <main className={classes.main}>
+          
+            <CssBaseline />
+            <Paper className={classes.paper}>
+              <Avatar className={classes.avatar}>
+                <LockIcon />
+              </Avatar>
+              <Typography component="h1" variant="h5">
                 Sign in
-              </Button>
-            </form>
-            <a href="/auth/google"><button className={'btn btn-success'}>Sign In with Google</button></a>
-            <a href="/auth/facebook"><button className={'btn btn-danger'}>Login with Facebook</button></a>
-          </Paper>
-        </main>
+              </Typography>
+              <form className={classes.form}>
+                <FormControl margin="normal" required fullWidth>
+                  <InputLabel htmlFor="email">Email Address</InputLabel>
+                  <Input id="email" name="email" autoComplete="email" autoFocus onChange={this.handleChange} />
+                </FormControl>
+                <FormControl margin="normal" required fullWidth>
+                  <InputLabel htmlFor="password">Password</InputLabel>
+                  <Input name="password" type="password" id="password" autoComplete="current-password" onChange={this.handleChange}/>
+                </FormControl>
+                {/* <FormControlLabel
+                  control={<Checkbox value="remember" color="primary" />}
+                  label="Remember me"
+                /> */}
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  className={classes.submit}
+                  onClick={this.handleSubmit}
+                >
+                  Sign in
+                </Button>
+              </form>
+              <a href="/auth/google"><button className={'btn btn-success'}>Sign In with Google</button></a>
+              <a href="/auth/facebook"><button className={'btn btn-danger'}>Login with Facebook</button></a>
+            </Paper>
+          </main>
+        </div>
       )
-    } else if (this.state.Loggedin && this.state.isTeacher) {
+  } else if (this.state.Loggedin && this.state.isTeacher) {
       return (
-        <React.Fragment>
-
+        <div>
+          <div style={{ height: '100%' }}>
+              <Nav log={this.state.Loggedin}/>
+          </div>
+          <React.Fragment>
           <ProductCategories />
-
-        </React.Fragment>
+          </React.Fragment>
+        </div>
       );
-    }
-    else if(this.state.Loggedin && !this.state.isTeacher) {
+    } else if (this.state.Loggedin && !this.state.isTeacher) {
       return (
         //browserHistory.push('/student')
         // <React.Fragment>
