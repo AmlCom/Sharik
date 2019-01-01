@@ -53,7 +53,8 @@ router.post('/signup', (req, res) => {
           firstname: req.body.firstName,
           lastname: req.body.lastName,
           email: req.body.email,
-          password:  bcrypt.hashSync(req.body.password)
+          password:  bcrypt.hashSync(req.body.password),
+          isTeacher:true
         });
         signupuser1.save().then((user) => {
           // console.log('oii', user);
@@ -68,7 +69,8 @@ router.post('/signup', (req, res) => {
           firstname: req.body.firstName,
           lastname: req.body.lastName,
           email: req.body.email,
-          password:  bcrypt.hashSync(req.body.password)
+          password:  bcrypt.hashSync(req.body.password),
+          isTeacher:false
         });
         signupuser1.save().then((user) => {
           // console.log('oii', user);

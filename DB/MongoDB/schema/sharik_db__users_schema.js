@@ -60,6 +60,10 @@ const SignupSchema = new Schema({
 	password: {
 		type: String,
 		required: true
+	},
+	isTeacher:{
+		type: Boolean,
+		required: false
 	}
 	// middlenames: String,
 	// phonenumber: {

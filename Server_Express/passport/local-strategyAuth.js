@@ -49,16 +49,3 @@ passport.use(new LocalStrategy(
   }
 ));
 
-// Teacher.findOne({ 'email': email }, (err, userMatch) => {
-//   if (err) {
-//     return done(err)
-//   }
-//   if (!userMatch) {
-//     return done(null, false, { message: 'Incorrect username' })
-//   }
-//   if (!bcrypt.compareSync(password, userMatch.password)) {
-//     console.log('sg', bcrypt.compareSync(password, userMatch.password))
-//     return done(null, false, { message: 'Incorrect password' })
-//   }
-//   return done(null, userMatch)
-// })
