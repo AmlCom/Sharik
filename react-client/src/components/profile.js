@@ -239,7 +239,7 @@ class Profile extends Component {
                             <a className="list-group-item">
                                 <span className="glyphicon glyphicon-cog" aria-hidden="true"></span> <h4> {this.state.teacherName}</h4>
                                 <div><h5 className="font-weight-light font-weight-bold "> {this.state.teacherMajor} teacher </h5></div>
-                                <div><p className="font-weight-light font-weight-bold ">{this.state.info}</p></div>
+                                <div><h6 className="font-weight-light font-weight-bold ">{this.state.info}</h6></div>
                                 <h4> <span class="badge badge-info">Class price {this.state.price}JD/Hour</span></h4>
                                 <div></div>
                             </a>
