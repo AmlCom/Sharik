@@ -6,6 +6,7 @@ const keys = require('./keys.js');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session')
 const auth = require('./auth.js')
+const studentRoute = require('./studentRoute.js')
 require("dotenv").config();
 var AccessToken = require("twilio").jwt.AccessToken;
 var VideoGrant = AccessToken.VideoGrant;
@@ -27,6 +28,7 @@ app.use(cookieSession({
   keys: [keys.session.cookie]
 }))
 app.use('/auth', auth)
+app.use('/student', studentRoute)
 app.use('/',teacher)
 
 
@@ -88,7 +90,10 @@ app.post('/S_Contact', function (req, res) {
 
 });
 
-
+app.get('/google', (req, res) => {
+  console.log('horrrrrrrrrray');
+  res.send('cool');
+})
 //  if (process.env.NODE_ENV === 'production') {
   // // Serve any static files
   app.use(express.static(path.join(__dirname, '../react-client/build')));

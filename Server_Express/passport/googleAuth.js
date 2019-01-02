@@ -11,7 +11,7 @@ passport.use(new GoogleStrategy({
     callbackURL: "/auth/google/redirect"
   },
   function(accessToken, refreshToken, profile, done) {
-    // console.log(profile);
+    console.log('vdsfgfhg', profile);
   
       User.findOne({ generalId: profile.id }, function (err, user) {
         if (err) {
@@ -24,6 +24,7 @@ passport.use(new GoogleStrategy({
           newUser.generalId = profile.id;
           newUser.displayName = profile.displayName;
           newUser.imageURL= profile.photos[0].value;
+          newUser.isTeacher = true;
           newUser.save((err, newuser) => {
           if (err) {
             return done(err);

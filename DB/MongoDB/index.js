@@ -13,7 +13,11 @@ const UserSchema = new Schema({
     imageURL:  {
         type: String,
         required: [true, 'imageURL Field is Required']
-    }
+    },
+    isTeacher:{
+		type: Boolean,
+		required: true
+	}
 });
 
 
