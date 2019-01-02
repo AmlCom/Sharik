@@ -2,7 +2,7 @@
 
 // ***************************************************************
 
-var db = require("../connect");
+// var db = require("../connect");
 var Contact = require("../schema/sharik_db__Contact_schema.js");
 
 /*

@@ -1,7 +1,39 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
 import './Teacher.css'
 
-const Teacher = () => {
+class Teacher extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            image: "",
+            teacherName: "",
+            teacherMajor: "",
+            info: "",
+            price: ""
+        }
+    }
+
+    componentDidMount() {
+        axios.get('/teacher').then((res) => {
+            console.log("res", res);
+            this.setState({
+                image: res.data[0].image,
+                teacherName: res.data[0].teacherName,
+                teacherMajor: res.data[0].teacherMajor,
+                info: res.data[0].info,
+                price: res.data[0].price
+            })
+
+        }).catch((err) => {
+            console.log('hi', err)
+        })
+
+    }
+
+    render() {
+
     return (
         <div className=''>
             <div className='row '>
@@ -9,7 +41,10 @@ const Teacher = () => {
                     <div className="card">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNimrjRZN3jIxU-D90rCnZ6pZvp9QF4t55QWP6PdOrCcyWpsvT" alt="" className="rounded" className="card-img-top" alt="..." />
                         <div className="card-body">
-                            <p className="card-text">Teacher Name</p>
+                            <h4 className="card-text">{this.state.teacherName}</h4>
+                            <h5>{this.state.teacherMajor}</h5>
+                            <h6>{this.state.info}</h6>
+                            <h4> <span class="badge badge-info">Class price {this.state.price}JD/Hour</span></h4>
                             <button type="button" className="btn btn-info">Request</button>
                         </div>
                     </div>
@@ -23,10 +58,10 @@ const Teacher = () => {
                     </div>
 
                     <br/>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2" />
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button">Comment</button>
+                    <div className="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Write a comment" aria-label="Recipient's username" aria-describedby="basic-addon2" />
+                        <div className="input-group-append">
+                            <button className="btn btn-info" type="button">Comment</button>
                         </div>
                     </div>
 
@@ -50,7 +85,8 @@ const Teacher = () => {
 
             </div>
         </div>
-    )
+         )
+    }
 }
 
 export default Teacher;

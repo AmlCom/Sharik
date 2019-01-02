@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-//import axios from 'axios'
+import axios from 'axios'
 import { Redirect } from 'react-router-dom'
+import Nav from './Nav'
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -13,89 +14,6 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-// class Signup extends Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//           firstName: '',
-//           lastName: '',
-//           email: '',
-//           password: '',
-//           redirectTo: null
-//         }
-//     }
-
-//     handleChange = (event) => {
-//         this.setState({
-//           [event.target.name]: event.target.value
-//         })
-//       }
-    
-//     handleSubmit = (event) => {
-//         if (this.state.firstName === '') {alert('firstName cannot be empty');
-//         } else if (this.state.lastName === '') {alert('lastName cannot be empty');
-//         } else if (this.state.email === '') {alert('email cannot be empty');
-//         } else if (this.state.password === '') {alert('password cannot be empty');
-//         } else {
-//           event.preventDefault()
-//           const validate = {
-//             firstName: this.state.firstName,
-//             lastName: this.state.lastName,
-//             email: this.state.email,
-//             password: this.state.password
-//           } 
-      
-//           axios.post('/auth/signup', validate)
-//           .then(response => {
-//             console.log(response)
-//             if (!response.data.error) {
-//               console.log('youre good')
-//               this.setState({
-//                 redirectTo: '/login'
-//               })
-//             } else {
-//               console.log(response.data.error)
-//             }
-//           })
-//         }  
-//     }
-
-
-
-//     render() {
-//         if (this.redirectTo) {
-//             return <Redirect to={{ pathname: this.redirectTo }} />
-//           }
-//         return (
-//             <div>
-//             <h1>This is the Signup page </h1>
-//             <form action="/signup" method="post">
-//                 <div>
-//                     <label>First name</label>
-//                     <input type="text" name="firstName" onChange={this.handleChange}/>
-//                 </div>
-//                 <div>
-//                     <label>Last name</label>
-//                     <input type="text" name="lastName" onChange={this.handleChange}/>
-//                 </div>
-//                 <div>
-//                     <label>Email</label>
-//                     <input type="email" name="email" onChange={this.handleChange}/>
-//                 </div>
-//                 <div>
-//                     <label>Password:</label>
-//                     <input type="password" name="password" onChange={this.handleChange}/>
-//                 </div>
-                
-//                 <div>
-//                     <input type="button" onClick={this.handleSubmit} value="signup"/>
-//                 </div>
-//             </form>
-//         </div>
-//         )
-//     }
-// }
-// export default Signup;
 
 /////// MONGO
 ///mongodb://sharik1:sharik1@ds163683.mlab.com:63683/mern-shoppling1
@@ -136,60 +54,142 @@ const styles = theme => ({
 // function Signin(props) {
 //   const { classes } = props;
 class Singup extends Component {
-  state = {
-      sent: false,
-    };
+  constructor(props) {
+    super(props);
+    this.state = {
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      profession: '',
+      Loggedin: false,
+      Signedup: false
+    }
+  }
+
+  componentDidMount() {
+    axios.get('/auth/checkLogging').
+    then((x) => {
+        console.log('356', x);
+        if (x.data) {
+          console.log(this)
+            this.setState({
+                Loggedin: true
+            })
+        } else {
+            this.setState({
+                Loggedin: false
+            })
+        }
+    })
+  }
+
+  handleChange = (event) => {
+      this.setState({
+        [event.target.name]: event.target.value
+      })
+    }
+  
+  handleSubmit = (event) => {
+      if (this.state.firstName === '') {alert('firstName cannot be empty');
+      } else if (this.state.lastName === '') {alert('lastName cannot be empty');
+      } else if (this.state.email === '') {alert('email cannot be empty');
+      } else if (this.state.password === '') {alert('password cannot be empty');
+      } else if (this.state.profession === '') {alert('profession cannot be empty'); 
+      } else {
+        event.preventDefault()
+        const validate = {
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          email: this.state.email,
+          password: this.state.password,
+          profession: this.state.profession
+        } 
+    
+        axios.post('/auth/signup', validate)
+        .then(response => {
+          console.log(response)
+          if (!response.data.error) {
+            console.log('youre good')
+            this.setState({
+              Signedup: true
+            })
+          } else {
+            console.log(response.data.error)
+          }
+        })
+      }  
+  }
+  
+            
 
     render(){
-      const { classes } = this.props;  
+      const { classes } = this.props; 
+      if (this.state.Loggedin) {
+        return <Redirect to={{ pathname: '/HomePage', state: { referrer: this.state.test } }} />
+      } else if (this.state.Signedup) {
+        return <Redirect to={{ pathname: '/signin', state: { referrer: this.state.test } }} />
+      } else { 
       return (
     // <div className={classes.root}>
     //  <Grid container spacing={24}>
 
-
-    <main className={classes.main}>
-      <CssBaseline />
-      <Paper className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign up
-        </Typography>
-        <form className={classes.form}>
-
-
-        <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="email">First name</InputLabel>
-            <Input user="name" name="first" autoComplete="user" autoFocus />
-          </FormControl>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="email">Last name</InputLabel>
-            <Input last="name" name="user" autoComplete="user" autoFocus />
-          </FormControl>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="email">Email Address</InputLabel>
-            <Input id="email" name="email" autoComplete="email" autoFocus />
-          </FormControl>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="password">Password</InputLabel>
-            <Input name="password" type="password" id="password" autoComplete="current-password" />
-          </FormControl>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
+    <div>
+      <div style={{ height: '100%' }}>
+        <Nav />
+      </div>
+      <main className={classes.main}>
+        <CssBaseline />
+        <Paper className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
             Sign up
-          </Button>
-        </form>
-      </Paper>
-    </main>
+          </Typography>
+          <form className={classes.form}>
 
+
+          <FormControl margin="normal" required fullWidth>
+              <InputLabel htmlFor="email">First name</InputLabel>
+              <Input user="name" name="firstName" autoComplete="user" autoFocus onChange={this.handleChange} />
+            </FormControl>
+            <FormControl margin="normal" required fullWidth>
+              <InputLabel htmlFor="email">Last name</InputLabel>
+              <Input last="name" name="lastName" autoComplete="user" autoFocus onChange={this.handleChange} />
+            </FormControl>
+            <FormControl margin="normal" required fullWidth>
+              <InputLabel htmlFor="email">Email Address</InputLabel>
+              <Input id="email" name="email" autoComplete="email" autoFocus  onChange={this.handleChange} />
+            </FormControl>
+            <FormControl margin="normal" required fullWidth>
+              <InputLabel htmlFor="password">Password</InputLabel>
+              <Input name="password" type="password" id="password" autoComplete="current-password" onChange={this.handleChange} />
+            </FormControl>
+            <FormControl margin="normal" required fullWidth>
+              <select onChange={this.handleChange} name="profession" >
+              <option disabled selected>Choose your profession</option>
+              <option>Teacher</option>
+              <option>Student</option>
+              </select>
+            </FormControl>
+            <Button
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={this.handleSubmit}
+            >
+              Sign up
+            </Button>
+          </form>
+          <a href="/auth/google" ><button className={'btn btn-success'}>Sign In with Google</button></a>
+          <a href="/auth/facebook" ><button className={'btn btn-danger'}>Sign In with Facebook</button></a>
+        </Paper>
+      </main>
+    </div>
     
-  );
+  )};
 }
 }
 

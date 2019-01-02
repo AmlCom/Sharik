@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-//import axios from 'axios';
+import axios from 'axios';
 import { Redirect } from 'react-router-dom'
+import Nav from './Nav'
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -15,56 +16,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-// class Signin extends Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             isLoggedin: false,
-//             test: 'qewry'
-//         }
-//     }
 
-//     componentDidMount() {
-//         axios.get('/auth/checkLogging').
-//         then((x) => {
-//             console.log('SFSF', x);
-//             if (x.data.googleId) {
-//                 this.setState({
-//                    isLoggedin: true
-//                 })
-//             } else {
-//                this.setState({
-//                    isLoggedin: false
-//                })
-//             }
-//         })
-//        }
-
-//     render() {
-//         if (this.state.isLoggedin) {
-//             return <Redirect to={{ pathname: '/profile', state: { referrer: this.state.test } }} />
-//         } else {
-//         return (
-//             <div>
-//                 <h1>This is the Signin page </h1>
-//                 <form action="/login" method="post">
-//                     <div>
-//                         <label>Username:</label>
-//                         <input type="text" name="username"/>
-//                     </div>
-//                     <div>
-//                         <label>Password:</label>
-//                         <input type="password" name="password"/>
-//                     </div>
-//                     <div>
-//                         <input type="submit" value="Log In"/>
-//                     </div>
-//                 </form>
-//                 <a href="/auth/google">Sign In with Google</a>
-//             </div>
-//         )
-//         }
-//     }
 const styles = theme => ({
   main: {
     width: 'auto',
@@ -99,53 +51,115 @@ const styles = theme => ({
 
 
 class Singin extends Component {
-  state = {
-      sent: false,
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+          Loggedin: false,
+          email: '',
+          password: ''
+        }
+    }
   
+    componentDidMount() {
+      axios.get('/auth/checkLogging').
+      then((x) => {
+          console.log('356', x);
+          if (x.data) {
+            console.log(this)
+              this.setState({
+                 Loggedin: true
+              })
+          } else {
+             this.setState({
+                 Loggedin: false
+             })
+          }
+      })
+    }
+    
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+    
+  handleSubmit = (event) => {
+    if (this.state.email === '') {alert('email cannot be empty');
+    } else if (this.state.password === '') {alert('password cannot be empty');
+    } else {
+      event.preventDefault()
+      const check = {
+        email: this.state.email,
+        password: this.state.password
+      } 
+  
+      axios.post('/auth/signin', check)
+      .then(response => {
+        console.log('ert', response.data)
+        if (response.data) {
+          console.log('ezvfdgf')
+
+          this.setState({
+            Loggedin: true
+        })
+        } else {
+          this.setState({
+            Loggedin: false
+        })
+        }
+      })
+    }  
+  }
 
   render(){
     const { classes } = this.props;
-
-  return (
-    <main className={classes.main}>
-      <CssBaseline />
-      <Paper className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <form className={classes.form}>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="email">Email Address</InputLabel>
-            <Input id="email" name="email" autoComplete="email" autoFocus />
-          </FormControl>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="password">Password</InputLabel>
-            <Input name="password" type="password" id="password" autoComplete="current-password" />
-          </FormControl>
-          {/* <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          /> */}
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign in
-          </Button>
-        </form>
-        <a href="/auth/google"><button className={'btn btn-success'}>Sign In with Google</button></a>
-        <a href="/auth/facebook"><button className={'btn btn-danger'}>Login with Facebook</button></a>
-
-      </Paper>
-    </main>
-  );
+    if (this.state.Loggedin) {
+      return <Redirect to={{ pathname: '/HomePage', state: { referrer: this.state.test } }} />
+  } else {
+    return (
+      <div>
+        <div style={{ height: '100%' }}>
+          <Nav />
+        </div>
+        <main className={classes.main}>
+          <CssBaseline />
+          <Paper className={classes.paper}>
+            <Avatar className={classes.avatar}>
+              <LockIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Sign in
+            </Typography>
+            <form className={classes.form}>
+              <FormControl margin="normal" required fullWidth>
+                <InputLabel htmlFor="email">Email Address</InputLabel>
+                <Input id="email" name="email" autoComplete="email" autoFocus onChange={this.handleChange} />
+              </FormControl>
+              <FormControl margin="normal" required fullWidth>
+                <InputLabel htmlFor="password">Password</InputLabel>
+                <Input name="password" type="password" id="password" autoComplete="current-password" onChange={this.handleChange}/>
+              </FormControl>
+              {/* <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Remember me"
+              /> */}
+              <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                onClick={this.handleSubmit}
+              >
+                Sign in
+              </Button>
+            </form>
+            <a href="/auth/google"><button className={'btn btn-success'}>Sign In with Google</button></a>
+            <a href="/auth/facebook"><button className={'btn btn-danger'}>Login with Facebook</button></a>
+          </Paper>
+        </main>
+      </div>
+    )
+    };
 }
 }
 

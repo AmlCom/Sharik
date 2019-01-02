@@ -1,15 +1,19 @@
-import withRoot from './Categories/withRoot';
-import Nav from './Nav'
-
-// --- Post bootstrap -----
 import React, { Component } from 'react';
-import ProductCategories from './Categories/ProductCategories';
-import { homedir } from 'os';
+import { Link, BrowserRouter, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
+import Nav from '../Nav'
+import Button from '@material-ui/core/Button';
+// import { withStyles } from '@material-ui/core/styles';
+import Dashboard from './Dashboard/Dashboard.jsx';
+import SubjectsList from './SubjectsList/SubjectsList.jsx';
+import AddSubject from './AddSubject/AddSubject.jsx';
+import Profile from './Profile/Profile.jsx';
+import MySchedule from './MySchedule/MySchedule.jsx';
+import MyPayments from './MyPayments/MyPayments.jsx';
+
 import { Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -20,8 +24,6 @@ import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-import Student from './Students/Student.js'
-
 
 const styles = theme => ({
   main: {
@@ -55,78 +57,66 @@ const styles = theme => ({
   },
 });
 
+class Student extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+          Loggedin: false
+		}
+	}
 
-class HomePage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      Loggedin: false,
-      email: '',
-      password: '',
-      isTeacher:false
+	componentDidMount() {
+		axios.get('/auth/checkLogging').
+		then((x) => {
+			console.log('356', x.data);
+			if (x.data) {
+			  console.log(this)
+				this.setState({
+				   Loggedin: true
+				})
+			} else {
+			   this.setState({
+				   Loggedin: false
+			   })
+			}
+		})
     }
-  }
-
-  componentDidMount() {
-    axios.get('/auth/checkLogging').
-      then((x) => {
-        // console.log('356', x.data.passport.user.isTeacher);
-        if (x.data.passport) {
-          var yahya = x.data.passport.user.isTeacher
-          console.log('yahya',yahya)
-          this.setState({
-            Loggedin: true,
-            isTeacher:yahya
-          })
-         
-        } else {
-          this.setState({
-            Loggedin: false
-          })
-        }
+    
+    handleChange = (event) => {
+      this.setState({
+        [event.target.name]: event.target.value
       })
-  }
-
-
-  handleChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
-  }
-
-  handleSubmit = (event) => {
-    if (this.state.email === '') {
-      alert('email cannot be empty');
-    } else if (this.state.password === '') {
-      alert('password cannot be empty');
-    } else {
-      event.preventDefault()
-      const check = {
-        email: this.state.email,
-        password: this.state.password
-      }
-
-      axios.post('/auth/signin', check)
+    }
+  
+    handleSubmit = (event) => {
+      if (this.state.email === '') {alert('email cannot be empty');
+      } else if (this.state.password === '') {alert('password cannot be empty');
+      } else {
+        event.preventDefault()
+        const check = {
+          email: this.state.email,
+          password: this.state.password
+        } 
+    
+        axios.post('/auth/signin', check)
         .then(response => {
           console.log('ert', response.data)
           if (response.data) {
             console.log('ezvfdgf')
-
+  
             this.setState({
               Loggedin: true
-            })
+          })
           } else {
             this.setState({
               Loggedin: false
-            })
+          })
           }
         })
+      }  
     }
-  }
 
-  render() {
-    console.log('isTeacher',this.state.isTeacher)
-    console.log('islogin',this.state.Loggedin)
+	render() {
     const { classes } = this.props;
     if (!this.state.Loggedin) {
       return (
@@ -173,31 +163,42 @@ class HomePage extends Component {
           </main>
         </div>
       )
-  } else if (this.state.Loggedin && this.state.isTeacher) {
+    } else {
       return (
         <div>
-          <div style={{ height: '100%' }}>
+           <div style={{ height: '100%' }}>
               <Nav log={this.state.Loggedin}/>
           </div>
-          <React.Fragment>
-          <ProductCategories />
-          </React.Fragment>
+          <h1>Student Page</h1>
+          <BrowserRouter>
+            <div className="App">
+              <div>
+              <Button color="inherit"><Link to='/Student/'>Dashboard</Link></Button>
+              <Button color="inherit"><Link to='/Student/SubjectsList'>Subjects List</Link></Button>
+              <Button color="inherit"><Link to='/Student/AddSubject'>Add Subject</Link></Button>
+              <Button color="inherit"><Link to='/Student/Profile'>Profile</Link></Button>
+              <Button color="inherit"><Link to='/Student/MySchedule'>MySchedule</Link></Button>
+              <Button color="inherit"><Link to='/Student/MyPayments'>MyPayments</Link></Button>
+
+                <Switch>
+                  <Route path='/Student/' exact component={Dashboard} />
+                  <Route path='/Student/SubjectsList' exact component={SubjectsList} />
+                  <Route path='/Student/AddClass' exact component={AddSubject} />
+                  <Route path='/Student/Profile' exact component={Profile} />
+                  <Route path='/Student/MySchedule' exact component={MySchedule} />
+                  <Route path='/Student/MyPayments' exact component={MyPayments} />
+                </Switch>
+              </div>
+            </div>
+
+          </BrowserRouter>
+
         </div>
-      );
-    } else if (this.state.Loggedin && !this.state.isTeacher) {
-      return (
-        //browserHistory.push('/student')
-        // <React.Fragment>
 
-        //   <Student />
-
-        // </React.Fragment>
-        <Redirect to="/student" />
       )
     }
-  }
+	}
 }
 
+export default withStyles(styles)(Student);
 
-
-export default withStyles(styles)(HomePage);
