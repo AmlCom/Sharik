@@ -75,10 +75,10 @@ app.get("/token", function (request, response) {
 
 // create contact message 
 var SerEx_DB_MongoDB_Contacts = require('./Contacts/SerEx_DB_MongoDB_Contacts.js')
-app.post('/S_Contact',function(req, res){
+app.post('/S_Contact', function (req, res) {
   console.log(req.body)
-  SerEx_DB_MongoDB_Contacts.createContact(req, res,function(saveContactErr, saveContactResult){
-    if(saveContactErr){
+  SerEx_DB_MongoDB_Contacts.createContact(req, res, function (saveContactErr, saveContactResult) {
+    if (saveContactErr) {
       console.log('err', saveContactErr)
       res.end(JSON.stringify(saveContactErr))
     }
@@ -89,13 +89,13 @@ app.post('/S_Contact',function(req, res){
 });
 
 
- if (process.env.NODE_ENV === 'production') {
+//  if (process.env.NODE_ENV === 'production') {
   // // Serve any static files
   app.use(express.static(path.join(__dirname, '../react-client/build')));
   // // Handle React routing, return all requests to React app
   app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname, '../react-client/build', 'index.html'));
   });
-}
+// }
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

@@ -15,7 +15,7 @@ import Student from '../Students/Student.js'
 import VideoComponent from '../video/VideoComponent'
 import Payment from '../Payment';
 
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch,History } from 'react-router-dom'
 // import TabContainer from '../Footer/footer'
 import './App.css';
 
@@ -30,14 +30,9 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
+      <BrowserRouter >
         <div className="App">
           <div>
-
-
-         <div style={{ height: '100%' }}>
-            <Nav />
-         </div>
            
            
 

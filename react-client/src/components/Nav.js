@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -23,37 +24,90 @@ const styles = {
   },
 };
 
-function Nav(props) {
-  const { classes } = props;
-  return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
-          <Link to= '/'>Home</Link>
-          </Typography>
-          {/* <Button color="inherit">
-          <Link to ='/Student'>Student</Link>
-          </Button> */}
-         
-          <Link to='/signin'> <Button color="inherit">Signin </Button></Link>
-          <Link to ='/signup'><Button color="inherit">Signup</Button></Link>
-          <Link to ='/contact'><Button color="inherit">Contact</Button></Link>
-          <Link to ='/about'><Button color="inherit">About</Button></Link>
-          
-            {/* <Button color="inherit">
-          
-            <InputBase  placeholder="  Search…" style= {{ backgroundColor:"white"}} />
-            <Button className={classes.button} variant="contained" color="inherit"><Link to ='/search'><i class="fa fa-search"></i></Link></Button>
-        
-          </Button> */}
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
+class Nav extends Component  {
+  constructor(props) {
+    super(props);
+    this.state = {
+      Loggedin: false,
+    }
+  }
+ 
+  componentDidMount() {
+    axios.get('/auth/checkLogging').
+    then((res) => {
+        if (res.data) {
+            this.setState({
+                Loggedin: true
+            })
+        } else {
+            this.setState({
+                Loggedin: false
+            })
+        }
+    })
+  }
+
+  render() {
+    {console.log('asdsa3', this.props.log)}
+    const { classes } = this.props;
+    if (this.props.log) {
+      return (
+          <div className={classes.root}>
+          <AppBar position="static">
+            <Toolbar>
+              <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+                <MenuIcon />
+              </IconButton>
+              <Typography variant="h6" color="inherit" className={classes.grow}>
+              <Link to= '/'>Home</Link>
+              </Typography>
+              {/* <Button color="inherit">
+              <Link to ='/Student'>Student</Link>
+              </Button> */}
+              <a href='/auth/logout'><Button color="inherit">Logout</Button></a>
+              <Link to ='/contact'><Button color="inherit">Contact</Button></Link>
+              <Link to ='/about'><Button color="inherit">About</Button></Link>
+                {/* <Button color="inherit">
+                <InputBase  placeholder="  Search…" style= {{ backgroundColor:"white"}} />
+                <Button className={classes.button} variant="contained" color="inherit"><Link to ='/search'><i class="fa fa-search"></i></Link></Button>
+            
+              </Button> */}
+            </Toolbar>
+          </AppBar>
+        </div>
+      )
+    } else {
+      return (
+        <div className={classes.root}>
+          <AppBar position="static">
+            <Toolbar>
+              <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+                <MenuIcon />
+              </IconButton>
+              <Typography variant="h6" color="inherit" className={classes.grow}>
+              <Link to= '/'>Home</Link>
+              </Typography>
+              {/* <Button color="inherit">
+              <Link to ='/Student'>Student</Link>
+              </Button> */}
+            
+              <Link to='/signin'> <Button color="inherit">Signin </Button></Link>
+              <Link to ='/signup'><Button color="inherit">Signup</Button></Link>
+              <Link to ='/contact'><Button color="inherit">Contact</Button></Link>
+              <Link to ='/about'><Button color="inherit">About</Button></Link>
+              
+                {/* <Button color="inherit">
+              
+                <InputBase  placeholder="  Search…" style= {{ backgroundColor:"white"}} />
+                <Button className={classes.button} variant="contained" color="inherit"><Link to ='/search'><i class="fa fa-search"></i></Link></Button>
+            
+              </Button> */}
+            </Toolbar>
+          </AppBar>
+        </div>
+      )
+    }
+  };
 }
 
 Nav.propTypes = {
