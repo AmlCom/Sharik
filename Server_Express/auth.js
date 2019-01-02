@@ -27,9 +27,9 @@ router.get('/google/redirect',
  passport.authenticate('google', { failureRedirect: '/singin'
 }),
  function(req, res) {
-  //  console.log('reqUser987', req.user);
+   console.log('errrrrrrrrrrror');
   // req.session.user = req.user;
-   res.redirect('/HomePage');
+   res.redirect('/homepage');
  });
 
 
