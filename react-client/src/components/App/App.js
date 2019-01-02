@@ -13,7 +13,7 @@ import CreateTeacher from '../CreateTeacher'
 import Search from '../search'
 import Student from '../Students/Student.js'
 import VideoComponent from '../video/VideoComponent'
-
+import Payment from '../Payment';
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 // import TabContainer from '../Footer/footer'
@@ -55,6 +55,7 @@ class App extends Component {
               <Route path='/search' exact component={Search}/>
               <Route path='/Student' exact component={Student}/>
               <Route path='/video' exact component={VideoComponent} />
+              <Route path='/Payment' exact component ={Payment}/>
             </Switch>
           </div>
         </div>
