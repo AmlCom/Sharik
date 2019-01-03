@@ -39,7 +39,7 @@ const TeacherSchema = new Schema({
 		type: String,
 		required: false
 	},
-	videos: {
+	video: {
 		type :String,
 		required : false
 	}

@@ -172,6 +172,7 @@ class Profile extends Component {
 
     render(){
         const { classes } = this.props;
+        console.log('bbbbbb',this.state.image)
         {console.log('43', this.state.Loggedin)}
         if (!this.state.Loggedin) {
             return (
