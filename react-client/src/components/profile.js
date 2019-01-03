@@ -73,7 +73,8 @@ class Profile extends Component {
             if (x.data) {
               console.log('dfgfcvm')
                 this.setState({
-                   Loggedin: true
+                   Loggedin: true,
+                   image:x
                 })
             } else {
                this.setState({
@@ -132,7 +133,6 @@ class Profile extends Component {
       }
 
     uploadImage = (e) => {
-        //console.log('image',e.target.files[0]);
         this.setState({
             image: e.target.files[0]
         })
@@ -172,6 +172,7 @@ class Profile extends Component {
 
     render(){
         const { classes } = this.props;
+        console.log('bbbbbb',this.state.image)
         {console.log('43', this.state.Loggedin)}
         if (!this.state.Loggedin) {
             return (
@@ -266,8 +267,8 @@ class Profile extends Component {
                                         </a>
                                     
 
-                                        <a href="" class="list-group-item d-flex justify-content-between align-items-center">
-                                            something <span class="badge badge-primary badge-pill">1</span>
+                                        <a href="./Videos" class="list-group-item d-flex justify-content-between align-items-center">
+                                        lectures <span class="badge badge-primary badge-pill">1</span>
                                         </a>
                                     </div>
 

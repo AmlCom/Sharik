@@ -72,17 +72,7 @@ class Teacher extends Component {
                             <p className="card-text"> The comment</p>
                         </div>
                     </div>
-
-
-
-                </div>
-
-
-
-
-
-
-
+               </div>
             </div>
         </div>
          )
