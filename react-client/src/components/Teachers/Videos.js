@@ -27,7 +27,6 @@ class Videos extends Component {
       }
 
       uploadVideo = (e) => {
-          console.log('eeee',e.target.files[0])
         this.setState({
             video: e.target.files[0]
         })
