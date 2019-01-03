@@ -58,7 +58,7 @@ class Profile extends Component {
             Loggedin: false,
             email: '',
           password: '',
-            image: "",
+            image: "https://vignette.wikia.nocookie.net/kalbo-kinis-kintab/images/c/c5/Facebook-default-no-profile-pic.jpg/revision/latest/scale-to-width-down/480?cb=20131120043048",
             teacherName: "",
             teacherMajor: "",
             info: "",
@@ -177,7 +177,7 @@ class Profile extends Component {
             return (
                 <div>
                     <div style={{ height: '100%' }}>
-                    <Nav />
+                    {/* <Nav /> */}
                     </div>
                     <main className={classes.main}>
                     <CssBaseline />
@@ -222,7 +222,7 @@ class Profile extends Component {
     return (
         <div>
             <div style={{ height: '100%' }}>
-            <Nav log={this.state.Loggedin}/>
+            {/* <Nav log={this.state.Loggedin}/> */}
             </div>
                 <div className="container">
                     <div className="row">

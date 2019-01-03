@@ -21,6 +21,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Student from './Students/Student.js'
+import Profile from './profile'
 
 
 const styles = theme => ({
@@ -180,7 +181,7 @@ class HomePage extends Component {
               <Nav log={this.state.Loggedin}/>
           </div>
           <React.Fragment>
-          <ProductCategories />
+          <Profile/>
           </React.Fragment>
         </div>
       );
