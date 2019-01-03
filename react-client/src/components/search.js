@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
+import axios from 'axios'
 
 
 const styles = theme => ({
@@ -26,28 +27,54 @@ const styles = theme => ({
 
   class Search extends React.Component {
     state = {
-      name: 'Cat in the Hat',
-      age: '',
-      multiline: 'Controlled',
-      currency: 'EUR',
+      name: '',
+      result:[]
+
+  
     };
   
-    handleChange = name => event => {
+
+   
+    handleChange = (event) => {
+      console.log('event',event.target.value)
       this.setState({
-        [name]: event.target.value,
-      });
-    };
-  
+       // [event.target.name]: event.target.value
+       name:event.target.value
+      })
+    }
+    
+    handleSubmit = (event) => {
+      if (this.state.name === '') {
+        alert('name cannot be empty');
+      } else {
+        event.preventDefault()
+        const obj = {
+          name: this.state.name,
+          
+      } 
+      
+        axios.post('get/teacher', obj)
+        .then(response => {
+          console.log('ert', response)
+       
+        }).catch((err)=>{
+          console.log('err',err)
+        })
+      }  
+    }
+ 
     render() {
     
-
+      console.log('mustaf',this.state.name)
       const { classes } = this.props;
 
       return (
+        <div>
         <form className={classes.container} noValidate autoComplete="off" >
   
-
+          
           <TextField
+          onChange = {this.handleChange}
             id="outlined-search"
             label="Search field"
             type="search"
@@ -55,7 +82,10 @@ const styles = theme => ({
             margin="normal"
             variant="outlined"
           />
+           <button onClick = {this.handleSubmit}> Search</button>
         </form>
+       
+        </div>
       );
     }
   }

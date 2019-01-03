@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import './Teacher.css';
+import Search from '../search';
 
 
 const Teachers = () => {
     return (
         <div className='container'>
             <h5 className='panel-body col-md-6'>Search for a teacher</h5>
-            <div className="col-md-6">
+            {/* <div className="col-md-6">
                 <input className="form-control" type="text" placeholder="Filter Teachers..." />
-            </div>
-
+            </div> */}
+            <Search />
 
             <form className='container'>
                 <div class="form-group">

@@ -27,7 +27,7 @@ app.use(cookieSession({
   keys: [keys.session.cookie]
 }))
 app.use('/auth', auth)
-app.use('/',teacher)
+app.use('/get',teacher)
 
 
 //database connection
