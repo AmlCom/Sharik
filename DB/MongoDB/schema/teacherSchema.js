@@ -38,6 +38,10 @@ const TeacherSchema = new Schema({
 	image: {
 		type: String,
 		required: false
+	},
+	videos: {
+		type :String,
+		required : false
 	}
 });
 
