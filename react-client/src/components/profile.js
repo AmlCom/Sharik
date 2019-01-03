@@ -135,7 +135,6 @@ class Profile extends Component {
       }
 
     uploadImage = (e) => {
-        //console.log('image',e.target.files[0]);
         this.setState({
             image: e.target.files[0]
         })
@@ -175,8 +174,6 @@ class Profile extends Component {
 
     render(){
         const { classes } = this.props;
-        console.log('43', this.state.Loggedin)
-        console.log('isTeacherYahye', this.state.isTeacher)
         if (!this.state.Loggedin) {
             return (
                 <div>
@@ -270,8 +267,8 @@ class Profile extends Component {
                                         </a>
                                     
 
-                                        <a href="" class="list-group-item d-flex justify-content-between align-items-center">
-                                            something <span class="badge badge-primary badge-pill">1</span>
+                                        <a href="./lectures" class="list-group-item d-flex justify-content-between align-items-center">
+                                        lectures <span class="badge badge-primary badge-pill">1</span>
                                         </a>
                                     </div>
 
