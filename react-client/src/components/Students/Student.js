@@ -61,25 +61,28 @@ class Student extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-          Loggedin: false
+          Loggedin: false,
+          isTeacher:false,
 		}
 	}
 
 	componentDidMount() {
-		axios.get('/auth/checkLogging').
-		then((x) => {
-			console.log('356', x.data);
-			if (x.data) {
-			  console.log(this)
-				this.setState({
-				   Loggedin: true
-				})
-			} else {
-			   this.setState({
-				   Loggedin: false
-			   })
-			}
-		})
+    axios.get('/auth/checkLogging').
+    then((response) => {
+        console.log('hello world')
+     console.log('balabal', response.data.passport.user.isTeacher);
+      if (response.data.passport) {
+        this.setState({
+          Loggedin: true,
+          isTeacher:response.data.passport.user.isTeacher
+        })
+       
+      } else {
+        this.setState({
+          Loggedin: false
+        })
+      }
+    })
     }
     
     handleChange = (event) => {
@@ -163,7 +166,7 @@ class Student extends Component {
           </main>
         </div>
       )
-    } else {
+    } else if(this.state.Loggedin && !this.state.isTeacher) {
       return (
         <div>
            <div style={{ height: '100%' }}>
@@ -195,6 +198,10 @@ class Student extends Component {
 
         </div>
 
+      )
+    }else {
+      return (
+      <Redirect to="/homePage" />
       )
     }
 	}

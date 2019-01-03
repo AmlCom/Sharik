@@ -42,6 +42,8 @@ passport.use(new LocalStrategy(
 
         
       }
+      //return done(null, false, { message: 'Check you password or email' })
+ 
       
     })
   }

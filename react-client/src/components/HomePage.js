@@ -64,22 +64,20 @@ class HomePage extends Component {
       Loggedin: false,
       email: '',
       password: '',
-      isTeacher:false
+      isTeacher: false
     }
   }
 
   componentDidMount() {
     axios.get('/auth/checkLogging').
-      then((x) => {
+      then((response) => {
         // console.log('356', x.data.passport.user.isTeacher);
-        if (x.data.passport) {
-          var yahya = x.data.passport.user.isTeacher
-          console.log('yahya',yahya)
+        if (response.data.passport) {
           this.setState({
             Loggedin: true,
-            isTeacher:yahya
+            isTeacher: response.data.passport.user.isTeacher
           })
-         
+
         } else {
           this.setState({
             Loggedin: false
@@ -126,17 +124,17 @@ class HomePage extends Component {
   }
 
   render() {
-    console.log('isTeacher',this.state.isTeacher)
-    console.log('islogin',this.state.Loggedin)
+    // console.log('Yahye isTeacher', this.state.isTeacher)
+    // console.log('this is islogin', this.state.Loggedin)
     const { classes } = this.props;
     if (!this.state.Loggedin) {
       return (
         <div>
           <div style={{ height: '100%' }}>
-              <Nav />
+            <Nav />
           </div>
           <main className={classes.main}>
-          
+
             <CssBaseline />
             <Paper className={classes.paper}>
               <Avatar className={classes.avatar}>
@@ -152,7 +150,7 @@ class HomePage extends Component {
                 </FormControl>
                 <FormControl margin="normal" required fullWidth>
                   <InputLabel htmlFor="password">Password</InputLabel>
-                  <Input name="password" type="password" id="password" autoComplete="current-password" onChange={this.handleChange}/>
+                  <Input name="password" type="password" id="password" autoComplete="current-password" onChange={this.handleChange} />
                 </FormControl>
                 {/* <FormControlLabel
                   control={<Checkbox value="remember" color="primary" />}
@@ -174,14 +172,14 @@ class HomePage extends Component {
           </main>
         </div>
       )
-  } else if (this.state.Loggedin && this.state.isTeacher) {
+    } else if (this.state.Loggedin && this.state.isTeacher) {
       return (
         <div>
           <div style={{ height: '100%' }}>
-              <Nav log={this.state.Loggedin}/>
+            <Nav log={this.state.Loggedin} />
           </div>
           <React.Fragment>
-          <Profile/>
+            <Redirect to="/profile" />
           </React.Fragment>
         </div>
       );
