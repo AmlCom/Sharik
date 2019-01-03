@@ -58,28 +58,31 @@ class Profile extends Component {
             Loggedin: false,
             email: '',
           password: '',
-            image: "",
+            image: "https://vignette.wikia.nocookie.net/kalbo-kinis-kintab/images/c/c5/Facebook-default-no-profile-pic.jpg/revision/latest/scale-to-width-down/480?cb=20131120043048",
             teacherName: "",
             teacherMajor: "",
             info: "",
-            price: ""
+            price: "",
+            isTeacher:false
         }
     }
     
     componentDidMount() {
         axios.get('/auth/checkLogging').
-        then((x) => {
-            console.log('356', x.data);
-            if (x.data) {
-              console.log('dfgfcvm')
-                this.setState({
-                   Loggedin: true
-                })
-            } else {
-               this.setState({
-                   Loggedin: false
-               })
-            }
+        then((response) => {
+            console.log('hello world')
+         console.log('balabal', response.data.passport.user.isTeacher);
+          if (response.data.passport) {
+            this.setState({
+              Loggedin: true,
+              isTeacher:response.data.passport.user.isTeacher
+            })
+           
+          } else {
+            this.setState({
+              Loggedin: false
+            })
+          }
         })
         axios.get('/teacher').then((res) => {
             console.log("res", res);
@@ -132,7 +135,6 @@ class Profile extends Component {
       }
 
     uploadImage = (e) => {
-        //console.log('image',e.target.files[0]);
         this.setState({
             image: e.target.files[0]
         })
@@ -172,12 +174,11 @@ class Profile extends Component {
 
     render(){
         const { classes } = this.props;
-        {console.log('43', this.state.Loggedin)}
         if (!this.state.Loggedin) {
             return (
                 <div>
                     <div style={{ height: '100%' }}>
-                    <Nav />
+                    {/* <Nav /> */}
                     </div>
                     <main className={classes.main}>
                     <CssBaseline />
@@ -217,12 +218,12 @@ class Profile extends Component {
                     </main>
                 </div>
               )
-        } else {
+        } else if(this.state.isTeacher && this.state.Loggedin) {
         console.log('state',this.state.image)
     return (
         <div>
             <div style={{ height: '100%' }}>
-            <Nav log={this.state.Loggedin}/>
+            {/* <Nav log={this.state.Loggedin}/> */}
             </div>
                 <div className="container">
                     <div className="row">
@@ -266,8 +267,8 @@ class Profile extends Component {
                                         </a>
                                     
 
-                                        <a href="" class="list-group-item d-flex justify-content-between align-items-center">
-                                            something <span class="badge badge-primary badge-pill">1</span>
+                                        <a href="./lectures" class="list-group-item d-flex justify-content-between align-items-center">
+                                        lectures <span class="badge badge-primary badge-pill">1</span>
                                         </a>
                                     </div>
 
@@ -322,6 +323,10 @@ class Profile extends Component {
                     </div>
                 </div>
             </div>
+        )
+    } else {
+        return (
+        <Redirect to="/homePage" />
         )
     }
 } 

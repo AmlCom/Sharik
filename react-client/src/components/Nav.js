@@ -47,6 +47,12 @@ class Nav extends Component  {
     })
   }
 
+  logOut = () => {
+    axios.get('/auth/logout').then(() => {
+      window.location.assign("/");
+        })
+  }
+
   render() {
     {console.log('asdsa3', this.props.log)}
     const { classes } = this.props;
@@ -64,7 +70,7 @@ class Nav extends Component  {
               {/* <Button color="inherit">
               <Link to ='/Student'>Student</Link>
               </Button> */}
-              <a href='/auth/logout'><Button color="inherit">Logout</Button></a>
+              <a href='#' onClick={this.logOut}><Button color="inherit">Logout</Button></a>
               <Link to ='/contact'><Button color="inherit">Contact</Button></Link>
               <Link to ='/about'><Button color="inherit">About</Button></Link>
                 {/* <Button color="inherit">

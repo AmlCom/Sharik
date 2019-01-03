@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
+import $ from 'jquery';
 import Nav from './Nav'
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
@@ -121,7 +122,16 @@ class Singup extends Component {
       }  
   }
   
-            
+  triggerGoggle = () => {
+    if (this.state.profession === '') {alert('please choose your profession');
+    } else if (this.state.profession === 'Teacher') {
+      $('#google').attr('href', '/auth/google');
+      $('#google').click();
+    } else if (this.state.profession === 'Student') {
+      $('#google').attr('href', '/student/google');
+      $('#google').click();
+    }
+  }          
 
     render(){
       const { classes } = this.props; 
@@ -183,7 +193,7 @@ class Singup extends Component {
               Sign up
             </Button>
           </form>
-          <a href="/auth/google" ><button className={'btn btn-success'}>Sign In with Google</button></a>
+          <a id={'google'}><button onClick={this.triggerGoggle} className={'btn btn-success'}>Sign In with Google</button></a>
           <a href="/auth/facebook" ><button className={'btn btn-danger'}>Sign In with Facebook</button></a>
         </Paper>
       </main>
