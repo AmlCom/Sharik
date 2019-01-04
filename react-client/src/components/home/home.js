@@ -34,9 +34,9 @@ class Home extends Component {
         return (
         <div>
             <div style={{ height: '100%' }}>
-                <Nav log={this.state.Loggedin}/>
+                {/* <Nav log={this.state.Loggedin}/> */}
             </div>
-            <Slideshow />
+            {/* <Slideshow /> */}
         </div>
         )
     }

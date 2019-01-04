@@ -44,3 +44,19 @@
   
   
     }
+
+.Navbar-text {
+  color: #314897;
+  font-size : 25px;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+}
+
+
+.shariknav {
+  text-decoration: underline overline;
+  color: #314897;
+  font-size : 30px;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+}
