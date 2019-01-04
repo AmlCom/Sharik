@@ -37,7 +37,8 @@ const TeacherSchema = new Schema({
 	},
 	image: {
 		type: String,
-		required: false
+		required: false,
+		default:"https://vignette.wikia.nocookie.net/kalbo-kinis-kintab/images/c/c5/Facebook-default-no-profile-pic.jpg/revision/latest/scale-to-width-down/480?cb=20131120043048"
 	},
 	video: {
 		type :String,
