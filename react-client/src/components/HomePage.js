@@ -21,6 +21,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Student from './Students/Student.js'
+import Profile from './profile'
 
 
 const styles = theme => ({
@@ -63,7 +64,7 @@ class HomePage extends Component {
       Loggedin: false,
       email: '',
       password: '',
-      isTeacher:false
+      isTeacher: false
     }
   }
 
@@ -78,9 +79,9 @@ class HomePage extends Component {
           // console.log('yahya',yahya)
           this.setState({
             Loggedin: true,
-            isTeacher:yahya
+            isTeacher: response.data.passport.user.isTeacher
           })
-         
+
         } else {
           this.setState({
             Loggedin: false
@@ -128,17 +129,17 @@ class HomePage extends Component {
   }
 
   render() {
-    console.log('isTeacher',this.state.isTeacher)
-    console.log('islogin',this.state.Loggedin)
+    // console.log('Yahye isTeacher', this.state.isTeacher)
+    // console.log('this is islogin', this.state.Loggedin)
     const { classes } = this.props;
     if (!this.state.Loggedin) {
       return (
         <div>
           <div style={{ height: '100%' }}>
-              <Nav />
+            <Nav />
           </div>
           <main className={classes.main}>
-          
+
             <CssBaseline />
             <Paper className={classes.paper}>
               <Avatar className={classes.avatar}>
@@ -154,7 +155,7 @@ class HomePage extends Component {
                 </FormControl>
                 <FormControl margin="normal" required fullWidth>
                   <InputLabel htmlFor="password">Password</InputLabel>
-                  <Input name="password" type="password" id="password" autoComplete="current-password" onChange={this.handleChange}/>
+                  <Input name="password" type="password" id="password" autoComplete="current-password" onChange={this.handleChange} />
                 </FormControl>
                 {/* <FormControlLabel
                   control={<Checkbox value="remember" color="primary" />}
@@ -176,14 +177,14 @@ class HomePage extends Component {
           </main>
         </div>
       )
-  } else if (this.state.Loggedin && this.state.isTeacher) {
+    } else if (this.state.Loggedin && this.state.isTeacher) {
       return (
         <div>
           <div style={{ height: '100%' }}>
-              <Nav log={this.state.Loggedin}/>
+            <Nav log={this.state.Loggedin} />
           </div>
           <React.Fragment>
-          <ProductCategories />
+            <Redirect to="/profile" />
           </React.Fragment>
         </div>
       );
