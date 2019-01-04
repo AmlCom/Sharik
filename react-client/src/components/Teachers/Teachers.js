@@ -51,25 +51,20 @@ class Teachers extends Component {
                     < Search search={this.searchTeacher} />
                     {this.state.teachers.map((teacher) =>
                     <div className='container'>
-                        <form className='border'>
-                                    <div className='row'>
-                                        <div className='col-md-3'>
-                                        <img src={teacher.image} alt="" className="card border" />
-                                        </div>
+                    <div class="form-group float-left teacher">
+                        <tr>
+                            <td className='border'>
+                                <img src={teacher.image} alt="" className="rounded card" />
+                                <h6>{teacher.firstname} {teacher.lastname}</h6>
+                                <p> {teacher.major}</p>
+                                <button type="submit" class="btn btn-primary" href="">Profile</button>
+                                <br/>
+                        <br/>
 
-                                        <div className ='col-md-6'>
-                                             <div className='container-fluid'>
-                                             <br/>
-                                                 <h2>{teacher.firstname} {teacher.lastname}</h2>
-                                                <h3>{teacher.major}</h3>
-                                              </div>
-                                            <div>
-                                            <button type="submit" class="btn btn-primary btn-lg" href="">Profile</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                        </form>
-                        </div>
+                            </td>
+                        </tr>
+                    </div>
+                 </div>
                     )}
                 </div>
             )
@@ -82,3 +77,35 @@ export default Teachers;
 
 
 
+{/* // <div class="card" style="width: 18rem;">
+//   <img class="card-img-top" src={teacher.image} alt="Card image cap"/>
+//   <div class="card-body">
+//     <h5 class="card-title">{teacher.firstname} {teacher.lastname}</h5>
+//     <p class="card-text">{teacher.major}</p>
+//     <a href="#" class="btn btn-primary">Profile</a>
+//   </div>
+// </div> */}
+
+
+
+{/* <form className='border'>
+<div className='row'>
+    <div className='col-md-3'>
+    <img src={teacher.image} alt="" className="card border" />
+    </div>
+
+    <div className ='col-md-3'>
+         <div className='row'>
+         <br/>
+             <h2>{teacher.firstname} {teacher.lastname}</h2>
+             <div className='row'>
+             <h3>{teacher.major}</h3>
+             </div>
+            
+          </div>
+        <div className='row'>
+        <button type="submit" class="btn btn-primary btn-lg" href="">Profile</button>
+        </div>
+    </div>
+</div>
+</form> */}
