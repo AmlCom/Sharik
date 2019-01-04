@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
+import axios from 'axios';
 
 
 const styles = theme => ({
@@ -25,25 +26,40 @@ const styles = theme => ({
 
 
   class Search extends React.Component {
-    state = {
-      name: 'Cat in the Hat',
-      age: '',
-      multiline: 'Controlled',
-      currency: 'EUR',
+    constructor(props) {
+      super(props)
+    this.state = {
+      name: ''
+      
     };
+  }
   
-    handleChange = name => event => {
+    handleChange = (event) => {
       this.setState({
-        [name]: event.target.value,
+        name: event.target.value
       });
     };
+    handleSubmit = (name) => {
+      
+     // this.props.search(this.state.name)
+     var obj = {name:this.state.name}
+      
+      axios.post('get/specTeacher',obj)
+      .then((res) => {
+       this.props.search(res)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    }
   
     render() {
     
-
+      console.log('kkkk', this.props.search)
       const { classes } = this.props;
 
       return (
+        <div>
         <form className={classes.container} noValidate autoComplete="off" >
   
 
@@ -54,8 +70,12 @@ const styles = theme => ({
             className={classes.textField}
             margin="normal"
             variant="outlined"
+            onChange = {this.handleChange}
           />
+          
         </form>
+        <button onClick={this.handleSubmit} >Search</button>
+        </div>
       );
     }
   }
