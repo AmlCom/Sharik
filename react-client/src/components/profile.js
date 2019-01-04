@@ -71,7 +71,7 @@ class Profile extends Component {
         then((x) => {
             console.log('356', x.data);
             if (x.data) {
-              console.log('dfgfcvm')
+            //   console.log('dfgfcvm')
                 this.setState({
                    Loggedin: true
                 })

@@ -11,6 +11,7 @@ const bcrypt = require("bcrypt-nodejs");
 
 
 passport.serializeUser(function(user, done) {
+  console.log('DSA', user);
   done(null, user);
 });
 
@@ -29,7 +30,7 @@ router.get('/google/redirect',
  function(req, res) {
    console.log('errrrrrrrrrrror');
   // req.session.user = req.user;
-   res.redirect('/homepage');
+   res.redirect('/HomePage');
  });
 
 
@@ -97,11 +98,23 @@ passport.authenticate('local'),
 );
 
 router.get('/checkLogging', (req, res) => {
+  if(req.session.passport) {
   console.log('321',req.session)
-  if (req.session.passport) {
-     res.send(req.session);
-  } else{
-    res.end();
+  Teacher.findOne({firstname: req.session.passport.user.displayName}, (err, user) => {
+    // console.log('asd',user)
+  if (req.session.passport && user) {
+     res.send(user);
+  } else {
+    signupuser.findOne({firstname: req.session.passport.user.displayName}, (err, user) => {
+      console.log('asd',user)
+    if (req.session.passport) {
+       res.send(user);
+    } else {
+      res.end();
+    }
+  })
+  }
+})
   }
 })
 

@@ -68,12 +68,14 @@ class HomePage extends Component {
   }
 
   componentDidMount() {
+    var is = prompt('Please enter your profession', 'teacher, or student')
+    axios.post('/isStudent', {isStudent: is}).then(() => { })
     axios.get('/auth/checkLogging').
       then((x) => {
-        // console.log('356', x.data.passport.user.isTeacher);
-        if (x.data.passport) {
-          var yahya = x.data.passport.user.isTeacher
-          console.log('yahya',yahya)
+        // console.log('356', x.data);
+        if (x.data.firstname) {
+          var yahya = x.data.isTeacher
+          // console.log('yahya',yahya)
           this.setState({
             Loggedin: true,
             isTeacher:yahya
@@ -87,6 +89,7 @@ class HomePage extends Component {
       })
   }
 
+  
 
   handleChange = (event) => {
     this.setState({

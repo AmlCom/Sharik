@@ -20,17 +20,19 @@ passport.use(new GoogleStrategy({
           console.log('Already existy', user);
            done(null, user);
         } else {
-          const newUser = new User(); 
-          newUser.generalId = profile.id;
-          newUser.displayName = profile.displayName;
-          newUser.imageURL= profile.photos[0].value;
-          newUser.isTeacher = true;
-          newUser.save((err, newuser) => {
-          if (err) {
-            return done(err);
-          }
-          done(null, newuser);
-          });
+          // const newUser = new User(); 
+          // newUser.generalId = profile.id;
+          // newUser.displayName = profile.displayName;
+          // newUser.imageURL= profile.photos[0].value;
+          // newUser.isTeacher = true;
+          // newUser.save((err, newuser) => {
+          // if (err) {
+          //   return done(err);
+          // }
+          done(null, { generalId : profile.id,
+          displayName : profile.displayName,
+          imageURL: profile.photos[0].value,});
+          // });
         }
       });
   }

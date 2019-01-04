@@ -16,7 +16,7 @@ const UserSchema = new Schema({
     },
     isTeacher:{
 		type: Boolean,
-		required: true
+		required: false
 	}
 });
 
