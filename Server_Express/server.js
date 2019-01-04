@@ -29,7 +29,7 @@ app.use(cookieSession({
 }))
 app.use('/auth', auth)
 app.use('/student', studentRoute)
-app.use('/',teacher)
+app.use('/get',teacher)
 
 
 //database connection
