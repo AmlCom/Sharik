@@ -1,60 +1,84 @@
 import React, { Component } from 'react';
 import './Teacher.css';
+import axios from 'axios';
+import Search from '../search'
 
 
-const Teachers = () => {
-    return (
-        <div className='container'>
-            <h5 className='panel-body col-md-6'>Search for a teacher</h5>
-            <div className="col-md-6">
-                <input className="form-control" type="text" placeholder="Filter Teachers..." />
-            </div>
+class Teachers extends Component {
+    state = {
+        teachers: []
+    }
+    componentDidMount() {
+        axios.get('get/teacher')
+            .then((res) => {
+                this.setState({
+                    teachers: res.data
+                })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
 
+    searchTeacher = (name) => {
+        console.log('i was research', name)
+        this.setState({
+            teachers: [name.data]
+        })
+    }
 
-            <form className='container'>
-                <div class="form-group">
-                <tr>
-                  
-                    <td className='border'>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNimrjRZN3jIxU-D90rCnZ6pZvp9QF4t55QWP6PdOrCcyWpsvT" alt="" className="rounded card" />
-                    <br/>
-                    <br/>
-                    <h6> Teacher Name </h6>
-                    <p> Teacher Major</p>
-                    <br/>
-                    <button type="submit" class="btn btn-primary" href="">Profile</button>
-                    <br/>
-                    <br/>
-                    </td>
+    render() {
+        console.log('teachers', this.state.teachers)
+        if (this.state.teachers.length === 1) {
+            return (
+                <form className='container flux'>
+                    < Search search={this.searchTeacher} />
+                    <div class="form-group">
+                        <tr>
+                            <td className='border'>
+                                <img src={this.state.teachers[0].image} alt="" className="rounded card" />
+                                <h6> {this.state.teachers[0].firstname} </h6>
+                                <p> {this.state.teachers[0].lastname}</p>
+                                <button type="submit" class="btn btn-primary" href="">Profile</button>
+                            </td>
+                        </tr>
+                    </div>
+                </form>
+            )
+        } else {
+            return (
+                <div className=''>
+                    < Search search={this.searchTeacher} />
+                    {this.state.teachers.map((teacher) =>
+                    <div className='container'>
+                        <form className='border'>
+                                    <div className='row'>
+                                        <div className='col-md-3'>
+                                        <img src={teacher.image} alt="" className="card border" />
+                                        </div>
 
-                   <div className='spacing'>
-                    <td className='border'>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNimrjRZN3jIxU-D90rCnZ6pZvp9QF4t55QWP6PdOrCcyWpsvT" alt="" className="rounded card" />
-                    <br/>
-                    <h6> Teacher Name</h6>
-                    <br/>
-                    <p> Teacher Major</p>
-                    <br/>
-                    <button type="submit" class="btn btn-primary" href="">Profile</button>
-                    <br/>
-                    <br/>
-                    </td>
-
-                    </div>  
-                </tr>
-                    
-
-                    
-                    
-
+                                        <div className ='col-md-6'>
+                                             <div className='container-fluid'>
+                                             <br/>
+                                                 <h2>{teacher.firstname} {teacher.lastname}</h2>
+                                                <h3>{teacher.major}</h3>
+                                              </div>
+                                            <div>
+                                            <button type="submit" class="btn btn-primary btn-lg" href="">Profile</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                        </form>
+                        </div>
+                    )}
                 </div>
-            
-                
-            </form>
-
-        </div>
-    )
+            )
+        }
+    }
 }
 
 
 export default Teachers;
+
+
+

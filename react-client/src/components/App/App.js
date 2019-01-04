@@ -54,6 +54,7 @@ class App extends Component {
               <Route path='/video' exact component={VideoComponent} />
               <Route path='/Payment' exact component ={Payment}/>
               <Route path='/Lectures' exact component = {Videos}/>
+              
             </Switch>
           </div>
         </div>
