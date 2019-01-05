@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const passport = require('passport');
 require('./passport/googleStudent.js');
+const Student = require('../DB/MongoDB/schema/sharik_db__users_schema');
 // const User = require('../DB/MongoDB/AuthStudent.js');
 
 
@@ -24,6 +25,17 @@ router.get('/redirect',
  function(req, res) {
    res.redirect('/student');
  });
+ //update student profile name
+
+router.post('/updateStudentProfile', function (req, res, next) {
+  //console.log('yaya is here')
+  console.log('update student',req.body)
+  Student.findOneAndUpdate({'firstname':req.body.name}).then(function (student) {
+    console.log('teacheer',student)
+    //res.send('hello')
+    res.send(student)
+  }).catch(next)
+});
 
 
 router.get('/facebook', passport.authenticate('facebook'));

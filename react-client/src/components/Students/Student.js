@@ -70,7 +70,7 @@ class Student extends Component {
     axios.get('/auth/checkLogging').
     then((response) => {
         console.log('hello world')
-     console.log('balabal', response.data.passport.user.isTeacher);
+    //  console.log('balabal', response.data.passport.user.isTeacher);
       if (response.data.passport) {
         this.setState({
           Loggedin: true,
