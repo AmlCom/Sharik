@@ -64,19 +64,22 @@ class Student extends Component {
 		super(props);
 		this.state = {
           Loggedin: false,
-          isTeacher:false,
+          isTeacher: ''
 		}
 	}
 
 	componentDidMount() {
     axios.get('/auth/checkLogging').
-    then((response) => {
-      if (response.data.passport) {
+    then((x) => {
+      console.log('356', x.data);
+      if (x.data.email) {
+        var yahya = x.data.isTeacher
+        // console.log('yahya',yahya)
         this.setState({
           Loggedin: true,
-          isTeacher:response.data.passport.user.isTeacher
+          isTeacher: yahya
         })
-       
+
       } else {
         this.setState({
           Loggedin: false
@@ -108,11 +111,11 @@ class Student extends Component {
             console.log('ezvfdgf')
   
             this.setState({
-              Loggedin: true
+              isTeacher: true
           })
           } else {
             this.setState({
-              Loggedin: false
+              isTeacher: false
           })
           }
         })
@@ -121,7 +124,7 @@ class Student extends Component {
 
 	render() {
     const { classes } = this.props;
-    if (!this.state.Loggedin) {
+    if (this.state.isTeacher === '') {
       return (
         <div>
           <div style={{ height: '100%' }}>
@@ -140,7 +143,7 @@ class Student extends Component {
               <form className={classes.form}>
                 <FormControl margin="normal" required fullWidth>
                   <InputLabel htmlFor="email">Email Address</InputLabel>
-                  <Input id="email" name="email" autoComplete="email" autoFocus onChange={this.handleChange} />
+                  <Input id="email" name="email" autoComplete="email"  onChange={this.handleChange} />
                 </FormControl>
                 <FormControl margin="normal" required fullWidth>
                   <InputLabel htmlFor="password">Password</InputLabel>
@@ -166,7 +169,12 @@ class Student extends Component {
           </main>
         </div>
       )
-    } else if(this.state.Loggedin && !this.state.isTeacher) {
+    } else if (this.state.isTeacher) {
+      return (
+        <Redirect to="/homePage" />
+        )
+    } else {
+      
       return (
         <div>
            <div style={{ height: '100%' }}>
@@ -199,10 +207,7 @@ class Student extends Component {
 
         </div>
 
-      )
-    }else {
-      return (
-      <Redirect to="/homePage" />
+      
       )
     }
 	}

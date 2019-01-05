@@ -4,6 +4,7 @@ import Profile from '../profile'
 import Signin from '../singin'
 import Signup from '../singup'
 import HomePage from '../HomePage'
+import HomePage1 from '../HomePage1'
 import About from '../about'
 import Contact from '../Contact/Contact'
 import Nav from '../Nav'
@@ -51,7 +52,7 @@ class App extends Component {
               <Route path='/video' exact component={VideoComponent} />
               <Route path='/Payment' exact component ={Payment}/>
               <Route path='/Lectures' exact component = {Videos}/>
-              
+              <Route path='/HomePage1' exact component = {HomePage1}/>
             </Switch>
           </div>
         </div>
