@@ -6,7 +6,7 @@ import Signup from '../singup'
 import HomePage from '../HomePage'
 import About from '../about'
 import Contact from '../Contact/Contact'
-// import Nav from '../Nav'
+import Nav from '../Nav'
 import Teachers from '../Teachers/Teachers';
 import Teacher from '../Teachers/Teacher';
 import CreateTeacher from '../CreateTeacher'
@@ -36,7 +36,6 @@ class App extends Component {
     return (
       <BrowserRouter >
         <div className="App">
-          <Navbar/>
           <Footer/>
           <div>
             <Switch>

@@ -37,7 +37,7 @@ console.log('login',this.state.Loggedin)
         if(this.state.Loggedin){
         return (
             <div>
-                <nav className="navbar navbar-expand-lg ">
+                <nav className="navbar navbar-expand-lg">
                     <nav className="navbar ">
                         <a className="navbar-brand" href="/">
                             <span><img src={Shariklogo} width="160" height="60" className="d-inline-block align-top" alt="Sharik Logo" />

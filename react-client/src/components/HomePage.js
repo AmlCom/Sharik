@@ -131,7 +131,7 @@ class HomePage extends Component {
       return (
         <div>
           <div style={{ height: '100%' }}>
-              {/* <Nav /> */}
+              <Nav />
           </div>
           <main className={classes.main}>
 
@@ -176,7 +176,7 @@ class HomePage extends Component {
       return (
         <div>
           <div style={{ height: '100%' }}>
-              {/* <Nav log={this.state.Loggedin}/> */}
+              <Nav log={this.state.Loggedin}/>
           </div>
           <React.Fragment>
             <Redirect to="/profile" />
