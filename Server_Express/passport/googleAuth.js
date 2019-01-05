@@ -11,28 +11,31 @@ passport.use(new GoogleStrategy({
     callbackURL: "/auth/google/redirect"
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log('vdsfgfhg', profile);
+    // console.log('vdsfgfhg', profile);
   
-      User.findOne({ generalId: profile.id }, function (err, user) {
-        if (err) {
-          return done(err);
-        } else if (user) {
-          console.log('Already existy', user);
-           done(null, user);
-        } else {
-          const newUser = new User(); 
-          newUser.generalId = profile.id;
-          newUser.displayName = profile.displayName;
-          newUser.imageURL= profile.photos[0].value;
-          newUser.isTeacher = true;
-          newUser.save((err, newuser) => {
-          if (err) {
-            return done(err);
-          }
-          done(null, newuser);
-          });
+      // User.findOne({ generalId: profile.id }, function (err, user) {
+      //   if (err) {
+      //     return done(err);
+      //   } else if (user) {
+      //     console.log('Already existy', user);
+      //      done(null, user);
+      //   } else {
+          // const newUser = new User(); 
+          // newUser.generalId = profile.id;
+          // newUser.displayName = profile.displayName;
+          // newUser.imageURL= profile.photos[0].value;
+          // newUser.isTeacher = true;
+          // newUser.save((err, newuser) => {
+          // if (err) {
+          //   return done(err);
+          // }
+          done(null, { generalId : profile.id,
+          firstname : profile.displayName,
+          email: profile.emails[0].value,
+          imageURL: profile.photos[0].value});
+          // });
         }
-      });
-  }
+      // });
+  // }
   ));
 

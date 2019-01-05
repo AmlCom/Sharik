@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Teacher.css';
 import axios from 'axios';
 import Search from '../search'
-import {Redirect} from  'react-router-dom'
+import {Redirect, Link} from  'react-router-dom'
 import Teacher from './Teacher'
 
 class Teachers extends Component {
@@ -81,7 +81,9 @@ class Teachers extends Component {
                                         <h6> {teacher.firstname} </h6>
                                         <p> {teacher.lastname}</p>
                                         <br />
-                                        <button type="submit" class="btn btn-primary"  onClick={() => this.teacherClicked(teacher.firstname)}>Profile</button>
+                                        <Link  to={{ pathname: '/teacher', state: { teacher: teacher} }} type="submit" class="btn btn-primary">Profile</Link>
+            
+                                        {/* <a type="submit" class="btn btn-primary" href='/teacher'>Profile</a> */}
                                         <br />
                                         <br />
                                     </td>

@@ -2,6 +2,7 @@
 // const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 // const User = require('./../../DB/MongoDB/index.js');
 // const keys = require('../keys.js');
+// const signupuser = require('../../DB/MongoDB/schema/sharik_db__users_schema.js');
 
 
 // // Google strategy ////////////////////////////////////
@@ -13,14 +14,24 @@
 //   function(accessToken, refreshToken, profile, done) {
 //     // console.log(profile);
   
-//       User.findOne({ generalId: profile.id }, function (err, user) {
+//     signupuser.findOne({ generalId: profile.id }, function (err, user) {
 //         if (err) {
 //           return done(err);
 //         } else if (user) {
 //           console.log('Already existy', user);
 //            done(null, user);
 //         } else {
-//             done(null, user);
+//           const newUser = new signupuser(); 
+//           newUser.generalId = profile.id;
+//           newUser.firstname = profile.displayName;
+//         //   newUser.imageURL= profile.photos[0].value;
+//           newUser.isTeacher = false;
+//           newUser.save((err, newuser) => {
+//           if (err) {
+//             return done(err);
+//           }
+//           done(null, newuser);
+//           });
 //         }
 //       });
 //   }
