@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import './Teacher.css';
 import axios from 'axios';
 import Search from '../search'
-import {Redirect} from  'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import Teacher from './Teacher'
 
 class Teachers extends Component {
     state = {
         teachers: [],
-        id:''
+        id: ''
     }
     componentDidMount() {
         axios.get('get/teacher')
@@ -29,10 +29,10 @@ class Teachers extends Component {
         })
     }
     teacherClicked = (id) => {
-        return(
-            <Redirect to = '/teacher' />
+        return (
+            <Redirect to='/teacher' />
         )
-        
+
     }
 
     render() {
@@ -58,10 +58,32 @@ class Teachers extends Component {
             )
         } else {
             return (
-                <div className=''>
+                <div>
                     < Search search={this.searchTeacher} />
                     {this.state.teachers.map((teacher) =>
                         <div className='container'>
+                            <div className="card float-left teacherCard">
+                                <img src={teacher.image}/>
+                                <div className="container">
+                                    <h4><b>{teacher.firstname} {teacher.lastname}</b></h4>
+                                    <p>{teacher.major}</p>
+                                    <button type="button" className="btn btn-info" onClick={() => this.teacherClicked(teacher.firstname)}>Profile</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            )
+        }
+    }
+}
+
+
+export default Teachers;
+
+
+{/* 
+<div className='container'>
                             <div class="form-group float-left teacherCard">
                                 <tr>
                                     <td className='border'>
@@ -75,13 +97,5 @@ class Teachers extends Component {
                                 </tr>
                             </div>
                         </div>
-                    )}
-                </div>
-            )
-        }
-    }
-}
-
-
-export default Teachers;
+ */}
 

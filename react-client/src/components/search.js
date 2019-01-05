@@ -32,11 +32,13 @@ class Search extends React.Component {
 
   render() {
     return (
-
-      <form className="form-inline">
+      <div className='container'>
+        <form className="input-group">
         <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onChange={this.handleChange} />
-        <button className="btn btn-outline-success my-2 my-sm-0" type="submit" onClick={this.handleSubmit}>Search</button>
-      </form>
+          <button className="btn btn-outline-info" type="submit" onClick={this.handleSubmit}>Search</button>
+        </form>
+      </div>
+
 
     );
   }
