@@ -15,7 +15,10 @@ import Search from '../search'
 import Student from '../Students/Student.js'
 import VideoComponent from '../video/VideoComponent'
 import Payment from '../Payment';
-import Videos from '../Teachers/Videos';
+import Videos from '../Teachers/videos';
+import Navbar from '../Navbar'
+import Footer from '../Footer/Footer'
+import Requests from '../Teachers/Requests'
 
 import { BrowserRouter, Route, Switch,History } from 'react-router-dom'
 // import TabContainer from '../Footer/footer'
@@ -34,7 +37,7 @@ class App extends Component {
     return (
       <BrowserRouter >
         <div className="App">
-          
+          <Footer/>
           <div>
             <Switch>
               <Route path='/' exact component={Home} />
@@ -52,6 +55,8 @@ class App extends Component {
               <Route path='/video' exact component={VideoComponent} />
               <Route path='/Payment' exact component ={Payment}/>
               <Route path='/Lectures' exact component = {Videos}/>
+              <Route path='/Requests' exact component ={Requests}/>
+              
               <Route path='/HomePage1' exact component = {HomePage1}/>
             </Switch>
           </div>
