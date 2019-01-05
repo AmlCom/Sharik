@@ -42,5 +42,27 @@ router.post('/specTeacher', function (req, res, next) {
   }).catch(next)
 });
 
+//update teacher profile picture
+
+router.post('/updateTeacherProfile', function (req, res, next) {
+  //console.log('yaya is here')
+  console.log('yaya is here',req.body)
+  console.log('image',req.body.image)
+  Teacher.findOneAndUpdate({'firstname':req.body.name},{'image':req.body.image}).then(function (teacher) {
+    console.log('teacheer',teacher)
+    //res.send('hello')
+    res.send(teacher)
+  }).catch(next)
+});
+
+//teacher can add video lecture 
+router.post('/addVideoLecture', function (req, res, next) {
+  console.log('videos',req.body.videos)
+  Teacher.findOneAndUpdate({'firstname':req.body.name},{'video':req.body.videos}).then(function (teacher) {
+    console.log('teacheer',teacher)
+    //res.send('hello')
+    res.send(teacher)
+  }).catch(next)
+});
 
 module.exports = router
