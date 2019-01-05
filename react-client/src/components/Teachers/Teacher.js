@@ -33,13 +33,15 @@ class Teacher extends Component {
     }
 
     render() {
-        console.log('john', this.props.yahya)
+        const {teacher} = this.props.location.state
+
+        console.log(teacher) // "bar"
     return (
         <div className=''>
             <div className='row '>
                 <div className="col-md-2 container spacing">
                     <div className="card">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNimrjRZN3jIxU-D90rCnZ6pZvp9QF4t55QWP6PdOrCcyWpsvT" alt="" className="rounded" className="card-img-top" alt="..." />
+                        <img src={teacher.image} alt="" className="rounded" className="card-img-top" alt="..." />
                         <div className="card-body">
                             <h4 className="card-text">{this.state.teacherName}</h4>
                             <h5>{this.state.teacherMajor}</h5>
