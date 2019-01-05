@@ -45,21 +45,30 @@ const SignupSchema = new Schema({
 	// 	type: String,
 	// 	required: true
 	// },
+	
+	// generalId: {
+	// 	type: String,
+	// 	required: false
+	// },
 	firstname: {
 		type: String,
-		required: true
+		required: false
 	},
 	lastname: {
 		type: String,
-		required: true
+		required: false
 	},
 	email: {
 		type: String,
-		required: true
+		required: false
 	},
 	password: {
 		type: String,
-		required: true
+		required: false
+	},
+	imageURL: {
+		type: String,
+		required: false
 	},
 	isTeacher:{
 		type: Boolean,

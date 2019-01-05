@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Teacher.css';
 import axios from 'axios';
 import Search from '../search'
-import { Redirect } from 'react-router-dom'
+import {Redirect, Link} from  'react-router-dom'
 import Teacher from './Teacher'
 
 class Teachers extends Component {
@@ -67,7 +67,7 @@ class Teachers extends Component {
                                 <div className="container">
                                     <h4><b>{teacher.firstname} {teacher.lastname}</b></h4>
                                     <p>{teacher.major}</p>
-                                    <button type="button" className="btn btn-info" onClick={() => this.teacherClicked(teacher.firstname)}>Profile</button>
+                                    <Link  to={{ pathname: '/teacher', state: { teacher: teacher} }} type="submit" class="btn btn-primary">Profile</Link>
                                 </div>
                             </div>
                         </div>
@@ -88,14 +88,19 @@ export default Teachers;
                                 <tr>
                                     <td className='border'>
                                         <img src={teacher.image} alt="" className="rounded card" />
-                                        <h6>{teacher.firstname} {teacher.lastname}</h6>
-                                        <p> {teacher.major}</p>
-                                        <button type="submit" class="btn btn-primary"  onClick={() => this.teacherClicked(teacher.firstname)}>Profile</button>
                                         <br />
                                         <br />
-                                    </td>
-                                </tr>
-                            </div>
-                        </div>
- */}
+                                        <h6> {teacher.firstname} </h6>
+                                        <p> {teacher.lastname}</p>
+                                        <br />
+                                        <Link  to={{ pathname: '/teacher', state: { teacher: teacher} }} type="submit" class="btn btn-primary">Profile</Link>
+            
+//                                         {/* <a type="submit" class="btn btn-primary" href='/teacher'>Profile</a> */}
+//                                         <br />
+//                                         <br />
+//                                     </td>
+//                                 </tr>
+//                             </div>
+//                         </div>
+//  */}
 

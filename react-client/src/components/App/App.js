@@ -4,6 +4,7 @@ import Profile from '../profile'
 import Signin from '../singin'
 import Signup from '../singup'
 import HomePage from '../HomePage'
+import HomePage1 from '../HomePage1'
 import About from '../about'
 import Contact from '../Contact/Contact'
 import Nav from '../Nav'
@@ -14,7 +15,7 @@ import Search from '../search'
 import Student from '../Students/Student.js'
 import VideoComponent from '../video/VideoComponent'
 import Payment from '../Payment';
-import Videos from '../Teachers/Videos';
+import Videos from '../Teachers/videos';
 import Navbar from '../Navbar'
 import Footer from '../Footer/Footer'
 import Requests from '../Teachers/Requests'
@@ -56,6 +57,7 @@ class App extends Component {
               <Route path='/Lectures' exact component = {Videos}/>
               <Route path='/Requests' exact component ={Requests}/>
               
+              <Route path='/HomePage1' exact component = {HomePage1}/>
             </Switch>
           </div>
         </div>
