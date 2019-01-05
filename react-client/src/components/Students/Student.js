@@ -10,6 +10,7 @@ import AddSubject from './AddSubject/AddSubject.jsx';
 import Profile from './Profile/Profile.jsx';
 import MySchedule from './MySchedule/MySchedule.jsx';
 import MyPayments from './MyPayments/MyPayments.jsx';
+import Teachers from '../Teachers/Teachers'
 
 import { Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types';
@@ -24,6 +25,7 @@ import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+
 
 const styles = theme => ({
   main: {
@@ -183,7 +185,7 @@ class Student extends Component {
             <div className="App">
               <div>
               <Button color="inherit"><Link to='/Student/'>Dashboard</Link></Button>
-              <Button color="inherit"><Link to='/Student/SubjectsList'>Subjects List</Link></Button>
+              <Button color="inherit"><Link to='/teachers'>Teachers</Link></Button>
               <Button color="inherit"><Link to='/Student/AddSubject'>Add Subject</Link></Button>
               <Button color="inherit"><Link to='/Student/Profile'>Profile</Link></Button>
               <Button color="inherit"><Link to='/Student/MySchedule'>MySchedule</Link></Button>
@@ -196,6 +198,7 @@ class Student extends Component {
                   <Route path='/Student/Profile' exact component={Profile} />
                   <Route path='/Student/MySchedule' exact component={MySchedule} />
                   <Route path='/Student/MyPayments' exact component={MyPayments} />
+                  <Route path='/teachers' exact component={Teachers}/>
                 </Switch>
               </div>
             </div>

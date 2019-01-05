@@ -18,6 +18,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
+var user = ''
 const styles = theme => ({
     main: {
       width: 'auto',
@@ -58,7 +59,7 @@ class Profile extends Component {
             Loggedin: false,
             email: '',
           password: '',
-            image: "https://vignette.wikia.nocookie.net/kalbo-kinis-kintab/images/c/c5/Facebook-default-no-profile-pic.jpg/revision/latest/scale-to-width-down/480?cb=20131120043048",
+            image: "",
             teacherName: "",
             teacherMajor: "",
             info: "",
@@ -69,37 +70,35 @@ class Profile extends Component {
     
     componentDidMount() {
         axios.get('/auth/checkLogging').
-        then((x) => {
-            console.log('356', x.data);
-            if (x.data.email) {
-              var yahya = x.data.isTeacher
-              // console.log('yahya',yahya)
-              this.setState({
-                Loggedin: true,
-                isTeacher: yahya
+        then((response) => {
+            console.log('hello world')
+          if (response.data.email) {
+               user = response.data.firstname
+              //get authorized teacher from the database
+
+              axios.post('/get/specTeacher',{name:user})
+              .then((res) => {
+                console.log('resppp',res.data)
+                this.setState({
+                    image:res.data.image
+                })
               })
-    
-            } else {
-              this.setState({
-                Loggedin: false
+              .catch((err) => {
+                console.log(err)
               })
-            }
-          
-        // then((response) => {
-        //     console.log('hello world')
-        //  console.log('balabal', response.data.passport.user.isTeacher);
-        //   if (response.data.passport) {
-        //     this.setState({
-        //       Loggedin: true,
-        //       isTeacher:response.data.passport.user.isTeacher
-        //     })
-           
+
+            this.setState({
+              Loggedin: true,
+              isTeacher:response.data.isTeacher
+            })
+        }
         //   } else {
         //     this.setState({
         //       Loggedin: false
         //     })
         //   }
         })
+    
         axios.get('/teacher').then((res) => {
             console.log("res", res);
             this.setState({
@@ -114,6 +113,7 @@ class Profile extends Component {
             console.log('hi', err)
         })
       }
+      
 
 
       handleChange = (event) => {
@@ -151,11 +151,13 @@ class Profile extends Component {
       }
 
     uploadImage = (e) => {
+        //console.log('check hello', hello)
         this.setState({
             image: e.target.files[0]
         })
     }
     submitImage = () => {
+        //console.log('check hello',hello)
         var image = this.state.image
         const uploadTask = storage.ref(`images/${image.name}`).put(image)
         uploadTask.on('state_changed', (snapshot) => {
@@ -165,9 +167,18 @@ class Profile extends Component {
         }, () => {
             storage.ref('images').child(image.name).getDownloadURL().then(url => {
                 console.log('url', url)
-                this.setState({
-                    image: url
+                var obj = {name:user,image:url}
+                axios.post('get/updateTeacherProfile',obj)
+                .then((res) => {
+                    console.log('respppppppppppppp',res)
+                    this.setState({
+                        image:res.data.image
+                    })
                 })
+                .catch((err) => {
+                    console.log(err)
+                })
+
                 //request to the database update the profile picture
             })
         });

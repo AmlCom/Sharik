@@ -41,11 +41,13 @@ const TeacherSchema = new Schema({
 	},
 	image: {
 		type: String,
-		required: false
+		required: false,
+		default:"https://vignette.wikia.nocookie.net/kalbo-kinis-kintab/images/c/c5/Facebook-default-no-profile-pic.jpg/revision/latest/scale-to-width-down/480?cb=20131120043048"
 	},
 	video: {
-		type :String,
-		required : false
+		type :Array,
+		required : false,
+		default:"https://firebasestorage.googleapis.com/v0/b/homerji-d2145.appspot.com/o/videos%2Fvideoplayback.mp4?alt=media&token=77f5843d-eca0-4b4f-aa4c-42ffa677630b"
 	}
 });
 
