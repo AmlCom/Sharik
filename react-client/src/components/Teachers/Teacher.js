@@ -43,7 +43,7 @@ class Teacher extends Component {
                     <div className="card">
                         <img src={teacher.image} alt="" className="rounded" className="card-img-top" alt="..." />
                         <div className="card-body">
-                            <h4 className="card-text">{this.state.teacherName}</h4>
+                            <h4 className="card-text">{teacher.firstname}</h4>
                             <h5>{this.state.teacherMajor}</h5>
                             <h6>{this.state.info}</h6>
                             <h4> <span class="badge badge-info">Class price {this.state.price}JD/Hour</span></h4>
