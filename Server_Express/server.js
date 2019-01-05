@@ -98,8 +98,16 @@ app.post('/S_Contact', function (req, res) {
 app.post('/isStudent', (req,res) => {
   // console.log('eret', req.body);
   if (req.body.isStudent === 'true'){
-    const newUser = new Teacher(); 
+    Teacher.findOne({ email: req.session.passport.user.email}, function (err, user) {
+      if (err) {
+        res.send(err);
+      } else if (user) {
+        console.log('Already existy', user);
+         res.end();
+      } else {
+      const newUser = new Teacher(); 
       newUser.firstname = req.session.passport.user.displayName;
+      newUser.email= req.session.passport.user.email;
       newUser.imageURL= req.session.passport.user.imageURL;
       newUser.isTeacher = true;
       newUser.save((err, newuser) => {
@@ -109,31 +117,35 @@ app.post('/isStudent', (req,res) => {
       } else {
         res.end();
       }
-      })
+      }) 
+    }
+  })
   } else if (req.body.isStudent === 'false') {
-    const newUser = new signupuser(); 
-    // newUser.generalId = req.session.passport.user.generalId;
-    newUser.firstname = req.session.passport.user.displayName;
-    newUser.imageURL= req.session.passport.user.imageURL;
-    newUser.isTeacher = false;
-    newUser.save((err, newuser) => {
-    if (err) {
-      return res.end();
-    } else {
-      res.end();
+      signupuser.findOne({ email: req.session.passport.user.email}, function (err, user) {
+        if (err) {
+          res.send(err);
+        } else if (user) {
+          console.log('Already existy', user);
+          res.end();
+        } else {
+      const newUser = new signupuser(); 
+      // newUser.generalId = req.session.passport.user.generalId;
+      newUser.firstname = req.session.passport.user.displayName;
+      newUser.email= req.session.passport.user.email;
+      newUser.imageURL= req.session.passport.user.imageURL;
+      newUser.isTeacher = false;
+      newUser.save((err, newuser) => {
+      if (err) {
+        return res.end();
+      } else {
+        res.end();
+      }
+      })
     }
     })
   } else {
-    res.end();
+      res.end();
   }
-  // console.log('right', (req.session.passport.user._id));
-  // User.findOneAndUpdate({_id: req.session.passport.user._id}, {isTeacher: req.body.isStudent}).then(() => {
-  //   User.findOne({_id: req.session.passport.user._id}).then((user) =>{
-  //     console.log('fas', user);
-  //     res.end();
-  //   })
-  // })
-  
 })
 //  if (process.env.NODE_ENV === 'production') {
   // // Serve any static files

@@ -64,22 +64,21 @@ class HomePage extends Component {
       Loggedin: false,
       email: '',
       password: '',
-      isTeacher: false
+      isTeacher: ''
     }
   }
 
   componentDidMount() {
-    var is = prompt('Please enter your profession', 'teacher, or student')
-    axios.post('/isStudent', {isStudent: is}).then(() => { })
+   
     axios.get('/auth/checkLogging').
       then((x) => {
-        // console.log('356', x.data);
+        console.log('356', x.data);
         if (x.data.firstname) {
           var yahya = x.data.isTeacher
           // console.log('yahya',yahya)
           this.setState({
             Loggedin: true,
-            isTeacher: response.data.passport.user.isTeacher
+            isTeacher: yahya
           })
 
         } else {
@@ -117,11 +116,11 @@ class HomePage extends Component {
             console.log('ezvfdgf')
 
             this.setState({
-              Loggedin: true
+              isTeacher: true
             })
           } else {
             this.setState({
-              Loggedin: false
+              isTeacher: false
             })
           }
         })
@@ -129,10 +128,10 @@ class HomePage extends Component {
   }
 
   render() {
-    // console.log('Yahye isTeacher', this.state.isTeacher)
-    // console.log('this is islogin', this.state.Loggedin)
+    console.log('Yahye isTeacher', this.state.isTeacher)
+    console.log('this is islogin', this.state.Loggedin)
     const { classes } = this.props;
-    if (!this.state.Loggedin) {
+    if (this.state.isTeacher === '') {
       return (
         <div>
           <div style={{ height: '100%' }}>
@@ -151,7 +150,7 @@ class HomePage extends Component {
               <form className={classes.form}>
                 <FormControl margin="normal" required fullWidth>
                   <InputLabel htmlFor="email">Email Address</InputLabel>
-                  <Input id="email" name="email" autoComplete="email" autoFocus onChange={this.handleChange} />
+                  <Input id="email" name="email" autoComplete="email"  onChange={this.handleChange} />
                 </FormControl>
                 <FormControl margin="normal" required fullWidth>
                   <InputLabel htmlFor="password">Password</InputLabel>
@@ -177,7 +176,7 @@ class HomePage extends Component {
           </main>
         </div>
       )
-    } else if (this.state.Loggedin && this.state.isTeacher) {
+    } else if (this.state.isTeacher) {
       return (
         <div>
           <div style={{ height: '100%' }}>
@@ -188,7 +187,7 @@ class HomePage extends Component {
           </React.Fragment>
         </div>
       );
-    } else if (this.state.Loggedin && !this.state.isTeacher) {
+    } else if (!this.state.isTeacher) {
       return (
         //browserHistory.push('/student')
         // <React.Fragment>

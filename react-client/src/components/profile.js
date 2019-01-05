@@ -63,7 +63,7 @@ class Profile extends Component {
             teacherMajor: "",
             info: "",
             price: "",
-            isTeacher:false
+            isTeacher: ''
         }
     }
     
@@ -71,16 +71,20 @@ class Profile extends Component {
         axios.get('/auth/checkLogging').
         then((x) => {
             console.log('356', x.data);
-            if (x.data) {
-            //   console.log('dfgfcvm')
-                this.setState({
-                   Loggedin: true
-                })
+            if (x.data.email) {
+              var yahya = x.data.isTeacher
+              // console.log('yahya',yahya)
+              this.setState({
+                Loggedin: true,
+                isTeacher: yahya
+              })
+    
             } else {
-               this.setState({
-                   Loggedin: false
-               })
+              this.setState({
+                Loggedin: false
+              })
             }
+          
         // then((response) => {
         //     console.log('hello world')
         //  console.log('balabal', response.data.passport.user.isTeacher);
@@ -135,11 +139,11 @@ class Profile extends Component {
               console.log('ezvfdgf')
   
               this.setState({
-                Loggedin: true
+                isTeacher: true
             })
             } else {
               this.setState({
-                Loggedin: false
+                isTeacher: false
             })
             }
           })
@@ -186,11 +190,11 @@ class Profile extends Component {
 
     render(){
         const { classes } = this.props;
-        if (!this.state.Loggedin) {
+        if (this.state.isTeacher === '') {
             return (
                 <div>
                     <div style={{ height: '100%' }}>
-                    {/* <Nav /> */}
+                    <Nav />
                     </div>
                     <main className={classes.main}>
                     <CssBaseline />
@@ -204,7 +208,7 @@ class Profile extends Component {
                         <form className={classes.form}>
                         <FormControl margin="normal" required fullWidth>
                             <InputLabel htmlFor="email">Email Address</InputLabel>
-                            <Input id="email" name="email" autoComplete="email" autoFocus onChange={this.handleChange} />
+                            <Input id="email" name="email" autoComplete="email"  onChange={this.handleChange} />
                         </FormControl>
                         <FormControl margin="normal" required fullWidth>
                             <InputLabel htmlFor="password">Password</InputLabel>
@@ -230,12 +234,12 @@ class Profile extends Component {
                     </main>
                 </div>
               )
-        } else if(this.state.isTeacher && this.state.Loggedin) {
+        } else if(this.state.isTeacher ) {
         console.log('state',this.state.image)
     return (
         <div>
             <div style={{ height: '100%' }}>
-            {/* <Nav log={this.state.Loggedin}/> */}
+            <Nav log={this.state.Loggedin}/>
             </div>
                 <div className="container">
                     <div className="row">

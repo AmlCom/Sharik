@@ -22,7 +22,7 @@ passport.deserializeUser(function(id, done) {
 });
 
 router.get('/google',
- passport.authenticate('google', { scope: ['profile'] }));
+ passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 router.get('/google/redirect', 
  passport.authenticate('google', { failureRedirect: '/singin'
@@ -30,7 +30,7 @@ router.get('/google/redirect',
  function(req, res) {
    console.log('errrrrrrrrrrror');
   // req.session.user = req.user;
-   res.redirect('/HomePage');
+   res.redirect('/HomePage1');
  });
 
 
@@ -100,14 +100,14 @@ passport.authenticate('local'),
 router.get('/checkLogging', (req, res) => {
   if(req.session.passport) {
   console.log('321',req.session)
-  Teacher.findOne({firstname: req.session.passport.user.displayName}, (err, user) => {
+  Teacher.findOne({email: req.session.passport.user.email}, (err, user) => {
     // console.log('asd',user)
   if (req.session.passport && user) {
      res.send(user);
   } else {
-    signupuser.findOne({firstname: req.session.passport.user.displayName}, (err, user) => {
+    signupuser.findOne({email: req.session.passport.user.email}, (err, user) => {
       console.log('asd',user)
-    if (req.session.passport) {
+    if (req.session.passport && user) {
        res.send(user);
     } else {
       res.end();
@@ -115,6 +115,8 @@ router.get('/checkLogging', (req, res) => {
   })
   }
 })
+  } else {
+    res.end();
   }
 })
 
