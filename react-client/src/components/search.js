@@ -54,8 +54,6 @@ const styles = theme => ({
     }
   
     render() {
-    
-      console.log('kkkk', this.props.search)
       const { classes } = this.props;
 
       return (

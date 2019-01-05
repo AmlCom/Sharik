@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import './Teacher.css';
 import axios from 'axios';
 import Search from '../search'
-
+import {Redirect} from  'react-router-dom'
+import Teacher from './Teacher'
 
 class Teachers extends Component {
     state = {
-        teachers: []
+        teachers: [],
+        id:''
     }
 
     componentDidMount() {
@@ -27,6 +29,12 @@ class Teachers extends Component {
             teachers:[name.data]
         })
     }
+    teacherClicked = (id) => {
+        return(
+            <Redirect to = '/teacher' />
+        )
+        
+    }
 
     render() {
         console.log('teachers', this.state.teachers)
@@ -44,7 +52,7 @@ class Teachers extends Component {
                                 <h6> {this.state.teachers[0].firstname} </h6>
                                 <p> {this.state.teachers[0].lastname}</p>
                                 <br />
-                                <button type="submit" class="btn btn-primary" href="">Profile</button>
+                                <button type="submit" class="btn btn-primary" href="/teacher">Profile</button>
                                 <br />
                                 <br />
                             </td>
@@ -53,6 +61,7 @@ class Teachers extends Component {
                     </div>
 
                 </form>
+
             )
         } else {
             return (
@@ -72,7 +81,7 @@ class Teachers extends Component {
                                         <h6> {teacher.firstname} </h6>
                                         <p> {teacher.lastname}</p>
                                         <br />
-                                        <button type="submit" class="btn btn-primary" href="">Profile</button>
+                                        <button type="submit" class="btn btn-primary"  onClick={() => this.teacherClicked(teacher.firstname)}>Profile</button>
                                         <br />
                                         <br />
                                     </td>

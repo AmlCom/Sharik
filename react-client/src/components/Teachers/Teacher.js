@@ -33,7 +33,7 @@ class Teacher extends Component {
     }
 
     render() {
-
+        console.log('john', this.props.yahya)
     return (
         <div className=''>
             <div className='row '>
