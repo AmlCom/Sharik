@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import './Teacher.css';
 import axios from 'axios';
 import Search from '../search'
-
+import {Redirect} from  'react-router-dom'
+import Teacher from './Teacher'
 
 class Teachers extends Component {
     state = {
-        teachers: []
+        teachers: [],
+        id:''
     }
     componentDidMount() {
         axios.get('get/teacher')
@@ -26,6 +28,12 @@ class Teachers extends Component {
             teachers: [name.data]
         })
     }
+    teacherClicked = (id) => {
+        return(
+            <Redirect to = '/teacher' />
+        )
+        
+    }
 
     render() {
         console.log('teachers', this.state.teachers)
@@ -39,13 +47,14 @@ class Teachers extends Component {
                                 <img src={this.state.teachers[0].image} alt="" className="rounded card" />
                                 <h6> {this.state.teachers[0].firstname} {this.state.teachers[0].lastname}</h6>
                                 <p> {this.state.teachers[0].major} </p>
-                                <button type="submit" class="btn btn-primary" href="">Profile</button>
+                                <button type="submit" class="btn btn-primary" href="/teacher">Profile</button>
                                 <br />
                                 <br />
                             </td>
                         </tr>
                     </div>
                 </form>
+
             )
         } else {
             return (
@@ -59,7 +68,7 @@ class Teachers extends Component {
                                         <img src={teacher.image} alt="" className="rounded card" />
                                         <h6>{teacher.firstname} {teacher.lastname}</h6>
                                         <p> {teacher.major}</p>
-                                        <button type="submit" class="btn btn-primary" href="">Profile</button>
+                                        <button type="submit" class="btn btn-primary"  onClick={() => this.teacherClicked(teacher.firstname)}>Profile</button>
                                         <br />
                                         <br />
                                     </td>
