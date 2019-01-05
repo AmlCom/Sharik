@@ -130,6 +130,7 @@ class Teacher extends Component {
     }
 
     render() {
+         const {teacher} = this.props.location.state
         const { classes } = this.props;
         if (!this.state.Loggedin) {
             return (
@@ -182,17 +183,17 @@ class Teacher extends Component {
                     <Nav log={this.state.Loggedin} />
                     </div>
                     <div className=''>
-                        <div className='row '>
-                            <div className="col-md-2 container spacing">
-                                <div className="card">
-                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNimrjRZN3jIxU-D90rCnZ6pZvp9QF4t55QWP6PdOrCcyWpsvT" alt="" className="rounded" className="card-img-top" alt="..." />
-                                    <div className="card-body">
-                                        <h4 className="card-text">{this.state.teacherName}</h4>
-                                        <h5>{this.state.teacherMajor}</h5>
-                                        <h6>{this.state.info}</h6>
-                                        <h4> <span class="badge badge-info">Class price {this.state.price}JD/Hour</span></h4>
-                                        <button type="button" className="btn btn-info">Request</button>
-                                    </div>
+            <div className='row '>
+                <div className="col-md-2 container spacing">
+                    <div className="card">
+                        <img src={teacher.image} alt="" className="rounded" className="card-img-top" alt="..." />
+                        <div className="card-body">
+                            <h4 className="card-text">{this.state.teacherName}</h4>
+                            <h5>{this.state.teacherMajor}</h5>
+                            <h6>{this.state.info}</h6>
+                            <h4> <span class="badge badge-info">Class price {this.state.price}JD/Hour</span></h4>
+                            <button type="button" className="btn btn-info">Request</button>
+                        </div>
                                 </div>
                             </div>
 
