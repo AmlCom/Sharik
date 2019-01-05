@@ -2,11 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -31,7 +26,6 @@
   }
 }
 
-
 .container {
   margin-top: 40px;
 }
@@ -41,22 +35,27 @@
     }
 .each-fade img{
       width: 100%;
-  
-  
     }
 
 .Navbar-text {
-  color: #314897;
-  font-size : 25px;
+  color: white;
+  font-size : 15px;
   font-family: "Times New Roman", Times, serif;
   font-weight: bold;
 }
 
-
-.shariknav {
-  text-decoration: underline overline;
-  color: #314897;
-  font-size : 30px;
+.navbar {
+  color: white;
+  font-size : 20px;
   font-family: "Times New Roman", Times, serif;
   font-weight: bold;
+  background: black;
+  padding-top:2px;
+  padding-bottom:0 ;
 }
+
+.shariklogo {
+  font-size : 36px;
+}
+
+

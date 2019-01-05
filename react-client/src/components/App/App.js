@@ -37,7 +37,6 @@ class App extends Component {
     return (
       <BrowserRouter >
         <div className="App">
-          <Footer/>
           <div>
             <Switch>
               <Route path='/' exact component={Home} />
@@ -56,7 +55,6 @@ class App extends Component {
               <Route path='/Payment' exact component ={Payment}/>
               <Route path='/Lectures' exact component = {Videos}/>
               <Route path='/Requests' exact component ={Requests}/>
-              
               <Route path='/HomePage1' exact component = {HomePage1}/>
             </Switch>
           </div>
