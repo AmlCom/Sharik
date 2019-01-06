@@ -5,6 +5,7 @@ import Search from '../search'
 import {Redirect, Link} from  'react-router-dom'
 import Teacher from './Teacher'
 
+
 class Teachers extends Component {
     state = {
         teachers: [],

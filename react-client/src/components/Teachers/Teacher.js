@@ -15,6 +15,8 @@ import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+import Rate from '../Rating'
+
 
 const styles = theme => ({
     main: {
@@ -195,6 +197,7 @@ class Teacher extends Component {
                             <h6>{this.state.info}</h6>
                             <h4> <span class="badge badge-info">Class price {this.state.price}JD/Hour</span></h4>
                             <button type="button" className="btn btn-info">Request</button>
+                            <Rate teacher ={teacher}/>
                         </div>
                                 </div>
                             </div>
