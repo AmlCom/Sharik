@@ -15,6 +15,8 @@ import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+import Rate from '../Rating'
+
 
 const styles = theme => ({
     main: {
@@ -133,16 +135,17 @@ class Teacher extends Component {
     
     addStudent = () => {
         axios.post('/addStudent', {
-            teacherName: this.state.teacherName,
+            teacherEmail: this.props.location.state.teacher.email,
             student_id: this.state.student_id
         })
-        .then(() => {
-            console.log('Amjad');
+        .then((response) => {
+            console.log(response)
         })
     }
 
     render() {
          const {teacher} = this.props.location.state
+         console.log('teacher111111',teacher)
         const { classes } = this.props;
         if (!this.state.Loggedin) {
             return (
@@ -189,6 +192,7 @@ class Teacher extends Component {
                 </div>
               )
         } else {
+
             return (
                 <div>
                     <div style={{ height: '100%' }}>
@@ -200,11 +204,12 @@ class Teacher extends Component {
                     <div className="card">
                         <img src={teacher.image} alt="" className="rounded" className="card-img-top" alt="..." />
                         <div className="card-body">
-                            <h4 className="card-text">{this.state.teacherName}</h4>
+                            <h4 className="card-text">{teacher.firstname}</h4>
                             <h5>{this.state.teacherMajor}</h5>
                             <h6>{this.state.info}</h6>
                             <h4> <span class="badge badge-info">Class price {this.state.price}JD/Hour</span></h4>
                             <button type="button" className="btn btn-info" onClick={this.addStudent}>Request</button>
+                            <Rate teacher ={teacher}/>
                         </div>
                                 </div>
                             </div>

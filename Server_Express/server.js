@@ -148,7 +148,18 @@ app.post('/isStudent', (req,res) => {
   }
 })
 app.post('/addStudent', (req, res) => {
-  console.log('543', req.body)
+  console.log('543', req.body);
+  Teacher.findOne({email: req.body.teacherEmail}, (err, user) => {
+    if (err) {
+      res.send(err);
+    } else if (user) {
+      let original = user.User1;
+      original.push(req.body.student_id);
+      Teacher.findOneAndUpdate({email: req.body.teacherEmail}, {User1: original}, () => {
+        res.send('your request was secceful')
+      })
+    }
+  })
 })
 //  if (process.env.NODE_ENV === 'production') {
   // // Serve any static files

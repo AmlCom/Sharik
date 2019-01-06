@@ -40,8 +40,8 @@ console.log('login',this.state.Loggedin)
                 <nav className="navbar navbar-expand-lg">
                     <nav className="navbar ">
                         <a className="navbar-brand" href="/">
-                            <img src={Shariklogo} width="40" height="40" className="d-inline-block align-top" alt="Sharik Logo" />
-                            </a><span className="shariklogo">Sharik</span> </nav>
+                            <span><img src={Shariklogo} width="160" height="60" className="d-inline-block align-top" alt="Sharik Logo" />
+                            </span></a> </nav>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -61,8 +61,8 @@ console.log('login',this.state.Loggedin)
             <nav className="navbar navbar-expand-lg ">
                 <nav className="navbar ">
                     <a className="navbar-brand" href="/">
-                        <img src={Shariklogo} width="40" height="40" className="d-inline-block align-top" alt="Sharik Logo" />
-                        </a> <span className="shariklogo">Sharik</span></nav>
+                        <span><img src={Shariklogo} width="160" height="60" className="d-inline-block align-top" alt="Sharik Logo" />
+                        </span></a> </nav>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>

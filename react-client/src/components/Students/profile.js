@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { storage } from '../firebase/index'
+import { storage } from '../../firebase/index'
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import './Profile.css'
-import Nav from './Nav'
+import Nav from '../Nav'
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
