@@ -21,38 +21,6 @@ const fadeImages = [
 
 ];
 
-const styles = theme => ({
-	card: {
-		display: 'flex',
-	},
-	details: {
-		display: 'flex',
-		flexDirection: 'column',
-	},
-	content: {
-		flex: '1 0 auto',
-	},
-	cover: {
-		width: 151,
-	},
-	controls: {
-		display: 'flex',
-		alignItems: 'center',
-		paddingLeft: theme.spacing.unit,
-		paddingBottom: theme.spacing.unit,
-	},
-	playIcon: {
-		height: 38,
-		width: 38,
-	},
-	card: {
-		maxWidth: 200,
-	  },
-	  media: {
-		height: 140,
-	  },
-});
-
 const fadeProperties = {
 	duration: 1000,
 	transitionDuration: 500,
@@ -159,3 +127,34 @@ const Slideshow = (props) => {
 
 export default withStyles(styles)(Slideshow)
 
+const styles = theme => ({
+	card: {
+		display: 'flex',
+	},
+	details: {
+		display: 'flex',
+		flexDirection: 'column',
+	},
+	content: {
+		flex: '1 0 auto',
+	},
+	cover: {
+		width: 151,
+	},
+	controls: {
+		display: 'flex',
+		alignItems: 'center',
+		paddingLeft: theme.spacing.unit,
+		paddingBottom: theme.spacing.unit,
+	},
+	playIcon: {
+		height: 38,
+		width: 38,
+	},
+	card: {
+		maxWidth: 200,
+	  },
+	  media: {
+		height: 140,
+	  },
+});

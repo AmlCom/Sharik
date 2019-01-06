@@ -38,7 +38,7 @@ class Rate extends React.Component {
           onStarClick={this.onStarClick.bind(this)}
         />
       
-      <button onClick = {this.submit}>rate</button>
+      <button onClick = {this.submit}>Rate</button>
       </div>
     );
   }
