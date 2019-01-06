@@ -16,6 +16,7 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "^2.1.2",
     "react-slideshow-image": "^1.0.10",
+    "react-star-rating-component": "^1.4.1",
     "reactstrap": "^6.5.0",
     "stripe": "^6.20.0",
     "twilio-video": "^1.14.2"

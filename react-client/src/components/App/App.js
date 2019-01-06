@@ -56,8 +56,10 @@ class App extends Component {
               <Route path='/Lectures' exact component = {Videos}/>
               <Route path='/Requests' exact component ={Requests}/>
               <Route path='/HomePage1' exact component = {HomePage1}/>
+              {/* <Route path='/Rating' exact component={Rate}/> */}
             </Switch>
           </div>
+          
         </div>
        
       </BrowserRouter>

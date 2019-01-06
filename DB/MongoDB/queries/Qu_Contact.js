@@ -35,7 +35,7 @@ module.exports = {
     });
   },
 
-  // Select all Users:
+  // Select all Contact:
   selectAllContacts: function(callback) {
     Contact.find({}, function(selectAllContactsErr, allContactsQueryResulte) {
       if (selectAllContactsErr) {
@@ -46,7 +46,7 @@ module.exports = {
     });
   },
 
-  // Delete User:
+  // Delete Contact:
   deleteContact: function(contact_id, callback) {
     Contact.deleteOne(
       { _id: ObjectId(contact_id) },
