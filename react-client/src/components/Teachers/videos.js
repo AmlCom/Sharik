@@ -20,8 +20,9 @@ class Videos extends Component {
     componentDidMount() {
         axios.get('/auth/checkLogging').
             then((response) => {
-                if (response.data.passport) {
-                    user = response.data.passport.user.firstname
+                console.log('yahyaaaaa',response.data.firstname)
+                if (response.data) {
+                    user = response.data.firstname
                     axios.post('/get/specTeacher', { name: user })
                         .then((res) => {
                             this.setState({
@@ -34,7 +35,7 @@ class Videos extends Component {
 
                     this.setState({
                         Loggedin: true,
-                        isTeacher: response.data.passport.user.isTeacher,
+                        isTeacher: response.data.isTeacher,
                     })
 
                 } else {
@@ -87,7 +88,9 @@ class Videos extends Component {
                             <button className="input-group-text" id="inputGroupFileAddon02" onClick={this.submitVideo}>Upload</button>
                         </div>
                     </div>
-                    <iframe className='teacherVideo'  src={this.state.lectures[0]} />
+                    <video controls="true">
+								<source src={this.state.lectures[0]} type="video/mp4" />
+							</video>
                 </div>
             )
         } else if (this.state.lectures.length > 1) {
@@ -104,7 +107,9 @@ class Videos extends Component {
                     </div>
                 
                     {this.state.lectures.map((video) =>
-                        <iframe className='teacherVideo' src={video} />
+                        <video controls="true">
+								<source src={video} type="video/mp4" />
+							</video>
                     )}
                 </div>
             )
