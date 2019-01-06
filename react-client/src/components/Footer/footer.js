@@ -1,21 +1,25 @@
 import React from 'react';
 
-
 const Footer = () => {
     return (
-        <div className='container-fluid' >
-            <div class="card">
-                <div class="card-header">
-                    Quote
-                 </div>
-                <div class="card-body">
-                    <blockquote class="blockquote mb-0">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                        <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-                    </blockquote>
-                </div>
+        <div className="container become-instructor">
+            <h1 className="text-center">Envision your success</h1>
+            <h3 className="text-center subtext">Join our online learning marketplace</h3>
+            <div className="text-center">
+                <span>
+                <br/>
+
+                   <a href="/signup" ><button className='btn btn-info btn-lg'  type="button"> Get started
+                   </button>
+                       </a> 
+                   
+                    <br/>
+                    <br/>
+                    <br/>
+                </span>
             </div>
         </div>
+
     )
 }
 

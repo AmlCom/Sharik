@@ -37,14 +37,14 @@ class Home extends Component {
                 <Nav log={this.state.Loggedin}/>
             </div>
             <div>
-            <img src={homepage} width="100%"/>
+            <img className="homepagepic" src={homepage} width="100%"/>
             </div>
            
-            {/* <Footer/> */}
+            <Footer/>
             
         </div>
+     
         )
     }
 }
-
 export default Home;
