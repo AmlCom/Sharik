@@ -4,6 +4,7 @@ import Profile from '../profile'
 import Signin from '../singin'
 import Signup from '../singup'
 import HomePage from '../HomePage'
+import HomePage1 from '../HomePage1'
 import About from '../about'
 import Contact from '../Contact/Contact'
 import Nav from '../Nav'
@@ -15,6 +16,7 @@ import Student from '../Students/Student.js'
 import VideoComponent from '../video/VideoComponent'
 import Payment from '../Payment';
 import Videos from '../Teachers/Videos';
+import Rate from '../Rating'
 
 import { BrowserRouter, Route, Switch,History } from 'react-router-dom'
 // import TabContainer from '../Footer/footer'
@@ -51,9 +53,11 @@ class App extends Component {
               <Route path='/video' exact component={VideoComponent} />
               <Route path='/Payment' exact component ={Payment}/>
               <Route path='/Lectures' exact component = {Videos}/>
-              
+              <Route path='/HomePage1' exact component = {HomePage1}/>
+              <Route path='/Rating' exact component={Rate}/>
             </Switch>
           </div>
+          
         </div>
        
       </BrowserRouter>

@@ -5,19 +5,23 @@ const Schema = mongoose.Schema;
 const TeacherSchema = new Schema({
 	firstname: {
 		type: String,
-		required: true
+		required: false
 	},
 	lastname: {
 		type: String,
-		required: true
+		required: false
 	},
 	email: {
 		type: String,
-		required: true
+		required: false
 	},
 	password: {
 		type: String,
-		required: true
+		required: false
+	},
+	imageURL: {
+		type: String,
+		required: false
 	},
 	isTeacher: {
 		type: Boolean,
@@ -44,6 +48,11 @@ const TeacherSchema = new Schema({
 		type :Array,
 		required : false,
 		default:"https://firebasestorage.googleapis.com/v0/b/homerji-d2145.appspot.com/o/videos%2Fvideoplayback.mp4?alt=media&token=77f5843d-eca0-4b4f-aa4c-42ffa677630b"
+	},
+	rating:{
+		type:Number,
+		required: false,
+		default:1
 	}
 });
 

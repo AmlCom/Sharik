@@ -11,6 +11,7 @@ const bcrypt = require("bcrypt-nodejs");
 
 
 passport.serializeUser(function(user, done) {
+  console.log('DSA', user);
   done(null, user);
 });
 
@@ -21,7 +22,7 @@ passport.deserializeUser(function(id, done) {
 });
 
 router.get('/google',
- passport.authenticate('google', { scope: ['profile'] }));
+ passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 router.get('/google/redirect', 
  passport.authenticate('google', { failureRedirect: '/singin'
@@ -29,7 +30,7 @@ router.get('/google/redirect',
  function(req, res) {
    console.log('errrrrrrrrrrror');
   // req.session.user = req.user;
-   res.redirect('/homepage');
+   res.redirect('/HomePage1');
  });
 
 
@@ -97,10 +98,24 @@ passport.authenticate('local'),
 );
 
 router.get('/checkLogging', (req, res) => {
+  if(req.session.passport) {
   console.log('321',req.session)
-  if (req.session.passport) {
-     res.send(req.session);
-  } else{
+  Teacher.findOne({email: req.session.passport.user.email}, (err, user) => {
+    // console.log('asd',user)
+  if (req.session.passport && user) {
+     res.send(user);
+  } else {
+    signupuser.findOne({email: req.session.passport.user.email}, (err, user) => {
+      console.log('asd',user)
+    if (req.session.passport && user) {
+       res.send(user);
+    } else {
+      res.end();
+    }
+  })
+  }
+})
+  } else {
     res.end();
   }
 })

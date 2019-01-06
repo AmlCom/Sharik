@@ -7,28 +7,16 @@ passport.use(new FacebookStrategy({
     clientID: keys.facebook.clientID,
     clientSecret: keys.facebook.clientSecret,
     callbackURL: "/auth/facebook/redirect",
-    profileFields: ['id', 'name', 'displayName', 'photos']
+    profileFields: ['id', 'name', 'displayName', 'photos', 'email']
   },
   function(accessToken, refreshToken, profile, done) {
-      console.log(profile);
-      User.findOne({ generalId: profile.id }, function (err, user) {
-        if (err) {
-          return done(err);
-        } else if (user) {
-          console.log('Already existy', user);
-           done(null, user);
-        } else {
-          const newUser = new User(); 
-          newUser.generalId = profile.id;
-          newUser.displayName = profile.displayName;
-          newUser.imageURL= profile.photos[0].value;
-          newUser.save((err, newuser) => {
-          if (err) {
-            return done(err);
-          }
-          done(null, newuser);
-          });
+    console.log('456', profile);
+    done(null, { generalId : profile.id,
+          displayName : profile.displayName,
+          email: profile.emails[0].value,
+          imageURL: profile.photos[0].value});
+          // });
         }
-      });
-  }
-));
+      // });
+  // }
+  ));

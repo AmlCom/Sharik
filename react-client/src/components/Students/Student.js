@@ -10,6 +10,7 @@ import AddSubject from './AddSubject/AddSubject.jsx';
 import Profile from './Profile/Profile.jsx';
 import MySchedule from './MySchedule/MySchedule.jsx';
 import MyPayments from './MyPayments/MyPayments.jsx';
+import Teachers from '../Teachers/Teachers'
 
 import { Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types';
@@ -24,6 +25,7 @@ import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+
 
 const styles = theme => ({
   main: {
@@ -62,21 +64,22 @@ class Student extends Component {
 		super(props);
 		this.state = {
           Loggedin: false,
-          isTeacher:false,
+          isTeacher: ''
 		}
 	}
 
 	componentDidMount() {
     axios.get('/auth/checkLogging').
-    then((response) => {
-        console.log('hello world')
-    //  console.log('balabal', response.data.passport.user.isTeacher);
-      if (response.data.passport) {
+    then((x) => {
+      console.log('356', x.data);
+      if (x.data.email) {
+        var yahya = x.data.isTeacher
+        // console.log('yahya',yahya)
         this.setState({
           Loggedin: true,
-          isTeacher:response.data.passport.user.isTeacher
+          isTeacher: yahya
         })
-       
+
       } else {
         this.setState({
           Loggedin: false
@@ -108,11 +111,11 @@ class Student extends Component {
             console.log('ezvfdgf')
   
             this.setState({
-              Loggedin: true
+              isTeacher: true
           })
           } else {
             this.setState({
-              Loggedin: false
+              isTeacher: false
           })
           }
         })
@@ -121,7 +124,7 @@ class Student extends Component {
 
 	render() {
     const { classes } = this.props;
-    if (!this.state.Loggedin) {
+    if (this.state.isTeacher === '') {
       return (
         <div>
           <div style={{ height: '100%' }}>
@@ -140,7 +143,7 @@ class Student extends Component {
               <form className={classes.form}>
                 <FormControl margin="normal" required fullWidth>
                   <InputLabel htmlFor="email">Email Address</InputLabel>
-                  <Input id="email" name="email" autoComplete="email" autoFocus onChange={this.handleChange} />
+                  <Input id="email" name="email" autoComplete="email"  onChange={this.handleChange} />
                 </FormControl>
                 <FormControl margin="normal" required fullWidth>
                   <InputLabel htmlFor="password">Password</InputLabel>
@@ -166,7 +169,12 @@ class Student extends Component {
           </main>
         </div>
       )
-    } else if(this.state.Loggedin && !this.state.isTeacher) {
+    } else if (this.state.isTeacher) {
+      return (
+        <Redirect to="/homePage" />
+        )
+    } else {
+      
       return (
         <div>
            <div style={{ height: '100%' }}>
@@ -177,7 +185,7 @@ class Student extends Component {
             <div className="App">
               <div>
               <Button color="inherit"><Link to='/Student/'>Dashboard</Link></Button>
-              <Button color="inherit"><Link to='/Student/SubjectsList'>Subjects List</Link></Button>
+              <Button color="inherit"><Link to='/teachers'>Teachers</Link></Button>
               <Button color="inherit"><Link to='/Student/AddSubject'>Add Subject</Link></Button>
               <Button color="inherit"><Link to='/Student/Profile'>Profile</Link></Button>
               <Button color="inherit"><Link to='/Student/MySchedule'>MySchedule</Link></Button>
@@ -190,6 +198,7 @@ class Student extends Component {
                   <Route path='/Student/Profile' exact component={Profile} />
                   <Route path='/Student/MySchedule' exact component={MySchedule} />
                   <Route path='/Student/MyPayments' exact component={MyPayments} />
+                  <Route path='/teachers' exact component={Teachers}/>
                 </Switch>
               </div>
             </div>
@@ -198,10 +207,7 @@ class Student extends Component {
 
         </div>
 
-      )
-    }else {
-      return (
-      <Redirect to="/homePage" />
+      
       )
     }
 	}
