@@ -17,7 +17,7 @@ import VideoComponent from '../video/VideoComponent'
 import Payment from '../Payment';
 import Videos from '../Teachers/videos';
 import Navbar from '../Navbar'
-import Footer from '../Footer/Footer.js'
+//import Footer from '../Footer/Footer'
 import Requests from '../Teachers/Requests'
 
 import { BrowserRouter, Route, Switch,History } from 'react-router-dom'
