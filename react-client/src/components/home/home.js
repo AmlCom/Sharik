@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Slideshow from '../slideshow'
+//import Slideshow from '../slideshow'
 import { Divider } from '@material-ui/core';
 import Nav from '../Nav'
 import axios from 'axios';
@@ -36,7 +36,7 @@ class Home extends Component {
             <div style={{ height: '100%' }}>
                 <Nav log={this.state.Loggedin}/>
             </div>
-            <Slideshow />
+            {/* <Slideshow /> */}
         </div>
         )
     }

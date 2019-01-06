@@ -12,7 +12,7 @@ class Videos extends Component {
             email: '',
             password: '',
             video: '',
-            yahya: [],
+            lectures: [],
             Loggedin: false
         }
     }
@@ -20,20 +20,17 @@ class Videos extends Component {
     componentDidMount() {
         axios.get('/auth/checkLogging').
             then((response) => {
-                console.log('yyyyyy',response.data.passport)
                 if (response.data.passport) {
                     user = response.data.passport.user.firstname
-                    
-                    axios.post('/get/specTeacher',{name:user})
-                    .then((res) => {
-                        console.log('dataaaa',res.data)
-                        this.setState({
-                            yahya:res.data.video
+                    axios.post('/get/specTeacher', { name: user })
+                        .then((res) => {
+                            this.setState({
+                                lectures: res.data.video
+                            })
                         })
-                    })
-                    .catch((err) => {
-                        console.log(err)
-                    })
+                        .catch((err) => {
+                            console.log(err)
+                        })
 
                     this.setState({
                         Loggedin: true,
@@ -46,15 +43,13 @@ class Videos extends Component {
                     })
                 }
             })
-        
-        }
+
+    }
 
     uploadVideo = (e) => {
-        console.log('user', user)
         this.setState({
             video: e.target.files[0]
         })
-        console.log('video', this.state.videos)
     }
     submitVideo = () => {
         var video = this.state.video
@@ -65,35 +60,22 @@ class Videos extends Component {
             console.log(error)
         }, () => {
             storage.ref('videos').child(video.name).getDownloadURL().then(url => {
-                console.log('url', url)
-                console.log('yahya', this.state.yahya)
-               // var newVideos = this.state.yahya.push(url)
-                ////console.log('fffffffff', newVideos)
                 this.setState({
-                    yahya: [...this.state.yahya,url]
+                    lectures: [...this.state.lectures, url]
                 })
-                //////////////////
-                console.log('yahyerashid omar', this.state.yahya)
-                var obj = { name: user, videos: this.state.yahya }
-                console.log('objjjjjjj',obj)
-
+                var obj = { name: user, videos: this.state.lectures }
                 axios.post('get/addVideoLecture', obj)
                     .then((res) => {
-                        console.log('farah jaah', res)
                     })
                     .catch((err) => {
                         console.log(err)
                     })
-
-
-
             })
         });
     }
 
     render() {
-        console.log('renderrrrr', this.state.yahya)
-        if (this.state.yahya.length === 1) {
+        if (this.state.lectures.length === 1) {
             return (
                 <div className='container'>
                     <div className="input-group mb-3">
@@ -105,13 +87,10 @@ class Videos extends Component {
                             <button className="input-group-text" id="inputGroupFileAddon02" onClick={this.submitVideo}>Upload</button>
                         </div>
                     </div>
-
-                    <iframe src={this.state.yahya[0]} />
-
-
+                    <iframe className='teacherVideo'  src={this.state.lectures[0]} />
                 </div>
             )
-        } else if (this.state.yahya.length > 1) {
+        } else if (this.state.lectures.length > 1) {
             return (
                 <div className='container'>
                     <div className="input-group mb-3">
@@ -123,13 +102,10 @@ class Videos extends Component {
                             <button className="input-group-text" id="inputGroupFileAddon02" onClick={this.submitVideo}>Upload</button>
                         </div>
                     </div>
-
-
-                    {this.state.yahya.map((video) =>
-
-                        <iframe src={video} />
+                
+                    {this.state.lectures.map((video) =>
+                        <iframe className='teacherVideo' src={video} />
                     )}
-
                 </div>
             )
         } else {
@@ -144,10 +120,9 @@ class Videos extends Component {
                             <button className="input-group-text" id="inputGroupFileAddon02" onClick={this.submitVideo}>Upload</button>
                         </div>
                     </div>
-
-                    <iframe src={this.state.yahya} />
-
-
+                    <div className="embed-responsive embed-responsive-16by9">
+                        <iframe className='teacherVideo' src={this.state.lectures} />
+                    </div>
                 </div>
             )
         }
@@ -157,3 +132,9 @@ class Videos extends Component {
 
 export default Videos;
 
+
+
+// autoplay="false"
+// autostart="false" 
+// autoplay="0" 
+// autostart="0"
