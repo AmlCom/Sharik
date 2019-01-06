@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Slideshow from '../slideshow'
-import { Divider } from '@material-ui/core';
 import Nav from '../Nav'
 import axios from 'axios';
+import homepage from '../homepage.jpg';
+import Footer from '../Footer/footer'
 
 
 class Home extends Component {
@@ -36,10 +36,15 @@ class Home extends Component {
             <div style={{ height: '100%' }}>
                 <Nav log={this.state.Loggedin}/>
             </div>
-            {/* <Slideshow /> */}
+            <div>
+            <img className="homepagepic" src={homepage} width="100%"/>
+            </div>
+           
+            <Footer/>
+            
         </div>
+     
         )
     }
 }
-
 export default Home;
