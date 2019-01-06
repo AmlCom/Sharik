@@ -63,120 +63,122 @@ class Teacher extends Component {
         }
     }
 
-    componentDidMount() {
-        axios.get('/auth/checkLogging').
-        then((x) => {
-            console.log('356', x);
-            if (x.data) {
-              console.log(this)
-                this.setState({
-                   Loggedin: true
-                })
-            } else {
-               this.setState({
-                   Loggedin: false
-               })
-            }
-        })
-        axios.get('/teacher').then((res) => {
-            console.log("res", res);
-            this.setState({
-                image: res.data[0].image,
-                teacherName: res.data[0].teacherName,
-                teacherMajor: res.data[0].teacherMajor,
-                info: res.data[0].info,
-                price: res.data[0].price
-            })
+    // componentDidMount() {
+    //     axios.get('/auth/checkLogging').
+    //     then((x) => {
+    //         console.log('356', x);
+    //         if (x.data) {
+    //           console.log(this)
+    //             this.setState({
+    //                Loggedin: true
+    //             })
+    //         } else {
+    //            this.setState({
+    //                Loggedin: false
+    //            })
+    //         }
+    //     })
+    //     axios.get('/teacher').then((res) => {
+    //         console.log("res", res);
+    //         this.setState({
+    //             image: res.data[0].image,
+    //             teacherName: res.data[0].teacherName,
+    //             teacherMajor: res.data[0].teacherMajor,
+    //             info: res.data[0].info,
+    //             price: res.data[0].price
+    //         })
 
-        }).catch((err) => {
-            console.log('hi', err)
-        })
+    //     }).catch((err) => {
+    //         console.log('hi', err)
+    //     })
 
-    }
+    // }
 
       
-    handleChange = (event) => {
-      this.setState({
-        [event.target.name]: event.target.value
-      })
-    }
+    // handleChange = (event) => {
+    //   this.setState({
+    //     [event.target.name]: event.target.value
+    //   })
+    // }
       
-    handleSubmit = (event) => {
-      if (this.state.email === '') {alert('email cannot be empty');
-      } else if (this.state.password === '') {alert('password cannot be empty');
-      } else {
-        event.preventDefault()
-        const check = {
-          email: this.state.email,
-          password: this.state.password
-        } 
+    // handleSubmit = (event) => {
+    //   if (this.state.email === '') {alert('email cannot be empty');
+    //   } else if (this.state.password === '') {alert('password cannot be empty');
+    //   } else {
+    //     event.preventDefault()
+    //     const check = {
+    //       email: this.state.email,
+    //       password: this.state.password
+    //     } 
     
-        axios.post('/auth/signin', check)
-        .then(response => {
-          console.log('ert', response.data)
-          if (response.data) {
-            console.log('ezvfdgf')
+    //     axios.post('/auth/signin', check)
+    //     .then(response => {
+    //       console.log('ert', response.data)
+    //       if (response.data) {
+    //         console.log('ezvfdgf')
   
-            this.setState({
-              Loggedin: true
-          })
-          } else {
-            this.setState({
-              Loggedin: false
-          })
-          }
-        })
-      }  
-    }
+    //         this.setState({
+    //           Loggedin: true
+    //       })
+    //       } else {
+    //         this.setState({
+    //           Loggedin: false
+    //       })
+    //       }
+    //     })
+    //   }  
+    // }
 
     render() {
          const {teacher} = this.props.location.state
+         console.log('teacher111111',teacher)
         const { classes } = this.props;
-        if (!this.state.Loggedin) {
-            return (
-                <div>
-                    <div style={{ height: '100%' }}>
-                    <Nav />
-                    </div>
-                    <main className={classes.main}>
-                    <CssBaseline />
-                    <Paper className={classes.paper}>
-                        <Avatar className={classes.avatar}>
-                        <LockIcon />
-                        </Avatar>
-                        <Typography component="h1" variant="h5">
-                        Sign in
-                        </Typography>
-                        <form className={classes.form}>
-                        <FormControl margin="normal" required fullWidth>
-                            <InputLabel htmlFor="email">Email Address</InputLabel>
-                            <Input id="email" name="email" autoComplete="email" autoFocus onChange={this.handleChange} />
-                        </FormControl>
-                        <FormControl margin="normal" required fullWidth>
-                            <InputLabel htmlFor="password">Password</InputLabel>
-                            <Input name="password" type="password" id="password" autoComplete="current-password" onChange={this.handleChange}/>
-                        </FormControl>
-                        {/* <FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
-                            label="Remember me"
-                        /> */}
-                        <Button
-                            fullWidth
-                            variant="contained"
-                            color="primary"
-                            className={classes.submit}
-                            onClick={this.handleSubmit}
-                        >
-                            Sign in
-                        </Button>
-                        </form>
-                        <a href="/auth/google"><button className={'btn btn-success'}>Sign In with Google</button></a>
-                        <a href="/auth/facebook"><button className={'btn btn-danger'}>Login with Facebook</button></a>
-                    </Paper>
-                    </main>
-                </div>
-              )
-        } else {
+        // if (!this.state.Loggedin) {
+        //     return (
+        //         <div>
+        //             <div style={{ height: '100%' }}>
+        //             <Nav />
+        //             </div>
+        //             <main className={classes.main}>
+        //             <CssBaseline />
+        //             <Paper className={classes.paper}>
+        //                 <Avatar className={classes.avatar}>
+        //                 <LockIcon />
+        //                 </Avatar>
+        //                 <Typography component="h1" variant="h5">
+        //                 Sign in
+        //                 </Typography>
+        //                 <form className={classes.form}>
+        //                 <FormControl margin="normal" required fullWidth>
+        //                     <InputLabel htmlFor="email">Email Address</InputLabel>
+        //                     <Input id="email" name="email" autoComplete="email" autoFocus onChange={this.handleChange} />
+        //                 </FormControl>
+        //                 <FormControl margin="normal" required fullWidth>
+        //                     <InputLabel htmlFor="password">Password</InputLabel>
+        //                     <Input name="password" type="password" id="password" autoComplete="current-password" onChange={this.handleChange}/>
+        //                 </FormControl>
+        //                 {/* <FormControlLabel
+        //                     control={<Checkbox value="remember" color="primary" />}
+        //                     label="Remember me"
+        //                 /> */}
+        //                 <Button
+        //                     fullWidth
+        //                     variant="contained"
+        //                     color="primary"
+        //                     className={classes.submit}
+        //                     onClick={this.handleSubmit}
+        //                 >
+        //                     Sign in
+        //                 </Button>
+        //                 </form>
+        //                 <a href="/auth/google"><button className={'btn btn-success'}>Sign In with Google</button></a>
+        //                 <a href="/auth/facebook"><button className={'btn btn-danger'}>Login with Facebook</button></a>
+        //             </Paper>
+        //             </main>
+        //         </div>
+        //       )
+        // } else {
+
             return (
                 <div>
                     <div style={{ height: '100%' }}>
@@ -225,6 +227,6 @@ class Teacher extends Component {
                 </div>
             )
         }
-    }
+    
 }
 export default withStyles(styles)(Teacher);
