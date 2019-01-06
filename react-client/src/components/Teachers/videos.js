@@ -107,7 +107,7 @@ class Videos extends Component {
                     </div>
                 
                     {this.state.lectures.map((video) =>
-                        <video controls="true">
+                        <video className='teacherVideo border' controls="true">
 								<source src={video} type="video/mp4" />
 							</video>
                     )}
@@ -125,8 +125,8 @@ class Videos extends Component {
                             <button className="input-group-text" id="inputGroupFileAddon02" onClick={this.submitVideo}>Upload</button>
                         </div>
                     </div>
-                    <div className="embed-responsive embed-responsive-16by9">
-                        <iframe className='teacherVideo' src={this.state.lectures} />
+                    <div className=" embed-responsive embed-responsive-16by9">
+                        <iframe src={this.state.lectures} />
                     </div>
                 </div>
             )

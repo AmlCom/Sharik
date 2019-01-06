@@ -8,3 +8,16 @@
     width: 100%;
     height: auto;
 }
+
+
+.dashbored{
+    font-size : 17px;
+    font-weight: bold;
+}
+
+
+.number{
+width: auto;
+min-width: 30px;
+padding: 10px;
+}
