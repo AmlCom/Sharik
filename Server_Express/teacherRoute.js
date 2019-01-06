@@ -25,9 +25,9 @@ router.post('/teacher', function (req, res, next) {
 
   res.send('hi there')
 
-  //   Teacher.create(req.body).then(function (teacher) {
-  //   res.send(teacher)
-  // }).catch(next)
+    Teacher.create(req.body).then(function (teacher) {
+    res.send(teacher)
+  }).catch(next)
 });
 
 //find specific teacher or teachers
@@ -63,6 +63,18 @@ router.post('/addVideoLecture', function (req, res, next) {
     //res.send('hello')
     res.send(teacher)
   }).catch(next)
+});
+
+// teacher rating 
+router.post('/ratingTeacher', function(req, res, next) {
+  console.log('you reached mustafa',req.body)
+
+console.log('rating helllo rating', req.body.name)
+// Teacher.findOneAndUpdate({'firstname':req.body.name},{'rating':req.body.rating}).then(function (teacher) {
+//   console.log('teacheer',teacher)
+//   //res.send('hello')
+//   res.send(teacher)
+// }).catch(next)
 });
 
 module.exports = router
