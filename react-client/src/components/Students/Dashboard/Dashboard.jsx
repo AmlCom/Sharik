@@ -15,7 +15,7 @@ class Dashboard extends Component {
 		return (
 			<div>
 				<h1>Student Dashboard Page</h1>
-				<Slideshow />
+				{/* <Slideshow /> */}
 				
 
 			</div>
