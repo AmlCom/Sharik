@@ -48,7 +48,8 @@ const TeacherSchema = new Schema({
 		type :Array,
 		required : false,
 		default:"https://firebasestorage.googleapis.com/v0/b/homerji-d2145.appspot.com/o/videos%2Fvideoplayback.mp4?alt=media&token=77f5843d-eca0-4b4f-aa4c-42ffa677630b"
-	}
+	},
+	User1: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User1' }]
 });
 
 

@@ -106,7 +106,7 @@ app.post('/isStudent', (req,res) => {
          res.end();
       } else {
       const newUser = new Teacher(); 
-      newUser.firstname = req.session.passport.user.displayName;
+      newUser.firstname = req.session.passport.user.firstname;
       newUser.email= req.session.passport.user.email;
       newUser.imageURL= req.session.passport.user.imageURL;
       newUser.isTeacher = true;
@@ -146,6 +146,9 @@ app.post('/isStudent', (req,res) => {
   } else {
       res.end();
   }
+})
+app.post('/addStudent', (req, res) => {
+  console.log('543', req.body)
 })
 //  if (process.env.NODE_ENV === 'production') {
   // // Serve any static files

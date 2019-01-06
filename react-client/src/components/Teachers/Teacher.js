@@ -58,6 +58,7 @@ class Teacher extends Component {
             info: "",
             price: "",
             Loggedin: false,
+            student_id: '',
             email: '',
             password: ''
         }
@@ -66,11 +67,12 @@ class Teacher extends Component {
     componentDidMount() {
         axios.get('/auth/checkLogging').
         then((x) => {
-            console.log('356', x);
+            console.log('321', x);
             if (x.data) {
               console.log(this)
                 this.setState({
-                   Loggedin: true
+                   Loggedin: true,
+                   student_id: x.data._id
                 })
             } else {
                this.setState({
@@ -127,6 +129,16 @@ class Teacher extends Component {
           }
         })
       }  
+    }
+    
+    addStudent = () => {
+        axios.post('/addStudent', {
+            teacherName: this.state.teacherName,
+            student_id: this.state.student_id
+        })
+        .then(() => {
+            console.log('Amjad');
+        })
     }
 
     render() {
@@ -192,7 +204,7 @@ class Teacher extends Component {
                             <h5>{this.state.teacherMajor}</h5>
                             <h6>{this.state.info}</h6>
                             <h4> <span class="badge badge-info">Class price {this.state.price}JD/Hour</span></h4>
-                            <button type="button" className="btn btn-info">Request</button>
+                            <button type="button" className="btn btn-info" onClick={this.addStudent}>Request</button>
                         </div>
                                 </div>
                             </div>
