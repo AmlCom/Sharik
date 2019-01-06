@@ -36,10 +36,10 @@ class Home extends Component {
             <div style={{ height: '100%' }}>
                 <Nav log={this.state.Loggedin}/>
             </div>
-            <div>
-            <img className="homepagepic" src={homepage} width="100%"/>
-            </div>
+            <div className='HomepageBG'> </div>
            
+            <img className="homepagepic" src={homepage} width="100%"/>
+            
             <Footer/>
             
         </div>

@@ -7,7 +7,6 @@ import HomePage from '../HomePage'
 import HomePage1 from '../HomePage1'
 import About from '../about'
 import Contact from '../Contact/Contact'
-import Nav from '../Nav'
 import Teachers from '../Teachers/Teachers';
 import Teacher from '../Teachers/Teacher';
 import CreateTeacher from '../CreateTeacher'
@@ -16,9 +15,9 @@ import Student from '../Students/Student.js'
 import VideoComponent from '../video/VideoComponent'
 import Payment from '../Payment';
 import Videos from '../Teachers/videos';
-import Navbar from '../Navbar'
-import Footer from '../Footer/Footer.js'
 import Requests from '../Teachers/Requests'
+import homepage from '../homepage.jpg';
+
 
 import { BrowserRouter, Route, Switch,History } from 'react-router-dom'
 // import TabContainer from '../Footer/footer'
