@@ -214,12 +214,14 @@ class Student extends Component {
       
       return (
         <div>
-            <div style={{ height: '100%' }}>
+          {/*  <div style={{ height: '100%' }}>
               <Nav log={this.state.Loggedin}/>
-          </div> 
+          </div> */}
           {/* My Code: */}
                 <div>
-                
+                    <div style={{ height: '100%' }}>
+                        <Nav log={this.state.Loggedin} />
+                    </div>
                     <Grid container spacing={24}>
                         <Grid item xs={12}>
 
