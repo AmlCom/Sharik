@@ -63,7 +63,7 @@ class Teachers extends Component {
                     < Search search={this.searchTeacher} />
                     {this.state.teachers.map((teacher) =>
                         <div className='container'>
-                            <div className="card float-left teacherCard">
+                            <div className="card float-left">
                                 <img src={teacher.image}/>
                                 <div className="container">
                                     <h4><b>{teacher.firstname} {teacher.lastname}</b></h4>
@@ -81,27 +81,3 @@ class Teachers extends Component {
 
 
 export default Teachers;
-
-
-{/* 
-<div className='container'>
-                            <div class="form-group float-left teacherCard">
-                                <tr>
-                                    <td className='border'>
-                                        <img src={teacher.image} alt="" className="rounded card" />
-                                        <br />
-                                        <br />
-                                        <h6> {teacher.firstname} </h6>
-                                        <p> {teacher.lastname}</p>
-                                        <br />
-                                        <Link  to={{ pathname: '/teacher', state: { teacher: teacher} }} type="submit" class="btn btn-primary">Profile</Link>
-            
-//                                         {/* <a type="submit" class="btn btn-primary" href='/teacher'>Profile</a> */}
-//                                         <br />
-//                                         <br />
-//                                     </td>
-//                                 </tr>
-//                             </div>
-//                         </div>
-//  */}
-
