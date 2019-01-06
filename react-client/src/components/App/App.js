@@ -15,9 +15,9 @@ import Search from '../search'
 import Student from '../Students/Student.js'
 import VideoComponent from '../video/VideoComponent'
 import Payment from '../Payment';
-import Videos from '../Teachers/videos';
+import Videos from '../Teachers/Videos';
 import Navbar from '../Navbar'
-import Footer from '../Footer/Footer'
+import Footer from '../Footer/Footer.js'
 import Requests from '../Teachers/Requests'
 
 import { BrowserRouter, Route, Switch,History } from 'react-router-dom'
