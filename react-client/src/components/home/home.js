@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Nav from '../Nav'
 import axios from 'axios';
 import homepage from '../homepage.jpg';
-import Footer from '../Footer/footer'
+import Footer from '../Footer/Footer'
 
 
 class Home extends Component {
@@ -36,10 +36,10 @@ class Home extends Component {
             <div style={{ height: '100%' }}>
                 <Nav log={this.state.Loggedin}/>
             </div>
-            <div>
-            <img className="homepagepic" src={homepage} width="100%"/>
-            </div>
+            <div className='HomepageBG'> </div>
            
+            <img className="homepagepic" src={homepage} width="100%"/>
+            
             <Footer/>
             
         </div>
