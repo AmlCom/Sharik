@@ -111,7 +111,33 @@ class Profile extends Component {
 		})
 	}
 	onFormSubmit = (event) => {
-		event.preventDefault();
+		if (this.state.email === '') {
+			alert('email cannot be empty');
+		} else if (this.state.password === '') {
+			alert('password cannot be empty');
+		} else {
+			event.preventDefault()
+			const data = {
+				email: this.state.email,
+				password: this.state.password
+			}
+
+			// axios.post('/auth/signin', check)
+			// 	.then(response => {
+			// 		console.log('ert', response.data)
+			// 		if (response.data) {
+			// 			console.log('ezvfdgf')
+
+			// 			this.setState({
+			// 				isTeacher: true
+			// 			})
+			// 		} else {
+			// 			this.setState({
+			// 				isTeacher: false
+			// 			})
+			// 		}
+			// 	})
+		}
 	}
 
 	render() {
