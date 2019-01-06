@@ -160,6 +160,10 @@ class Student extends Component {
                 })
         }
     }
+    
+    onTabChange = (event, tabID) => {
+        this.setState({ tabID });
+    };
 
     onTabChange = (event, tabID) => {
         this.setState({ tabID });

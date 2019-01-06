@@ -238,19 +238,19 @@ class Profile extends Component {
                     </div>
                     <div className="container">
                         <div className='row'>
-                            <div className='col-md-4'>
-                                <a href="./Requests" class="list-group-item d-flex justify-content-between align-items-center">
-                                    Requests <span class="badge badge-primary badge-pill">14</span>
+                            <div className='col-md-3'>
+                                <a href="./Requests" class="list-group-item list-group-item-info d-flex justify-content-between align-items-center">
+                              <h5 className='dashbored'>Requests</h5><span class="badge badge-primary number">14</span>
                                 </a>
                             </div>
-                            <div className='col-md-4'>
-                                <a href="./Teacher" class="list-group-item d-flex justify-content-between align-items-center">
-                                    Comments  <span class="badge badge-primary badge-pill">2</span>
+                            <div className='col-md-3'>
+                                <a href="./Teacher" class="list-group-item list-group-item-info d-flex justify-content-between align-items-center">
+                                    <h5 className='dashbored'>Comments</h5><span class="badge badge-primary number">2</span>
                                 </a>
                             </div>
-                            <div className='col-md-4'>
-                                <a href="./lectures" class="list-group-item d-flex justify-content-between align-items-center">
-                                    lectures <span class="badge badge-primary badge-pill">1</span>
+                            <div className='col-md-3'>
+                                <a href="./lectures" class="list-group-item list-group-item-info d-flex justify-content-between align-items-center">
+                                   <h5 className='dashbored'>Lectures</h5><span class="badge badge-primary number">1</span>
                                 </a>
                             </div>
                         </div>
