@@ -4,7 +4,7 @@ This application aims to serve Tawjihi students(High school students) who face h
 
  ![](image/sharik.png)
 
-Team
+# Team
 
 * **Batool Al-Issa** - *Product Owner* - [BatoolAlissa](https://github.com/BatoolAlissa)
 * **Yahya Rashid** - *Scrum Master* - [Yahyarashid](https://github.com/Yahyarashid)
@@ -12,21 +12,22 @@ Team
 * **Ashraf Al-sheikh** - *Team Member* - [alsheikh813](https://github.com/alsheikh813)
 * **Mustaf Abtidon** - *Team Member* - [mustafcode10)](https://github.com/mustafcode10)
 
-Usage
-If you are student you will choose that you are student when you singing up and you will access all the lectures that teachers uploaded which are free. And you can find the all the teachers in the application and you can request the teacher of your choice to give you the lecture when you pay the per hour charge of the teacher.
-If you are teacher you sign up as teacher and fill the basic information and then you can upload your profile picture and your video lectures and you can accept requests from the student then you will have video chat to the student and explain your lecture
-Requirements
-•	Mongodb
-•	Express
-•	React
-•	Nodejs
-Development
-Installing Dependencies
-Getting Started Installing cd Sharik then yarn to install the dependencies
-cd react-client -yarn to install client dependencies
-Run application
-You can either
-•	start application using two separate terminals -npm start to start the server -npm run client to start the react-client
-OR -just npm run dev (to start both server and client concurrently)
+# Usage
+* If you are student you will choose that you are student when you singing up and you will access all the lectures that teachers uploaded which are free. And you can find the all the teachers in the application and you can request the teacher of your choice to give you the lecture when you pay the per hour charge of the teacher.
+* If you are teacher you sign up as teacher and fill the basic information and then you can upload your profile picture and your video lectures and you can accept requests from the student then you will have video chat to the student and explain your lecture
+# Requirements
+* •	Mongodb
+* •	Express
+* •	React
+* •	Nodejs
+* Development
+* Installing Dependencies
+* Getting Started Installing cd Sharik then yarn to install the dependencies
+* cd react-client -yarn to install client dependencies
+* Run application
+* You can either
+* •	start application using two separate terminals -npm start to start the server -npm run client to start the react-client
+* OR 
+* npm run dev (to start both server and client concurrently)
 
 
