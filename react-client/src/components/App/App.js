@@ -17,7 +17,6 @@ import Payment from '../Payment';
 import Videos from '../Teachers/videos';
 import Navbar from '../Navbar'
 import Requests from '../Teachers/Requests'
-import homepage from '../homepage.jpg';
 import { BrowserRouter, Route, Switch,History } from 'react-router-dom'
 import './App.css';
 

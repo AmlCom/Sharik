@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Nav from '../Nav'
 import axios from 'axios';
-import homepage from '../homepage.jpg';
 import Footer from '../Footer/Footer'
+import './home.css';
+
 
 
 class Home extends Component {
@@ -41,13 +42,12 @@ class Home extends Component {
                         <div id="textSlider" class="row">
                             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-4 iamCol">
                                 <p></p>
-                                <p></p>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 slideCol">
                                 <div class="scroller">
                                     <div class="inner">
                                         <p>Sharik</p>
-                                        <p>Learning</p>
+                                        <p>Helps</p>
                                         <p>Sharing </p>
                                         <p>knowledge</p>
                                     </div>
@@ -57,7 +57,6 @@ class Home extends Component {
                     </section>
                 </div>
                 <Footer/>
-
             </div>
 
         )
