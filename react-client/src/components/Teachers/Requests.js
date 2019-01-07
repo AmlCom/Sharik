@@ -2,7 +2,16 @@ import React, { Component } from 'react';
 
 
 
-const Request = () => {
+class Request extends Component  {
+    constructor(props) {
+        super(props);
+        this.state = {
+        }
+    }
+
+   
+
+    render() {
     return (
         <div className='container'>
         <div className="panel">
@@ -19,31 +28,20 @@ const Request = () => {
                         <th>Email</th>
                         <th></th>
                     </tr>
-                    <tr>
-                        <td>Name 1</td>
-                        <td>@gmail.com</td>
-                        <td><a className="btn btn-success" href="">Accept</a> <a className="btn btn-danger" href="#">Reject</a></td>
-                    </tr>
-                    <tr>
-                        <td>Name 2</td>
-                        <td>@yahoo.com</td>
-                        <td><a className="btn btn-success" href="">Accept</a> <a className="btn btn-danger" href="#">Reject</a></td>
-                    </tr>
-                    <tr>
-                        <td>Name 3</td>
-                        <td>@yahoo.com</td>
-                        <td><a className="btn btn-success" href="">Accept</a> <a className="btn btn-danger" href="#">Reject</a></td>
-                    </tr>
-                    <tr>
-                        <td>Name 4</td>
-                        <td>@gmail.com</td>
-                        <td><a className="btn btn-success" href="">Accept</a> <a className="btn btn-danger" href="#">Reject</a></td>
-                    </tr>
+                    {this.props.location.state.students.map((student) =>
+                        <tr>
+                            <td>{student.firstname}</td>
+                            <td>{student.email}</td>
+                            <td><a className="btn btn-success" href="">Accept</a> <a className="btn btn-danger" href="#">Reject</a></td>
+                        </tr>
+                    )}
+                   
                 </table>
             </div>
         </div>
 </div>
     )
+    }
 }
 
 export default Request;

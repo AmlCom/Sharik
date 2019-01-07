@@ -95,6 +95,23 @@ app.post('/S_Contact', function (req, res) {
 
 });
 
+app.get('/studentList', (req, res) => {
+  console.log('3654', req.session);
+  Teacher.findOne({email: req.session.passport.user.email}, (err, teacher) => {
+    if (err) {
+      res.send(err);
+    } else {
+      signupuser.find({_id: {$in: teacher.User1}}, (err, studentsList) => {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send(studentsList)
+        }
+      })
+    }
+  })
+})
+
 app.post('/isStudent', (req,res) => {
   // console.log('eret', req.body);
   if (req.body.isStudent === 'true'){
@@ -156,11 +173,13 @@ app.post('/addStudent', (req, res) => {
       let original = user.User1;
       original.push(req.body.student_id);
       Teacher.findOneAndUpdate({email: req.body.teacherEmail}, {User1: original}, () => {
-        res.send('your request was secceful')
+        res.send('your request was successful')
       })
     }
   })
 })
+
+
 //  if (process.env.NODE_ENV === 'production') {
   // // Serve any static files
   app.use(express.static(path.join(__dirname, '../react-client/build')));

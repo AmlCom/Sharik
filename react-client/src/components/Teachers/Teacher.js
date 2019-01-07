@@ -139,7 +139,7 @@ class Teacher extends Component {
             student_id: this.state.student_id
         })
         .then((response) => {
-            console.log(response)
+            alert(response.data)
         })
     }
 
