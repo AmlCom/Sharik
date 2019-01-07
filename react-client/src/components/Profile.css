@@ -20,7 +20,7 @@
 .number{
 width: auto;
 min-width: 30px;
-padding: 10px;
+padding:5px 5px 5px;
 background-color :rgb(49, 164, 221)
 
 }
@@ -29,7 +29,7 @@ background-color :rgb(49, 164, 221)
     margin-top: 20px;
     width:100%;
     height:auto;
-    padding:10px 10px 10px;
+    padding:5px 15px 5px;
     display:flex;
     background-color: rgba(101, 70, 82, 0.05);
     box-shadow: rgba(0,0,0,0.1) 0px 1px 10px;
