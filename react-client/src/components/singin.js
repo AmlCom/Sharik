@@ -98,6 +98,7 @@ class Singin extends Component {
         console.log('ert', response.data)
         if (response.data) {
           console.log('ezvfdgf')
+          {localStorage.setItem("login", true)}
 
           this.setState({
             Loggedin: true

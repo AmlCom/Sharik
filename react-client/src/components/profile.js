@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { storage } from '../firebase/index'
+import { Link, BrowserRouter, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import './Profile.css'
 import Nav from './Nav'
+import Requests from './Teachers/Requests'
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -64,7 +66,9 @@ class Profile extends Component {
             teacherMajor: "",
             info: "",
             price: "",
-            isTeacher: ''
+            isTeacher: '',
+            studentList: [],
+            requestsNumber: 0
         }
     }
 
@@ -111,6 +115,13 @@ class Profile extends Component {
 
         }).catch((err) => {
             console.log('hi', err)
+        })
+        axios.get('/studentList').then((res) => {
+            console.log("213", res);
+            this.setState({
+                requestsNumber: res.data.length,
+                studentList: res.data 
+            })
         })
     }
 
@@ -239,9 +250,9 @@ class Profile extends Component {
                     <div className="container">
                         <div className='row'>
                             <div className='col-md-3'>
-                                <a href="./Requests" class="list-group-item list-group-item-info d-flex justify-content-between align-items-center">
-                              <h5 className='dashbored'>Requests</h5><span class="badge badge-primary number">14</span>
-                                </a>
+                              <Link to={{ pathname: '/Requests', state: { students: this.state.studentList} }} class="list-group-item list-group-item-info d-flex justify-content-between align-items-center">
+                              <h5 className='dashbored'>Requests</h5><span class="badge badge-primary number">{this.state.requestsNumber}</span>
+                              </Link>
                             </div>
                             <div className='col-md-3'>
                                 <a href="./Teacher" class="list-group-item list-group-item-info d-flex justify-content-between align-items-center">

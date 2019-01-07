@@ -58,7 +58,12 @@ const TeacherSchema = new Schema({
 		type:Number,
 		required:false,
 		default:0
-	}
+	},
+	User1: [
+		{
+			type: mongoose.Schema.Types.ObjectId, ref: 'User1' 
+		}
+	]
 });
 
 
