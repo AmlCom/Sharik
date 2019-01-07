@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 import { Redirect } from 'react-router-dom'
 import StarRatingComponent from 'react-star-rating-component';
 
@@ -10,7 +10,9 @@ class Rate extends React.Component {
     super();
  
     this.state = {
-      rating: 1
+      rating: 1,
+      name:'',
+      rate:''
     };
   }
  
@@ -18,19 +20,36 @@ class Rate extends React.Component {
     this.setState({rating: nextValue});
     //console.log('rating',this.state.rating)
   }
-  submit = () =>{
+  submit = (name) =>{
     console.log('mustaf',this.state.rating)
+    console.log('yyyyyyy',this.props.teacher.firstname)
+    var count = this.props.teacher.rateCount+1
+
+   var rating = Math.floor((this.props.teacher.rating*5+this.state.rating)/(count))
+
+
     //axi
+    var obj = { name: this.props.teacher.firstname,rating:rating,count:count }
+     console.log('MUSTAF Rating axios post', obj)
+    axios.post('get/ratingTeacher', obj)
+    .then((res) => {
+      console.log('mustaffffahme',res.data)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
 
   }
  
   render() {
     const { rating } = this.state;
-    console.log('teacher rating',this.props.teacher)
+    const rate = this.props.teacher.rating
+    console.log('hhhh',this.props.teacher.rating)
+    console.log('MUSTAF teacher rating',this.props.teacher)
     return (                
       <div>
         {/* <Teacher/> */}
-        <h5>Rating from state: {rating}</h5>
+        <h5>Rating from state: {rate}</h5>
         <StarRatingComponent 
           name="rate1" 
           starCount={5}
