@@ -1,0 +1,26 @@
+.Navbar-text {
+    color: white;
+    font-size : 15px;
+    font-family: "Times New Roman", Times, serif;
+  }
+  
+  .navbar {
+    color: white;
+    font-size : 20px;
+    font-family: "Times New Roman", Times, serif;
+    background: black;
+    padding-top:2px;
+    padding-bottom:0 ;
+    margin-bottom: 0 !important
+
+  }
+  
+  .shariklogo {
+    font-size : 36px;
+    font-weight: bold;
+    }
+  
+  
+  .homepagepic {
+    margin-top: -240px;
+  }
