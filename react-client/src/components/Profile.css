@@ -12,7 +12,8 @@
 
 .dashbored{
     font-size : 17px;
-    font-weight: bold;
+    /* font-weight: bold; */
+    color :rgb(49, 164, 221)
 }
 
 
@@ -20,4 +21,19 @@
 width: auto;
 min-width: 30px;
 padding: 10px;
+background-color :rgb(49, 164, 221)
+
 }
+
+.mainLinks {
+    margin-top: 20px;
+    width:100%;
+    height:auto;
+    padding:10px 10px 10px;
+    display:flex;
+    background-color: rgba(101, 70, 82, 0.05);
+    box-shadow: rgba(0,0,0,0.1) 0px 1px 10px;
+    top:0;
+    left: 0;
+}
+
