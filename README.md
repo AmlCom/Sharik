@@ -8,7 +8,23 @@ who want to give extra lectures when they are at their home and make some living
 This will improve the our countries's education system and improve our children's skills on different
 subjects.This application also aims to decrease the number of student who fail Tawjihi exam every year.
 
+## Team
 
+  - __Product Owner__: Batool Al-Issa
+  - __Scrum Master__: Yahya Rashid
+  - __Development Team Members__: Amjad Hasnawi, Ashraf Al-sheikh, Mustaf Abtidon
+
+## Usage
+
+> Some usage instructions
+
+## Requirements
+
+- Node 0.x.x
+
+## Development
+
+### Installing Dependencies
 
 Getting Started
 Installing
@@ -29,10 +45,19 @@ You can either
 OR 
 -just npm run dev (to start both server and client concurrenly)
 
-Built With MERN stack
--Mongo db
--Express
--React js
--Node.js
+
+### Roadmap
+
+View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+
+
+
+
+
 
 

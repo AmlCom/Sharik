@@ -3,6 +3,7 @@ import './Teacher.css';
 import axios from 'axios';
 import Search from '../search'
 import {Redirect, Link} from  'react-router-dom'
+import Nav from '../Nav'
 import Teacher from './Teacher'
 
 
@@ -37,10 +38,15 @@ class Teachers extends Component {
     }
 
     render() {
+
         console.log('teachers', this.state.teachers)
         if (this.state.teachers.length === 1) {
             return (
-                <form className='container flux'>
+                <div>
+                    <div style={{ height: '100%' }}>
+                        <Nav log={this.state.Loggedin} />
+                    </div>
+                    <form className='container flux'>
                     < Search search={this.searchTeacher} />
                     <div class="form-group">
                         <tr>
@@ -56,10 +62,15 @@ class Teachers extends Component {
                     </div>
                 </form>
 
+                </div>
+               
             )
         } else {
             return (
                 <div>
+                     <div style={{ height: '100%' }}>
+                        <Nav log={this.state.Loggedin} />
+                    </div>
                     < Search search={this.searchTeacher} />
                     {this.state.teachers.map((teacher) =>
                         <div className='container'>

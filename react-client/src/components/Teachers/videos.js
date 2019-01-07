@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { storage } from '../../firebase/index'
 import axios from 'axios';
+import Nav from '../Nav'
+
 
 var user = ''
 
@@ -78,7 +80,11 @@ class Videos extends Component {
     render() {
         if (this.state.lectures.length === 1) {
             return (
-                <div className='container'>
+                <div>
+                    <div style={{ height: '100%' }}>
+                        <Nav log={this.state.Loggedin} />
+                    </div>
+                    <div className='container'>
                     <div className="input-group mb-3">
                         <div className="custom-file">
                             <input type="file" className="custom-file-input" id="inputGroupFile02" onChange={this.uploadVideo} />
@@ -92,10 +98,16 @@ class Videos extends Component {
 								<source src={this.state.lectures[0]} type="video/mp4" />
 							</video>
                 </div>
+                </div>
+                
             )
         } else if (this.state.lectures.length > 1) {
             return (
-                <div className='container'>
+                <div>
+                     <div style={{ height: '100%' }}>
+                        <Nav log={this.state.Loggedin} />
+                    </div>
+                    <div className='container'>
                     <div className="input-group mb-3">
                         <div className="custom-file">
                             <input type="file" className="custom-file-input" id="inputGroupFile02" onChange={this.uploadVideo} />
@@ -112,10 +124,17 @@ class Videos extends Component {
 							</video>
                     )}
                 </div>
+                </div>
+               
             )
         } else {
             return (
-                <div className='container'>
+                <div>
+                    <div style={{ height: '100%' }}>
+                        <Nav log={this.state.Loggedin} />
+                    </div>
+
+                    <div className='container'>
                     <div className="input-group mb-3">
                         <div className="custom-file">
                             <input type="file" className="custom-file-input" id="inputGroupFile02" onChange={this.uploadVideo} />
@@ -129,6 +148,8 @@ class Videos extends Component {
                         <iframe src={this.state.lectures} />
                     </div>
                 </div>
+                </div>
+               
             )
         }
     }
