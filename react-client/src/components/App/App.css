@@ -41,14 +41,12 @@
   color: white;
   font-size : 15px;
   font-family: "Times New Roman", Times, serif;
-  font-weight: bold;
 }
 
 .navbar {
   color: white;
   font-size : 20px;
   font-family: "Times New Roman", Times, serif;
-  font-weight: bold;
   background: black;
   padding-top:2px;
   padding-bottom:0 ;
@@ -56,10 +54,15 @@
 
 .shariklogo {
   font-size : 36px;
+  font-weight: bold;
 }
 
 
 .homepagepic {
   margin-top: -240px;
-
 }
+
+/* 
+.HomepageBG{
+  background-image: url("homepagepic");
+} */
