@@ -10,7 +10,7 @@ Team
 * **Yahya Rashid** - *Scrum Master* - [Yahyarashid](https://github.com/Yahyarashid)
 * **Amjad Hasnawi** - *Team Member* - [AmjadHasnawi](https://github.com/AmjadHasnawi)
 * **Ashraf Al-sheikh** - *Team Member* - [alsheikh813](https://github.com/alsheikh813)
-**Mustaf Abtidon** - *Team Member* - [mustafcode10)](https://github.com/mustafcode10)
+* **Mustaf Abtidon** - *Team Member* - [mustafcode10)](https://github.com/mustafcode10)
 
 Usage
 If you are student you will choose that you are student when you singing up and you will access all the lectures that teachers uploaded which are free. And you can find the all the teachers in the application and you can request the teacher of your choice to give you the lecture when you pay the per hour charge of the teacher.
