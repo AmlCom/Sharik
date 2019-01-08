@@ -24,11 +24,7 @@ class Videos extends Component {
     componentDidMount() {
         axios.get('/auth/checkLogging').
             then((response) => {
-<<<<<<< HEAD
-                console.log('yahyaaaaa',response.data.firstname)
-=======
                 console.log('yahyaaaaa', response.data.firstname)
->>>>>>> dee4ef0def024d345bed54062ce04457ea6f0d96
                 if (response.data) {
                     user = response.data.firstname
                     axios.post('/get/specTeacher', { name: user })
@@ -106,12 +102,6 @@ class Videos extends Component {
                             </video>
                         </div>
                     </div>
-<<<<<<< HEAD
-                    <video controls="true">
-								<source src={this.state.lectures[0]} type="video/mp4" />
-							</video>
-=======
->>>>>>> dee4ef0def024d345bed54062ce04457ea6f0d96
                 </div>
 
             )
@@ -139,15 +129,6 @@ class Videos extends Component {
                             </div>
                         )}
                     </div>
-<<<<<<< HEAD
-                
-                    {this.state.lectures.map((video) =>
-                        <video className='teacherVideo border' controls="true">
-								<source src={video} type="video/mp4" />
-							</video>
-                    )}
-=======
->>>>>>> dee4ef0def024d345bed54062ce04457ea6f0d96
                 </div>
 
             )
@@ -172,12 +153,6 @@ class Videos extends Component {
                             <iframe src={this.state.lectures} />
                         </div>
                     </div>
-<<<<<<< HEAD
-                    <div className=" embed-responsive embed-responsive-16by9">
-                        <iframe src={this.state.lectures} />
-                    </div>
-=======
->>>>>>> dee4ef0def024d345bed54062ce04457ea6f0d96
                 </div>
 
             )

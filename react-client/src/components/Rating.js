@@ -10,7 +10,7 @@ class Rate extends React.Component {
     super();
  
     this.state = {
-      rating: 1,
+      rating: 0,
       name:'',
       rate:''
     };
@@ -19,13 +19,14 @@ class Rate extends React.Component {
   onStarClick(nextValue, prevValue, name) {
     this.setState({rating: nextValue});
     console.log('rating',this.state.rating)
+    console.log('nextValue',nextValue)
   }
   submit = (name) =>{
     console.log('mustaf',this.state.rating)
     console.log('teacher firsname',this.props.teacher.firstname)
     var count = this.props.teacher.rateCount+1
 
-   var rating = Math.floor((this.props.teacher.rating*5+this.state.rating)/(count))
+   var rating = Math.floor((this.props.teacher.rating*5+this.state.rating)/(5))
 
 
     //axi
@@ -33,7 +34,7 @@ class Rate extends React.Component {
      console.log('MUSTAF Rating axios post', obj)
     axios.post('get/ratingTeacher', obj)
     .then((res) => {
-      console.log('mustaffffahme',res.data)
+      console.log('object',res.data)
     })
     .catch((error) => {
       console.log(error)
@@ -44,18 +45,31 @@ class Rate extends React.Component {
   render() {
     const { rating } = this.state;
     const rate = this.props.teacher.rating
-    console.log('hhhh',this.props.teacher.rating)
+    console.log('yuuaauau',rate)
+    console.log('Rating',this.props.teacher.rating)
     console.log('MUSTAF teacher rating',this.props.teacher)
+    var star = ()=>{
+      return (
+        <StarRatingComponent 
+        name="rate1" 
+        starCount={5}
+        value={this.state.rating}
+        onStarClick={this.onStarClick.bind(this)}
+      />
+      )
+    }
     return (                
       <div>
         {/* <Teacher/> */}
-        <h5>Rating from state: {rate}</h5>
+        <h5>Rating : {star ()}</h5>
+        {/* <h5>Rating from state: {rating}</h5>
+
         <StarRatingComponent 
           name="rate1" 
           starCount={5}
           value={rating}
           onStarClick={this.onStarClick.bind(this)}
-        />
+        /> */}
       
       <button onClick = {this.submit}>Rate</button>
       </div>

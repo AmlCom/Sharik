@@ -72,15 +72,10 @@ class Teachers extends Component {
                     </div>
                     {this.state.teachers.map((teacher) =>
                         <div className='container'>
-<<<<<<< HEAD
-                            <div className="card float-left">
-                                <img src={teacher.image}/>
-=======
                             <div className="card">
                             <div className='teacherPic'>
                             <img  src={teacher.image} />
                             </div>
->>>>>>> dee4ef0def024d345bed54062ce04457ea6f0d96
                                 <div className="container">
                                     <h4><b>{teacher.firstname} {teacher.lastname}</b></h4>
                                     <p>{teacher.major}</p>
@@ -99,10 +94,7 @@ class Teachers extends Component {
 
 
 export default Teachers;
-<<<<<<< HEAD
-=======
 
 
 
 
->>>>>>> dee4ef0def024d345bed54062ce04457ea6f0d96
