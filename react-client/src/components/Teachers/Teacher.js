@@ -203,47 +203,47 @@ class Teacher extends Component {
                     <div className='teacher'>
                         <div className='row '>
                             <div className="col-md-3 container">
-                                    <div className='teacherPic'>
-                                        <img src={teacher.image} alt="" />
-                                    </div>
-                                    <div className="">
-                                        <h4><b>{teacher.firstname} {teacher.lastname}</b></h4>
-                                        <p>{this.state.teacherMajor}</p>
-                                        <h6>{this.state.info}</h6>
-                                        <h4> <span class="badge badge-info">Class price {this.state.price}JD/Hour</span></h4>
-                                        <button type="button" className="btn btn-info" onClick={this.addStudent}>Request</button>
-                                        <Rate teacher={teacher} />
-                                    </div>
-                    </div>
+                                <div className='teacherPic'>
+                                    <img src={teacher.image} alt="" />
+                                </div>
+                                <div className="">
+                                    <h4><b>{teacher.firstname} {teacher.lastname}</b></h4>
+                                    <p>{this.state.teacherMajor}</p>
+                                    <h6>{this.state.info}</h6>
+                                    <h4> <span class="badge badge-info">Class price {this.state.price}JD/Hour</span></h4>
+                                    <button type="button" className="btn btn-info" onClick={this.addStudent}>Request</button>
+                                    <Rate teacher={teacher} />
+                                </div>
+                            </div>
 
-                    <div className="col-md-8 container">
-                        <div className='card-header text-white bg-info'>
-                            <div className='d-flex flex-column bd-highlight mb-0.5'>
-                                <h3>Comments</h3>
+                            <div className="col-md-8 container">
+                                <div className='card-header text-white bg-info'>
+                                    <div className='d-flex flex-column bd-highlight mb-0.5'>
+                                        <h3>Comments</h3>
+                                    </div>
+                                </div>
+
+                                <br />
+                                <div className="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Write a comment" />
+                                    <div className="input-group-append">
+                                        <button className="btn btn-info" type="button">Comment</button>
+                                    </div>
+                                </div>
+
+                            <div>
+                                <ul>
+                                    <li  className="card commentsCard" >
+                                            <h5 className="card-header">Student Name</h5>
+                                            <div className="card-body">
+                                                <p className="card-text">student comment</p>
+                                            </div>
+                                    </li>
+                                </ul>
+                            </div>
                             </div>
                         </div>
-
-                        <br />
-                        <div className="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Write a comment"/>
-                            <div className="input-group-append">
-                                <button className="btn btn-info" type="button">Comment</button>
-                            </div>
-                        </div>
-
-                        <div className=''>
-                           <ul>
-                                <li >
-                                    Hellloooooo
-                                </li>
-                            </ul>
-                        </div>
-
-
-                        
                     </div>
-                </div>
-                    </div >
                 </div >
             )
         }

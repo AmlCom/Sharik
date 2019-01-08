@@ -232,14 +232,16 @@ class Comments extends Component {
                             </div>
                         </div>
 
-                        <div className=''>
-                           <ul className=''><span>Comments</span>
-                                <li >
-                                    Hellloooooo
-                                </li>
-                            </ul>
-                        </div>
-
+                        <div>
+                                <ul>
+                                    <li  className="card commentsCard" >
+                                            <h5 className="card-header">Student Name</h5>
+                                            <div className="card-body">
+                                                <p className="card-text">student comment</p>
+                                            </div>
+                                    </li>
+                                </ul>
+                            </div>
 
                         
                     </div>
