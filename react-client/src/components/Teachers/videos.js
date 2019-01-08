@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { storage } from '../../firebase/index'
 import axios from 'axios';
+import Nav from '../Nav';
+import './Teacher.css';
+
+
 
 var user = ''
 
@@ -20,7 +24,7 @@ class Videos extends Component {
     componentDidMount() {
         axios.get('/auth/checkLogging').
             then((response) => {
-                console.log('yahyaaaaa',response.data.firstname)
+                console.log('yahyaaaaa', response.data.firstname)
                 if (response.data) {
                     user = response.data.firstname
                     axios.post('/get/specTeacher', { name: user })
@@ -78,57 +82,79 @@ class Videos extends Component {
     render() {
         if (this.state.lectures.length === 1) {
             return (
-                <div className='container'>
-                    <div className="input-group mb-3">
-                        <div className="custom-file">
-                            <input type="file" className="custom-file-input" id="inputGroupFile02" onChange={this.uploadVideo} />
-                            <label className="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
+                <div>
+                    <div style={{ height: '100%' }}>
+                        <Nav log={this.state.Loggedin} />
+                    </div>
+                    <div className='container'>
+                        <div className="input-group mb-3 uploadVideo">
+                            <div className="custom-file">
+                                <input type="file" className="custom-file-input" id="inputGroupFile02" onChange={this.uploadVideo} />
+                                <label className="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
+                            </div>
+                            <div className="input-group-append">
+                                <button className="input-group-text" id="inputGroupFileAddon02" onClick={this.submitVideo}>Upload</button>
+                            </div>
                         </div>
-                        <div className="input-group-append">
-                            <button className="input-group-text" id="inputGroupFileAddon02" onClick={this.submitVideo}>Upload</button>
+                        <div className='videoWrapper'>
+                            <video controls="true">
+                                <source src={this.state.lectures[0]} type="video/mp4" />
+                            </video>
                         </div>
                     </div>
-                    <video controls="true">
-								<source src={this.state.lectures[0]} type="video/mp4" />
-							</video>
                 </div>
+
             )
         } else if (this.state.lectures.length > 1) {
             return (
-                <div className='container'>
-                    <div className="input-group mb-3">
-                        <div className="custom-file">
-                            <input type="file" className="custom-file-input" id="inputGroupFile02" onChange={this.uploadVideo} />
-                            <label className="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
-                        </div>
-                        <div className="input-group-append">
-                            <button className="input-group-text" id="inputGroupFileAddon02" onClick={this.submitVideo}>Upload</button>
-                        </div>
+                <div>
+                    <div style={{ height: '100%' }}>
+                        <Nav log={this.state.Loggedin} />
                     </div>
-                
-                    {this.state.lectures.map((video) =>
-                        <video className='teacherVideo border' controls="true">
-								<source src={video} type="video/mp4" />
-							</video>
-                    )}
+                    <div className='container'>
+                        <div className="input-group mb-3 uploadVideo">
+                            <div className="custom-file">
+                                <input type="file" className="custom-file-input" id="inputGroupFile02" onChange={this.uploadVideo} />
+                                <label className="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
+                            </div>
+                            <div className="input-group-append">
+                                <button className="input-group-text" id="inputGroupFileAddon02" onClick={this.submitVideo}>Upload</button>
+                            </div>
+                        </div>
+                        {this.state.lectures.map((video) =>
+                            <div className='videoWrapper'>
+                                <video className='teacherVideo border' controls="true">
+                                    <source src={video} type="video/mp4" />
+                                </video>
+                            </div>
+                        )}
+                    </div>
                 </div>
+
             )
         } else {
             return (
-                <div className='container'>
-                    <div className="input-group mb-3">
-                        <div className="custom-file">
-                            <input type="file" className="custom-file-input" id="inputGroupFile02" onChange={this.uploadVideo} />
-                            <label className="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
-                        </div>
-                        <div className="input-group-append">
-                            <button className="input-group-text" id="inputGroupFileAddon02" onClick={this.submitVideo}>Upload</button>
-                        </div>
+                <div>
+                    <div style={{ height: '100%' }}>
+                        <Nav log={this.state.Loggedin} />
                     </div>
-                    <div className=" embed-responsive embed-responsive-16by9">
-                        <iframe src={this.state.lectures} />
+
+                    <div className='container'>
+                        <div className="input-group mb-3 uploadVideo">
+                            <div className="custom-file">
+                                <input type="file" className="custom-file-input" id="inputGroupFile02" onChange={this.uploadVideo} />
+                                <label className="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
+                            </div>
+                            <div className="input-group-append">
+                                <button className="input-group-text" id="inputGroupFileAddon02" onClick={this.submitVideo}>Upload</button>
+                            </div>
+                        </div>
+                        <div className=" embed-responsive embed-responsive-16by9">
+                            <iframe src={this.state.lectures} />
+                        </div>
                     </div>
                 </div>
+
             )
         }
     }
