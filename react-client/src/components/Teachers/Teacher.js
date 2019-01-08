@@ -62,19 +62,23 @@ class Teacher extends Component {
             Loggedin: false,
             student_id: '',
             email: '',
-            password: ''
+            password: '',
+            previousComments: '',
+            comment: '',
+            studentName: ''
         }
     }
 
     componentDidMount() {
         axios.get('/auth/checkLogging').
             then((x) => {
-                console.log('321', x);
+                console.log('321', x.data);
                 if (x.data) {
                     console.log(this)
                     this.setState({
                         Loggedin: true,
-                        student_id: x.data._id
+                        student_id: x.data._id,
+                        studentName: x.data.firstname
                     })
                 } else {
                     this.setState({
@@ -145,9 +149,77 @@ class Teacher extends Component {
             })
     }
 
+    comment = (e) => {
+        this.setState({
+            comment: e.target.value
+        })
+    }
+
+    submitComment = () => {
+        console.log('kkkkkk', this.props.location.state.teacher.comments)
+
+        if (this.state.comment === '') {
+            console.log('please write comment')
+        } else {
+
+            var obj = {
+                madeby: this.state.studentName,
+                comment: this.state.comment,
+                teacherName: this.props.location.state.teacher.firstname
+            }
+
+            axios.post('/get/specTeacher', { name: this.props.location.state.teacher.firstname })
+                .then((res) => {
+                    console.log('balabalabala', res)
+                    var made = false
+                    for (var i = 0; i < res.data.comments.length; i++) {
+                        if (res.data.comments[i].madeby === this.state.studentName) {
+                            made = true
+                        }
+                    }
+                    if (!made) {
+
+                        let comments = res.data.comments
+
+                        comments.push(obj)
+                        axios.post('/get/comment', { comment: comments })
+                            .then((res) => {
+                                console.log('from ', res)
+                            })
+                            .catch((err) => {
+                                console.log(err)
+                            })
+
+                    } else {
+                        alert('you already made your comment')
+                    }
+
+
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+
+
+            //  this.props.location.state.teacher.comments.push(obj)
+            //  console.log('afterpush',this.props.location.state.teacher.comments)
+            // axios.post('/get/comment',{comment:this.props.location.state.teacher.comments})
+            // .then((res) => {
+            //     console.log('from ',res)
+            // })
+            // .catch((err) => {
+            //     console.log(err)
+            // })
+
+
+        }
+    }
+
     render() {
+        console.log('doestheTeacher has comments', this.props.location.state.teacher)
+        console.log('studentwhomadecomment', this.state.studentName)
         const { teacher } = this.props.location.state
-        console.log('teacher111111', teacher)
+        console.log('teacher111111hargaysa', teacher)
         const { classes } = this.props;
         if (!this.state.Loggedin) {
             return (
@@ -203,46 +275,46 @@ class Teacher extends Component {
                     <div className='teacher'>
                         <div className='row '>
                             <div className="col-md-3 container">
-                                    <div className='teacherPic'>
-                                        <img src={teacher.image} alt="" />
-                                    </div>
-                                    <div className="">
-                                        <h4><b>{teacher.firstname} {teacher.lastname}</b></h4>
-                                        <p>{this.state.teacherMajor}</p>
-                                        <h6>{this.state.info}</h6>
-                                        <h4> <span class="badge badge-info">Class price {this.state.price}JD/Hour</span></h4>
-                                        <button type="button" className="btn btn-info" onClick={this.addStudent}>Request</button>
-                                        <Rate teacher={teacher} />
-                                    </div>
-                    </div>
-
-                    <div className="col-md-8 container">
-                        <div className='card-header text-white bg-info'>
-                            <div className='d-flex flex-column bd-highlight mb-0.5'>
-                                <h3>Comments</h3>
+                                <div className='teacherPic'>
+                                    <img src={teacher.image} alt="" />
+                                </div>
+                                <div className="">
+                                    <h4><b>{teacher.firstname} {teacher.lastname}</b></h4>
+                                    <p>{this.state.teacherMajor}</p>
+                                    <h6>{this.state.info}</h6>
+                                    <h4> <span class="badge badge-info">Class price {this.state.price}JD/Hour</span></h4>
+                                    <button type="button" className="btn btn-info" onClick={this.addStudent}>Request</button>
+                                    <Rate teacher={teacher} />
+                                </div>
                             </div>
-                        </div>
 
-                        <br />
-                        <div className="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Write a comment"/>
-                            <div className="input-group-append">
-                                <button className="btn btn-info" type="button">Comment</button>
-                            </div>
-                        </div>
+                            <div className="col-md-8 container">
+                                <div className='card-header text-white bg-info'>
+                                    <div className='d-flex flex-column bd-highlight mb-0.5'>
+                                        <h3>Comments</h3>
+                                    </div>
+                                </div>
 
-                        <div className=''>
-                           <ul className=''><span>Comments</span>
-                                <li >
-                                    Hellloooooo
+                                <br />
+                                <div className="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Write a comment" onChange={this.comment} />
+                                    <div className="input-group-append">
+                                        <button className="btn btn-info" type="button" onClick={this.submitComment}>Comment</button>
+                                    </div>
+                                </div>
+
+                                <div className=''>
+                                    <ul className=''><span>Comments</span>
+                                        <li >
+                                            Hellloooooo
                                 </li>
-                            </ul>
+                                    </ul>
+                                </div>
+
+
+
+                            </div>
                         </div>
-
-
-                        
-                    </div>
-                </div>
                     </div >
                 </div >
             )
