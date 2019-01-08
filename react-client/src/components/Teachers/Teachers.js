@@ -70,7 +70,9 @@ class Teachers extends Component {
                     {this.state.teachers.map((teacher) =>
                         <div className='container'>
                             <div className="card">
-                                <img className='teacherPic' src={teacher.image} />
+                            <div className='teacherPic'>
+                            <img  src={teacher.image} />
+                            </div>
                                 <div className="container">
                                     <h4><b>{teacher.firstname} {teacher.lastname}</b></h4>
                                     <p>{teacher.major}</p>
