@@ -9,33 +9,13 @@ import './home.css';
 class Home extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            Loggedin: false,
-        }
-    }
-
-    componentDidMount() {
-        axios.get('/auth/checkLogging').
-            then((x) => {
-                console.log('356', x);
-                if (x.data) {
-                    console.log(this)
-                    this.setState({
-                        Loggedin: true
-                    })
-                } else {
-                    this.setState({
-                        Loggedin: false
-                    })
-                }
-            })
     }
 
     render() {
         return (
             <div>
                 <div style={{ height: '100%' }}>
-                    <Nav log={this.state.Loggedin} />
+                    <Nav/>
                 </div>
                 <div className='HomepageBG'>
                     <section id="home">
@@ -58,7 +38,6 @@ class Home extends Component {
                 </div>
                 <Footer/>
             </div>
-
         )
     }
 }

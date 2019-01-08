@@ -15,7 +15,6 @@ import Student from '../Students/Student.js'
 import VideoComponent from '../video/VideoComponent'
 import Payment from '../Payment';
 import Videos from '../Teachers/videos';
-import Navbar from '../Navbar'
 import Requests from '../Teachers/Requests'
 import { BrowserRouter, Route, Switch,History } from 'react-router-dom'
 import './App.css';

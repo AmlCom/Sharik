@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import $ from 'jquery';
+import Nav from '../Nav'
 
 
 class Request extends Component  {
     constructor(props) {
         super(props);
-        this.state = {
-        }
     }
 
     accept = (e) => {
@@ -31,30 +30,35 @@ class Request extends Component  {
 
     render() {
         return (
-            <div className='container'>
-                <div className="panel">
-                    <div className="panel-heading ">
-                        <h3 className="panel-title">Your requests</h3>
-                    </div>
-                    <div className="panel-body">
-                        <div className="row">
+            <div>
+                <div style={{ height: '100%' }}>
+                    <Nav/>
+                </div>
+                <div className='container'>
+                    <div className="panel">
+                        <div className="panel-heading ">
+                            <h3 className="panel-title">Your requests</h3>
                         </div>
-                        <br />
-                        <table className="table table-striped">
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th></th>
-                            </tr>
-                            {this.props.location.state.students.map((student) =>
-                                <tr id={student._id}>
-                                    <td>{student.firstname}</td>
-                                    <td>{student.email}</td>
-                                    <td><a className="btn btn-success" onClick={this.accept}>Accept</a> <a onClick={this.reject} className="btn btn-danger" >Reject</a></td>
+                        <div className="panel-body">
+                            <div className="row">
+                            </div>
+                            <br />
+                            <table className="table table-striped">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th></th>
                                 </tr>
-                            )}
-                        
-                        </table>
+                                {this.props.location.state.students.map((student) =>
+                                    <tr id={student._id}>
+                                        <td>{student.firstname}</td>
+                                        <td>{student.email}</td>
+                                        <td><a className="btn btn-success" onClick={this.accept}>Accept</a> <a onClick={this.reject} className="btn btn-danger" >Reject</a></td>
+                                    </tr>
+                                )}
+                            
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
