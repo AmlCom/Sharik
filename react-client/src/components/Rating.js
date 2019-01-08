@@ -18,11 +18,11 @@ class Rate extends React.Component {
  
   onStarClick(nextValue, prevValue, name) {
     this.setState({rating: nextValue});
-    //console.log('rating',this.state.rating)
+    console.log('rating',this.state.rating)
   }
   submit = (name) =>{
     console.log('mustaf',this.state.rating)
-    console.log('yyyyyyy',this.props.teacher.firstname)
+    console.log('teacher firsname',this.props.teacher.firstname)
     var count = this.props.teacher.rateCount+1
 
    var rating = Math.floor((this.props.teacher.rating*5+this.state.rating)/(count))
