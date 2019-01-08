@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import { storage } from '../firebase/index'
-import { Link, BrowserRouter, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
-import './Profile.css'
-import Nav from './Nav'
-import Requests from './Teachers/Requests'
+import Nav from '../Nav'
+import './Teacher.css'
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -19,8 +15,9 @@ import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+import Rate from '../Rating'
 
-var user = ''
+
 const styles = theme => ({
     main: {
         width: 'auto',
@@ -53,56 +50,39 @@ const styles = theme => ({
     },
 });
 
-
-class Profile extends Component {
+class Comments extends Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
-            Loggedin: false,
-            email: '',
-            password: '',
             image: "",
             teacherName: "",
             teacherMajor: "",
             info: "",
             price: "",
-            isTeacher: '',
-            studentList: [],
-            requestsNumber: 0
+            Loggedin: false,
+            student_id: '',
+            email: '',
+            password: ''
         }
     }
 
     componentDidMount() {
         axios.get('/auth/checkLogging').
-            then((response) => {
-                console.log('hello world')
-                if (response.data.email) {
-                    user = response.data.firstname
-                    //get authorized teacher from the database
-
-                    axios.post('/get/specTeacher', { name: user })
-                        .then((res) => {
-                            console.log('resppp', res.data)
-                            this.setState({
-                                image: res.data.image
-                            })
-                        })
-                        .catch((err) => {
-                            console.log(err)
-                        })
-
+            then((x) => {
+                console.log('comments', x);
+                if (x.data) {
+                    console.log(this)
                     this.setState({
                         Loggedin: true,
-                        isTeacher: response.data.isTeacher
+                        image: x.data.image,
+                        teacherName: x.data.firstname
+                    })
+                } else {
+                    this.setState({
+                        Loggedin: false
                     })
                 }
-                //   } else {
-                //     this.setState({
-                //       Loggedin: false
-                //     })
-                //   }
             })
-
         axios.get('/teacher').then((res) => {
             console.log("res", res);
             this.setState({
@@ -116,15 +96,8 @@ class Profile extends Component {
         }).catch((err) => {
             console.log('hi', err)
         })
-        axios.get('/studentList').then((res) => {
-            console.log("213", res);
-            this.setState({
-                requestsNumber: res.data.length,
-                studentList: res.data 
-            })
-        })
-    }
 
+    }
 
 
     handleChange = (event) => {
@@ -152,51 +125,32 @@ class Profile extends Component {
                         console.log('ezvfdgf')
 
                         this.setState({
-                            isTeacher: true
+                            Loggedin: true
                         })
                     } else {
                         this.setState({
-                            isTeacher: false
+                            Loggedin: false
                         })
                     }
                 })
         }
     }
 
-    uploadImage = (e) => {
-        this.setState({
-            image: e.target.files[0]
+    addStudent = () => {
+        axios.post('/addStudent', {
+            teacherEmail: this.props.location.state.teacher.email,
+            student_id: this.state.student_id
         })
-    }
-    submitImage = () => {
-        var image = this.state.image
-        const uploadTask = storage.ref(`images/${image.name}`).put(image)
-        uploadTask.on('state_changed', (snapshot) => {
-
-        }, (error) => {
-            console.log(error)
-        }, () => {
-            storage.ref('images').child(image.name).getDownloadURL().then(url => {
-                console.log('url', url)
-                var obj = { name: user, image: url }
-                axios.post('get/updateTeacherProfile', obj)
-                    .then((res) => {
-                        this.setState({
-                            image: res.data.image
-                        })
-                    })
-                    .catch((err) => {
-                        console.log(err)
-                    })
+            .then((response) => {
+                alert(response.data)
             })
-        });
     }
-
-
 
     render() {
+        //  const {teacher} = this.props.location.state
+        //  console.log('teacher111111',teacher)
         const { classes } = this.props;
-        if (this.state.isTeacher === '') {
+        if (!this.state.Loggedin) {
             return (
                 <div>
                     <div style={{ height: '100%' }}>
@@ -214,7 +168,7 @@ class Profile extends Component {
                             <form className={classes.form}>
                                 <FormControl margin="normal" required fullWidth>
                                     <InputLabel htmlFor="email">Email Address</InputLabel>
-                                    <Input id="email" name="email" autoComplete="email" onChange={this.handleChange} />
+                                    <Input id="email" name="email" autoComplete="email" autoFocus onChange={this.handleChange} />
                                 </FormControl>
                                 <FormControl margin="normal" required fullWidth>
                                     <InputLabel htmlFor="password">Password</InputLabel>
@@ -240,77 +194,56 @@ class Profile extends Component {
                     </main>
                 </div>
             )
-        } else if (this.state.isTeacher) {
-            console.log('state', this.state.image)
+        } else {
+
             return (
                 <div>
                     <div style={{ height: '100%' }}>
                         <Nav log={this.state.Loggedin} />
                     </div>
-                    <div className="container">
-                        <div className='row'>
-                            <div className='col-md-2'>
-                              <Link to={{ pathname: '/Requests', state: { students: this.state.studentList} }} className="mainLinks list-group-item justify-content-between">
-                              <h5 className='dashbored'>Requests</h5><span class="badge badge-primary number">{this.state.requestsNumber}</span>
-                              </Link>
-                            </div>
-                            <div className='col-md-2'>
-                                <a href="./comments" className="mainLinks list-group-item justify-content-between">
-                                    <h5 className='dashbored'>Comments</h5><span className="badge badge-primary number">2</span>
-                                </a>
-                            </div>
-                            <div className='col-md-2'>
-                                <a href="./lectures" className="mainLinks list-group-item justify-content-between">
-                                   <h5 className='dashbored'>Lectures</h5><span className="badge badge-primary number">1</span>
-                                </a>
-                            </div>
-                            <div className='col-md-3'>
-                                <a href="./lectures" class="list-group-item list-group-item-info d-flex justify-content-between align-items-center">
-                                   <h5 className='dashbored'>Schedule</h5><span class="badge badge-primary number">1</span>
-                                </a>
-                            </div>
-                        </div>
-                        <hr />
-
-
-                        <div className='row'>
-                            <div className="pic col-md-4"  >
-                                <img src={this.state.image} alt="" className="rounded" />
-                                <br />
-                                <br />
-
-                                <div className="input-group mb-3">
-                                    <div className="custom-file">
-                                        <input type="file" className="custom-file-input" id="inputGroupFile02" onChange={this.uploadImage} />
-                                        <label className="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
-                                    </div>
-                                    <div className="input-group-append">
-                                        <button className="input-group-text" id="inputGroupFileAddon02" onClick={this.submitImage}>Upload</button>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div classNam='col-md-8'>
-                                <div className="list-group">
-                                    <a className="list-group-item">
-                                        <span className="glyphicon glyphicon-cog" aria-hidden="true"></span> <h4> {this.state.teacherName}</h4>
-                                        <div><h5 className="font-weight-light font-weight-bold "> {this.state.teacherMajor} teacher </h5></div>
-                                        <div><h6 className="font-weight-light font-weight-bold ">{this.state.info}</h6></div>
+                    <div className=''>
+                        <div className='row '>
+                            <div className="col-md-2 container spacing">
+                                <div className="card">
+                                    <img src={this.state.image} alt="" className="rounded" className="card-img-top" alt="..." />
+                                    <div className="card-body">
+                                        <h4 className="card-text">{this.state.firstname}</h4>
+                                        <h5>{this.state.teacherMajor}</h5>
+                                        <h6>{this.state.info}</h6>
                                         <h4> <span class="badge badge-info">Class price {this.state.price}JD/Hour</span></h4>
-                                    </a>
+                                        <Rate teacher />
+                                    </div>
                                 </div>
                             </div>
 
+                            <div className="col-md-9 container">
+                                <div className='card-header text-white bg-info'>
+                                    <div className='d-flex flex-column bd-highlight mb-0.5'>
+                                        <h3>Comments</h3>
+                                    </div>
+                                </div>
+
+                                <br />
+                                <div className="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Write a comment" aria-label="Recipient's username" aria-describedby="basic-addon2" />
+                                    <div className="input-group-append">
+                                        <button className="btn btn-info" type="button">Comment</button>
+                                    </div>
+                                </div>
+
+
+                                <div className="card border-dark mb-3" >
+                                    <div className="card-header"> Person who made the commet</div>
+                                    <div className="card-body text-dark">
+                                        <p className="card-text"> The comment</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             )
-        } else {
-            return (
-                <Redirect to="/homePage" />
-            )
         }
     }
 }
-export default withStyles(styles)(Profile);
+export default withStyles(styles)(Comments);
