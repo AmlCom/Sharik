@@ -72,6 +72,10 @@ const SignupSchema = new Schema({
 	isTeacher:{
 		type: Boolean,
 		required: false
+	},
+	messages: {
+		type: Array,
+		required: false
 	}
 	// middlenames: String,
 	// phonenumber: {

@@ -170,15 +170,66 @@ app.post('/addStudent', (req, res) => {
     if (err) {
       res.send(err);
     } else if (user) {
-      let original = user.User1;
-      original.push(req.body.student_id);
-      Teacher.findOneAndUpdate({email: req.body.teacherEmail}, {User1: original}, () => {
-        res.send('your request was successful')
-      })
+      let isThere = false;
+      for (var i = 0; i < user.User1.length; i++) {
+        if (String(user.User1[i]) ===  req.body.student_id) {
+          isThere = true;
+        }
+      }
+      if (isThere) {
+        res.end('you already requested');
+      } else {
+        let original = user.User1;
+        original.push(req.body.student_id);
+        Teacher.findOneAndUpdate({email: req.body.teacherEmail}, {User1: original}, () => {
+          res.send('your request was successful')
+        })
+      }
     }
   })
 })
 
+app.post('/reject', (req, res) => {
+  Teacher.findOne({_id: req.session.passport.user._id}, (err, teacher) => {
+    let students = teacher.User1;
+    for (var i = 0; i < students.length; i++) {
+      if(req.body.studentId === String(students[i])) {
+        students.splice(i, 1);
+      }
+    }
+    Teacher.findOneAndUpdate({_id: req.session.passport.user._id}, {User1: students}, (err, user) => {
+      // res.send(user);
+    })
+  })
+  signupuser.findOne({_id: req.body.studentId}, (err, student) => {
+    let studentMessage = student.messages;
+    studentMessage.push(`${req.session.passport.user.firstname} has refused your request`);
+    signupuser.findOneAndUpdate({_id: req.body.studentId}, {messages: studentMessage}, (err, user) => {
+      res.send('finally');
+    })
+  })
+})
+
+app.post('/accept', (req, res) => {
+  Teacher.findOne({_id: req.session.passport.user._id}, (err, teacher) => {
+    let students = teacher.User1;
+    for (var i = 0; i < students.length; i++) {
+      if(req.body.studentId === String(students[i])) {
+        students.splice(i, 1);
+      }
+    }
+    Teacher.findOneAndUpdate({_id: req.session.passport.user._id}, {User1: students}, (err, user) => {
+      // res.send(user);
+    })
+  })
+  signupuser.findOne({_id: req.body.studentId}, (err, student) => {
+    let studentMessage = student.messages;
+    studentMessage.push(`${req.session.passport.user.firstname} has accepted your request`);
+    signupuser.findOneAndUpdate({_id: req.body.studentId}, {messages: studentMessage}, (err, user) => {
+      res.send('finally');
+    })
+  })
+})
 
 //  if (process.env.NODE_ENV === 'production') {
   // // Serve any static files
