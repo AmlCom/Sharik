@@ -174,7 +174,7 @@ class Profile extends Component {
 				console.log('>>>>>>>>>>>>>>>>');
 			})
 
-		axios.post('/S_Get_User_Info', {_id: this.state.infoForm['_id']})
+		axios.post('/S_Get_Student_Info', {_id: this.state.infoForm['_id']})
 			.then(response => {
 				console.log('<<<<<<<<<<<<<<<<');
 				console.log('Data:');
