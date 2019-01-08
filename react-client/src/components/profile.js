@@ -264,11 +264,12 @@ class Profile extends Component {
                                    <h5 className='dashbored'>Lectures</h5><span className="badge badge-primary number">1</span>
                                 </a>
                             </div>
-                            <div className='col-md-3'>
-                                <a href="./lectures" class="list-group-item list-group-item-info d-flex justify-content-between align-items-center">
-                                   <h5 className='dashbored'>Schedule</h5><span class="badge badge-primary number">1</span>
+                            <div className='col-md-2'>
+                                <a href="./lectures" className="mainLinks list-group-item justify-content-between">
+                                   <h5 className='dashbored'>Schedule</h5><span className="badge badge-primary number">1</span>
                                 </a>
                             </div>
+
                         </div>
                         <hr />
 

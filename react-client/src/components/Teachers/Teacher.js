@@ -100,6 +100,17 @@ class Teacher extends Component {
             console.log('hi', err)
         })
 
+
+        axios.post('/get/specTeacher', { name: this.props.location.state.teacher.firstname })
+        .then((res) => {
+            this.setState({
+                previousComments: res.data.comments
+            })
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+
     }
 
 
@@ -168,37 +179,71 @@ class Teacher extends Component {
                 teacherName: this.props.location.state.teacher.firstname
             }
 
-            axios.post('/get/specTeacher', { name: this.props.location.state.teacher.firstname })
-                .then((res) => {
-                    console.log('balabalabala', res)
-                    var made = false
-                    for (var i = 0; i < res.data.comments.length; i++) {
-                        if (res.data.comments[i].madeby === this.state.studentName) {
-                            made = true
-                        }
-                    }
-                    if (!made) {
+            let made = false;
+            for (var i = 0; i < this.state.previousComments.length; i++) {
+                if (this.state.previousComments[i].madeby === this.state.studentName) {
+                    made = true
+                }
+            }
+            if (!made) {
 
-                        let comments = res.data.comments
+                let comments = this.state.previousComments
+                console.log('comments',comments)
 
-                        comments.push(obj)
-                        axios.post('/get/comment', { comment: comments })
-                            .then((res) => {
-                                console.log('from ', res)
-                            })
-                            .catch((err) => {
-                                console.log(err)
-                            })
+                comments.push(obj)
+                axios.post('/get/comment', { comment: comments })
+                    .then((res) => {
+                        console.log('from ', res)
+                        this.setState({
+                            comment: res.data.comments
+                        })
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
 
-                    } else {
-                        alert('you already made your comment')
-                    }
+            } else {
+                alert('you already made your comment')
+            }
+            
 
 
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
+
+
+            // axios.post('/get/specTeacher', { name: this.props.location.state.teacher.firstname })
+            //     .then((res) => {
+            //         console.log('balabalabala', res)
+            //         var made = false
+            //         for (var i = 0; i < res.data.comments.length; i++) {
+            //             if (res.data.comments[i].madeby === this.state.studentName) {
+            //                 made = true
+            //             }
+            //         }
+            //         if (!made) {
+
+            //             let comments = res.data.comments
+
+            //             comments.push(obj)
+            //             axios.post('/get/comment', { comment: comments })
+            //                 .then((res) => {
+            //                     console.log('from ', res)
+            //                     this.setState({
+            //                         comment: res.data.comments
+            //                     })
+            //                 })
+            //                 .catch((err) => {
+            //                     console.log(err)
+            //                 })
+
+            //         } else {
+            //             alert('you already made your comment')
+            //         }
+
+
+            //     })
+            //     .catch((err) => {
+            //         console.log(err)
+            //     })
 
 
             //  this.props.location.state.teacher.comments.push(obj)
@@ -216,8 +261,10 @@ class Teacher extends Component {
     }
 
     render() {
-        console.log('doestheTeacher has comments', this.props.location.state.teacher)
-        console.log('studentwhomadecomment', this.state.studentName)
+        // console.log('doestheTeacher has comments', this.props.location.state.teacher)
+        // console.log('studentwhomadecomment', this.state.studentName)
+        console.log('comment',this.state.comment)
+        console.log('previouscomment',this.state.previousComments)
         const { teacher } = this.props.location.state
         console.log('teacher111111hargaysa', teacher)
         const { classes } = this.props;
@@ -303,13 +350,27 @@ class Teacher extends Component {
                                     </div>
                                 </div>
 
-                                <div className=''>
-                                    <ul className=''><span>Comments</span>
-                                        <li >
-                                            Hellloooooo
-                                </li>
-                                    </ul>
-                                </div>
+                                
+                                {this.state.previousComments.map((comment) => {
+                                    return (
+                                    <div className=''>
+                                        <ul className=''><span></span>
+                                            <li >
+                                                <li className="card commentsCard" >
+                                                    <h5 className="card-header"> {comment.madeby}</h5>
+                                                    <div className="card-body">
+                                                        <p className="card-text"> {comment.comment}</p>
+                                                    </div>
+                                                </li>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    )
+                                    
+
+                                })}
+                                
+
 
 
 
