@@ -123,7 +123,7 @@ class Videos extends Component {
                         </div>
                         {this.state.lectures.map((video) =>
                             <div className='videoWrapper'>
-                                <video className='teacherVideo border' controls="true">
+                                <video  controls="true">
                                     <source src={video} type="video/mp4" />
                                 </video>
                             </div>
@@ -164,8 +164,3 @@ class Videos extends Component {
 export default Videos;
 
 
-
-// autoplay="false"
-// autostart="false" 
-// autoplay="0" 
-// autostart="0"
