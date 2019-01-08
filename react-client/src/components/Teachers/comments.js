@@ -69,13 +69,13 @@ class Comments extends Component {
     componentDidMount() {
         axios.get('/auth/checkLogging').
             then((x) => {
-                console.log('comments', x);
+                console.log('321', x);
                 if (x.data) {
                     console.log(this)
                     this.setState({
                         Loggedin: true,
-                        image: x.data.image,
-                        teacherName: x.data.firstname
+                        image:x.data.image,
+                        teacherName:x.data.firstname
                     })
                 } else {
                     this.setState({
@@ -147,8 +147,8 @@ class Comments extends Component {
     }
 
     render() {
-        //  const {teacher} = this.props.location.state
-        //  console.log('teacher111111',teacher)
+        
+        
         const { classes } = this.props;
         if (!this.state.Loggedin) {
             return (
@@ -201,49 +201,57 @@ class Comments extends Component {
                     <div style={{ height: '100%' }}>
                         <Nav log={this.state.Loggedin} />
                     </div>
-                    <div className=''>
+                    <div className='teacher'>
                         <div className='row '>
-                            <div className="col-md-2 container spacing">
-                                <div className="card">
-                                    <img src={this.state.image} alt="" className="rounded" className="card-img-top" alt="..." />
-                                    <div className="card-body">
-                                        <h4 className="card-text">{this.state.firstname}</h4>
-                                        <h5>{this.state.teacherMajor}</h5>
+                            <div className="col-md-3 container">
+                                    <div className='teacherPic'>
+                                        <img src={this.state.image} alt="" />
+                                    </div>
+                                    <div className="">
+                                        <h4><b>{this.state.firstname} </b></h4>
+                                        <p>{this.state.teacherMajor}</p>
                                         <h6>{this.state.info}</h6>
                                         <h4> <span class="badge badge-info">Class price {this.state.price}JD/Hour</span></h4>
-                                        <Rate teacher />
+                                        <button type="button" className="btn btn-info" onClick={this.addStudent}>Request</button>
+                                        
                                     </div>
-                                </div>
-                            </div>
+                    </div>
 
-                            <div className="col-md-9 container">
-                                <div className='card-header text-white bg-info'>
-                                    <div className='d-flex flex-column bd-highlight mb-0.5'>
-                                        <h3>Comments</h3>
-                                    </div>
-                                </div>
-
-                                <br />
-                                <div className="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Write a comment" aria-label="Recipient's username" aria-describedby="basic-addon2" />
-                                    <div className="input-group-append">
-                                        <button className="btn btn-info" type="button">Comment</button>
-                                    </div>
-                                </div>
-
-
-                                <div className="card border-dark mb-3" >
-                                    <div className="card-header"> Person who made the commet</div>
-                                    <div className="card-body text-dark">
-                                        <p className="card-text"> The comment</p>
-                                    </div>
-                                </div>
+                    <div className="col-md-8 container">
+                        <div className='card-header text-white bg-info'>
+                            <div className='d-flex flex-column bd-highlight mb-0.5'>
+                                <h3>Comments</h3>
                             </div>
                         </div>
+
+                        <br />
+                        <div className="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Write a comment"/>
+                            <div className="input-group-append">
+                                <button className="btn btn-info" type="button">Comment</button>
+                            </div>
+                        </div>
+
+                        <div className=''>
+                           <ul className=''><span>Comments</span>
+                                <li >
+                                    Hellloooooo
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        
                     </div>
                 </div>
+                    </div >
+                </div >
             )
         }
     }
 }
 export default withStyles(styles)(Comments);
+
+
+
+
