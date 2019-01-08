@@ -26,7 +26,6 @@ class Request extends Component  {
                     <tr>
                         <th>Name</th>
                         <th>Email</th>
-                        <th></th>
                     </tr>
                     {this.props.location.state.students.map((student) =>
                         <tr>

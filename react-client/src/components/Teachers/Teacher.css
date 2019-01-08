@@ -11,8 +11,7 @@
   .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   }
-  
- 
+
 .teacherPic{
     width: 100%;
     height: 400px;
@@ -23,20 +22,10 @@
     height: 100%;
 }
 
-
-
-
-
 .teacherSearch{
     margin-top: 3%;
     width: 40%;
     margin-left: 100px;
-}
-
-.teacherVideo {
-    width: 30rem;
-    height: 30rem;
-    margin-left: 30px;
 }
 
 .uploadVideo{
@@ -56,19 +45,27 @@
 
 
 .videoWrapper { 
+    float: left;
     position: relative;
-    padding-bottom: 40%; 
+    padding-bottom: 30px; 
     padding-top: 0%;  
-    width: 50%;
-    height: 0;
-    margin: 0 auto;
-    margin-bottom: 10px;
+    width: 400px;
+    height: 402px; 
+    margin-left: 40px;
+   
+    
+   
 }
-
 .videoWrapper video {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;  
-    height: 100%;
+    height: 58%;
+    margin: 30px;
+    ;
 }
+
+.teacher{
+    margin-top: 30px;
+}   
