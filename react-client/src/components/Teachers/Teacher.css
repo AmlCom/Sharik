@@ -12,21 +12,31 @@
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   }
   
-
-.teacherVideo {
-    width: 30rem;
-    height: 30rem;
-    margin-left: 30px;
-}
  
 .teacherPic{
     width: 100%;
+    height: 400px;
 }
+
+.teacherPic img{
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
 
 .teacherSearch{
     margin-top: 3%;
     width: 40%;
     margin-left: 100px;
+}
+
+.teacherVideo {
+    width: 30rem;
+    height: 30rem;
+    margin-left: 30px;
 }
 
 .uploadVideo{
