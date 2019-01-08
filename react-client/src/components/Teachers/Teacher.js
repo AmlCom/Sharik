@@ -231,13 +231,16 @@ class Teacher extends Component {
                             </div>
                         </div>
 
-
-                        <div className="border-dark" >
-                            <div className="card-header"> Student Name</div>
-                            <div className="card-body text-dark">
-                                <p className="card-text">  comment</p>
-                            </div>
+                        <div className=''>
+                           <ul className=''><span>Comments</span>
+                                <li >
+                                    Hellloooooo
+                                </li>
+                            </ul>
                         </div>
+
+
+                        
                     </div>
                 </div>
                     </div >
