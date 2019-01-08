@@ -64,7 +64,7 @@ class Request extends Component  {
                         <th>Email</th>
                     </tr>
                     {this.props.location.state.students.map((student) =>
-                        <tr>
+                        <tr>    
                             <td>{student.firstname}</td>
                             <td>{student.email}</td>
                             <td><a className="btn btn-success" href="">Accept</a> <a className="btn btn-danger" href="#">Reject</a></td>

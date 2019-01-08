@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Video from "twilio-video";
+import Nav from '../Nav'
 
 
 export default class VideoComponent extends Component {
@@ -175,6 +176,9 @@ export default class VideoComponent extends Component {
         console.log('state',this.activeRoom)
         return (
             <div>
+                <div style={{ height: '100%' }}>
+                        <Nav />
+                    </div>
                 <div id="remote-media"></div>
                 <div id="controls">
                     <div id="preview">
