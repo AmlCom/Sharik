@@ -95,6 +95,23 @@ app.post('/S_Contact', function (req, res) {
 
 });
 
+app.get('/studentList', (req, res) => {
+  console.log('3654', req.session);
+  Teacher.findOne({email: req.session.passport.user.email}, (err, teacher) => {
+    if (err) {
+      res.send(err);
+    } else {
+      signupuser.find({_id: {$in: teacher.User1}}, (err, studentsList) => {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send(studentsList)
+        }
+      })
+    }
+  })
+})
+
 app.post('/isStudent', (req,res) => {
   // console.log('eret', req.body);
   if (req.body.isStudent === 'true'){
@@ -106,7 +123,7 @@ app.post('/isStudent', (req,res) => {
          res.end();
       } else {
       const newUser = new Teacher(); 
-      newUser.firstname = req.session.passport.user.displayName;
+      newUser.firstname = req.session.passport.user.firstname;
       newUser.email= req.session.passport.user.email;
       newUser.imageURL= req.session.passport.user.imageURL;
       newUser.isTeacher = true;
@@ -147,6 +164,73 @@ app.post('/isStudent', (req,res) => {
       res.end();
   }
 })
+app.post('/addStudent', (req, res) => {
+  console.log('543', req.body);
+  Teacher.findOne({email: req.body.teacherEmail}, (err, user) => {
+    if (err) {
+      res.send(err);
+    } else if (user) {
+      let isThere = false;
+      for (var i = 0; i < user.User1.length; i++) {
+        if (String(user.User1[i]) ===  req.body.student_id) {
+          isThere = true;
+        }
+      }
+      if (isThere) {
+        res.end('you already requested');
+      } else {
+        let original = user.User1;
+        original.push(req.body.student_id);
+        Teacher.findOneAndUpdate({email: req.body.teacherEmail}, {User1: original}, () => {
+          res.send('your request was successful')
+        })
+      }
+    }
+  })
+})
+
+app.post('/reject', (req, res) => {
+  Teacher.findOne({_id: req.session.passport.user._id}, (err, teacher) => {
+    let students = teacher.User1;
+    for (var i = 0; i < students.length; i++) {
+      if(req.body.studentId === String(students[i])) {
+        students.splice(i, 1);
+      }
+    }
+    Teacher.findOneAndUpdate({_id: req.session.passport.user._id}, {User1: students}, (err, user) => {
+      // res.send(user);
+    })
+  })
+  signupuser.findOne({_id: req.body.studentId}, (err, student) => {
+    let studentMessage = student.messages;
+    studentMessage.push(`${req.session.passport.user.firstname} has refused your request`);
+    signupuser.findOneAndUpdate({_id: req.body.studentId}, {messages: studentMessage}, (err, user) => {
+      res.send('finally');
+    })
+  })
+})
+
+app.post('/accept', (req, res) => {
+  Teacher.findOne({_id: req.session.passport.user._id}, (err, teacher) => {
+    let students = teacher.User1;
+    for (var i = 0; i < students.length; i++) {
+      if(req.body.studentId === String(students[i])) {
+        students.splice(i, 1);
+      }
+    }
+    Teacher.findOneAndUpdate({_id: req.session.passport.user._id}, {User1: students}, (err, user) => {
+      // res.send(user);
+    })
+  })
+  signupuser.findOne({_id: req.body.studentId}, (err, student) => {
+    let studentMessage = student.messages;
+    studentMessage.push(`${req.session.passport.user.firstname} has accepted your request`);
+    signupuser.findOneAndUpdate({_id: req.body.studentId}, {messages: studentMessage}, (err, user) => {
+      res.send('finally');
+    })
+  })
+})
+
 //  if (process.env.NODE_ENV === 'production') {
   // // Serve any static files
   app.use(express.static(path.join(__dirname, '../react-client/build')));

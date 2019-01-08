@@ -2,6 +2,7 @@
   text-align: center;
 }
 
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -12,6 +13,7 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+<<<<<<< HEAD
 
 .App-link {
   color: #61dafb;
@@ -66,3 +68,5 @@
 .HomepageBG{
   background-image: url("homepagepic");
 } */
+=======
+>>>>>>> dee4ef0def024d345bed54062ce04457ea6f0d96

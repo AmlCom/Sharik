@@ -156,11 +156,11 @@ class Singup extends Component {
             </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="email">Last name</InputLabel>
-              <Input last="name" name="lastName" autoComplete="user" autoFocus onChange={this.handleChange} />
+              <Input last="name" name="lastName" autoComplete="user"  onChange={this.handleChange} />
             </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="email">Email Address</InputLabel>
-              <Input id="email" name="email" autoComplete="email" autoFocus  onChange={this.handleChange} />
+              <Input id="email" name="email" autoComplete="email"   onChange={this.handleChange} />
             </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="password">Password</InputLabel>

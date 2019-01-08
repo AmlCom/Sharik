@@ -40,7 +40,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const SignupSchema = new Schema({
-
 	// username: {
 	// 	type: String,
 	// 	required: true
@@ -72,6 +71,10 @@ const SignupSchema = new Schema({
 	},
 	isTeacher:{
 		type: Boolean,
+		required: false
+	},
+	messages: {
+		type: Array,
 		required: false
 	}
 	// middlenames: String,

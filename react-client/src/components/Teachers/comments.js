@@ -50,7 +50,7 @@ const styles = theme => ({
     },
 });
 
-class Teacher extends Component {
+class Comments extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -74,7 +74,8 @@ class Teacher extends Component {
                     console.log(this)
                     this.setState({
                         Loggedin: true,
-                        student_id: x.data._id
+                        image:x.data.image,
+                        teacherName:x.data.firstname
                     })
                 } else {
                     this.setState({
@@ -146,8 +147,8 @@ class Teacher extends Component {
     }
 
     render() {
-        const { teacher } = this.props.location.state
-        console.log('teacher111111', teacher)
+        
+        
         const { classes } = this.props;
         if (!this.state.Loggedin) {
             return (
@@ -204,15 +205,15 @@ class Teacher extends Component {
                         <div className='row '>
                             <div className="col-md-3 container">
                                     <div className='teacherPic'>
-                                        <img src={teacher.image} alt="" />
+                                        <img src={this.state.image} alt="" />
                                     </div>
                                     <div className="">
-                                        <h4><b>{teacher.firstname} {teacher.lastname}</b></h4>
+                                        <h4><b>{this.state.firstname} </b></h4>
                                         <p>{this.state.teacherMajor}</p>
                                         <h6>{this.state.info}</h6>
                                         <h4> <span class="badge badge-info">Class price {this.state.price}JD/Hour</span></h4>
                                         <button type="button" className="btn btn-info" onClick={this.addStudent}>Request</button>
-                                        <Rate teacher={teacher} />
+                                        
                                     </div>
                     </div>
 
@@ -232,7 +233,7 @@ class Teacher extends Component {
                         </div>
 
                         <div className=''>
-                           <ul>
+                           <ul className=''><span>Comments</span>
                                 <li >
                                     Hellloooooo
                                 </li>
@@ -249,7 +250,7 @@ class Teacher extends Component {
         }
     }
 }
-export default withStyles(styles)(Teacher);
+export default withStyles(styles)(Comments);
 
 
 

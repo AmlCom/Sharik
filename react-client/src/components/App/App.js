@@ -16,11 +16,16 @@ import VideoComponent from '../video/VideoComponent'
 import Payment from '../Payment';
 import Videos from '../Teachers/videos';
 import Navbar from '../Navbar'
+<<<<<<< HEAD
 // import Footer from '../Footer/footer'
 import Requests from '../Teachers/Requests'
 import homepage from '../homepage.jpg';
+=======
+import Requests from '../Teachers/Requests'
+>>>>>>> dee4ef0def024d345bed54062ce04457ea6f0d96
 import { BrowserRouter, Route, Switch,History } from 'react-router-dom'
 import './App.css';
+import Comments from '../Teachers/comments'
 
 
 
@@ -54,6 +59,7 @@ class App extends Component {
               <Route path='/Lectures' exact component = {Videos}/>
               <Route path='/Requests' exact component ={Requests}/>
               <Route path='/HomePage1' exact component = {HomePage1}/>
+              <Route path='/comments' exact component={Comments} />
               {/* <Route path='/Rating' exact component={Rate}/> */}
             </Switch>
           </div>
