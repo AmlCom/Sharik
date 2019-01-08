@@ -77,4 +77,18 @@ Teacher.findOneAndUpdate({'firstname':req.body.name},{'rating':req.body.rating})
 }).catch(next)
 });
 
+router.post('/comment', function (req, res, next) {
+
+  console.log('you reached yahya')
+   console.log('comments',req.body)
+   console.log('commelll',req.body.comment)
+   console.log('name',req.body.comment[0].teacherName)
+  Teacher.findOneAndUpdate({'firstname':req.body.comment[0].teacherName},{'comments':req.body.comment}).then(function (teacher) {
+    console.log('teacheer',teacher)
+    //res.send('hello')
+    res.send(teacher)
+  }).catch(next)
+});
+
+
 module.exports = router

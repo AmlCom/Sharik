@@ -71,16 +71,12 @@
 }   
 
 
-/* li{
+li{
     list-style-type: none;
-} */
+} 
 
-.commentsHeader {
-    background-color:white;
-    color:black;
-    padding: 10px 0px 10px;
-    display: inline-flex;
-    border: 1px solid;
-    
+.commentsCard {
+    width: 100%; 
+    margin-left: -2.5rem;
 }
 
