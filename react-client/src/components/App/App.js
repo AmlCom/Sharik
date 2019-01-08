@@ -19,6 +19,7 @@ import Navbar from '../Navbar'
 import Requests from '../Teachers/Requests'
 import { BrowserRouter, Route, Switch,History } from 'react-router-dom'
 import './App.css';
+import Comments from '../Teachers/comments'
 
 
 
@@ -52,6 +53,7 @@ class App extends Component {
               <Route path='/Lectures' exact component = {Videos}/>
               <Route path='/Requests' exact component ={Requests}/>
               <Route path='/HomePage1' exact component = {HomePage1}/>
+              <Route path='/comments' exact component={Comments} />
               {/* <Route path='/Rating' exact component={Rate}/> */}
             </Switch>
           </div>
