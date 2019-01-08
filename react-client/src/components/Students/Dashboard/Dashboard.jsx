@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Slideshow from '../Slideshow/Slideshow.jsx';
 import axios from 'axios';
+import '../../Teachers/Teacher.css'
 
 class Dashboard extends Component {
 	constructor(props) {
@@ -53,32 +54,16 @@ class Dashboard extends Component {
 				<div>
 					{this.state.videos.map((video) =>
 						<div className='container'>
-							{/* <iframe className='teacherVideo' autoplay={false} src={video} /> */}
+							<div className='videoWrapper'>
 							<video controls="true">
 								<source src={video} type="video/mp4" />
 							</video>
-
+						</div>
 						</div>
 					)}
 				</div>
 			)
 		}
-
-
-
-		// return (
-		// 	<div>
-		// 		<h1>Student Dashboard Page</h1>
-		// 		{/* <Slideshow /> */}
-
-		// 		<div className='container'>
-		// 			<iframe className='teacherVideo'  src="https://firebasestorage.googleapis.com/v0/b/homerji-d2145.appspot.com/o/videos%2Fvideoplayback.mp4?alt=media&token=77f5843d-eca0-4b4f-aa4c-42ffa677630b" />
-		// 		</div>
-		// 	</div>
-		// )
-
-
-
 	}
 }
 

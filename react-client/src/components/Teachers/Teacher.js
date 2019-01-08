@@ -232,7 +232,7 @@ class Teacher extends Component {
                         </div>
 
                         <div className=''>
-                           <ul className=''><span>Comments</span>
+                           <ul>
                                 <li >
                                     Hellloooooo
                                 </li>
