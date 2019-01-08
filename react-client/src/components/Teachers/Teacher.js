@@ -62,19 +62,23 @@ class Teacher extends Component {
             Loggedin: false,
             student_id: '',
             email: '',
-            password: ''
+            password: '',
+            previousComments: '',
+            comment: '',
+            studentName: ''
         }
     }
 
     componentDidMount() {
         axios.get('/auth/checkLogging').
             then((x) => {
-                console.log('321', x);
+                console.log('321', x.data);
                 if (x.data) {
                     console.log(this)
                     this.setState({
                         Loggedin: true,
-                        student_id: x.data._id
+                        student_id: x.data._id,
+                        studentName: x.data.firstname
                     })
                 } else {
                     this.setState({
@@ -94,6 +98,17 @@ class Teacher extends Component {
 
         }).catch((err) => {
             console.log('hi', err)
+        })
+
+
+        axios.post('/get/specTeacher', { name: this.props.location.state.teacher.firstname })
+        .then((res) => {
+            this.setState({
+                previousComments: res.data.comments
+            })
+        })
+        .catch((err) => {
+            console.log(err)
         })
 
     }
@@ -145,9 +160,113 @@ class Teacher extends Component {
             })
     }
 
+    comment = (e) => {
+        this.setState({
+            comment: e.target.value
+        })
+    }
+
+    submitComment = () => {
+        console.log('kkkkkk', this.props.location.state.teacher.comments)
+
+        if (this.state.comment === '') {
+            console.log('please write comment')
+        } else {
+
+            var obj = {
+                madeby: this.state.studentName,
+                comment: this.state.comment,
+                teacherName: this.props.location.state.teacher.firstname
+            }
+
+            let made = false;
+            for (var i = 0; i < this.state.previousComments.length; i++) {
+                if (this.state.previousComments[i].madeby === this.state.studentName) {
+                    made = true
+                }
+            }
+            if (!made) {
+
+                let comments = this.state.previousComments
+                console.log('comments',comments)
+
+                comments.push(obj)
+                axios.post('/get/comment', { comment: comments })
+                    .then((res) => {
+                        console.log('from ', res)
+                        this.setState({
+                            comment: res.data.comments
+                        })
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
+
+            } else {
+                alert('you already made your comment')
+            }
+            
+
+
+
+
+            // axios.post('/get/specTeacher', { name: this.props.location.state.teacher.firstname })
+            //     .then((res) => {
+            //         console.log('balabalabala', res)
+            //         var made = false
+            //         for (var i = 0; i < res.data.comments.length; i++) {
+            //             if (res.data.comments[i].madeby === this.state.studentName) {
+            //                 made = true
+            //             }
+            //         }
+            //         if (!made) {
+
+            //             let comments = res.data.comments
+
+            //             comments.push(obj)
+            //             axios.post('/get/comment', { comment: comments })
+            //                 .then((res) => {
+            //                     console.log('from ', res)
+            //                     this.setState({
+            //                         comment: res.data.comments
+            //                     })
+            //                 })
+            //                 .catch((err) => {
+            //                     console.log(err)
+            //                 })
+
+            //         } else {
+            //             alert('you already made your comment')
+            //         }
+
+
+            //     })
+            //     .catch((err) => {
+            //         console.log(err)
+            //     })
+
+
+            //  this.props.location.state.teacher.comments.push(obj)
+            //  console.log('afterpush',this.props.location.state.teacher.comments)
+            // axios.post('/get/comment',{comment:this.props.location.state.teacher.comments})
+            // .then((res) => {
+            //     console.log('from ',res)
+            // })
+            // .catch((err) => {
+            //     console.log(err)
+            // })
+
+
+        }
+    }
+
     render() {
+        // console.log('doestheTeacher has comments', this.props.location.state.teacher)
+        // console.log('studentwhomadecomment', this.state.studentName)
+        console.log('comment',this.state.comment)
+        console.log('previouscomment',this.state.previousComments)
         const { teacher } = this.props.location.state
-        console.log('teacher111111', teacher)
+        console.log('teacher111111hargaysa', teacher)
         const { classes } = this.props;
         if (!this.state.Loggedin) {
             return (
@@ -225,25 +344,39 @@ class Teacher extends Component {
 
                                 <br />
                                 <div className="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Write a comment" />
+                                    <input type="text" class="form-control" placeholder="Write a comment" onChange={this.comment} />
                                     <div className="input-group-append">
-                                        <button className="btn btn-info" type="button">Comment</button>
+                                        <button className="btn btn-info" type="button" onClick={this.submitComment}>Comment</button>
                                     </div>
                                 </div>
 
-                            <div>
-                                <ul>
-                                    <li  className="card commentsCard" >
-                                            <h5 className="card-header">Student Name</h5>
-                                            <div className="card-body">
-                                                <p className="card-text">student comment</p>
-                                            </div>
-                                    </li>
-                                </ul>
-                            </div>
+                                
+                                {this.state.previousComments.map((comment) => {
+                                    return (
+                                    <div className=''>
+                                        <ul className=''><span></span>
+                                            <li >
+                                                <li className="card commentsCard" >
+                                                    <h5 className="card-header"> {comment.madeby}</h5>
+                                                    <div className="card-body">
+                                                        <p className="card-text"> {comment.comment}</p>
+                                                    </div>
+                                                </li>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    )
+                                    
+
+                                })}
+                                
+
+
+
+
                             </div>
                         </div>
-                    </div>
+                    </div >
                 </div >
             )
         }
