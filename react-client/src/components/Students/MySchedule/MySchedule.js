@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import Nav from '../../Nav'
+import './MySchedule.css'
 
 class MySchedule extends Component {
 	constructor(props) {
@@ -52,14 +53,14 @@ class MySchedule extends Component {
 
 					 if(accepted === 'accepted'){
 						return (
-							<div className=''>
-								<ul className=''><span></span>
+							<div className='container'>
+								<ul className=''>
 									<li >
 										<li className="card commentsCard" >
 											<h5 className="card-header">{teacher} </h5>
 											<div className="card-body">
 												<p className="card-text">{message}</p>
-												<button ref="buttonJoin" id="button-join">Call</button>
+												<button className ='videoCallBtn' ref="buttonJoin" id="button-join">Call</button>
 											</div>
 										</li>
 									</li>
@@ -69,14 +70,14 @@ class MySchedule extends Component {
 					 }else {
 						return (
 							
-							<div className=''>
-								<ul className=''><span></span>
+							<div className='container'>
+								<ul className=''>
 									<li >
 										<li className="card commentsCard" >
 											<h5 className="card-header">{teacher} </h5>
 											<div className="card-body">
 												<p className="card-text">{message}</p>
-												<button ref="buttonJoin" id="button-join" 
+												<button className ='videoDeleteBtn'ref="buttonJoin" id="button-join" 
 												onClick = {() =>{this.deleteClicked(teacher+' '+message)}}
 												>Delete</button>
 											</div>

@@ -72,7 +72,7 @@ class Navbar extends Component {
                                 <button className="nav-link  Navbar-text" onClick={()=>{this.redirect(this.state.isTeacher)}}> Profile <span className="sr-only">(current)</span></button>
                             </li>
                             <li className="nav-item active">
-                                <button className="nav-link  Navbar-text" href="#" onClick={this.logOut} >Logout <span className="sr-only">(current)</span></button>
+                                <a className="nav-link  Navbar-text" href="#" onClick={this.logOut} >Logout <span className="sr-only">(current)</span></a>
                             </li>
                         </ul>
                         </div>

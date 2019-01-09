@@ -12,20 +12,36 @@
     padding-top:2px;
     padding-bottom:0 ;
     margin-bottom: 0 !important
-
   }
-  
+
   .shariklogo {
     font-size : 36px;
     font-weight: bold;
     }
-  
-  
+
   .homepagepic {
     margin-top: -240px;
   }
 
   .navbarButtons button {
     background-color: black;
-    border: none;
+    cursor: pointer;
+    align-items: normal;
+    border-color: black;
+    border-style: none;
+    cursor: pointer;
+    transform-origin: 0 0;
+    -moz-appearance: none;
   }
+
+    a:hover {
+     color:white; 
+     text-decoration:none; 
+     cursor:pointer;  
+}
+
+  button:active {
+  outline: none;
+  border: none;
+  }
+  
