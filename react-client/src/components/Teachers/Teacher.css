@@ -51,10 +51,7 @@
     padding-top: 0%;  
     width: 400px;
     height: 402px; 
-    margin-left: 40px;
-   
-    
-   
+    margin-left: 40px; 
 }
 .videoWrapper video {
     position: absolute;
@@ -78,5 +75,31 @@ li{
 .commentsCard {
     width: 100%; 
     margin-left: -2.5rem;
+    margin-bottom: .5rem;
+}
+
+.requestTable{
+    width: 70%;
+    margin-top: 50px;
+}
+
+.requestTable h3 {
+    margin-right: 70%;
+    font-size: 35px;
+}
+
+.btnAccept {
+    background-color: rgb(49, 164, 221);
+    padding: 6px 30px;
+    color: white;
+
+}
+
+.btnReject {
+    background-color : rgb(211, 16, 51);
+    margin-left: 20px;
+    padding: 6px 30px;
+    color: white;
+
 }
 

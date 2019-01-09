@@ -230,7 +230,7 @@ class Comments extends Component {
 
                                 {this.state.comments.map((comment) => {
                                     return (
-                                        <div className=''>
+                                        <div className='userComment'>
                                             <ul className=''><span></span>
                                                 <li >
                                                     <li className="card commentsCard" >
