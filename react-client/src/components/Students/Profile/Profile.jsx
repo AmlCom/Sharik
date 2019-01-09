@@ -113,14 +113,14 @@ class Profile extends Component {
 
 				bio: '',
 				// 'A biography needs no explanation. It is a summary of a person\'s life. You would have come across outline templates or standard writing templates for biographies that state the information about the person in exceptional detail. In general, any regular or speaker biography includes the basic details about the person, his education, work, hobbies, etc. More often than not, students are confused about what to include and where it should be included. It is always beneficial to use a standardized template with proper guidelines so that you can come up with a good biography. And as a student, you will be expected to write a biography on anyone, ranging from a political figure to an actress to a business magnate to a civilian. Here are some standard templates that you can use for your reference.',
-												// 	required: false
+				// 	required: false
 				imageData: {},					// 	required: false
 
 			},
 
 			infoForm: {
 				avatarImg: '',
-				username: '', 
+				username: '',
 				firstname: '',
 				middlenames: '',
 				lastname: '',
@@ -164,7 +164,6 @@ class Profile extends Component {
 							console.log('@ >> axios.post(/S_Get_User_Info)');
 							console.log('Response Data msg:');
 							console.log(responsePost.data[0]);
-							console.log("firstname", responsePost.data[0].firstname);
 							console.log('>>>>>>>>>>>>>>>>');
 
 							if (responsePost.data) {
@@ -232,11 +231,13 @@ class Profile extends Component {
 	// 	console.log(event, value)
 	// };
 
+
 	onFormEdite = () => {
 		this.setState({
 			editeProfile: !this.state.editeProfile,
 		})
 	}
+
 	onFormSubmit = (event) => {
 		event.preventDefault();
 		for (let key in this.state.infoForm) {
@@ -249,15 +250,42 @@ class Profile extends Component {
 
 		this.setState({
 			editeProfile: !this.state.editeProfile,
-		})
+		});
 
+		axios.post('/S_Set_Student_Info', this.state.infoDB)
+			.then(responsePost => {
+				console.log('<<<<<<<<<<<<<<<<');
+				console.log('Data:');
+				console.log('@ >> Sharik/react-client/src/components/Students/Profile/Profile.jsx');
+				console.log('@ >> onFormSubmit');
+				console.log('@ >> axios.post(/S_Set_Student_Info, ...)');
+				console.log('Response Data msg:');
+				console.log(responsePost);
+				console.log('>>>>>>>>>>>>>>>>');
+
+				if (responsePost.data) {
+
+				} else {
+
+				}
+			})
+			.catch(postError => {
+				console.log('<<<<<<<<<<<<<<<<');
+				console.log('Error:');
+				console.log('@ >> Sharik/react-client/src/components/Students/Profile/Profile.jsx');
+				console.log('@ >> onFormSubmit');
+				console.log('@ >> axios.post(/S_Set_Student_Info)');
+				console.log('Response Error msg:');
+				console.log(postError);
+				console.log('>>>>>>>>>>>>>>>>');
+			})
 	}
 
-	onImageLoad = (e, file) => {
-		console.log('Image Uploded!');
-		console.log(e.target.result, file);
-		console.log(this.imageData)
-	}
+	// onImageLoad = (e, file) => {
+	// 	console.log('Image Uploded!');
+	// 	console.log(e.target.result, file);
+	// 	console.log(this.imageData)
+	// }
 
 	render() {
 		const { classes } = this.props;
