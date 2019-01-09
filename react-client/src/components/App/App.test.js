@@ -139,5 +139,4 @@ it('renders Videos component without crashing', () => {
   ReactDOM.unmountComponentAtNode(div);
 });
 
-
 }

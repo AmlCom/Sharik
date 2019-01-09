@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import { Link, BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Redirect } from 'react-router-dom'
+import './Student.css'
 
 // AXIOS GET /POST:
 // ---------
@@ -81,7 +82,7 @@ class Student extends Component {
                 }
             })
     }
-    
+
     onTabChange = (event, tabID) => {
         this.setState({ tabID });
     };
@@ -92,9 +93,9 @@ class Student extends Component {
 
     render() {
         if (this.state.isTeacher === '') {
-            return(
+            return (
                 <div>
-                    <br/>
+                    <br />
                     <h1>Loading.......</h1>
                 </div>
             )
@@ -104,21 +105,20 @@ class Student extends Component {
                     <div style={{ height: '100%' }}>
                         <Nav />
                     </div>
-                    
 
                         <Grid container spacing={24}>
                             <Grid item xs={12}>
 
                                 <BrowserRouter>
                                     <div className="App">
-                                        <div>
-                                            <Button color="inherit"><Link to='/Student/'>Dashboard</Link></Button>
-                                            <Button color="inherit"><Link to='/Student/SubjectsList'>Subjects List</Link></Button>
-                                            <Button color="inherit"><Link to='/Student/AddSubject'>Add Subject</Link></Button>
-                                            <Button color="inherit"><Link to='/Student/Profile'>Profile</Link></Button>
-                                            <Button color="inherit"><Link to='/studentchedule'>MySchedule</Link></Button>
-                                            <Button color="inherit"><Link to='/Student/MyPayments'>MyPayments</Link></Button>
-                                            <Button color="inherit"><Link to='/Teachers'>Teachers List</Link></Button>
+                                        <div style={{marginTop:'30px'}}>
+                                            <Button color="inherit"><Link to='/Student/' style={{ textDecoration: 'none'}}>Dashboard</Link></Button>
+                                            <Button color="inherit"><Link to='/Student/SubjectsList' style={{ textDecoration: 'none'}}>Subjects List</Link></Button>
+                                            <Button color="inherit"><Link to='/Student/AddSubject'style={{ textDecoration: 'none'}}>Add Subject</Link></Button>
+                                            <Button color="inherit"><Link to='/Student/Profile' style={{ textDecoration: 'none'}}>Profile</Link></Button>
+                                            <Button color="inherit"><Link to='/studentchedule' style={{ textDecoration: 'none'}}>MySchedule</Link></Button>
+                                            <Button color="inherit"><Link to='/Student/MyPayments'style={{ textDecoration: 'none'}} >MyPayments</Link></Button>
+                                            <Button color="inherit"><Link to='/Teachers' style={{ textDecoration: 'none'}}>Teachers List</Link></Button>
                                             <Switch>
                                                 <Route path='/Student/' exact component={Dashboard} />
                                                 <Route path='/Student/SubjectsList' exact component={SubjectsList} />
@@ -130,20 +130,17 @@ class Student extends Component {
                                             </Switch>
                                         </div>
                                     </div>
-
                                 </BrowserRouter>
-
-
                             </Grid>
                         </Grid>
-                </div>
-            )
+                    </div>  
+                 )
         } else {
-            return( 
+            return (
                 <Redirect to="/profile" />
             )
         }
-        
+
     }
 }
 
