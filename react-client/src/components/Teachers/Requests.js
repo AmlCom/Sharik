@@ -7,14 +7,11 @@ import Nav from '../Nav'
 class Request extends Component {
     constructor(props) {
         super(props);
-<<<<<<< HEAD
         this.state = {
             teacherName:'',
             schedule:''
 
         }
-=======
->>>>>>> 6e8a5299a9c4cadbb995de50d3bc0fbd6c1c6a54
     }
 
     componentDidMount() {
