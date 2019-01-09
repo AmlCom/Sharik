@@ -23,6 +23,16 @@ class MySchedule extends Component {
 			})
 	}
 
+	deleteClicked = (message) => {
+		console.log('messagggge',message)
+		for(var i = 0 ; i < this.state.messages.length ; i++) {
+			if(this.state.messages[i] === message) {
+				this.state.messages.splice(i,0)
+			}
+		}
+		console.log('after delete', this.state.messages)
+	}
+
 	render() {
 		console.log('nnnnn',this.state.messages)
 		if(this.state.messages === null) {
@@ -48,7 +58,8 @@ class MySchedule extends Component {
 										<li className="card commentsCard" >
 											<h5 className="card-header">{teacher} </h5>
 											<div className="card-body">
-												<p className="card-text">{message}</p><button>Call</button>
+												<p className="card-text">{message}</p>
+												<button ref="buttonJoin" id="button-join">Call</button>
 											</div>
 										</li>
 									</li>
@@ -65,7 +76,9 @@ class MySchedule extends Component {
 											<h5 className="card-header">{teacher} </h5>
 											<div className="card-body">
 												<p className="card-text">{message}</p>
-												<button>Delete</button>
+												<button ref="buttonJoin" id="button-join" 
+												onClick = {() =>{this.deleteClicked(teacher+' '+message)}}
+												>Delete</button>
 											</div>
 										</li>
 									</li>
