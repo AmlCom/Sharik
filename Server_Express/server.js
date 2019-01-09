@@ -254,7 +254,7 @@ app.post('/S_Get_Student_Info', function (request, response) {
             console.log(selectOneStudentQueryErr)
             console.log('>>>>>>>>>>>>>>>>');
 
-            res.end(JSON.stringify(selectOneStudentQueryErr))
+            response.end(JSON.stringify(selectOneStudentQueryErr))
         }
 
         console.log('<<<<<<<<<<<<<<<<');
@@ -265,7 +265,7 @@ app.post('/S_Get_Student_Info', function (request, response) {
         console.log('selectOneStudent Data msg:');
         console.log(selectOneStudentsQueryResulte)
         console.log('>>>>>>>>>>>>>>>>');
-        res.end(JSON.stringify(selectOneStudentsQueryResulte));
+        response.end(JSON.stringify(selectOneStudentsQueryResulte));
     });
 
 });
