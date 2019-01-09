@@ -70,7 +70,6 @@ class Comments extends Component {
     componentDidMount() {
         axios.get('/auth/checkLogging').
             then((x) => {
-                console.log('yahyaishere', x);
                 if (x.data) {
                     console.log(this)
                     this.setState({
