@@ -57,7 +57,7 @@ class Schedule extends Component {
                                     <tr >
                                         <td>{student.student}</td>
                                         <td>{student.email}</td>
-                                        <td><a className="btn btn-success" onClick = {()=>{this.accept(student.firstname,student._id,student.email)}}  >Message</a> <a onClick = {()=>{this.reject(student._id)}} className="btn btn-danger" >Call</a></td>
+                                        <td><a className="btn btn-success" onClick = {()=>{this.accept(student.firstname,student._id,student.email)}}  >Message</a> <a onClick = {()=>{this.reject(student._id)}} className="btn btn-danger" href='/video' >Call</a></td>
                                     </tr>
                                 )})}
     

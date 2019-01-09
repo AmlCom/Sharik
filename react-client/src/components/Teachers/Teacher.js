@@ -48,7 +48,7 @@ class Teacher extends Component {
         })
 
 
-        axios.post('/get/specTeacher', { name: this.props.location.state.teacher.firstname })
+        axios.post('/get/specTeacher', { name: this.props.location.state.detail.firstname })
             .then((res) => {
                 this.setState({
                     previousComments: res.data.comments
@@ -63,7 +63,7 @@ class Teacher extends Component {
 
     addStudent = () => {
         axios.post('/addStudent', {
-            teacherEmail: this.props.location.state.teacher.email,
+            teacherEmail: this.props.location.state.detail.email,
             student_id: this.state.student_id
         })
             .then((response) => {
@@ -78,7 +78,7 @@ class Teacher extends Component {
     }
 
     submitComment = () => {
-        console.log('kkkkkk', this.props.location.state.teacher.comments)
+        // console.log('kkkkkk', this.props.location.state.teacher.comments)
 
         if (this.state.comment === '') {
             console.log('please write comment')
@@ -87,7 +87,7 @@ class Teacher extends Component {
             var obj = {
                 madeby: this.state.studentName,
                 comment: this.state.comment,
-                teacherName: this.props.location.state.teacher.firstname
+                teacherName: this.props.location.state.detail.firstname
             }
 
             let made = false;
@@ -173,7 +173,8 @@ class Teacher extends Component {
 
     render() {
         console.log('prvcc', this.state.previousComments)
-        const { teacher } = this.props.location.state
+        // const { teacher } = this.props.location.state
+        const teacher = this.props.location.state.detail
         if (this.state.previousComments !== null) {
             return (
                 <div>

@@ -20,6 +20,7 @@ import { BrowserRouter, Route, Switch,History } from 'react-router-dom'
 import './App.css';
 import Comments from '../Teachers/comments'
 import Schedule from '../Teachers/schedule'
+import MySchedule from '../Students/MySchedule/MySchedule'
 
 
 
@@ -54,7 +55,8 @@ class App extends Component {
               <Route path='/Requests' exact component ={Requests}/>
               <Route path='/HomePage1' exact component = {HomePage1}/>
               <Route path='/comments' exact component={Comments} />
-              <Route papth='/schedule' exact component={Schedule} />
+              <Route path='/schedule' exact component={Schedule} />
+              <Route path='/studentchedule' exact component={MySchedule} />
               {/* <Route path='/Rating' exact component={Rate}/> */}
             </Switch>
           </div>
