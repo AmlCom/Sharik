@@ -1,19 +1,12 @@
 // ***************************************************************
-
-// ***************************************************************
-
 // var db = require("../connect");
 var Student = require("../schema/sharik_db__users_schema.js");
 
-/*
-
-*/
-
-// Tables:
+// Table:
 // ------------------------
 
 module.exports = {
-    // 1.3 Table Student Functions:
+    // Table Student Functions:
     // ------------------------
 
     // 1.3.1 Create (Save) a Student in the DB Student table:
