@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App.js';
 import Signup from '../singup'
 import Signin from '../singin'
+import Profile from '../profile';
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { mount, shallow, render } from 'enzyme';
@@ -93,3 +94,50 @@ describe('Testing the Signin component', () => {
 });
 
 
+
+describe('Testing the Teacher component', () => {
+
+it('renders Profile component without crashing', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<Profile />, div);
+  ReactDOM.unmountComponentAtNode(div);
+});
+
+it('renders Comments component without crashing', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<Comments />, div);
+  ReactDOM.unmountComponentAtNode(div);
+});
+
+it('renders Request component without crashing', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<Request />, div);
+  ReactDOM.unmountComponentAtNode(div);
+});
+
+it('renders Schedule component without crashing', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<Schedule />, div);
+  ReactDOM.unmountComponentAtNode(div);
+});
+
+it('renders Teacher component without crashing', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<Teacher />, div);
+  ReactDOM.unmountComponentAtNode(div);
+});
+
+it('renders Teachers component without crashing', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<Teachers />, div);
+  ReactDOM.unmountComponentAtNode(div);
+});
+
+it('renders Videos component without crashing', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<Videos />, div);
+  ReactDOM.unmountComponentAtNode(div);
+});
+
+
+}
