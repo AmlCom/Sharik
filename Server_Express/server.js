@@ -232,7 +232,7 @@ app.post('/accept', (req, res) => {
 })
 
 
-// Student - Select One Student  
+// Student - Get One Student Info:
 var SerEx_DB_MongoDB_Students = require('./Students/SerEx_DB_MongoDB_Students.js')
 app.post('/S_Get_Student_Info', function (request, response) {
     console.log('<<<<<<<<<<<<<<<<');
@@ -269,6 +269,46 @@ app.post('/S_Get_Student_Info', function (request, response) {
     });
 
 });
+
+
+// Student - Set (Update) One Student Info:
+var SerEx_DB_MongoDB_Students = require('./Students/SerEx_DB_MongoDB_Students.js')
+app.post('/S_Set_Student_Info', function (request, response) {
+    console.log('<<<<<<<<<<<<<<<<');
+    console.log('Data:');
+    console.log('@ >> Sharik/Server_Express/server.js');
+    console.log('@ >> app.post(\'/S_Get_Student_Info\', ...');
+    console.log('Request Data msg:');
+    console.log(request.body)
+    console.log('>>>>>>>>>>>>>>>>');
+
+    SerEx_DB_MongoDB_Students.updateOneStudent(request, response, function (updateOneStudentQueryErr, updateOneStudentsQueryResulte) {
+        if (updateOneStudentQueryErr) {
+            console.log('<<<<<<<<<<<<<<<<');
+            console.log('Error:');
+            console.log('@ >> Sharik/Server_Express/server.js');
+            console.log('@ >> app.post(\'/S_Get_Student_Info\', ...');
+            console.log('@ >> SerEx_DB_MongoDB_Students.updateOneStudent');
+            console.log('updateOneStudent Error msg:');
+            console.log(updateOneStudentQueryErr)
+            console.log('>>>>>>>>>>>>>>>>');
+
+            response.end(JSON.stringify(updateOneStudentQueryErr))
+        }
+
+        console.log('<<<<<<<<<<<<<<<<');
+        console.log('Data:');
+        console.log('@ >> Sharik/Server_Express/server.js');
+        console.log('@ >> app.post(\'/S_Get_Student_Info\', ...');
+        console.log('@ >> SerEx_DB_MongoDB_Students.updateOneStudent');
+        console.log('updateOneStudent Data msg:');
+        console.log(updateOneStudentsQueryResulte)
+        console.log('>>>>>>>>>>>>>>>>');
+        response.end(JSON.stringify(updateOneStudentsQueryResulte));
+    });
+
+});
+
 
  if (process.env.NODE_ENV === 'production') {
 // // Serve any static files
