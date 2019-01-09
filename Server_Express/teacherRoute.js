@@ -67,14 +67,14 @@ router.post('/addVideoLecture', function (req, res, next) {
 
 // teacher rating 
 router.post('/ratingTeacher', function(req, res, next) {
-  console.log('you reached mustafa',req.body)
+  console.log('-------you reached mustafa--------',req.body)
 
 console.log('rating helllo rating', req.body.name)
-// Teacher.findOneAndUpdate({'firstname':req.body.name},{'rating':req.body.rating}).then(function (teacher) {
-//   console.log('teacheer',teacher)
-//   //res.send('hello')
-//   res.send(teacher)
-// }).catch(next)
+Teacher.findOneAndUpdate({'firstname':req.body.name},{'rating':req.body.rating}).then(function (teacher) {
+  console.log('teacheer',teacher)
+  //res.send('hello')
+  res.send(teacher)
+}).catch(next)
 });
 
 router.post('/comment', function (req, res, next) {
@@ -84,6 +84,15 @@ router.post('/comment', function (req, res, next) {
    console.log('commelll',req.body.comment)
    console.log('name',req.body.comment[0].teacherName)
   Teacher.findOneAndUpdate({'firstname':req.body.comment[0].teacherName},{'comments':req.body.comment}).then(function (teacher) {
+    console.log('teacheer',teacher)
+    //res.send('hello')
+    res.send(teacher)
+  }).catch(next)
+});
+
+router.post('/schedule', function (req, res, next) {
+  console.log('req.body',req.body)
+  Teacher.findOneAndUpdate({'firstname':req.body.teacher},{'acceptedRequests':req.body.student}).then(function (teacher) {
     console.log('teacheer',teacher)
     //res.send('hello')
     res.send(teacher)

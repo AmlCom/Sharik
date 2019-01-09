@@ -92,3 +92,21 @@ describe('POST', function () {
     });
 });
 
+describe('Contact  support', function () {
+	
+	describe('POST User', function(done){
+			it('Should support the users', function(done){
+		// create account for the username
+		request('http://localhost:3000').post("/S_Contact")
+		.expect(200)
+		.send({
+			"title": "mobile",
+    		"email": "m@gmail.com",
+    		"message": "hello"
+			})
+		.end(done)
+		});
+	});
+});
+
+
