@@ -51,11 +51,6 @@ class Profile extends Component {
                         isTeacher: response.data.isTeacher
                     })
                 }
-                //   } else {
-                //     this.setState({
-                //       Loggedin: false
-                //     })
-                //   }
             })
 
         axios.get('/teacher').then((res) => {
@@ -69,15 +64,16 @@ class Profile extends Component {
             })
 
         }).catch((err) => {
-            console.log('hi', err)
+            console.log('err', err)
         })
         axios.get('/studentList').then((res) => {
-            console.log("213", res);
             this.setState({
                 requestsNumber: res.data.length,
                 studentList: res.data 
             })
         })
+
+        
     }
 
 

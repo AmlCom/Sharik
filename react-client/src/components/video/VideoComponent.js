@@ -184,7 +184,7 @@ export default class VideoComponent extends Component {
                 <div id="remote-media"></div>
                 <div className='VideoChat' id="controls">
                     <div id="preview">
-                        <p className="instructions">Hello</p>
+                        <p className="instructions">Video Call</p>
                         <div ref="localMedia" id="local-media"></div>
                         <button  ref="buttonPreview" id="button-preview">Preview My Camera</button>
                     </div>

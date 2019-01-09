@@ -52,6 +52,9 @@ class Navbar extends Component {
                             </ul>
                         </div>
                         <ul className="navbar-nav">
+                                <li className="nav-item active">
+                                <a className="nav-link  Navbar-text" href="#"> Profile <span className="sr-only">(current)</span></a>
+                            </li>
                             <li className="nav-item active">
                                 <a className="nav-link  Navbar-text" href="#" onClick={this.logOut} >Logout <span className="sr-only">(current)</span></a>
                             </li>

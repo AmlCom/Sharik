@@ -44,7 +44,6 @@ class Teachers extends Component {
                 {/* < Search search={this.searchTeacher} /> */}
                     <div class="form-group">
                         <tr>
-
                             <td className='border'>
                                 <img src={this.state.teachers[0].image} alt="" className="rounded card" />
                                 <br />
@@ -57,23 +56,17 @@ class Teachers extends Component {
                                 <br />
                             </td>
                         </tr>
-
                     </div>
-
                 </form>
-
             )
         } else {
             return (
                 <div className='container'>
                     {/* < Search search={this.searchTeacher} /> */}
-
                     {this.state.teachers.map((teacher) =>
-
                         <form className='container'>
                             <div class="form-group">
                                 <tr>
-
                                     <td className='border'>
                                         <img src={teacher.image} alt="" className="rounded card" />
                                         <br />
