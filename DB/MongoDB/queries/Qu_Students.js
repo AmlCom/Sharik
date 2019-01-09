@@ -101,7 +101,43 @@ module.exports = {
                 }
             });
     },
-    test: function() {
-        console.log("XXXXXXXXXXXXXXXXXXXXXXX")
-    }
+    
+    // Update One Students: 
+    updateOneStudent: function (studentData, callback) {
+        console.log('<<<<<<<<<<<<<<<<');
+		console.log('Data:');
+		console.log('@ >> Sharik/DB/MongoDB/queries/Qu_Students.js');
+		console.log('@ >> updateOneStudent');
+		console.log('Student Data msg:');
+		console.log(studentData)
+		console.log('>>>>>>>>>>>>>>>>');
+        Student.findByIdAndUpdate(
+            studentData._id,
+            studentData,
+            function(updateOneStudentQueryErr, updateOneStudentQueryResulte) {
+                if (updateOneStudentQueryErr) {
+                    console.log('<<<<<<<<<<<<<<<<');
+                    console.log('Error:');
+                    console.log('@ >> Sharik/DB/MongoDB/queries/Qu_Students.js');
+                    console.log('@ >> updateOneStudent');
+                    console.log('@ >> findByIdAndUpdate');
+                    console.log('Error msg:');
+                    console.log(updateOneStudentQueryErr)
+                    console.log('>>>>>>>>>>>>>>>>');
+
+                    callback(updateOneStudentQueryErr, null);
+                } else {
+                    console.log('<<<<<<<<<<<<<<<<');
+                    console.log('Data:');
+                    console.log('@ >> Sharik/DB/MongoDB/queries/Qu_Students.js');
+                    console.log('@ >> updateOneStudent');
+                    console.log('@ >> findByIdAndUpdate');
+                    console.log('updateOneStudentQueryResulte msg:');
+                    console.log(updateOneStudentQueryResulte)
+                    console.log('>>>>>>>>>>>>>>>>');
+
+                    callback(null, updateOneStudentQueryResulte);
+                }
+            });
+    },
 }
