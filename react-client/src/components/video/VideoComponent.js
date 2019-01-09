@@ -175,6 +175,7 @@ export default class VideoComponent extends Component {
 
     render() {
         console.log('state',this.activeRoom)
+        
         return (
             <div>
                 <div style={{ height: '100%' }}>
@@ -186,13 +187,13 @@ export default class VideoComponent extends Component {
                     <div id="preview">
                         <p className="instructions">Video Call</p>
                         <div ref="localMedia" id="local-media"></div>
-                        <button  ref="buttonPreview" id="button-preview">Preview My Camera</button>
+                        <button  ref="buttonPreview" id="button-preview">Preview Your Camera</button>
                     </div>
                     <div ref="roomControls">
                         <p className="instructions">Room Name:</p>
-                        <input ref="roomName" id="room-name" type="text" placeholder="Enter a room name" />
-                        <button ref="buttonJoin" id="button-join">Join Room</button>
-                        <button ref="buttonLeave" id="button-leave">Leave Room</button>
+                        <input ref="roomName" id="room-name" type="text" value = 'room1' placeholder="Enter a room name"  />
+                        <button ref="buttonJoin" id="button-join">Call</button>
+                        <button ref="buttonLeave" id="button-leave">Cancel</button>
                     </div>
                     <div ref="log" id="log"></div>
                 </div>

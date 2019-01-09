@@ -24,3 +24,8 @@
   .homepagepic {
     margin-top: -240px;
   }
+
+  .navbarButtons button {
+    background-color: black;
+    border: none;
+  }
