@@ -34,6 +34,9 @@ class Profile extends Component {
                 console.log('hello world')
                 if (response.data.email) {
                     user = response.data.firstname
+                    this.setState({
+                        teacherName:response.data.firstname
+                    })
                     //get authorized teacher from the database
 
                     axios.post('/get/specTeacher', { name: user })
@@ -140,9 +143,9 @@ class Profile extends Component {
                                 </a>
                             </div>
                             <div className='col-md-2'>
-                                <a href="./lectures" className="mainLinks list-group-item justify-content-between">
-                                   <h5 className='dashbored'>Schedule</h5><span className="badge badge-primary number">1</span>
-                                </a>
+                            <Link to={{ pathname: '/schedule', state: { students: this.state.studentList} }} className="mainLinks list-group-item justify-content-between">
+                              <h5 className='dashbored'>Schedule</h5><span class="badge badge-primary number">{this.state.requestsNumber}</span>
+                              </Link>
                             </div>
 
                         </div>

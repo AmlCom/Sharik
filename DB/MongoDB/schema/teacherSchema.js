@@ -68,7 +68,13 @@ const TeacherSchema = new Schema({
 		type:Array,
 		required:false,
 		default:[]
-	}
+	},
+	acceptedRequests: {
+		type:Array,
+		required:false,
+		default:[]
+	},
+
 });
 
 
