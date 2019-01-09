@@ -209,7 +209,6 @@ class Teacher extends Component {
                                     </div>
                                 </div>
 
-                                
                                 {this.state.previousComments.map((comment) => {
                                     return (
                                     <div className=''>
@@ -225,8 +224,6 @@ class Teacher extends Component {
                                         </ul>
                                     </div>
                                     )
-                                    
-
                                 })}
                             </div>
                         </div>
