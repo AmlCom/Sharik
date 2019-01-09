@@ -1,5 +1,5 @@
 
-// var qu_tb_Students = require('../../DB/MongoDB/queries/Qu_Students.js');
+var qu_tb_Students = require('../../DB/MongoDB/queries/Qu_Students.js');
 
 
 module.exports = {
@@ -44,10 +44,11 @@ module.exports = {
 		console.log('@ >> Sharik/Server_Express/Students/SerEx_DB_MongoDB_Students.js');
 		console.log('@ >> selectOneStudent');
 		console.log('Request Data msg:');
-		console.log(request.body)
+		console.log(request.body);
+		console.log(request.body._id)
 		console.log('>>>>>>>>>>>>>>>>');
 
-		qu_tb_Students.selectOneStudent(
+		qu_tb_Students.selectOneStudent(request.body._id, 
 			function (selectOneStudentQueryErr, selectOneStudentsQueryResulte) {
 				if (selectOneStudentQueryErr) {
 					console.log('<<<<<<<<<<<<<<<<');
