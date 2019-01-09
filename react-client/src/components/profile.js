@@ -3,7 +3,6 @@ import { storage } from '../firebase/index'
 import { Link, BrowserRouter, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
-// import './Profile.css'
 import './Profile.css'
 import Nav from './Nav'
 
@@ -52,11 +51,6 @@ class Profile extends Component {
                         isTeacher: response.data.isTeacher
                     })
                 }
-                //   } else {
-                //     this.setState({
-                //       Loggedin: false
-                //     })
-                //   }
             })
 
         axios.get('/teacher').then((res) => {
@@ -70,15 +64,16 @@ class Profile extends Component {
             })
 
         }).catch((err) => {
-            console.log('hi', err)
+            console.log('err', err)
         })
         axios.get('/studentList').then((res) => {
-            console.log("213", res);
             this.setState({
                 requestsNumber: res.data.length,
                 studentList: res.data 
             })
         })
+
+        
     }
 
 
