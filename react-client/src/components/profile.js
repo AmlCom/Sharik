@@ -3,7 +3,6 @@ import { storage } from '../firebase/index'
 import { Link, BrowserRouter, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
-// import './Profile.css'
 import './Profile.css'
 import Nav from './Nav'
 

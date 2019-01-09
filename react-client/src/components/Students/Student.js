@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import { Link, BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Redirect } from 'react-router-dom'
+import './Student.css'
 
 // AXIOS GET /POST:
 // ---------
@@ -81,7 +82,7 @@ class Student extends Component {
                 }
             })
     }
-    
+
     onTabChange = (event, tabID) => {
         this.setState({ tabID });
     };
@@ -92,9 +93,9 @@ class Student extends Component {
 
     render() {
         if (this.state.isTeacher === '') {
-            return(
+            return (
                 <div>
-                    <br/>
+                    <br />
                     <h1>Loading.......</h1>
                 </div>
             )
@@ -104,46 +105,44 @@ class Student extends Component {
                     <div style={{ height: '100%' }}>
                         <Nav />
                     </div>
-                    
 
                         <Grid container spacing={24}>
                             <Grid item xs={12}>
 
                                 <BrowserRouter>
-                                    <div className="App">
-                                        <div>
-                                            <Button color="inherit"><Link to='/Student/'>Dashboard</Link></Button>
-                                            <Button color="inherit"><Link to='/Student/SubjectsList'>Subjects List</Link></Button>
-                                            <Button color="inherit"><Link to='/Student/AddSubject'>Add Subject</Link></Button>
-                                            <Button color="inherit"><Link to='/Student/Profile'>Profile</Link></Button>
-                                            <Button color="inherit"><Link to='/Student/MySchedule'>MySchedule</Link></Button>
-                                            <Button color="inherit"><Link to='/Student/MyPayments'>MyPayments</Link></Button>
-                                            <Button color="inherit"><Link to='/Teachers'>Teachers List</Link></Button>
-                                            <Switch>
-                                                <Route path='/Student/' exact component={Dashboard} />
-                                                <Route path='/Student/SubjectsList' exact component={SubjectsList} />
-                                                <Route path='/Student/AddClass' exact component={AddSubject} />
-                                                <Route path='/Student/Profile' exact component={Profile} />
-                                                <Route path='/Student/MySchedule' exact component={MySchedule} />
-                                                <Route path='/Student/MyPayments' exact component={MyPayments} />
-                                                <Route path='/Teachers' exact component={Teachers} />
-                                            </Switch>
+                                    <div>
+                                        <div className="App">
+                                            <div style={{marginTop:'30px'}}>
+                                                <Button><Link className='dashbored' to='/Student/' style={{ textDecoration: 'none'}}>Dashboard</Link></Button>
+                                                <Button><Link className='dashbored' to='/Student/SubjectsList' style={{ textDecoration: 'none' }}>Subjects List</Link></Button>
+                                                <Button><Link className='dashbored' to='/Student/AddSubject' style={{ textDecoration: 'none' }}>Add Subject</Link></Button>
+                                                <Button><Link className='dashbored' to='/Student/Profile' style={{ textDecoration: 'none' }}>Profile</Link></Button>
+                                                <Button><Link className='dashbored' to='/Student/MySchedule' style={{ textDecoration: 'none' }}>MySchedule</Link></Button>
+                                                <Button><Link className='dashbored' to='/Student/MyPayments' style={{ textDecoration: 'none' }}>MyPayments</Link></Button>
+                                                <Button><Link className='dashbored' to='/Teachers' style={{ textDecoration: 'none' }}>Teachers List</Link></Button>
+                                                <Switch>
+                                                    <Route path='/Student/' exact component={Dashboard} />
+                                                    <Route path='/Student/SubjectsList' exact component={SubjectsList} />
+                                                    <Route path='/Student/AddClass' exact component={AddSubject} />
+                                                    <Route path='/Student/Profile' exact component={Profile} />
+                                                    <Route path='/Student/MySchedule' exact component={MySchedule} />
+                                                    <Route path='/Student/MyPayments' exact component={MyPayments} />
+                                                    <Route path='/Teachers' exact component={Teachers} />
+                                                </Switch>
+                                            </div>
                                         </div>
                                     </div>
-
                                 </BrowserRouter>
-
-
                             </Grid>
                         </Grid>
-                </div>
-            )
+                    </div>  
+                 )
         } else {
-            return( 
+            return (
                 <Redirect to="/profile" />
             )
         }
-        
+
     }
 }
 
