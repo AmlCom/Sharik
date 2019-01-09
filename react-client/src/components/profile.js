@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import { storage } from '../firebase/index'
 import { Link, BrowserRouter, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
+<<<<<<< HEAD
+import { Redirect } from 'react-router-dom';
+// import './Profile.css'
+=======
 import './Profile.css'
+>>>>>>> 69b05bf30621d7ffc0367b6b41b8d148e2625054
 import Nav from './Nav'
 
 
