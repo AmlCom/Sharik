@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import './Teacher.css';
 import axios from 'axios';
 import Search from '../search'
-import { Redirect, Link, Router } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import Nav from '../Nav'
-import { withRouter } from 'react-router-dom';
 
 class Teachers extends Component {
     state = {
@@ -48,14 +47,6 @@ class Teachers extends Component {
         )
 
     }
-    redirect = (teacher) => {
-        console.log('boooo',teacher)
-        let path = `/teacher`;
-    this.props.history.push({
-        pathname:'/teacher',
-        state: { detail: teacher }
-    });
-    }
 
     render() {
         // console.log('teachers', this.state.teachers)
@@ -86,11 +77,6 @@ class Teachers extends Component {
                                     <h4><b>{teacher.firstname} {teacher.lastname}</b></h4>
                                     <p>{teacher.major}</p>
                                     <Link to={{ pathname: '/teacher', state: { teacher: teacher } }} type="submit" className="btnProfile">Profile</Link>
-
-                                <button onClick ={() => {
-                                    this.redirect(teacher)
-                                }}> bbb</button>
-/>
                                     <br />
                                     <br/>
                                 </div>
@@ -104,7 +90,7 @@ class Teachers extends Component {
 }
 
 
-export default withRouter(Teachers);
+export default Teachers;
 
 
 
