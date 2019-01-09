@@ -74,4 +74,40 @@ module.exports = {
 			}
 		);
 	},
+
+	updateOneStudent: function (request, response, callback) {
+		console.log('<<<<<<<<<<<<<<<<');
+		console.log('Data:');
+		console.log('@ >> Sharik/Server_Express/Students/SerEx_DB_MongoDB_Students.js');
+		console.log('@ >> updateOneStudent');
+		console.log('Request Data msg:');
+		console.log(request.body);
+		console.log('>>>>>>>>>>>>>>>>');
+
+		qu_tb_Students.updateOneStudent(request.body, 
+			function (updateOneStudentQueryErr, updateOneStudentsQueryResulte) {
+				if (updateOneStudentQueryErr) {
+					console.log('<<<<<<<<<<<<<<<<');
+					console.log('Error:');
+					console.log('@ >> Sharik/Server_Express/Students/SerEx_DB_MongoDB_Students.js');
+					console.log('@ >> updateOneStudent');
+					console.log('updateOneStudentQueryErr Error msg:');
+					console.log(updateOneStudentQueryErr)
+					console.log('>>>>>>>>>>>>>>>>');
+					callback(updateOneStudentQueryErr, null);
+
+				} else {
+					console.log('<<<<<<<<<<<<<<<<');
+					console.log('Data:');
+					console.log('@ >> Sharik/Server_Express/Students/SerEx_DB_MongoDB_Students.js');
+					console.log('@ >> updateOneStudent');
+					console.log('updateOneStudent Data msg:');
+					console.log(updateOneStudentsQueryResulte)
+					console.log('>>>>>>>>>>>>>>>>');
+					callback(null, updateOneStudentsQueryResulte);
+
+				}
+			}
+		);
+	},
 }
