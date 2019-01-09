@@ -62,20 +62,22 @@ class Comments extends Component {
             Loggedin: false,
             student_id: '',
             email: '',
-            password: ''
+            password: '',
+            comments: ''
         }
     }
 
     componentDidMount() {
         axios.get('/auth/checkLogging').
             then((x) => {
-                console.log('321', x);
+                console.log('yahyaishere', x);
                 if (x.data) {
                     console.log(this)
                     this.setState({
                         Loggedin: true,
-                        image:x.data.image,
-                        teacherName:x.data.firstname
+                        image: x.data.image,
+                        teacherName: x.data.firstname,
+                        comments: x.data.comments
                     })
                 } else {
                     this.setState({
@@ -147,8 +149,8 @@ class Comments extends Component {
     }
 
     render() {
-        
-        
+
+
         const { classes } = this.props;
         if (!this.state.Loggedin) {
             return (
@@ -204,48 +206,50 @@ class Comments extends Component {
                     <div className='teacher'>
                         <div className='row '>
                             <div className="col-md-3 container">
-                                    <div className='teacherPic'>
-                                        <img src={this.state.image} alt="" />
-                                    </div>
-                                    <div className="">
-                                        <h4><b>{this.state.firstname} </b></h4>
-                                        <p>{this.state.teacherMajor}</p>
-                                        <h6>{this.state.info}</h6>
-                                        <h4> <span class="badge badge-info">Class price {this.state.price}JD/Hour</span></h4>
-                                        <button type="button" className="btn btn-info" onClick={this.addStudent}>Request</button>
-                                        
-                                    </div>
-                    </div>
+                                <div className='teacherPic'>
+                                    <img src={this.state.image} alt="" />
+                                </div>
+                                <div className="">
+                                    <h4><b>{this.state.firstname} </b></h4>
+                                    <p>{this.state.teacherMajor}</p>
+                                    <h6>{this.state.info}</h6>
+                                    <h4> <span class="badge badge-info">Class price {this.state.price}JD/Hour</span></h4>
+                                    <button type="button" className="btn btn-info" onClick={this.addStudent}>Request</button>
 
-                    <div className="col-md-8 container">
-                        <div className='card-header text-white bg-info'>
-                            <div className='d-flex flex-column bd-highlight mb-0.5'>
-                                <h3>Comments</h3>
+                                </div>
+                            </div>
+
+                            <div className="col-md-8 container">
+                                <div className='card-header text-white bg-info'>
+                                    <div className='d-flex flex-column bd-highlight mb-0.5'>
+                                        <h3>Comments</h3>
+                                    </div>
+                                </div>
+
+                                <br />
+
+                                {this.state.comments.map((comment) => {
+                                    return (
+                                        <div className='userComment'>
+                                            <ul className=''><span></span>
+                                                <li >
+                                                    <li className="card commentsCard" >
+                                                        <h5 className="card-header"> {comment.madeby}</h5>
+                                                        <div className="card-body">
+                                                            <p className="card-text"> {comment.comment}</p>
+                                                        </div>
+                                                    </li>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    )
+
+
+                                })}
+
+
                             </div>
                         </div>
-
-                        <br />
-                        <div className="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Write a comment"/>
-                            <div className="input-group-append">
-                                <button className="btn btn-info" type="button">Comment</button>
-                            </div>
-                        </div>
-
-                        <div>
-                                <ul>
-                                    <li  className="card commentsCard" >
-                                            <h5 className="card-header">Student Name</h5>
-                                            <div className="card-body">
-                                                <p className="card-text">student comment</p>
-                                            </div>
-                                    </li>
-                                </ul>
-                            </div>
-
-                        
-                    </div>
-                </div>
                     </div >
                 </div >
             )

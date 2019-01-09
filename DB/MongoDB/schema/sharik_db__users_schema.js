@@ -82,6 +82,7 @@ const SignupSchema = new Schema({
 	// 	type: String,
 	// 	required: true
 	// }
+
 });
 
 // 1.2 Model Constructor:

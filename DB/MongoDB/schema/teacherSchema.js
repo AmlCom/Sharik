@@ -63,7 +63,18 @@ const TeacherSchema = new Schema({
 		{
 			type: mongoose.Schema.Types.ObjectId, ref: 'User1' 
 		}
-	]
+	],
+	comments: {
+		type:Array,
+		required:false,
+		default:[]
+	},
+	acceptedRequests: {
+		type:Array,
+		required:false,
+		default:[]
+	},
+
 });
 
 

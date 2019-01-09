@@ -4,15 +4,26 @@ import axios from 'axios';
 import Search from '../search'
 import { Redirect, Link } from 'react-router-dom'
 import Nav from '../Nav'
-import Teacher from './Teacher'
-
 
 class Teachers extends Component {
     state = {
         teachers: [],
-        id: ''
+        id: '',
+        isTeacher: '',
     }
+
     componentDidMount() {
+        axios.get('/auth/checkLogging').
+        then((x) => {
+            console.log('356', x.data);
+            if (x.data.email) {
+                var isteacher = x.data.isTeacher
+                // console.log('yahya',yahya)
+                this.setState({
+                    isTeacher: isteacher
+                })
+            } 
+        })
         axios.get('get/teacher')
             .then((res) => {
                 this.setState({
@@ -38,34 +49,20 @@ class Teachers extends Component {
     }
 
     render() {
-
-        console.log('teachers', this.state.teachers)
-        if (this.state.teachers.length === 1) {
+        // console.log('teachers', this.state.teachers)
+        if (this.state.isTeacher === '') {
             return (
                 <div>
-                    <div style={{ height: '100%' }}>
-                        <Nav log={this.state.Loggedin} />
-                    </div>
-                    <form className='container'>
-                        < Search className='teacherSearch' search={this.searchTeacher} />
-                        <div className="card">
-                            <img className='teacherPic' src={this.state.teachers[0].image} />
-                            <div className="container">
-                                <h4><b>{this.state.teachers[0].firstname} {this.state.teachers[0].lastname}</b></h4>
-                                <p> {this.state.teachers[0].major}</p>
-                                {/* <Link to={{ pathname: '/teacher', state: { teacher: teacher } }} type="submit" className="btn btn-primary">Profile</Link> */}
-                                <br />
-                            </div>
-                        </div>
-                    </form>
+                    <br/>
+                    <h1>Loading.......</h1>
                 </div>
-
-            )
-        } else {
+              )
+        }
+        if (!this.state.isTeacher){
             return (
                 <div>
                     <div style={{ height: '100%' }}>
-                        <Nav log={this.state.Loggedin} />
+                        <Nav/>
                     </div>
                     <div className='teacherSearch'>
                         < Search search={this.searchTeacher} />
