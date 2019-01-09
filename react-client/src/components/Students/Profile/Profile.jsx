@@ -187,20 +187,22 @@ class Profile extends Component {
 								console.log('this.state.infoDB', this.state.infoDB);
 								console.log('this.state.infoForm', this.state.infoForm);
 
-								this.setState({forceRender: true})
+								this.setState({
+									forceRender: true,
+								})
 
 							} else {
 
 							}
 						})
-						.catch(error => {
+						.catch(postError => {
 							console.log('<<<<<<<<<<<<<<<<');
 							console.log('Error:');
 							console.log('@ >> Sharik/react-client/src/components/Students/Profile/Profile.jsx');
 							console.log('@ >> componentDidMount()');
 							console.log('@ >> axios.post(/S_Get_User_Info)');
 							console.log('Response Error msg:');
-							console.log(error);
+							console.log(postError);
 							console.log('>>>>>>>>>>>>>>>>');
 						})
 
@@ -210,25 +212,25 @@ class Profile extends Component {
 
 				}
 			})
-			.catch(error => {
+			.catch(getError => {
 				console.log('<<<<<<<<<<<<<<<<');
 				console.log('Error:')
 				console.log('@ >> Sharik/react-client/src/components/Students/Profile/Profile.jsx');
 				console.log('@ >> componentDidMount()')
 				console.log('@ >> axios.get(\'/auth/checkLogging\').catch');
 				console.log('Response Error msg:')
-				console.log(error)
+				console.log(getError)
 				console.log('>>>>>>>>>>>>>>>>');
 			})
 
 	}
 
 
-	onFormChange = (event, value) => {
-		event.preventDefault();
-		// this.setState({ value });
-		console.log(event, value)
-	};
+	// onFormChange = (event, value) => {
+	// 	event.preventDefault();
+	// 	// this.setState({ value });
+	// 	console.log(event, value)
+	// };
 
 	onFormEdite = () => {
 		this.setState({
@@ -237,7 +239,17 @@ class Profile extends Component {
 	}
 	onFormSubmit = (event) => {
 		event.preventDefault();
+		for (let key in this.state.infoForm) {
+			this.state.infoDB[key] = this.state.infoForm[key];
+		}
 
+		// this.setState({
+		// 	forceRender: true
+		// });
+
+		this.setState({
+			editeProfile: !this.state.editeProfile,
+		})
 
 	}
 
@@ -249,7 +261,6 @@ class Profile extends Component {
 
 	render() {
 		const { classes } = this.props;
-		const { stateX } = this.state;
 		const that = this;
 
 		return (
