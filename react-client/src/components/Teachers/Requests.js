@@ -70,7 +70,6 @@ class Request extends Component {
         console.log('schedule',this.state.schedule)
         return (
             <div>
-<<<<<<< HEAD
             <Nav />
             <div className='container'>
                 <div className="panel">
@@ -96,36 +95,6 @@ class Request extends Component {
                             )}
 
                         </table>
-=======
-                <div style={{ height: '100%' }}>
-                    <Nav/>
-                </div>
-                <div className='container'>
-                    <div className="panel">
-                        <div className="panel-heading ">
-                            <h3 className="panel-title">Your requests</h3>
-                        </div>
-                        <div className="panel-body">
-                            <div className="row">
-                            </div>
-                            <br />
-                            <table className="table table-striped">
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th></th>
-                                </tr>
-                                {this.props.location.state.students.map((student) =>
-                                    <tr id={student._id}>
-                                        <td>{student.firstname}</td>
-                                        <td>{student.email}</td>
-                                        <td><a className="btn btn-success" onClick={this.accept}>Accept</a> <a onClick={this.reject} className="btn btn-danger" >Reject</a></td>
-                                    </tr>
-                                )}
-                            
-                            </table>
-                        </div>
->>>>>>> 6e8a5299a9c4cadbb995de50d3bc0fbd6c1c6a54
                     </div>
                 </div>
                 <br />
