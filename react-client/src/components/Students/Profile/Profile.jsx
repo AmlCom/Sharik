@@ -152,9 +152,7 @@ class Profile extends Component {
 				console.log('>>>>>>>>>>>>>>>>');
 				if (responseGet.data) {
 					console.log('response.data._id', responseGet.data._id);
-					//this.setState({ infoDB: { _id: responseGet.data._id } })
-					console.log('this.state.infoDB', this.state.infoDB);
-
+					this.state.infoDB._id = responseGet.data._id;
 					axios.post('/S_Get_Student_Info', { _id: responseGet.data._id })
 						.then(responsePost => {
 							console.log('<<<<<<<<<<<<<<<<');
