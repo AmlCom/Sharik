@@ -90,5 +90,14 @@ router.post('/comment', function (req, res, next) {
   }).catch(next)
 });
 
+router.post('/schedule', function (req, res, next) {
+  console.log('req.body',req.body)
+  Teacher.findOneAndUpdate({'firstname':req.body.teacher},{'acceptedRequests':req.body.student}).then(function (teacher) {
+    console.log('teacheer',teacher)
+    //res.send('hello')
+    res.send(teacher)
+  }).catch(next)
+});
+
 
 module.exports = router
