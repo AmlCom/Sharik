@@ -72,9 +72,9 @@ class Request extends Component {
             <div>
             <Nav />
             <div className='container'>
-                <div className="panel">
+                <div className="panel requestTable">
                     <div className="panel-heading ">
-                        <h3 className="panel-title">Your requests</h3>
+                        <h3 className="panel-title">Your requests:</h3>
                     </div>
                     <div className="panel-body">
                         <div className="row">
@@ -90,10 +90,12 @@ class Request extends Component {
                                 <tr id={student._id}>
                                     <td>{student.firstname}</td>
                                     <td>{student.email}</td>
-                                    <td><a className="btn btn-success" onClick = {()=>{this.accept(student.firstname,student._id,student.email)}}  >Accept</a> <a onClick = {()=>{this.reject(student._id)}} className="btn btn-danger" >Reject</a></td>
+                                    <td>
+                                        <button className="btn btnAccept"><a onClick = {()=>{this.accept(student.firstname,student._id,student.email)}}>Accept</a></button>
+                                        <button className="btn btnReject"><a onClick = {()=>{this.reject(student._id)}}>Reject</a></button> 
+                                    </td>
                                 </tr>
                             )}
-
                         </table>
                     </div>
                 </div>
@@ -101,7 +103,6 @@ class Request extends Component {
             </div>
             </div>
         )
-
     }
 }
 
