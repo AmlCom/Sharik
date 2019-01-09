@@ -20,24 +20,29 @@ class Profile extends Component {
             info: "",
             price: "",
             studentList: [],
-            requestsNumber: 0
+            requestsNumber: 0,
+            comments: '',
+            lectures:'',
+            schedule:''
         }
     }
 
     componentDidMount() {
         axios.get('/auth/checkLogging').
             then((response) => {
-                console.log('hello world')
                 if (response.data.email) {
                     user = response.data.firstname
                     this.setState({
-                        teacherName:response.data.firstname
+                        teacherName:response.data.firstname,
+                        comments : response.data.comments.length,
+                        lectures : response.data.video.length,
+                        schedule : response.data.acceptedRequests.length
+
                     })
                     //get authorized teacher from the database
 
                     axios.post('/get/specTeacher', { name: user })
                         .then((res) => {
-                            console.log('resppp', res.data)
                             this.setState({
                                 image: res.data.image
                             })
@@ -54,7 +59,6 @@ class Profile extends Component {
             })
 
         axios.get('/teacher').then((res) => {
-            console.log("res", res);
             this.setState({
                 image: res.data[0].image,
                 teacherName: res.data[0].teacherName,
@@ -72,8 +76,6 @@ class Profile extends Component {
                 studentList: res.data 
             })
         })
-
-        
     }
 
 
@@ -126,17 +128,17 @@ class Profile extends Component {
                             </div>
                             <div className='col-md-2'>
                                 <a href="./comments" className="mainLinks list-group-item justify-content-between">
-                                    <h5 className='dashbored'>Comments</h5><span className="badge badge-primary number">2</span>
+                                    <h5 className='dashbored'>Comments</h5><span className="badge badge-primary number">{this.state.comments}</span>
                                 </a>
                             </div>
                             <div className='col-md-2'>
                                 <a href="./lectures" className="mainLinks list-group-item justify-content-between">
-                                   <h5 className='dashbored'>Lectures</h5><span className="badge badge-primary number">1</span>
+                                   <h5 className='dashbored'>Lectures</h5><span className="badge badge-primary number">{this.state.lectures}</span>
                                 </a>
                             </div>
                             <div className='col-md-2'>
                             <Link to={{ pathname: '/schedule', state: { students: this.state.studentList} }} className="mainLinks list-group-item justify-content-between">
-                              <h5 className='dashbored'>Schedule</h5><span class="badge badge-primary number">{this.state.requestsNumber}</span>
+                              <h5 className='dashbored'>Schedule</h5><span class="badge badge-primary number">{this.state.schedule}</span>
                               </Link>
                             </div>
 
