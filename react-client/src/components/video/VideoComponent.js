@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Video from "twilio-video";
+import Nav from '../Nav'
 
 
 export default class VideoComponent extends Component {
@@ -173,20 +174,21 @@ export default class VideoComponent extends Component {
 
     render() {
         console.log('state',this.activeRoom)
+        
         return (
             <div>
+                <Nav />
                 <div id="remote-media"></div>
                 <div id="controls">
                     <div id="preview">
-                        <p className="instructions">Hello</p>
                         <div ref="localMedia" id="local-media"></div>
-                        <button ref="buttonPreview" id="button-preview">Preview My Camera</button>
+                        <button ref="buttonPreview" id="button-preview">Review Your Camera</button>
                     </div>
                     <div ref="roomControls">
                         <p className="instructions">Room Name:</p>
-                        <input ref="roomName" id="room-name" type="text" placeholder="Enter a room name" />
-                        <button ref="buttonJoin" id="button-join">Join Room</button>
-                        <button ref="buttonLeave" id="button-leave">Leave Room</button>
+                        <input ref="roomName" id="room-name" type="text" value = 'room1' placeholder="Enter a room name"  />
+                        <button ref="buttonJoin" id="button-join">Call</button>
+                        <button ref="buttonLeave" id="button-leave">Cancel</button>
                     </div>
                     <div ref="log" id="log"></div>
                 </div>

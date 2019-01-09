@@ -17,7 +17,7 @@ import Dashboard from './Dashboard/Dashboard.jsx';
 import SubjectsList from './SubjectsList/SubjectsList.jsx';
 import AddSubject from './AddSubject/AddSubject.jsx';
 import Profile from './Profile/Profile.jsx';
-import MySchedule from './MySchedule/MySchedule.jsx';
+import MySchedule from './MySchedule/MySchedule.js';
 import MyPayments from './MyPayments/MyPayments.jsx';
 import Teachers from '../Teachers/Teachers'
 import Button from '@material-ui/core/Button';
@@ -116,7 +116,7 @@ class Student extends Component {
                                             <Button color="inherit"><Link to='/Student/SubjectsList'>Subjects List</Link></Button>
                                             <Button color="inherit"><Link to='/Student/AddSubject'>Add Subject</Link></Button>
                                             <Button color="inherit"><Link to='/Student/Profile'>Profile</Link></Button>
-                                            <Button color="inherit"><Link to='/Student/MySchedule'>MySchedule</Link></Button>
+                                            <Button color="inherit"><Link to='/studentchedule'>MySchedule</Link></Button>
                                             <Button color="inherit"><Link to='/Student/MyPayments'>MyPayments</Link></Button>
                                             <Button color="inherit"><Link to='/Teachers'>Teachers List</Link></Button>
                                             <Switch>
@@ -124,7 +124,7 @@ class Student extends Component {
                                                 <Route path='/Student/SubjectsList' exact component={SubjectsList} />
                                                 <Route path='/Student/AddClass' exact component={AddSubject} />
                                                 <Route path='/Student/Profile' exact component={Profile} />
-                                                <Route path='/Student/MySchedule' exact component={MySchedule} />
+                                                <Route path='/studentchedule' exact component={MySchedule} />
                                                 <Route path='/Student/MyPayments' exact component={MyPayments} />
                                                 <Route path='/Teachers' exact component={Teachers} />
                                             </Switch>
