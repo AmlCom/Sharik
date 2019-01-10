@@ -318,7 +318,7 @@ class Profile extends Component {
 		storage.ref('images').child(image.name).getDownloadURL().then(url => {
 			console.log('url', url)
 			var obj = { name: this.state.user, image: url }
-			axios.post('get/updateTeacherProfile', obj)
+			axios.post('/student/updateStudentProfile', obj)
 				.then((res) => {
 					this.setState({
 						image: res.data.image

@@ -27,5 +27,17 @@ router.post('/addStudent', (req, res) => {
         }
     })
   })
+
+  //update profile picture of the student
+  router.post('/updateStudentProfile', function (req, res, next) {
+    //console.log('yaya is here')
+    console.log('yaya is here',req.body)
+    console.log('image',req.body.image)
+    // Teacher.findOneAndUpdate({'firstname':req.body.name},{'image':req.body.image}).then(function (teacher) {
+    //   console.log('teacheer',teacher)
+    //   //res.send('hello')
+    //   res.send(teacher)
+    // }).catch(next)
+  });
   
 module.exports = router;
