@@ -67,16 +67,11 @@ router.post('/addVideoLecture', function (req, res, next) {
 router.post('/ratingTeacher', function(req, res, next) {
   console.log('-------you reached mustafa--------',req.body)
 
-<<<<<<< HEAD
-console.log('rating helllo rating', req.body.name,req.body.rating)
-Teacher.findOneAndUpdate({'firstname':req.body.name},{'rating':req.body.rating}).then(function (teacher) {
-=======
 console.log('rating helllo rating', req.body.name)
 console.log('rating',req.body.rating)
 console.log('count',req.body.count)
 res.send('hello world')
 Teacher.findOneAndUpdate({'firstname':req.body.name},{'rating':req.body.rating},{'rateCount':req.body.count}).then(function (teacher) {
->>>>>>> 5a6eaf02a49c44a277422211c163db86f43bea35
   console.log('teacheer',teacher)
   //res.send('hello')
   res.send(teacher)
