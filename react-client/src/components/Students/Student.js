@@ -111,21 +111,23 @@ class Student extends Component {
 
                                 <BrowserRouter>
                                     <div className="App">
-                                        <div style={{marginTop:'30px'}}>
-                                            <Button color="inherit"><Link to='/Student/' style={{ textDecoration: 'none'}}>Dashboard</Link></Button>
-                                            <Button color="inherit"><Link to='/Student/SubjectsList' style={{ textDecoration: 'none'}}>Subjects List</Link></Button>
-                                            <Button color="inherit"><Link to='/Student/AddSubject'style={{ textDecoration: 'none'}}>Add Subject</Link></Button>
-                                            <Button color="inherit"><Link to='/Student/Profile' style={{ textDecoration: 'none'}}>Profile</Link></Button>
-                                            <Button color="inherit"><Link to='/studentchedule' style={{ textDecoration: 'none'}}>MySchedule</Link></Button>
-                                            <Button color="inherit"><Link to='/Student/MyPayments'style={{ textDecoration: 'none'}} >MyPayments</Link></Button>
-                                            <Button color="inherit"><Link to='/Teachers' style={{ textDecoration: 'none'}}>Teachers List</Link></Button>
+                                        <div>
+                                            <Button color="inherit"><Link to='/student'>Dashboard</Link></Button>
+                                            <Button color="inherit"><Link to='/SubjectsList'>Subjects List</Link></Button>
+                                            <Button color="inherit"><Link to='/AddSubject'>Add Subject</Link></Button>
+                                            <Button color="inherit"><Link to='/Profile'>Profile</Link></Button>
+                                            <Button color="inherit"><Link to='/MySchedule'>MySchedule</Link></Button>
+                                            <Button color="inherit"><Link to='/MyPayments'>MyPayments</Link></Button>
+                                            <Button color="inherit"><Link to='/Teachers'>Teachers List</Link></Button>
+                                            
+
                                             <Switch>
-                                                <Route path='/Student/' exact component={Dashboard} />
-                                                <Route path='/Student/SubjectsList' exact component={SubjectsList} />
-                                                <Route path='/Student/AddClass' exact component={AddSubject} />
-                                                <Route path='/Student/Profile' exact component={Profile} />
+                                                <Route path='/student/' exact component={Dashboard} />
+                                                <Route path='/SubjectsList' exact component={SubjectsList} />
+                                                <Route path='/AddClass' exact component={AddSubject} />
+                                                <Route path='/Profile' exact component={Profile} />
                                                 <Route path='/studentchedule' exact component={MySchedule} />
-                                                <Route path='/Student/MyPayments' exact component={MyPayments} />
+                                                <Route path='/MyPayments' exact component={MyPayments} />
                                                 <Route path='/Teachers' exact component={Teachers} />
                                             </Switch>
                                         </div>
