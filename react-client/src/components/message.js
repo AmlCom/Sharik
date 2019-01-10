@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-//import {render} from 'react-dom'
+import {render} from 'react-dom'
 import {Launcher} from 'react-chat-window'
 import axios from 'axios'
  
@@ -9,12 +9,11 @@ class Message extends Component {
     super();
     this.state = {
     //  messageList: messageHistory
-    messageList:['hello yahya','hhh','kkkk']
+    messageList:[]
     };
   }
 
   componentDidMount() {
-      
     axios.get('/auth/checkLogging').
     then((res) => {
         console.log('response',res.data)
@@ -46,6 +45,17 @@ class Message extends Component {
       axios.post('/message/message',this.props.location.state.detail)
       .then((res) => {
           console.log('yahyrees',res)
+
+          axios.post('/message/allmessages',this.props.location.state.detail)
+          .then((res) => {
+              console.log('all messages',res)
+              this.setState({
+                  messageList:res.data.messagesTeacherStudent
+              })
+          })
+          .catch((err) => {
+              console.log(err)
+          })
       })
       .catch((err) => {
           console.log(err)

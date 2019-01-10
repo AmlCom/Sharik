@@ -1,0 +1,17 @@
+.videoCallBtn {
+    background-color: rgb(49, 164, 221);
+    padding: 6px 30px;
+    color: white;
+}
+
+.videoDeleteBtn {
+        background-color : rgb(211, 16, 51);
+        margin-left: 20px;
+        padding: 6px 30px;
+        color: white;
+}
+
+
+.card-header {
+    background-color: rgb(49, 164, 221);
+}

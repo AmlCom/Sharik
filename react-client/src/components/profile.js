@@ -21,9 +21,9 @@ class Profile extends Component {
             price: "",
             studentList: [],
             requestsNumber: 0,
-            comments: '',
-            lectures:'',
-            schedule:''
+            comments: 0,
+            lectures:0,
+            schedule:0 
         }
     }
 

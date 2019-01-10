@@ -235,9 +235,11 @@ app.post('/accept', (req, res) => {
     })
 })
 
+// Student :
+
+var SerEx_DB_MongoDB_Students = require('./Students/SerEx_DB_MongoDB_Students.js')
 
 // Student - Get One Student Info:
-var SerEx_DB_MongoDB_Students = require('./Students/SerEx_DB_MongoDB_Students.js')
 app.post('/S_Get_Student_Info', function (request, response) {
     console.log('<<<<<<<<<<<<<<<<');
     console.log('Data:');
@@ -276,7 +278,6 @@ app.post('/S_Get_Student_Info', function (request, response) {
 
 
 // Student - Set (Update) One Student Info:
-var SerEx_DB_MongoDB_Students = require('./Students/SerEx_DB_MongoDB_Students.js')
 app.post('/S_Set_Student_Info', function (request, response) {
     console.log('<<<<<<<<<<<<<<<<');
     console.log('Data:');
@@ -310,7 +311,6 @@ app.post('/S_Set_Student_Info', function (request, response) {
         console.log('>>>>>>>>>>>>>>>>');
         response.end(JSON.stringify(updateOneStudentsQueryResulte));
     });
-
 });
 
 

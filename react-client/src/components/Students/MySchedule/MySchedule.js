@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import Nav from '../../Nav'
+import './MySchedule.css'
 
 class MySchedule extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			messages:null
+			messages:null,
+			studentId:null
 		}
 	}
 
 	componentDidMount() {
 		axios.get('/auth/checkLogging').
 			then((res) => {
-				console.log('kkk', res.data.messages)
+				console.log('kkk', res.data)
 				this.setState({
-					messages: res.data.messages
+					messages: res.data.messages,
+					studentId:res.data._id
 				})
 			})
 			.catch((err) => {
@@ -31,6 +34,21 @@ class MySchedule extends Component {
 			}
 		}
 		console.log('after delete', this.state.messages)
+	}
+
+	messageClicked = (teacherName) => {
+		console.log('yy',teacherName)
+		axios.post('/get/specTeacher',{name:teacherName})
+		.then((res) => {
+			console.log('messageiscli',res.data._id)
+            this.props.history.push({
+                pathname: '/message',
+                state: { detail: {studentid:this.state.studentId,teacherid:res.data._id} }
+              })
+		})
+		.catch((err) => {
+			console.log(err)
+		})
 	}
 
 	render() {
@@ -52,14 +70,16 @@ class MySchedule extends Component {
 
 					 if(accepted === 'accepted'){
 						return (
-							<div className=''>
-								<ul className=''><span></span>
+							<div className='container'>
+								<ul className=''>
 									<li >
 										<li className="card commentsCard" >
 											<h5 className="card-header">{teacher} </h5>
 											<div className="card-body">
 												<p className="card-text">{message}</p>
-												<button ref="buttonJoin" id="button-join">Call</button>
+												<button className ='videoCallBtn' ref="buttonJoin" id="button-join">Call</button>
+												<button className ='videoCallBtn' ref="buttonJoin" id="button-join" 
+												onClick = {() => {this.messageClicked(teacher)}}>Message</button>
 											</div>
 										</li>
 									</li>
@@ -69,14 +89,14 @@ class MySchedule extends Component {
 					 }else {
 						return (
 							
-							<div className=''>
-								<ul className=''><span></span>
+							<div className='container'>
+								<ul className=''>
 									<li >
 										<li className="card commentsCard" >
 											<h5 className="card-header">{teacher} </h5>
 											<div className="card-body">
 												<p className="card-text">{message}</p>
-												<button ref="buttonJoin" id="button-join" 
+												<button className ='videoDeleteBtn'ref="buttonJoin" id="button-join" 
 												onClick = {() =>{this.deleteClicked(teacher+' '+message)}}
 												>Delete</button>
 											</div>
