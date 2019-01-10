@@ -42,7 +42,7 @@ class MySchedule extends Component {
 		.then((res) => {
 			console.log('messageiscli',res.data._id)
             this.props.history.push({
-                pathname: '/message',
+                pathname: '/video',
                 state: { detail: {studentid:this.state.studentId,teacherid:res.data._id} }
               })
 		})
@@ -77,9 +77,8 @@ class MySchedule extends Component {
 											<h5 className="card-header">{teacher} </h5>
 											<div className="card-body">
 												<p className="card-text">{message}</p>
-												<button className ='videoCallBtn' ref="buttonJoin" id="button-join">Call</button>
 												<button className ='videoCallBtn' ref="buttonJoin" id="button-join" 
-												onClick = {() => {this.messageClicked(teacher)}}>Message</button>
+												onClick = {() => {this.messageClicked(teacher)}}>Message/Call</button>
 											</div>
 										</li>
 									</li>
