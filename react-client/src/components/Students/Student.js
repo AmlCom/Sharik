@@ -119,7 +119,7 @@ class Student extends Component {
                                             <Button color="inherit"><Link to='/student'>Dashboard</Link></Button>
                                             <Button color="inherit"><Link to='/SubjectsList'>Subjects List</Link></Button>
                                             <Button color="inherit"><Link to='/AddSubject'>Add Subject</Link></Button>
-                                            <Button color="inherit"><Link to='/Profile1'>Profile</Link></Button>
+                                            <Button color="inherit"><Link to='/Profile'>Profile</Link></Button>
                                             <Button color="inherit"><Link to='/MySchedule'>MySchedule</Link></Button>
                                             <Button color="inherit"><Link to='/MyPayments'>MyPayments</Link></Button>
                                             <Button color="inherit"><Link to='/Teachers'>Teachers List</Link></Button>
