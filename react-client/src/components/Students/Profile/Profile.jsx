@@ -131,6 +131,7 @@ class Profile extends Component {
 				phonenumber: '',
 				bio: '',
 				imageData: {},
+				image:''
 			},
 
 			editeProfile: true,
@@ -284,6 +285,35 @@ class Profile extends Component {
 	// 	console.log(e.target.result, file);
 	// 	console.log(this.imageData)
 	// }
+	uploadImage = (e) => {
+        //console.log('check hello', hello)
+        this.setState({
+            image: e.target.files[0]
+        })
+	}
+	submitImage = () => {
+	var image = this.state.image
+	const uploadTask = storage.ref(`images/${image.name}`).put(image)
+	uploadTask.on('state_changed', (snapshot) => {
+
+	}, (error) => {
+		console.log(error)
+	}, () => {
+		storage.ref('images').child(image.name).getDownloadURL().then(url => {
+			console.log('url', url)
+			var obj = { name: user, image: url }
+			axios.post('get/updateTeacherProfile', obj)
+				.then((res) => {
+					this.setState({
+						image: res.data.image
+					})
+				})
+				.catch((err) => {
+					console.log(err)
+				})
+		})
+	});
+}
 
 	render() {
 		const { classes } = this.props;
@@ -316,7 +346,18 @@ class Profile extends Component {
 									</CardContent>
 								</CardActionArea>
 								<CardActions>
+									
+								<div className="input-group mb-3">
+                                <div className="custom-file">
+                                    <input type="file" className="custom-file-input" id="inputGroupFile02" onChange={this.uploadImage} />
+                                    <label className="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
+                                </div>
+                                <div className="input-group-append">
+                                    <button className="input-group-text" id="inputGroupFileAddon02" onClick={this.submitImage}>Upload</button>
+                                </div>
+                            </div>
 									<Button size="small"
+										type='file'
 										color="primary"
 										onClick={that.onFormEdite}
 									>
@@ -450,3 +491,4 @@ Profile.propTypes = {
 };
 
 export default withStyles(styles)(Profile);
+
