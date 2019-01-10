@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import { Link, BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Redirect } from 'react-router-dom'
+import './Student.css'
 
 // AXIOS GET /POST:
 // ---------
@@ -18,7 +19,7 @@ import Dashboard from './Dashboard/Dashboard.jsx';
 import SubjectsList from './SubjectsList/SubjectsList.jsx';
 import AddSubject from './AddSubject/AddSubject.jsx';
 import Profile from './Profile/Profile.jsx';
-// import MySchedule from './MySchedule/MySchedule.jsx';
+import MySchedule from './MySchedule/MySchedule.js';
 import MyPayments from './MyPayments/MyPayments.jsx';
 import Teachers from '../Teachers/Teachers'
 import Teacher from '../Teachers/Teacher'
@@ -85,7 +86,7 @@ class Student extends Component {
                 }
             })
     }
-    
+
     onTabChange = (event, tabID) => {
         this.setState({ tabID });
     };
@@ -96,9 +97,9 @@ class Student extends Component {
 
     render() {
         if (this.state.isTeacher === '') {
-            return(
+            return (
                 <div>
-                    <br/>
+                    <br />
                     <h1>Loading.......</h1>
                 </div>
             )
@@ -108,7 +109,6 @@ class Student extends Component {
                     <div style={{ height: '100%' }}>
                         <Nav />
                     </div>
-                    
 
                         <Grid container spacing={24}>
                             <Grid item xs={12}>
@@ -119,8 +119,8 @@ class Student extends Component {
                                             <Button color="inherit"><Link to='/student'>Dashboard</Link></Button>
                                             <Button color="inherit"><Link to='/SubjectsList'>Subjects List</Link></Button>
                                             <Button color="inherit"><Link to='/AddSubject'>Add Subject</Link></Button>
-                                            <Button color="inherit"><Link to='/Profile'>Profile</Link></Button>
-                                            {/* <Button color="inherit"><Link to='/MySchedule'>MySchedule</Link></Button> */}
+                                            <Button color="inherit"><Link to='/Profile1'>Profile</Link></Button>
+                                            <Button color="inherit"><Link to='/MySchedule'>MySchedule</Link></Button>
                                             <Button color="inherit"><Link to='/MyPayments'>MyPayments</Link></Button>
                                             <Button color="inherit"><Link to='/Teachers'>Teachers List</Link></Button>
                                             
@@ -130,7 +130,7 @@ class Student extends Component {
                                                 <Route path='/SubjectsList' exact component={SubjectsList} />
                                                 <Route path='/AddClass' exact component={AddSubject} />
                                                 <Route path='/Profile' exact component={Profile} />
-                                                {/* <Route path='/MySchedule' exact component={MySchedule} /> */}
+                                                <Route path='/MySchedule' exact component={MySchedule} />
                                                 <Route path='/MyPayments' exact component={MyPayments} />
                                                 <Route path='/Teachers' exact component={Teachers} />
                                                 <Route path='/Teacher' exact component={Teacher} />
@@ -138,20 +138,17 @@ class Student extends Component {
                                             </Switch>
                                         </div>
                                     </div>
-
                                 </BrowserRouter>
-
-
                             </Grid>
                         </Grid>
-                </div>
-            )
+                    </div>  
+                 )
         } else {
-            return( 
+            return (
                 <Redirect to="/profile" />
             )
         }
-        
+
     }
 }
 
