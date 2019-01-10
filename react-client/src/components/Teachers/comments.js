@@ -2,13 +2,10 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Nav from '../Nav'
 import './Teacher.css'
-import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import LockIcon from '@material-ui/icons/LockOutlined';
@@ -71,7 +68,6 @@ class Comments extends Component {
         axios.get('/auth/checkLogging').
             then((x) => {
                 if (x.data) {
-                    console.log(this)
                     this.setState({
                         Loggedin: true,
                         image: x.data.image,
@@ -85,7 +81,6 @@ class Comments extends Component {
                 }
             })
         axios.get('/teacher').then((res) => {
-            console.log("res", res);
             this.setState({
                 image: res.data[0].image,
                 teacherName: res.data[0].teacherName,
@@ -93,11 +88,9 @@ class Comments extends Component {
                 info: res.data[0].info,
                 price: res.data[0].price
             })
-
         }).catch((err) => {
             console.log('hi', err)
         })
-
     }
 
 
@@ -121,10 +114,7 @@ class Comments extends Component {
 
             axios.post('/auth/signin', check)
                 .then(response => {
-                    console.log('ert', response.data)
                     if (response.data) {
-                        console.log('ezvfdgf')
-
                         this.setState({
                             Loggedin: true
                         })
@@ -175,18 +165,13 @@ class Comments extends Component {
                                     <InputLabel htmlFor="password">Password</InputLabel>
                                     <Input name="password" type="password" id="password" autoComplete="current-password" onChange={this.handleChange} />
                                 </FormControl>
-                                {/* <FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
-                            label="Remember me"
-                        /> */}
                                 <Button
                                     fullWidth
                                     variant="contained"
                                     color="primary"
                                     className={classes.submit}
                                     onClick={this.handleSubmit}
-                                >
-                                    Sign in
+                                > Sign in
                         </Button>
                             </form>
                             <a href="/auth/google"><button className={'btn btn-success'}>Sign In with Google</button></a>
@@ -224,9 +209,7 @@ class Comments extends Component {
                                         <h3>Comments</h3>
                                     </div>
                                 </div>
-
                                 <br />
-
                                 {this.state.comments.map((comment) => {
                                     return (
                                         <div className='userComment'>
@@ -242,11 +225,7 @@ class Comments extends Component {
                                             </ul>
                                         </div>
                                     )
-
-
                                 })}
-
-
                             </div>
                         </div>
                     </div >

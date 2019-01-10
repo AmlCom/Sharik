@@ -14,17 +14,16 @@ class Teacher extends Component {
             info: "",
             price: "",
             student_id: '',
-            previousComments:null,
+            previousComments: null,
             comment: '',
             studentName: ''
         }
     }
 
     componentDidMount() {
-      
+
         axios.get('/auth/checkLogging').
             then((x) => {
-                console.log('321', x.data);
                 if (x.data) {
                     console.log(this)
                     this.setState({
@@ -34,7 +33,6 @@ class Teacher extends Component {
                 }
             })
         axios.get('/teacher').then((res) => {
-            console.log("res", res);
             this.setState({
                 image: res.data[0].image,
                 teacherName: res.data[0].teacherName,
@@ -44,9 +42,8 @@ class Teacher extends Component {
             })
 
         }).catch((err) => {
-            console.log('hi', err)
+            console.log('err', err)
         })
-
 
         axios.post('/get/specTeacher', { name: this.props.location.state.teacher.firstname })
             .then((res) => {
@@ -78,8 +75,6 @@ class Teacher extends Component {
     }
 
     submitComment = () => {
-        console.log('kkkkkk', this.props.location.state.teacher.comments)
-
         if (this.state.comment === '') {
             console.log('please write comment')
         } else {
@@ -97,14 +92,10 @@ class Teacher extends Component {
                 }
             }
             if (!made) {
-
                 let comments = this.state.previousComments
-                console.log('comments', comments)
-
                 comments.push(obj)
                 axios.post('/get/comment', { comment: comments })
                     .then((res) => {
-                        console.log('from ', res)
                         this.setState({
                             comment: res.data.comments
                         })
@@ -116,63 +107,10 @@ class Teacher extends Component {
             } else {
                 alert('you already made your comment')
             }
-
-
-
-
-
-            // axios.post('/get/specTeacher', { name: this.props.location.state.teacher.firstname })
-            //     .then((res) => {
-            //         console.log('balabalabala', res)
-            //         var made = false
-            //         for (var i = 0; i < res.data.comments.length; i++) {
-            //             if (res.data.comments[i].madeby === this.state.studentName) {
-            //                 made = true
-            //             }
-            //         }
-            //         if (!made) {
-
-            //             let comments = res.data.comments
-
-            //             comments.push(obj)
-            //             axios.post('/get/comment', { comment: comments })
-            //                 .then((res) => {
-            //                     console.log('from ', res)
-            //                     this.setState({
-            //                         comment: res.data.comments
-            //                     })
-            //                 })
-            //                 .catch((err) => {
-            //                     console.log(err)
-            //                 })
-
-            //         } else {
-            //             alert('you already made your comment')
-            //         }
-
-
-            //     })
-            //     .catch((err) => {
-            //         console.log(err)
-            //     })
-
-
-            //  this.props.location.state.teacher.comments.push(obj)
-            //  console.log('afterpush',this.props.location.state.teacher.comments)
-            // axios.post('/get/comment',{comment:this.props.location.state.teacher.comments})
-            // .then((res) => {
-            //     console.log('from ',res)
-            // })
-            // .catch((err) => {
-            //     console.log(err)
-            // })
-
-
         }
     }
 
     render() {
-        console.log('prvcc', this.state.previousComments)
         const { teacher } = this.props.location.state
         if (this.state.previousComments !== null) {
             return (
@@ -195,14 +133,12 @@ class Teacher extends Component {
                                     <Rate teacher={teacher} />
                                 </div>
                             </div>
-
                             <div className="col-md-8 container">
                                 <div className='card-header text-white bg-info'>
                                     <div className='d-flex flex-column bd-highlight mb-0.5'>
                                         <h3>Comments</h3>
                                     </div>
                                 </div>
-
                                 <br />
                                 <div className="input-group mb-3">
                                     <input type="text" class="form-control" placeholder="Write a comment" onChange={this.comment} />
@@ -210,8 +146,6 @@ class Teacher extends Component {
                                         <button className="btn btn-info" type="button" onClick={this.submitComment}>Comment</button>
                                     </div>
                                 </div>
-
-
                                 {this.state.previousComments.map((comment) => {
                                     return (
                                         <div className=''>
@@ -227,8 +161,6 @@ class Teacher extends Component {
                                             </ul>
                                         </div>
                                     )
-
-
                                 })}
                             </div>
                         </div>
@@ -240,7 +172,7 @@ class Teacher extends Component {
             return (
                 <div>
                     <div style={{ height: '100%' }}>
-                        <Nav/>
+                        <Nav />
                     </div>
                     <div className='teacher'>
                         <div className='row '>
@@ -257,14 +189,12 @@ class Teacher extends Component {
                                     <Rate teacher={teacher} />
                                 </div>
                             </div>
-
                             <div className="col-md-8 container">
                                 <div className='card-header text-white bg-info'>
                                     <div className='d-flex flex-column bd-highlight mb-0.5'>
                                         <h3>Comments</h3>
                                     </div>
                                 </div>
-
                                 <br />
                                 <div className="input-group mb-3">
                                     <input type="text" class="form-control" placeholder="Write a comment" onChange={this.comment} />
