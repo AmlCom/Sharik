@@ -70,7 +70,6 @@ class Comments extends Component {
     componentDidMount() {
         axios.get('/auth/checkLogging').
             then((x) => {
-                console.log('yahyaishere', x);
                 if (x.data) {
                     console.log(this)
                     this.setState({
@@ -230,7 +229,7 @@ class Comments extends Component {
 
                                 {this.state.comments.map((comment) => {
                                     return (
-                                        <div className=''>
+                                        <div className='userComment'>
                                             <ul className=''><span></span>
                                                 <li >
                                                     <li className="card commentsCard" >

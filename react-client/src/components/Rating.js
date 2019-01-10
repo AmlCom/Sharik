@@ -16,6 +16,23 @@ class Rate extends React.Component {
       count: 0
     };
   }
+
+  componentDidMount(){
+    this.setState({
+      rating:this.props.teacher.rating
+    })
+    
+    axios.get('/auth/checkLogging').
+    then((x) => {
+        console.log('jjjjj', x.data);
+        
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+    
+}
+
  
   onStarClick(nextValue, prevValue, name) {
     this.setState({rating: nextValue});
@@ -26,10 +43,15 @@ class Rate extends React.Component {
     console.log('mustaf',this.state.rating)
     console.log('mustaf',this.props.teacher.rating )
     console.log('teacher firsname',this.props.teacher.firstname)
-    var count = this.props.teacher.rateCount+1
+    var count = this.props.teacher.rateCount + 1
 
+<<<<<<< HEAD
 
    var rating = Math.floor((this.props.teacher.rating*5+this.state.rating)/(count))
+=======
+   var rating = Math.floor((this.props.teacher.rating*5+this.state.rating)/count)
+   console.log('math.floor', rating)
+>>>>>>> 5a6eaf02a49c44a277422211c163db86f43bea35
 
 
     //axi
@@ -46,6 +68,7 @@ class Rate extends React.Component {
   }
  
   render() {
+    console.log('ayeeyo',this.props.teacher)
     const { rating } = this.state;
     const rate = this.props.teacher.rating
     console.log('yuuaauau',rate)
