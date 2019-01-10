@@ -1,9 +1,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var Teacher = require('../DB/MongoDB/schema/teacherSchema')
 const mongoose = require('mongoose');
 const router = express.Router()
-const Teacher = require('../DB/MongoDB/schema/teacherSchema')
-const signupuser = require('../DB/MongoDB/schema/sharik_db__users_schema.js');
 
 mongoose.Promise = global.Promise;
 
@@ -98,69 +97,5 @@ router.post('/schedule', function (req, res, next) {
   }).catch(next)
 });
 
-
-router.get('/studentList', (req, res) => {
-  Teacher.findOne({ email: req.session.passport.user.email }, (err, teacher) => {
-      if (err) {
-          res.send(err);
-      } else {
-          signupuser.find({ _id: { $in: teacher.User1 } }, (err, studentsList) => {
-              if (err) {
-                  res.send(err);
-              } else {
-                  res.send(studentsList)
-              }
-          })
-      }
-  })
-})
-
-
-router.post('/reject', (req, res) => {
-  Teacher.findOne({ _id: req.session.passport.user._id }, (err, teacher) => {
-      let students = teacher.User1;
-      for (var i = 0; i < students.length; i++) {
-          if (req.body.studentId === String(students[i])) {
-              students.splice(i, 1);
-          }
-      }
-      Teacher.findOneAndUpdate({ _id: req.session.passport.user._id }, { User1: students }, (err, user) => {
-          // res.send(user);
-      })
-  })
-  signupuser.findOne({ _id: req.body.studentId }, (err, student) => {
-      let studentMessage = student.messages;
-      studentMessage.push(`${req.session.passport.user.firstname} has refused your request`);
-      signupuser.findOneAndUpdate({ _id: req.body.studentId }, { messages: studentMessage }, (err, user) => {
-          res.send('finally');
-      })
-  })
-})
-
-router.post('/accept', (req, res) => {
-  Teacher.findOne({ _id: req.session.passport.user._id }, (err, teacher) => {
-      let students = teacher.User1;
-      for (var i = 0; i < students.length; i++) {
-          if (req.body.studentId === String(students[i])) {
-              students.splice(i, 1);
-          }
-      }
-      Teacher.findOneAndUpdate({ _id: req.session.passport.user._id }, { User1: students }, (err, user) => {
-          // res.send(user);
-      })
-  })
-  signupuser.findOne({ _id: req.body.studentId }, (err, student) => {
-      let studentMessage = student.messages;
-      studentMessage.push(`${req.session.passport.user.firstname} has accepted your request`);
-      signupuser.findOneAndUpdate({ _id: req.body.studentId }, { messages: studentMessage }, (err, user) => {
-          res.send('finally');
-      })
-  })
-})
-
-router.post('/send', (req, res) => {
-  console.log('finish', req.body);
-  res.end();
-})
 
 module.exports = router

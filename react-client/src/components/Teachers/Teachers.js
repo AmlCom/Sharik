@@ -24,7 +24,7 @@ class Teachers extends Component {
                 })
             } 
         })
-        axios.get('/get/teacher')
+        axios.get('get/teacher')
             .then((res) => {
                 this.setState({
                     teachers: res.data
@@ -74,7 +74,7 @@ class Teachers extends Component {
                                 <div className="container">
                                     <h4><b>{teacher.firstname} {teacher.lastname}</b></h4>
                                     <p>{teacher.major}</p>
-                                    <Link to={{ pathname: '/Teacher', state: { teacher: teacher } }} type="submit" className="btnProfile">Profile</Link>
+                                    <Link to={{ pathname: '/teacher', state: { teacher: teacher } }} type="submit" className="btnProfile">Profile</Link>
                                     <br />
                                     <br />
                                 </div>
