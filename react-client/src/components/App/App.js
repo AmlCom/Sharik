@@ -22,6 +22,8 @@ import Comments from '../Teachers/comments'
 import Schedule from '../Teachers/schedule'
 import MySchedule from '../Students/MySchedule/MySchedule'
 import Message from '../message'
+import Profile1 from '../Students/Profile/Profile.jsx';
+
 
 
 
@@ -59,6 +61,8 @@ class App extends Component {
               <Route path='/schedule' exact component={Schedule} />
               <Route path='/studentchedule' exact component={MySchedule} />
               <Route path='/message' exact component={Message} />
+              <Route path='/Profile1' exact component={Profile1} />
+
 
               {/* <Route path='/Rating' exact component={Rate}/> */}
             </Switch>

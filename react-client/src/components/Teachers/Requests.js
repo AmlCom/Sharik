@@ -113,4 +113,3 @@ class Request extends Component {
 }
 
 export default Request;
-
