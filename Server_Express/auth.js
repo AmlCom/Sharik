@@ -11,7 +11,6 @@ const bcrypt = require("bcrypt-nodejs");
 
 
 passport.serializeUser(function(user, done) {
-  console.log('DSA', user);
   done(null, user);
 });
 
@@ -91,8 +90,6 @@ router.post('/signup', (req, res) => {
 router.post('/signin',
 passport.authenticate('local'),
 (req, res) => {
-  console.log('hey')
-  // console.log('dtrt', req.session)
   res.send(req.session)
 }
 );
@@ -124,6 +121,59 @@ router.get('/logout', (req, res, next) => {
   req.session = null;
   res.redirect('/');
 });
+
+router.post('/isStudent', (req, res) => {
+  // console.log('eret', req.body);
+  if (req.body.isStudent === 'Teacher') {
+      Teacher.findOne({ email: req.session.passport.user.email }, function (err, user) {
+          if (err) {
+              res.send(err);
+          } else if (user) {
+              console.log('Already exist', user);
+              res.end();
+          } else {
+              const newUser = new Teacher();
+              newUser.firstname = req.session.passport.user.firstname;
+              newUser.email = req.session.passport.user.email;
+              newUser.imageURL = req.session.passport.user.imageURL;
+              newUser.isTeacher = true;
+              newUser.save((err, newuser) => {
+                  if (err) {
+                      console.log('error', err);
+                      res.end();
+                  } else {
+                      res.end();
+                  }
+              })
+          }
+      })
+  } else if (req.body.isStudent === 'Student') {
+      signupuser.findOne({ email: req.session.passport.user.email }, function (err, user) {
+          if (err) {
+              res.send(err);
+          } else if (user) {
+              console.log('Already existy', user);
+              res.end();
+          } else {
+              const newUser = new signupuser();
+              // newUser.generalId = req.session.passport.user.generalId;
+              newUser.firstname = req.session.passport.user.firstname;
+              newUser.email = req.session.passport.user.email;
+              newUser.imageURL = req.session.passport.user.imageURL;
+              newUser.isTeacher = false;
+              newUser.save((err, newuser) => {
+                  if (err) {
+                      return res.end();
+                  } else {
+                      res.end();
+                  }
+              })
+          }
+      })
+  } else {
+      res.end();
+  }
+})
 
 
 module.exports = router;

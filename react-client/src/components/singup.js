@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 import Nav from './Nav'
+import $ from 'jquery'
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -121,7 +122,14 @@ class Singup extends Component {
       }  
   }
   
-            
+    trigger = () => {
+      if (this.state.profession === '') {alert('profession cannot be empty'); 
+      } else {
+        localStorage.setItem('googleProf', this.state.profession)
+        $('#GG').attr('href', '/auth/google')
+        $('#GG').click();
+      }
+    }       
 
     render(){
       const { classes } = this.props; 
@@ -183,8 +191,8 @@ class Singup extends Component {
               Sign up
             </Button>
           </form>
-          <a href="/auth/google" ><button className={'btn btn-success'}>Sign In with Google</button></a>
-          <a href="/auth/facebook" ><button className={'btn btn-danger'}>Sign In with Facebook</button></a>
+          <a onClick={this.trigger} id="GG"><button style={{'backgroundColor':'#ea4335', 'color':'white', 'width': '350px', 'margin':'10px'}} className={'btn'}><i  className="fab fa-google-plus-g"></i> Signup  With Google</button></a>
+          <a href="/auth/facebook"><button style={{'backgroundColor':'#3b5998', 'color':'white', 'width': '350px', 'margin':'px'}} className={'btn'}> <i className="fab fa-facebook-square"></i> Signup With Facebook</button></a>
         </Paper>
       </main>
     </div>
