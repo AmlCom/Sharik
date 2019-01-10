@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import $ from 'jquery';
 import Nav from '../Nav'
+import {Link} from 'react-router-dom';
 
 
 class Request extends Component {
@@ -27,7 +28,7 @@ class Request extends Component {
     }
     accept = (firstname, id, email) => {
         let studentId = id;
-        axios.post('/accept', { studentId: studentId })
+        axios.post('/get/accept', { studentId: studentId })
             .then((res) => {
                 $(`#${studentId}`).hide();
             })
@@ -51,7 +52,7 @@ class Request extends Component {
 
     reject = (id) => {
         let studentId = id;
-        axios.post('/reject', { studentId: studentId })
+        axios.post('/get/reject', { studentId: studentId })
             .then((res) => {
                 $(`#${studentId}`).hide();
             })

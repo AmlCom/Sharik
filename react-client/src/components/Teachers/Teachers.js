@@ -14,15 +14,17 @@ class Teachers extends Component {
 
     componentDidMount() {
         axios.get('/auth/checkLogging').
-            then((x) => {
-                if (x.data.email) {
-                    var isteacher = x.data.isTeacher
-                    this.setState({
-                        isTeacher: isteacher
-                    })
-                }
-            })
-        axios.get('get/teacher')
+        then((x) => {
+            console.log('356', x.data);
+            if (x.data.email) {
+                var isteacher = x.data.isTeacher
+                // console.log('yahya',yahya)
+                this.setState({
+                    isTeacher: isteacher
+                })
+            } 
+        })
+        axios.get('/get/teacher')
             .then((res) => {
                 this.setState({
                     teachers: res.data
@@ -72,7 +74,7 @@ class Teachers extends Component {
                                 <div className="container">
                                     <h4><b>{teacher.firstname} {teacher.lastname}</b></h4>
                                     <p>{teacher.major}</p>
-                                    <Link to={{ pathname: '/teacher', state: { teacher: teacher } }} type="submit" className="btnProfile">Profile</Link>
+                                    <Link to={{ pathname: '/Teacher', state: { teacher: teacher } }} type="submit" className="btnProfile">Profile</Link>
                                     <br />
                                     <br />
                                 </div>

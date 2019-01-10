@@ -100,18 +100,17 @@ class Schedule extends Component {
                                     <th>Name</th>
                                     <th>Email</th>
                                 </tr>
-                                {this.state.schedule.map((student) => {
-                                    console.log('student', student)
-                                    return (
-                                        <tr >
-                                            <th><img className='studentpic' src='https://4vector.com/i/free-vector-small-whale-clip-art_110039_Small_Whale_clip_art_hight.png' /></th>
-                                            <td>{student.student}</td>
-                                            <td>{student.email}</td>
-                                            <td><a className="btn btn-success" onClick={() => { this.message(student.id, this.state.teacherid) }}  >Message/Call</a></td>
-                                        </tr>
-                                    )
-                                })}
-
+                                {this.state.schedule.map((student) =>{
+                                    console.log('student',student)
+                               return (
+                                    <tr >
+                                        <th><img className='studentpic' src ='https://4vector.com/i/free-vector-small-whale-clip-art_110039_Small_Whale_clip_art_hight.png'/></th>
+                                        <td>{student.student}</td>
+                                        <td>{student.email}</td>
+                                        <td><a className="btn btn-success" onClick = {()=>{this.message(student.id,this.state.teacherid)}}  >Message/Call</a></td>
+                                    </tr>
+                                )})} 
+    
                             </table>
                         </div>
                     </div>
