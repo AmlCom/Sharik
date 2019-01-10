@@ -57,7 +57,7 @@ const TeacherSchema = new Schema({
 	rateCount:{
 		type:Number,
 		required:false,
-		default:0
+		default:1
 	},
 	User1: [
 		{

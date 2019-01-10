@@ -33,8 +33,6 @@ router.post('/teacher', function (req, res, next) {
 //find specific teacher or teachers
 
 router.post('/specTeacher', function (req, res, next) {
-  console.log('cool thing are happening')
-  console.log(req.body.name)
   Teacher.findOne({'firstname':req.body.name}).then(function (teacher) {
     console.log('teacheer',teacher)
     //res.send('hello')
@@ -70,7 +68,10 @@ router.post('/ratingTeacher', function(req, res, next) {
   console.log('-------you reached mustafa--------',req.body)
 
 console.log('rating helllo rating', req.body.name)
-Teacher.findOneAndUpdate({'firstname':req.body.name},{'rating':req.body.rating}).then(function (teacher) {
+console.log('rating',req.body.rating)
+console.log('count',req.body.count)
+res.send('hello world')
+Teacher.findOneAndUpdate({'firstname':req.body.name},{'rating':req.body.rating},{'rateCount':req.body.count}).then(function (teacher) {
   console.log('teacheer',teacher)
   //res.send('hello')
   res.send(teacher)

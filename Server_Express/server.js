@@ -15,6 +15,7 @@ const teacher = require('./teacherRoute')
 const User = require('../DB/MongoDB/index.js');
 const Teacher = require('../DB/MongoDB/schema/teacherSchema')
 const signupuser = require('../DB/MongoDB/schema/sharik_db__users_schema.js');
+const messageRoute = require('./messageRoute')
 
 
 
@@ -35,6 +36,9 @@ app.use(cookieSession({
 app.use('/auth', auth)
 // app.use('/student', studentRoute)
 app.use('/get', teacher)
+
+//message route
+app.use('/message',messageRoute)
 
 
 //database connection

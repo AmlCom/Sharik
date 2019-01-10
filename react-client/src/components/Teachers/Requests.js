@@ -40,7 +40,8 @@ class Request extends Component {
             })
             var obj = {
                 student: firstname,
-                email:email
+                email:email,
+                id:id
             }
             this.state.schedule.push(obj)
             var obj = {

@@ -7,16 +7,18 @@ class MySchedule extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			messages:null
+			messages:null,
+			studentId:null
 		}
 	}
 
 	componentDidMount() {
 		axios.get('/auth/checkLogging').
 			then((res) => {
-				console.log('kkk', res.data.messages)
+				console.log('kkk', res.data)
 				this.setState({
-					messages: res.data.messages
+					messages: res.data.messages,
+					studentId:res.data._id
 				})
 			})
 			.catch((err) => {
@@ -32,6 +34,21 @@ class MySchedule extends Component {
 			}
 		}
 		console.log('after delete', this.state.messages)
+	}
+
+	messageClicked = (teacherName) => {
+		console.log('yy',teacherName)
+		axios.post('/get/specTeacher',{name:teacherName})
+		.then((res) => {
+			console.log('messageiscli',res.data._id)
+            this.props.history.push({
+                pathname: '/message',
+                state: { detail: {studentid:this.state.studentId,teacherid:res.data._id} }
+              })
+		})
+		.catch((err) => {
+			console.log(err)
+		})
 	}
 
 	render() {
@@ -61,6 +78,8 @@ class MySchedule extends Component {
 											<div className="card-body">
 												<p className="card-text">{message}</p>
 												<button className ='videoCallBtn' ref="buttonJoin" id="button-join">Call</button>
+												<button className ='videoCallBtn' ref="buttonJoin" id="button-join" 
+												onClick = {() => {this.messageClicked(teacher)}}>Message</button>
 											</div>
 										</li>
 									</li>
