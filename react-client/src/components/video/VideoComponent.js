@@ -247,6 +247,7 @@ export default class VideoComponent extends Component {
       // }
     }
 
+
     render() {
         console.log('state',this.activeRoom)
         

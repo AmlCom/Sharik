@@ -1,36 +1,31 @@
-// const express = require('express')
-// const router = express.Router()
-// const passport = require('passport');
-// require('./passport/googleStudent.js');
-// // const User = require('../DB/MongoDB/AuthStudent.js');
+const express = require('express')
+const router = express.Router()
+const Teacher = require('../DB/MongoDB/schema/teacherSchema')
+const signupuser = require('../DB/MongoDB/schema/sharik_db__users_schema.js');
 
-
-// passport.serializeUser(function(user, done) {
-//   done(null, user);
-// });
-
-// passport.deserializeUser(function(id, done) {
-//   User.findById(id, function(err, user) {
-//     done(err, user);
-//   });
-// });
-
-// router.get('/google1',
-//  passport.authenticate('google', { scope: ['profile'] }));
-
-// router.get('/redirect', 
-//  passport.authenticate('google', { failureRedirect: '/singin'
-// }),
-//  function(req, res) {
-//    res.redirect('/homepage');
-//  });
-
-
-// router.get('/facebook', passport.authenticate('facebook'));
-
-// router.get('/facebook/redirect',
-//   passport.authenticate('facebook', { successRedirect: '/student',
-//                                       failureRedirect: '/singin' }));
-
-
-// module.exports = router;
+router.post('/addStudent', (req, res) => {
+    console.log('543', req.body);
+    Teacher.findOne({ email: req.body.teacherEmail }, (err, user) => {
+        if (err) {
+            res.send(err);
+        } else if (user) {
+            let isThere = false;
+            for (var i = 0; i < user.User1.length; i++) {
+                if (String(user.User1[i]) === req.body.student_id) {
+                    isThere = true;
+                }
+            }
+            if (isThere) {
+                res.end('you already requested');
+            } else {
+                let original = user.User1;
+                original.push(req.body.student_id);
+                Teacher.findOneAndUpdate({ email: req.body.teacherEmail }, { User1: original }, () => {
+                    res.send('your request was successful')
+                })
+            }
+        }
+    })
+  })
+  
+module.exports = router;

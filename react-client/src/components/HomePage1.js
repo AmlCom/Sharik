@@ -19,10 +19,10 @@ class HomePage extends Component {
   }
 
   componentDidMount() {
-    if (this.state.isTeacher === '') {
-    var is = prompt('Please enter your profession', 'teacher, or student')
-    }
-    axios.post('/isStudent', {isStudent: is}).then(() => { })
+    // if (this.state.isTeacher === '') {
+    // var isstudent = prompt('Please enter your profession', 'teacher, or student')
+    // }
+    axios.post('/auth/isStudent', {isStudent: localStorage.getItem('googleProf')}).then(() => { })
     axios.get('/auth/checkLogging').
       then((x) => {
         console.log('356', x.data);
@@ -45,8 +45,6 @@ class HomePage extends Component {
 
 
   render() {
-    console.log('Yahye isTeacher', this.state.isTeacher)
-    console.log('this is islogin', this.state.Loggedin)
     const { classes } = this.props;
     if (!this.state.Loggedin) {
       return (

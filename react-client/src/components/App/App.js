@@ -11,7 +11,7 @@ import Teachers from '../Teachers/Teachers';
 import Teacher from '../Teachers/Teacher';
 import CreateTeacher from '../CreateTeacher'
 import Search from '../search'
-import Student from '../Students/Student.js'
+import student from '../Students/Student.js'
 import VideoComponent from '../video/VideoComponent'
 import Payment from '../Payment';
 import Videos from '../Teachers/videos';
@@ -22,6 +22,11 @@ import Comments from '../Teachers/comments'
 import Schedule from '../Teachers/schedule'
 import MySchedule from '../Students/MySchedule/MySchedule'
 import Message from '../message'
+import Dashboard from '../Students/Dashboard/Dashboard.jsx';
+import SubjectsList from '../Students/SubjectsList/SubjectsList.jsx';
+import AddSubject from '../Students/AddSubject/AddSubject.jsx';
+import Profile1 from '../Students/Profile/Profile.jsx';
+import MyPayments from '../Students/MyPayments/MyPayments.jsx';
 
 
 
@@ -44,12 +49,11 @@ class App extends Component {
               <Route path='/Contact' exact  component={Contact} />
               <Route path='/Signup' exact  component={Signup} />
               <Route path='/signin' exact component={Signin} />
-              <Route path ='/teachers' exact component = {Teachers} />
+              <Route path='/Teachers' exact component={Teachers}/>
               <Route path='/Profile' exact component={Profile} />
               <Route path='/Teacher' exact component={Teacher}/>
               <Route path= '/CreateTeacher' exact component={CreateTeacher}/>
               <Route path='/search' exact component={Search}/>
-              <Route path='/Student' exact component={Student}/>
               <Route path='/video' exact component={VideoComponent} />
               <Route path='/Payment' exact component ={Payment}/>
               <Route path='/Lectures' exact component = {Videos}/>
@@ -59,7 +63,13 @@ class App extends Component {
               <Route path='/schedule' exact component={Schedule} />
               <Route path='/studentchedule' exact component={MySchedule} />
               <Route path='/message' exact component={Message} />
-
+              <Route path='/student' exact component={Dashboard} />
+              <Route path='/SubjectsList' exact component={SubjectsList} />
+              <Route path='/AddClass' exact component={AddSubject} />
+              <Route path='/Profile1' exact component={Profile1} />
+              <Route path='/MySchedule' exact component={MySchedule} />
+              <Route path='/MyPayments' exact component={MyPayments} />
+              
               {/* <Route path='/Rating' exact component={Rate}/> */}
             </Switch>
           </div>
