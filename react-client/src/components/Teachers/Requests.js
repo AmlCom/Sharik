@@ -31,16 +31,17 @@ class Request extends Component {
             .then((res) => {
                 $(`#${studentId}`).hide();
             })
-        var obj = {
-            student: firstname,
-            email: email
-        }
-        this.state.schedule.push(obj)
-        var obj = {
-            teacher: this.state.teacherName,
-            student: this.state.schedule
-        }
-        axios.post('/get/schedule', obj)
+            var obj = {
+                student: firstname,
+                email:email,
+                id:id
+            }
+            this.state.schedule.push(obj)
+            var obj = {
+                teacher:this.state.teacherName,
+                student: this.state.schedule
+            }
+            axios.post('/get/schedule',obj)
             .then((res) => {
             })
             .catch((err) => {
@@ -71,14 +72,12 @@ class Request extends Component {
                             <br />
                             <table className="table table-striped">
                                 <tr>
-                                    <th>Profile picture</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th></th>
                                 </tr>
                                 {this.props.location.state.students.map((student) =>
                                     <tr id={student._id}>
-                                        <th><img className='studentpic' src='https://4vector.com/i/free-vector-small-whale-clip-art_110039_Small_Whale_clip_art_hight.png' /></th>
                                         <td>{student.firstname}</td>
                                         <td>{student.email}</td>
                                         <td>

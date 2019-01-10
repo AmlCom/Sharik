@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Nav from '../Nav'
+import { withRouter } from 'react-router-dom'
 
 
 class Schedule extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            schedule: null
+            schedule: null,
+            teacherid: null
         }
     }
 
@@ -15,12 +17,29 @@ class Schedule extends Component {
         axios.get('/auth/checkLogging').
             then((response) => {
                 this.setState({
-                    schedule: response.data.acceptedRequests
+                    schedule: response.data.acceptedRequests,
+                    teacherid: response.data._id
                 })
             })
             .catch((err) => {
                 console.log(err)
             })
+    }
+
+    // handleClick = (e) => {
+    //     this.setState(() => {
+    //         schedule:e.target.value
+    //     })
+    // }
+
+    message = (studentId, teacherid) => {
+
+
+        this.props.history.push({
+            pathname: '/video',
+            state: { detail: { studentid: studentId, teacherid: teacherid } }
+        })
+
     }
 
     render() {
@@ -81,6 +100,18 @@ class Schedule extends Component {
                                     <th>Name</th>
                                     <th>Email</th>
                                 </tr>
+                                {this.state.schedule.map((student) => {
+                                    console.log('student', student)
+                                    return (
+                                        <tr >
+                                            <th><img className='studentpic' src='https://4vector.com/i/free-vector-small-whale-clip-art_110039_Small_Whale_clip_art_hight.png' /></th>
+                                            <td>{student.student}</td>
+                                            <td>{student.email}</td>
+                                            <td><a className="btn btn-success" onClick={() => { this.message(student.id, this.state.teacherid) }}  >Message/Call</a></td>
+                                        </tr>
+                                    )
+                                })}
+
                             </table>
                         </div>
                     </div>
@@ -91,5 +122,6 @@ class Schedule extends Component {
     }
 }
 
-export default Schedule;
+
+export default withRouter(Schedule);
 
