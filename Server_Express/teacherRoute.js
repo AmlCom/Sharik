@@ -69,13 +69,15 @@ router.post('/addVideoLecture', function (req, res, next) {
 router.post('/ratingTeacher', function(req, res, next) {
   console.log('-------you reached mustafa--------',req.body)
 
-console.log('rating helllo rating', req.body.name)
+console.log('rating helllo rating', req.body.name,req.body.rating)
 Teacher.findOneAndUpdate({'firstname':req.body.name},{'rating':req.body.rating}).then(function (teacher) {
   console.log('teacheer',teacher)
   //res.send('hello')
   res.send(teacher)
 }).catch(next)
 });
+
+
 
 router.post('/comment', function (req, res, next) {
 

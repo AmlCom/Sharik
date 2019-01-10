@@ -6,13 +6,14 @@ import StarRatingComponent from 'react-star-rating-component';
 
  
 class Rate extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
  
     this.state = {
-      rating: 0,
+      rating:(props.teacher.rating)? props.teacher.rating :0,
       name:'',
-      rate:''
+      rate:'',
+      count: 0
     };
   }
  
@@ -23,10 +24,12 @@ class Rate extends React.Component {
   }
   submit = (name) =>{
     console.log('mustaf',this.state.rating)
+    console.log('mustaf',this.props.teacher.rating )
     console.log('teacher firsname',this.props.teacher.firstname)
     var count = this.props.teacher.rateCount+1
 
-   var rating = Math.floor((this.props.teacher.rating*5+this.state.rating)/(5))
+
+   var rating = Math.floor((this.props.teacher.rating*5+this.state.rating)/(count))
 
 
     //axi

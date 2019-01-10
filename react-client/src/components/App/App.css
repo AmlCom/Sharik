@@ -1,8 +1,17 @@
 .App {
   text-align: center;
 }
+.aboutowners {
+  /* background-color: #1a55cc; */
+  font-size: larger
 
-
+}
+.h {
+  background-color: #1a94cc;
+}
+.about {
+  background-color: aquamarine;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
