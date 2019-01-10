@@ -162,10 +162,10 @@ class Profile extends Component {
                                     </div>
                                     <div className="input-group-append">
                                         <button className="input-group-text" id="inputGroupFileAddon02" onClick={this.submitImage}>Upload</button>
+                                        
                                     </div>
                                 </div>
                             </div>
-
 
                             <div classNam='col-md-8'>
                                 <div className="list-group">
