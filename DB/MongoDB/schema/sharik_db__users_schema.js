@@ -65,9 +65,10 @@ const SignupSchema = new Schema({
 		type: String,
 		required: false
 	},
-	imageURL: {
+	image: {
 		type: String,
-		required: false
+		required: false,
+		default:'https://www.eigenheimreal.com/avatar_mann.png'
 	},
 	isTeacher:{
 		type: Boolean,

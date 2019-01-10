@@ -10,7 +10,8 @@ class Schedule extends Component {
         super(props);
         this.state = {
             schedule: null,
-            teacherid:null
+            teacherid:null,
+            image:''
         }
     }
 
@@ -20,7 +21,8 @@ class Schedule extends Component {
                 console.log('hello world', response.data.acceptedRequests)
                 this.setState({
                     schedule: response.data.acceptedRequests,
-                    teacherid:response.data._id
+                    teacherid:response.data._id,
+                    image:response.data.image
                 })
             })
             .catch((err) => {
@@ -70,7 +72,7 @@ class Schedule extends Component {
                                     console.log('student',student)
                                return (
                                     <tr >
-                                        <th><img className='studentpic' src ='https://4vector.com/i/free-vector-small-whale-clip-art_110039_Small_Whale_clip_art_hight.png'/></th>
+                                        <th><img className='studentpic' src ={student.image}/></th>
                                         <td>{student.student}</td>
                                         <td>{student.email}</td>
                                         <td><a className="btn btn-success" onClick = {()=>{this.message(student.id,this.state.teacherid)}}  >Message/Call</a></td>

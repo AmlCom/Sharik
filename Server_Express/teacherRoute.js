@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var Teacher = require('../DB/MongoDB/schema/teacherSchema')
+var Student = require('../DB/MongoDB/schema/sharik_db__users_schema')
 const mongoose = require('mongoose');
 const router = express.Router()
 
@@ -100,5 +101,18 @@ router.post('/schedule', function (req, res, next) {
   }).catch(next)
 });
 
+//update student profile picture
+
+router.post('/updateStudentProfile', function (req, res, next) {
+  //console.log('yaya is here')
+  console.log('yaya is here',req.body)
+  console.log('jjjyyyyyy',req.body.image)
+
+  Student.findOneAndUpdate({'firstname':req.body.name},{'image':req.body.image}).then(function (teacher) {
+   // console.log('teacheer',teacher)
+    //res.send('hello')
+    res.send(teacher)
+  }).catch(next)
+});
 
 module.exports = router
