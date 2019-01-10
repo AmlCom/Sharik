@@ -21,11 +21,8 @@ router.get('/teacher', function (req, res, next) {
 
 //add new event to the db
 router.post('/teacher', function (req, res, next) {
-
   console.log('you reached mustaf')
-
   res.send('hi there')
-
     Teacher.create(req.body).then(function (teacher) {
     res.send(teacher)
   }).catch(next)

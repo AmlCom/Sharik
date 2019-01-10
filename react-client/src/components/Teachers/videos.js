@@ -24,7 +24,6 @@ class Videos extends Component {
     componentDidMount() {
         axios.get('/auth/checkLogging').
             then((response) => {
-                console.log('yahyaaaaa', response.data.firstname)
                 if (response.data) {
                     user = response.data.firstname
                     axios.post('/get/specTeacher', { name: user })
@@ -123,7 +122,7 @@ class Videos extends Component {
                         </div>
                         {this.state.lectures.map((video) =>
                             <div className='videoWrapper'>
-                                <video  controls="true">
+                                <video controls="true">
                                     <source src={video} type="video/mp4" />
                                 </video>
                             </div>
