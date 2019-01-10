@@ -36,7 +36,6 @@ class Teachers extends Component {
     }
 
     searchTeacher = (name) => {
-        console.log('i was research', name)
         this.setState({
             teachers: [name.data]
         })
@@ -49,20 +48,19 @@ class Teachers extends Component {
     }
 
     render() {
-        // console.log('teachers', this.state.teachers)
         if (this.state.isTeacher === '') {
             return (
                 <div>
-                    <br/>
+                    <br />
                     <h1>Loading.......</h1>
                 </div>
-              )
+            )
         }
-        if (!this.state.isTeacher){
+        if (!this.state.isTeacher) {
             return (
                 <div>
                     <div style={{ height: '100%' }}>
-                        <Nav/>
+                        <Nav />
                     </div>
                     <div className='teacherSearch'>
                         < Search search={this.searchTeacher} />
@@ -70,15 +68,15 @@ class Teachers extends Component {
                     {this.state.teachers.map((teacher) =>
                         <div className='container'>
                             <div className="card">
-                            <div className='teacherPic'>
-                            <img  src={teacher.image} />
-                            </div>
+                                <div className='teacherPic'>
+                                    <img src={teacher.image} />
+                                </div>
                                 <div className="container">
                                     <h4><b>{teacher.firstname} {teacher.lastname}</b></h4>
                                     <p>{teacher.major}</p>
                                     <Link to={{ pathname: '/teacher', state: { teacher: teacher } }} type="submit" className="btnProfile">Profile</Link>
                                     <br />
-                                    <br/>
+                                    <br />
                                 </div>
                             </div>
                         </div>
