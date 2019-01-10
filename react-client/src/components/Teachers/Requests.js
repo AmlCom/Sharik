@@ -27,7 +27,7 @@ class Request extends Component {
                 console.log(err)
             })
     }
-    accept = (firstname,id,email) => {
+    accept = (firstname,id,email,image) => {
         console.log('eeeeee',firstname)
         console.log('id',id)
         // console.log('hhhh',e.target.parentElement.parentElement)
@@ -35,13 +35,15 @@ class Request extends Component {
         let studentId = id;
         axios.post('/accept', { studentId: studentId })
             .then((res) => {
-                console.log('hi again');
+                console.log('hi again',res);
                 $(`#${studentId}`).hide();
             })
             var obj = {
                 student: firstname,
                 email:email,
-                id:id
+                id:id,
+                image:image
+                
             }
             this.state.schedule.push(obj)
             var obj = {
@@ -68,6 +70,7 @@ class Request extends Component {
     }
 
     render() {
+        console.log('kkkk',this.props.location.state.students)
         console.log('schedule',this.state.schedule)
         return (
             <div>
@@ -90,11 +93,11 @@ class Request extends Component {
                             </tr>
                             {this.props.location.state.students.map((student) =>
                                 <tr id={student._id}>
-                                    <th><img className='studentpic' src ='https://4vector.com/i/free-vector-small-whale-clip-art_110039_Small_Whale_clip_art_hight.png'/></th>
+                                    <th><img className='studentpic' src ={student.image}/></th>
                                     <td>{student.firstname}</td>
                                     <td>{student.email}</td>
                                     <td>
-                                        <button className="btn btnAccept"><a onClick = {()=>{this.accept(student.firstname,student._id,student.email)}}>Accept</a></button>
+                                        <button className="btn btnAccept"><a onClick = {()=>{this.accept(student.firstname,student._id,student.email,student.image)}}>Accept</a></button>
                                         <button className="btn btnReject"><a onClick = {()=>{this.reject(student._id)}}>Reject</a></button> 
                                     </td>
                                 </tr>
@@ -110,4 +113,3 @@ class Request extends Component {
 }
 
 export default Request;
-

@@ -17,10 +17,12 @@ import Nav from '../Nav'
 import Dashboard from './Dashboard/Dashboard.jsx';
 import SubjectsList from './SubjectsList/SubjectsList.jsx';
 import AddSubject from './AddSubject/AddSubject.jsx';
-import Profile from './Profile/Profile.jsx';
+import Profile1 from './Profile/Profile.jsx';
 import MySchedule from './MySchedule/MySchedule.js';
 import MyPayments from './MyPayments/MyPayments.jsx';
 import Teachers from '../Teachers/Teachers'
+import Teacher from '../Teachers/Teacher'
+
 import Button from '@material-ui/core/Button';
 
 // 
@@ -111,22 +113,28 @@ class Student extends Component {
 
                                 <BrowserRouter>
                                     <div className="App">
-                                        <div style={{marginTop:'30px'}}>
-                                            <Button color="inherit"><Link to='/Student/' style={{ textDecoration: 'none'}}>Dashboard</Link></Button>
-                                            <Button color="inherit"><Link to='/Student/SubjectsList' style={{ textDecoration: 'none'}}>Subjects List</Link></Button>
-                                            <Button color="inherit"><Link to='/Student/AddSubject'style={{ textDecoration: 'none'}}>Add Subject</Link></Button>
-                                            <Button color="inherit"><Link to='/Student/Profile' style={{ textDecoration: 'none'}}>Profile</Link></Button>
-                                            <Button color="inherit"><Link to='/studentchedule' style={{ textDecoration: 'none'}}>MySchedule</Link></Button>
-                                            <Button color="inherit"><Link to='/Student/MyPayments'style={{ textDecoration: 'none'}} >MyPayments</Link></Button>
-                                            <Button color="inherit"><Link to='/Teachers' style={{ textDecoration: 'none'}}>Teachers List</Link></Button>
+                                        <div>
+                                            <Button color="inherit"><Link to='/student'>Dashboard</Link></Button>
+                                            <Button color="inherit"><Link to='/SubjectsList'>Subjects List</Link></Button>
+                                            <Button color="inherit"><Link to='/AddSubject'>Add Subject</Link></Button>
+                                            <Button color="inherit"><Link to='/Profile1'>Profile</Link></Button>
+                                            <Button color="inherit"><Link to='/MySchedule'>MySchedule</Link></Button>
+                                            <Button color="inherit"><Link to='/MyPayments'>MyPayments</Link></Button>
+                                            <Button color="inherit"><Link to='/Teachers'>Teachers List</Link></Button>
+                                            
+
                                             <Switch>
                                                 <Route path='/Student/' exact component={Dashboard} />
                                                 <Route path='/Student/SubjectsList' exact component={SubjectsList} />
                                                 <Route path='/Student/AddClass' exact component={AddSubject} />
-                                                <Route path='/Student/Profile' exact component={Profile} />
+                                                <Route path='/Student/Profile1' exact component={Profile1} />
                                                 <Route path='/studentchedule' exact component={MySchedule} />
                                                 <Route path='/Student/MyPayments' exact component={MyPayments} />
                                                 <Route path='/Teachers' exact component={Teachers} />
+                                                <Route path='/Teacher' exact component={Teacher} />
+                                                <Route path='/Profile1' exact component={Profile1} />
+
+
                                             </Switch>
                                         </div>
                                     </div>

@@ -40,8 +40,43 @@
      cursor:pointer;  
 }
 
-  button:active {
-  outline: none;
-  border: none;
-  }
   
+    button.launch {
+    background-color: #F9A300;
+    border: none;
+    height: 40px;
+    padding: 5px 15px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 300;
+    margin-top: 10px;
+    margin-right: 10px;
+    }
+    
+    button.launch:hover {
+    cursor: pointer;
+    background-color: black
+     }
+    
+    button.change {
+    border: none;
+    height: 40px;
+    padding: 5px 15px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 300;
+    margin-top: 10px;
+    margin-right: 10px;
+    }
+    
+    button.change:hover {
+    cursor: pointer;
+    background-color: black;
+    }
+    
+    button:active {
+    outline: none;
+    border: none;
+    }
+    
+    button:focus {outline:0;}

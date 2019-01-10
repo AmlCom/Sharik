@@ -95,9 +95,7 @@ class Singin extends Component {
   
       axios.post('/auth/signin', check)
       .then(response => {
-        console.log('ert', response.data)
         if (response.data) {
-          console.log('ezvfdgf')
           {localStorage.setItem("login", true)}
 
           this.setState({
@@ -153,9 +151,10 @@ class Singin extends Component {
               >
                 Sign in
               </Button>
+              
             </form>
-            <a href="/auth/google"><button className={'btn btn-success'}>Sign In with Google</button></a>
-            <a href="/auth/facebook"><button className={'btn btn-danger'}>Login with Facebook</button></a>
+            <a href="/auth/google"><button style={{'backgroundColor':'#ea4335', 'color':'white', 'width': '350px', 'margin':'10px'}} className={'btn'}><i  className="fab fa-google-plus-g"></i> Signin With Google</button></a>
+            <a href="/auth/facebook"><button style={{'backgroundColor':'#3b5998', 'color':'white', 'width': '350px', 'margin':'px'}} className={'btn'}> <i className="fab fa-facebook-square"></i> Signin With Facebook</button></a>
           </Paper>
         </main>
       </div>
