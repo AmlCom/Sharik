@@ -36,9 +36,9 @@ class Schedule extends Component {
 
     message = (studentId,teacherid) => {
 
-        let path = '/Student';
+        
             this.props.history.push({
-                pathname: '/message',
+                pathname: '/video',
                 state: { detail: {studentid:studentId,teacherid:teacherid} }
               })
               
@@ -73,7 +73,7 @@ class Schedule extends Component {
                                         <th><img className='studentpic' src ='https://4vector.com/i/free-vector-small-whale-clip-art_110039_Small_Whale_clip_art_hight.png'/></th>
                                         <td>{student.student}</td>
                                         <td>{student.email}</td>
-                                        <td><a className="btn btn-success" onClick = {()=>{this.message(student.id,this.state.teacherid)}}  >Message</a> <a onClick = {()=>{this.reject(student._id)}} className="btn btn-danger" href='/video' >Call</a></td>
+                                        <td><a className="btn btn-success" onClick = {()=>{this.message(student.id,this.state.teacherid)}}  >Message/Call</a></td>
                                     </tr>
                                 )})}
     
