@@ -36,6 +36,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
+import { storage } from '../../../firebase/index'
 
 // Image Upload:
 // import Upload from 'material-ui-upload/Upload';
@@ -285,6 +286,21 @@ class Profile extends Component {
 	// 	console.log(e.target.result, file);
 	// 	console.log(this.imageData)
 	// }
+
+	componentDidMount(){
+		axios.get('/auth/checkLogging').
+        then((response) => {
+			this.setState({
+				user : response.data.firstname
+			  })
+		})
+		.catch((err) => {
+			console.log(err)
+		})
+	}
+
+
+
 	uploadImage = (e) => {
         //console.log('check hello', hello)
         this.setState({
@@ -301,12 +317,13 @@ class Profile extends Component {
 	}, () => {
 		storage.ref('images').child(image.name).getDownloadURL().then(url => {
 			console.log('url', url)
-			var obj = { name: user, image: url }
+			var obj = { name: this.state.user, image: url }
 			axios.post('get/updateTeacherProfile', obj)
 				.then((res) => {
 					this.setState({
 						image: res.data.image
 					})
+					console.log('////',res)
 				})
 				.catch((err) => {
 					console.log(err)
