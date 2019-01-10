@@ -14,7 +14,6 @@ import axios from 'axios';
 import Nav from '../Nav'
 
 // 
-import student from './Student.js';
 import Dashboard from './Dashboard/Dashboard.jsx';
 import SubjectsList from './SubjectsList/SubjectsList.jsx';
 import AddSubject from './AddSubject/AddSubject.jsx';
@@ -22,8 +21,6 @@ import Profile from './Profile/Profile.jsx';
 import MySchedule from './MySchedule/MySchedule.js';
 import MyPayments from './MyPayments/MyPayments.jsx';
 import Teachers from '../Teachers/Teachers'
-import Teacher from '../Teachers/Teacher'
-
 import Button from '@material-ui/core/Button';
 
 // 
@@ -68,7 +65,6 @@ class Student extends Component {
     }
 
     componentDidMount() {
-        console.log(localStorage.getItem('googleProf'))
         axios.get('/auth/checkLogging').
             then((x) => {
                 console.log('356', x.data);
@@ -126,15 +122,13 @@ class Student extends Component {
                                             
 
                                             <Switch>
-                                                <Route path='/student' exact component={Dashboard} />
+                                                <Route path='/student/' exact component={Dashboard} />
                                                 <Route path='/SubjectsList' exact component={SubjectsList} />
                                                 <Route path='/AddClass' exact component={AddSubject} />
                                                 <Route path='/Profile' exact component={Profile} />
-                                                <Route path='/MySchedule' exact component={MySchedule} />
+                                                <Route path='/studentchedule' exact component={MySchedule} />
                                                 <Route path='/MyPayments' exact component={MyPayments} />
                                                 <Route path='/Teachers' exact component={Teachers} />
-                                                <Route path='/Teacher' exact component={Teacher} />
-
                                             </Switch>
                                         </div>
                                     </div>

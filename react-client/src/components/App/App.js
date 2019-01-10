@@ -11,7 +11,7 @@ import Teachers from '../Teachers/Teachers';
 import Teacher from '../Teachers/Teacher';
 import CreateTeacher from '../CreateTeacher'
 import Search from '../search'
-import student from '../Students/Student.js'
+import Student from '../Students/Student.js'
 import VideoComponent from '../video/VideoComponent'
 import Payment from '../Payment';
 import Videos from '../Teachers/videos';
