@@ -15,6 +15,7 @@ const teacher = require('./teacherRoute')
 const User = require('../DB/MongoDB/index.js');
 const Teacher = require('../DB/MongoDB/schema/teacherSchema')
 const signupuser = require('../DB/MongoDB/schema/sharik_db__users_schema.js');
+const messageRoute = require('./messageRoute')
 
 
 
@@ -35,6 +36,9 @@ app.use(cookieSession({
 app.use('/auth', auth)
 // app.use('/student', studentRoute)
 app.use('/get', teacher)
+
+//message route
+app.use('/message',messageRoute)
 
 
 //database connection
@@ -231,9 +235,11 @@ app.post('/accept', (req, res) => {
     })
 })
 
+// Student :
 
-// Student - Select One Student  
 var SerEx_DB_MongoDB_Students = require('./Students/SerEx_DB_MongoDB_Students.js')
+
+// Student - Get One Student Info:
 app.post('/S_Get_Student_Info', function (request, response) {
     console.log('<<<<<<<<<<<<<<<<');
     console.log('Data:');
@@ -254,7 +260,7 @@ app.post('/S_Get_Student_Info', function (request, response) {
             console.log(selectOneStudentQueryErr)
             console.log('>>>>>>>>>>>>>>>>');
 
-            res.end(JSON.stringify(selectOneStudentQueryErr))
+            response.end(JSON.stringify(selectOneStudentQueryErr))
         }
 
         console.log('<<<<<<<<<<<<<<<<');
@@ -265,10 +271,48 @@ app.post('/S_Get_Student_Info', function (request, response) {
         console.log('selectOneStudent Data msg:');
         console.log(selectOneStudentsQueryResulte)
         console.log('>>>>>>>>>>>>>>>>');
-        res.end(JSON.stringify(selectOneStudentsQueryResulte));
+        response.end(JSON.stringify(selectOneStudentsQueryResulte));
     });
 
 });
+
+
+// Student - Set (Update) One Student Info:
+app.post('/S_Set_Student_Info', function (request, response) {
+    console.log('<<<<<<<<<<<<<<<<');
+    console.log('Data:');
+    console.log('@ >> Sharik/Server_Express/server.js');
+    console.log('@ >> app.post(\'/S_Get_Student_Info\', ...');
+    console.log('Request Data msg:');
+    console.log(request.body)
+    console.log('>>>>>>>>>>>>>>>>');
+
+    SerEx_DB_MongoDB_Students.updateOneStudent(request, response, function (updateOneStudentQueryErr, updateOneStudentsQueryResulte) {
+        if (updateOneStudentQueryErr) {
+            console.log('<<<<<<<<<<<<<<<<');
+            console.log('Error:');
+            console.log('@ >> Sharik/Server_Express/server.js');
+            console.log('@ >> app.post(\'/S_Get_Student_Info\', ...');
+            console.log('@ >> SerEx_DB_MongoDB_Students.updateOneStudent');
+            console.log('updateOneStudent Error msg:');
+            console.log(updateOneStudentQueryErr)
+            console.log('>>>>>>>>>>>>>>>>');
+
+            response.end(JSON.stringify(updateOneStudentQueryErr))
+        }
+
+        console.log('<<<<<<<<<<<<<<<<');
+        console.log('Data:');
+        console.log('@ >> Sharik/Server_Express/server.js');
+        console.log('@ >> app.post(\'/S_Get_Student_Info\', ...');
+        console.log('@ >> SerEx_DB_MongoDB_Students.updateOneStudent');
+        console.log('updateOneStudent Data msg:');
+        console.log(updateOneStudentsQueryResulte)
+        console.log('>>>>>>>>>>>>>>>>');
+        response.end(JSON.stringify(updateOneStudentsQueryResulte));
+    });
+});
+
 
  if (process.env.NODE_ENV === 'production') {
 // // Serve any static files

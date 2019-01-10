@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {withRouter} from 'react-router-dom';
 import Shariklogo from './Shariklogo.png';
 import axios from 'axios';
 import './Nav.css';
@@ -10,14 +11,17 @@ class Navbar extends Component {
         super(props);
         this.state = {
             Loggedin: true,
+            isTeacher : false
         }
     }
     componentDidMount() {
         axios.get('/auth/checkLogging').
             then((res) => {
+                console.log('hsagjdagshdas',res.data)
                 if (res.data) {
                     this.setState({
-                        Loggedin: true
+                        Loggedin: true,
+                        isTeacher: res.data.isTeacher
                     })
                 } else {
                     this.setState({
@@ -31,6 +35,17 @@ class Navbar extends Component {
         axios.get('/auth/logout').then(() => {
             window.location.assign("/");
         })
+    }
+
+    redirect =(haha) => {
+        console.log('hahhahahaha',haha)
+        if(haha){
+            let path = '/Profile';
+            this.props.history.push(path);
+        }else {
+            let path = '/Student';
+            this.props.history.push(path);
+        }
     }
 
     render() {
@@ -51,11 +66,16 @@ class Navbar extends Component {
                                 </li>
                             </ul>
                         </div>
+                        <div className='navbarButtons'>
                         <ul className="navbar-nav">
+                                <li className="nav-item active">
+                                <button className="nav-link  Navbar-text" onClick={()=>{this.redirect(this.state.isTeacher)}}> Profile <span className="sr-only">(current)</span></button>
+                            </li>
                             <li className="nav-item active">
                                 <a className="nav-link  Navbar-text" href="#" onClick={this.logOut} >Logout <span className="sr-only">(current)</span></a>
                             </li>
                         </ul>
+                        </div>
                     </nav>
                 </div>
             )
@@ -91,4 +111,4 @@ class Navbar extends Component {
 }
 
 
-export default Navbar;
+export default withRouter(Navbar);
