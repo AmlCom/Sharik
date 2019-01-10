@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import $ from 'jquery';
 import Nav from '../Nav'
+import {Link} from 'react-router-dom';
 
 
 class Request extends Component {
@@ -33,7 +34,7 @@ class Request extends Component {
         // console.log('hhhh',e.target.parentElement.parentElement)
         // console.log(e.target.parentElement.parentElement.id);
         let studentId = id;
-        axios.post('/accept', { studentId: studentId })
+        axios.post('/get/accept', { studentId: studentId })
             .then((res) => {
                 console.log('hi again');
                 $(`#${studentId}`).hide();
@@ -59,7 +60,7 @@ class Request extends Component {
     reject = (id) => {
         console.log('id',id)
         let studentId = id;
-        axios.post('/reject', { studentId: studentId })
+        axios.post('/get/reject', { studentId: studentId })
             .then((res) => {
                 console.log('gotcha', res)
                 $(`#${studentId}`).hide();
@@ -90,7 +91,11 @@ class Request extends Component {
                                 <tr id={student._id}>
                                     <td>{student.firstname}</td>
                                     <td>{student.email}</td>
-                                    <td><a className="btn btn-success" onClick = {()=>{this.accept(student.firstname,student._id,student.email)}}  >Accept</a> <a onClick = {()=>{this.reject(student._id)}} className="btn btn-danger" >Reject</a></td>
+                                    <td><a className="btn btn-success" onClick = {()=>{this.accept(student.firstname,student._id,student.email)}}>Accept</a>
+                                        <a onClick = {()=>{this.reject(student._id)}} className="btn btn-danger" >Reject</a>
+                                        <Link to={{ pathname: '/video', state: { studentId: student._id} }} className="mainLinks list-group-item justify-content-between">
+                                        </Link>
+                                    </td>
                                 </tr>
                             )}
 

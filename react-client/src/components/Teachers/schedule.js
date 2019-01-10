@@ -33,7 +33,7 @@ class Schedule extends Component {
 
     render() {
         console.log('schedule', this.state.schedule)
-        if (this.state.schedule!== null) {
+        if (this.state.schedule !== null) {
             return (
                 <div>
                     <Nav />
@@ -52,14 +52,14 @@ class Schedule extends Component {
                                     <th>Email</th>
                                     <th></th>
                                 </tr>
-                                {this.state.schedule.map((student) =>{
+                                {/* {this.state.schedule.map((student) =>{
                                return (
                                     <tr >
                                         <td>{student.student}</td>
                                         <td>{student.email}</td>
                                         <td><a className="btn btn-success" onClick = {()=>{this.accept(student.firstname,student._id,student.email)}}  >Message</a> <a onClick = {()=>{this.reject(student._id)}} className="btn btn-danger" >Call</a></td>
                                     </tr>
-                                )})}
+                                )})} */}
     
                             </table>
                         </div>
@@ -71,28 +71,14 @@ class Schedule extends Component {
             )
         } else {
             return (
-            <div className='container'>
-                <div className="panel">
-                    <div className="panel-heading ">
-                        <h3 className="panel-title">Your requests</h3>
-                    </div>
-                    <div className="panel-body">
-                        <div className="row">
-                        </div>
-                        <br />
-                        <table className="table table-striped">
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-
-                            </tr>
-                            </table>
-                    </div>
-                </div>           }
-            </div>
-            )}
-                }
-            }
+                <div>
+                    <br/>
+                    <h1>Loading.......</h1>
+                </div>
+            )
+        }
+    }
+}
                 
-                export default Schedule;
+ export default Schedule;
                 

@@ -11,6 +11,9 @@ export default class VideoComponent extends Component {
         this.identity = null;
         this.roomName = null;
         this.roomJoined = this.roomJoined.bind(this);
+        this.state = {
+          message: ''
+        }
     }
 
     componentDidMount() {
@@ -171,6 +174,19 @@ export default class VideoComponent extends Component {
         }
     }
 
+    handleChange= (e) => {
+      this.setState({
+          message: e.target.value
+      })
+    }
+
+    handleSend= (e) => {
+        axios.post('/send', {message: this.state.message})
+        .then((res) => {
+            console.log(res);
+        })
+      }
+
     render() {
         console.log('state',this.activeRoom)
         return (
@@ -190,6 +206,7 @@ export default class VideoComponent extends Component {
                     </div>
                     <div ref="log" id="log"></div>
                 </div>
+                <input  name="message" id="message" type="text" onChange={this.handleChange}></input><button onClick={this.handleSend} >Send</button>
             </div>
         );
     }

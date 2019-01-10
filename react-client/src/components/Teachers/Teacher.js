@@ -3,7 +3,7 @@ import axios from 'axios';
 import Nav from '../Nav'
 import './Teacher.css'
 import Rate from '../Rating'
-
+import $ from 'jquery'
 class Teacher extends Component {
     constructor(props) {
         super(props)
@@ -62,7 +62,7 @@ class Teacher extends Component {
 
 
     addStudent = () => {
-        axios.post('/addStudent', {
+        axios.post('/student/addStudent', {
             teacherEmail: this.props.location.state.teacher.email,
             student_id: this.state.student_id
         })
@@ -79,7 +79,7 @@ class Teacher extends Component {
 
     submitComment = () => {
         console.log('kkkkkk', this.props.location.state.teacher.comments)
-
+        $('#comment').val(''); 
         if (this.state.comment === '') {
             console.log('please write comment')
         } else {
@@ -205,18 +205,12 @@ class Teacher extends Component {
 
                                 <br />
                                 <div className="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Write a comment" onChange={this.comment} />
+                                    <input type="text"  id="comment" class="form-control" placeholder="Write a comment" onChange={this.comment} />
                                     <div className="input-group-append">
                                         <button className="btn btn-info" type="button" onClick={this.submitComment}>Comment</button>
                                     </div>
                                 </div>
 
-<<<<<<< HEAD
-||||||| merged common ancestors
-                                
-=======
-
->>>>>>> 7cccc1b93024b8c5e429c25b3e4c6b8a922dfc27
                                 {this.state.previousComments.map((comment) => {
                                     return (
                                         <div className=''>
@@ -232,14 +226,6 @@ class Teacher extends Component {
                                             </ul>
                                         </div>
                                     )
-<<<<<<< HEAD
-||||||| merged common ancestors
-                                    
-
-=======
-
-
->>>>>>> 7cccc1b93024b8c5e429c25b3e4c6b8a922dfc27
                                 })}
                             </div>
                         </div>

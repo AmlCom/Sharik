@@ -72,7 +72,7 @@ class Profile extends Component {
         }).catch((err) => {
             console.log('hi', err)
         })
-        axios.get('/studentList').then((res) => {
+        axios.get('/get/studentList').then((res) => {
             console.log("213", res);
             this.setState({
                 requestsNumber: res.data.length,
