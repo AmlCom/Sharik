@@ -46,7 +46,7 @@ class Schedule extends Component {
 
     render() {
         console.log('schedule', this.state.schedule)
-        if (this.state.schedule !== null) {
+        if (this.state.schedule!== null) {
             return (
                 <div>
                     <Nav />
@@ -75,7 +75,7 @@ class Schedule extends Component {
                                         <td>{student.email}</td>
                                         <td><a className="btn btn-success" onClick = {()=>{this.message(student.id,this.state.teacherid)}}  >Message/Call</a></td>
                                     </tr>
-                                )})} 
+                                )})}
     
                             </table>
                         </div>
@@ -87,14 +87,28 @@ class Schedule extends Component {
             )
         } else {
             return (
-                <div>
-                    <br/>
-                    <h1>Loading.......</h1>
-                </div>
-            )
-        }
-    }
-}
+            <div className='container'>
+                <div className="panel">
+                    <div className="panel-heading ">
+                        <h3 className="panel-title">Your requests</h3>
+                    </div>
+                    <div className="panel-body">
+                        <div className="row">
+                        </div>
+                        <br />
+                        <table className="table table-striped">
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+
+                            </tr>
+                            </table>
+                    </div>
+                </div>           }
+            </div>
+            )}
+                }
+            }
                 
                 export default  withRouter(Schedule);
                 
