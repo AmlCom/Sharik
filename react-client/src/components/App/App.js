@@ -21,6 +21,7 @@ import './App.css';
 import Comments from '../Teachers/comments'
 import Schedule from '../Teachers/schedule'
 import MySchedule from '../Students/MySchedule/MySchedule'
+import Message from '../message'
 
 
 
@@ -57,6 +58,8 @@ class App extends Component {
               <Route path='/comments' exact component={Comments} />
               <Route path='/schedule' exact component={Schedule} />
               <Route path='/studentchedule' exact component={MySchedule} />
+              <Route path='/message' exact component={Message} />
+
               {/* <Route path='/Rating' exact component={Rate}/> */}
             </Switch>
           </div>

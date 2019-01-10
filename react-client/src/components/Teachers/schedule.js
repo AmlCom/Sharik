@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import $ from 'jquery';
 import Nav from '../Nav'
+import {withRouter} from 'react-router-dom'
 
 
 class Schedule extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            schedule: null
+            schedule: null,
+            teacherid:null
         }
     }
 
@@ -17,7 +19,8 @@ class Schedule extends Component {
             then((response) => {
                 console.log('hello world', response.data.acceptedRequests)
                 this.setState({
-                    schedule: response.data.acceptedRequests
+                    schedule: response.data.acceptedRequests,
+                    teacherid:response.data._id
                 })
             })
             .catch((err) => {
@@ -30,6 +33,17 @@ class Schedule extends Component {
     //         schedule:e.target.value
     //     })
     // }
+
+    message = (studentId,teacherid) => {
+        console.log('kkk',studentId)
+        console.log('k',teacherid)
+        let path = '/Student';
+            this.props.history.push({
+                pathname: '/message',
+                state: { detail: {studentid:studentId,teacherid:teacherid} }
+              })
+              
+    }
 
     render() {
         console.log('schedule', this.state.schedule)
@@ -53,11 +67,12 @@ class Schedule extends Component {
                                     <th></th>
                                 </tr>
                                 {this.state.schedule.map((student) =>{
+                                    console.log('student',student)
                                return (
                                     <tr >
                                         <td>{student.student}</td>
                                         <td>{student.email}</td>
-                                        <td><a className="btn btn-success" onClick = {()=>{this.accept(student.firstname,student._id,student.email)}}  >Message</a> <a onClick = {()=>{this.reject(student._id)}} className="btn btn-danger" href='/video' >Call</a></td>
+                                        <td><a className="btn btn-success" onClick = {()=>{this.message(student.id,this.state.teacherid)}}  >Message</a> <a onClick = {()=>{this.reject(student._id)}} className="btn btn-danger" href='/video' >Call</a></td>
                                     </tr>
                                 )})}
     
@@ -94,5 +109,5 @@ class Schedule extends Component {
                 }
             }
                 
-                export default Schedule;
+                export default  withRouter(Schedule);
                 
