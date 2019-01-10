@@ -1,16 +1,30 @@
 import firebase from 'firebase/app'
 import 'firebase/storage'
-  // Initialize Firebase
+  //Initialize Firebase
   var config = {
-    apiKey: "AIzaSyCf7mbLLhm0X8yI9uqmZ1IkiXfE4qBAlO4",
-    authDomain: "homerji-d2145.firebaseapp.com",
-    databaseURL: "https://homerji-d2145.firebaseio.com",
-    projectId: "homerji-d2145",
-    storageBucket: "homerji-d2145.appspot.com",
-    messagingSenderId: "226760344125"
+    apiKey: "AIzaSyA2_CdlHg0YoDJP2wUHpOG1eSN_3pxKK-c",
+    authDomain: "amlcom.firebaseapp.com",
+    databaseURL: "https://amlcom.firebaseio.com",
+    projectId: "amlcom",
+    storageBucket: "amlcom.appspot.com",
+    messagingSenderId: "459618489193"
   };
   firebase.initializeApp(config);
 
   const storage = firebase.storage();
 
   export {storage , firebase as default }
+
+//   <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase.js"></script>
+// <script>
+//   // Initialize Firebase
+//   var config = {
+//     apiKey: "AIzaSyA2_CdlHg0YoDJP2wUHpOG1eSN_3pxKK-c",
+//     authDomain: "amlcom.firebaseapp.com",
+//     databaseURL: "https://amlcom.firebaseio.com",
+//     projectId: "amlcom",
+//     storageBucket: "amlcom.appspot.com",
+//     messagingSenderId: "459618489193"
+//   };
+//   firebase.initializeApp(config);
+// </script>
