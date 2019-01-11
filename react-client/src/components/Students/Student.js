@@ -126,8 +126,7 @@ class Student extends Component {
                                                 <Route path='/SubjectsList' exact component={SubjectsList} />
                                                 <Route path='/AddClass' exact component={AddSubject} />
                                                 <Route path='/Profile' exact component={Profile} />
-                                                <Route path='/studentchedule' exact component={MySchedule} />
-                                                <Route path='/MyPayments' exact component={MyPayments} />
+                                                <Route path='/MySchedule' exact component={MySchedule} />                                                <Route path='/MyPayments' exact component={MyPayments} />
                                                 <Route path='/Teachers' exact component={Teachers} />
                                             </Switch>
                                         </div>

@@ -57,11 +57,8 @@ class App extends Component {
               <Route path='/HomePage1' exact component = {HomePage1}/>
               <Route path='/comments' exact component={Comments} />
               <Route path='/schedule' exact component={Schedule} />
-              <Route path='/studentchedule' exact component={MySchedule} />
               <Route path='/message' exact component={Message} />
-
-              {/* <Route path='/Rating' exact component={Rate}/> */}
-            </Switch>
+              <Route path='/MySchedule' exact component={MySchedule} />            </Switch>
           </div>
           
         </div>
