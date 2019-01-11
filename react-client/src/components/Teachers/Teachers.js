@@ -3,7 +3,7 @@ import './Teacher.css';
 import axios from 'axios';
 import Search from '../search'
 import { Redirect, Link } from 'react-router-dom'
-import Nav from '../Nav'
+import Student from '../Students/Student.js'
 
 class Teachers extends Component {
     state = {
@@ -60,7 +60,7 @@ class Teachers extends Component {
             return (
                 <div>
                     <div style={{ height: '100%' }}>
-                        <Nav />
+                        <Student/>
                     </div>
                     <div className='teacherSearch'>
                         < Search search={this.searchTeacher} />

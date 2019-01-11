@@ -3,6 +3,7 @@ import {withRouter} from 'react-router-dom';
 import Shariklogo from './Shariklogo.png';
 import axios from 'axios';
 import './Nav.css';
+import {Link} from 'react-router-dom';
 
 
 
@@ -55,16 +56,16 @@ class Navbar extends Component {
                 <div>
                     <nav className="navbar navbar-expand">
                         <div className="collapse navbar-collapse mr-auto" id="navbarSupportedContent">
-                            <ul className="navbar-nav">
-                                <li className="nav-item active">
-                                    <a href="/">
+                            <Link to="/">
+                                <ul className="navbar-nav">
+                                    <li className="nav-item active">
                                         <img src={Shariklogo} width="40" height="40" className="d-inline-block align-top" alt="Sharik Logo" />
-                                    </a>
-                                </li>
-                                <li className="nav-item active">
-                                    <span className="shariklogo">Sharik</span>
-                                </li>
-                            </ul>
+                                    </li>
+                                    <li className="nav-item active">
+                                        <span className="shariklogo Navbar-text">Sharik</span>
+                                    </li>
+                                </ul>
+                            </Link>
                         </div>
                         <div className='navbarButtons'>
                         <ul className="navbar-nav">
@@ -84,23 +85,25 @@ class Navbar extends Component {
                 <div>
                     <nav className="navbar navbar-expand navbar-static-top">
                         <div className="collapse navbar-collapse mr-auto" id="navbarSupportedContent">
-                            <ul className="navbar-nav">
-                                <li className="nav-item active">
-                                    <a href="/">
-                                        <img src={Shariklogo} width="40" height="40" className="d-inline-block align-top" alt="Sharik Logo" />
-                                    </a>
-                                </li>
-                                <li className="nav-item active">
-                                    <span className="shariklogo">Sharik</span>
-                                </li>
-                            </ul>
+                            <Link to="/">
+                                <ul className="navbar-nav">
+                                    <li className="nav-item active">
+                                        <a href="/">
+                                            <img src={Shariklogo} width="40" height="40" className="d-inline-block align-top" alt="Sharik Logo" />
+                                        </a>
+                                    </li>
+                                    <li className="nav-item active">
+                                        <span className="shariklogo Navbar-text">Sharik</span>
+                                    </li>
+                                </ul>
+                            </Link>
                         </div>
                         <ul className="navbar-nav">
                             <li className="nav-item active">
-                                <a className="nav-link  Navbar-text" href="/signup">Signup </a>
+                                <Link to ='/signup' className="nav-link  Navbar-text">Signup</Link>                           
                             </li>
                             <li className="nav-item active">
-                                <a className="nav-link  Navbar-text" href="/signin">Signin </a>
+                                <Link to='/signin' className="nav-link  Navbar-text">Signin</Link>
                             </li>
                         </ul>
                     </nav>

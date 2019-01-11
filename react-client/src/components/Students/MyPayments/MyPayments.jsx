@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Student from '../Student.js'
 
 class MyPayments extends Component {
 	constructor(props) {
@@ -12,9 +13,8 @@ class MyPayments extends Component {
 
 		return (
 			<div>
+				<Student/>
 				<h1>Student MyPayments Page</h1>
-				
-
 			</div>
 
 		)

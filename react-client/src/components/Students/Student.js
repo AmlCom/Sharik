@@ -111,34 +111,17 @@ class Student extends Component {
                         <Grid container spacing={24}>
                             <Grid item xs={12}>
 
-                                <BrowserRouter>
                                     <div className="App">
                                         <div>
-                                            <Button color="inherit"><Link to='/student'>Dashboard</Link></Button>
+                                            <Button color="inherit"><Link to='/Dashboard'>Dashboard</Link></Button>
                                             <Button color="inherit"><Link to='/SubjectsList'>Subjects List</Link></Button>
                                             <Button color="inherit"><Link to='/AddSubject'>Add Subject</Link></Button>
                                             <Button color="inherit"><Link to='/Profile1'>Profile</Link></Button>
                                             <Button color="inherit"><Link to='/MySchedule'>MySchedule</Link></Button>
                                             <Button color="inherit"><Link to='/MyPayments'>MyPayments</Link></Button>
                                             <Button color="inherit"><Link to='/Teachers'>Teachers List</Link></Button>
-                                            
-
-                                            <Switch>
-                                                <Route path='/Student/' exact component={Dashboard} />
-                                                <Route path='/Student/SubjectsList' exact component={SubjectsList} />
-                                                <Route path='/Student/AddClass' exact component={AddSubject} />
-                                                <Route path='/Student/Profile1' exact component={Profile1} />
-                                                <Route path='/studentchedule' exact component={MySchedule} />
-                                                <Route path='/Student/MyPayments' exact component={MyPayments} />
-                                                <Route path='/Teachers' exact component={Teachers} />
-                                                <Route path='/Teacher' exact component={Teacher} />
-                                                <Route path='/Profile1' exact component={Profile1} />
-
-
-                                            </Switch>
                                         </div>
                                     </div>
-                                </BrowserRouter>
                             </Grid>
                         </Grid>
                     </div>  
