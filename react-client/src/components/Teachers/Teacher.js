@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Nav from '../Nav'
 import './Teacher.css'
 import Rate from '../Rating'
+import Student from '../Students/Student.js'
 
 class Teacher extends Component {
     constructor(props) {
@@ -178,7 +178,7 @@ class Teacher extends Component {
             return (
                 <div>
                     <div style={{ height: '100%' }}>
-                        <Nav />
+                        <Student/>
                     </div>
                     <div className='teacher'>
                         <div className='row '>
@@ -240,7 +240,7 @@ class Teacher extends Component {
             return (
                 <div>
                     <div style={{ height: '100%' }}>
-                        <Nav/>
+                        <Student/>
                     </div>
                     <div className='teacher'>
                         <div className='row '>

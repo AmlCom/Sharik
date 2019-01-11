@@ -17,12 +17,12 @@ class Search extends React.Component {
       name: event.target.value
     });
   };
-  handleSubmit = (name) => {
-
+  handleSubmit = (e) => {
+    e.preventDefault();
     var obj = { name: this.state.name }
-
     axios.post('get/specTeacher', obj)
       .then((res) => {
+        console.log('tet', res)
         this.props.search(res)
       })
       .catch((error) => {
@@ -35,7 +35,7 @@ class Search extends React.Component {
       <div className='container'>
         <form className="input-group">
         <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onChange={this.handleChange} />
-          <button className="btn btn-outline-info" type="submit" onClick={this.handleSubmit}>Search</button>
+          <button className="btn btn-outline-info"  onClick={this.handleSubmit}>Search</button>
         </form>
       </div>
 
