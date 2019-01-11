@@ -121,6 +121,8 @@ class Profile extends Component {
                     </div>
                     <div className="container">
                         <div className='row'>
+                        <div className='col-md-2'></div>
+
                             <div className='col-md-2'>
                               <Link to={{ pathname: '/Requests', state: { students: this.state.studentList} }} className="mainLinks list-group-item justify-content-between">
                               <h5 className='dashbored'>Requests</h5><span class="badge badge-primary number">{this.state.requestsNumber}</span>
@@ -147,6 +149,7 @@ class Profile extends Component {
 
 
                         <div className='row'>
+                        <div className="pic col-md-4"  ></div>
                             <div className="pic col-md-4"  >
                                 <img src={this.state.image} alt="" className="rounded" />
                                 <br />
@@ -162,9 +165,6 @@ class Profile extends Component {
                                         
                                     </div>
                                 </div>
-                            </div>
-
-                            <div classNam='col-md-8'>
                                 <div className="list-group">
                                     <a className="list-group-item">
                                         <span className="glyphicon glyphicon-cog" aria-hidden="true"></span> <h4> {this.state.teacherName}</h4>
@@ -174,6 +174,10 @@ class Profile extends Component {
                                     </a>
                                 </div>
                             </div>
+
+                            {/* <div classNam='col-md-8'> */}
+                               
+                            {/* </div> */}
 
                         </div>
                     </div>
