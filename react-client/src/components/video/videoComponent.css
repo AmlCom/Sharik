@@ -1,0 +1,13 @@
+.bala {
+    height: 5px;
+    width: 5px
+}
+.bala {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;  
+    height: 58%;
+    margin: 30px;
+    ;
+}

@@ -36,16 +36,9 @@ export default class VideoComponent extends Component {
         axios.post('/message/allmessages',this.props.location.state.detail)
         .then((res) => {
             console.log('all messages',res)
-            if(res.data.messagesTeacherStudent){
-                this.setState({
-                    messageList:res.data.messagesTeacherStudent
-                })
-            }else {
-                this.setState({
-                    messageList:[]
-                }) 
-            }
-           
+            this.setState({
+                messageList:res.data.messagesTeacherStudent
+            })
         })
         .catch((err) => {
             console.log(err)
