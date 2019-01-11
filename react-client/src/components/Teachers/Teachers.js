@@ -3,7 +3,7 @@ import './Teacher.css';
 import axios from 'axios';
 import Search from '../search'
 import { Redirect, Link } from 'react-router-dom'
-import Nav from '../Nav'
+import Student from '../Students/Student.js'
 
 class Teachers extends Component {
     state = {
@@ -15,10 +15,8 @@ class Teachers extends Component {
     componentDidMount() {
         axios.get('/auth/checkLogging').
         then((x) => {
-            console.log('356', x.data);
             if (x.data.email) {
                 var isteacher = x.data.isTeacher
-                // console.log('yahya',yahya)
                 this.setState({
                     isTeacher: isteacher
                 })
@@ -36,6 +34,7 @@ class Teachers extends Component {
     }
 
     searchTeacher = (name) => {
+        console.log('tee', name)
         this.setState({
             teachers: [name.data]
         })
@@ -60,7 +59,7 @@ class Teachers extends Component {
             return (
                 <div>
                     <div style={{ height: '100%' }}>
-                        <Nav />
+                        <Student/>
                     </div>
                     <div className='teacherSearch'>
                         < Search search={this.searchTeacher} />

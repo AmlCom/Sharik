@@ -37,6 +37,7 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
 import { storage } from '../../../firebase/index'
+import Student from '../Student.js'
 
 // Image Upload:
 // import Upload from 'material-ui-upload/Upload';
@@ -340,7 +341,7 @@ class Profile extends Component {
 
 		return (
 			<div>
-
+                <Student/>
 				<div className={classes.root}>
 					<Grid container spacing={24}>
 						<Grid item xs={12}>
