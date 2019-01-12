@@ -98,28 +98,29 @@ class Student extends Component {
             return (
                 <div>
                     <br />
-                    <h1>Loading.......</h1>
+                    
                 </div>
             )
         } else if (!this.state.isTeacher) {
             return (
-                <div>
-                    <div style={{ height: '100%' }}>
+                <div style={{'height': '100%'}}>
+                    {/* <div style={{ height: '100%' }}>
                         <Nav />
-                    </div>
+                    </div> */}
 
-                        <Grid container spacing={24}>
+                        <Grid container spacing={24} style={{'height': '100%'}}> 
                             <Grid item xs={12}>
 
-                                    <div className="App">
+                                    <div className="App" style={{'backgroundColor': 'grey', 'height': '100%'}}>
                                         <div>
-                                            <Button color="inherit"><Link to='/Dashboard'>Dashboard</Link></Button>
-                                            <Button color="inherit"><Link to='/SubjectsList'>Subjects List</Link></Button>
-                                            <Button color="inherit"><Link to='/AddSubject'>Add Subject</Link></Button>
-                                            <Button color="inherit"><Link to='/Profile1'>Profile</Link></Button>
-                                            <Button color="inherit"><Link to='/MySchedule'>MySchedule</Link></Button>
-                                            <Button color="inherit"><Link to='/MyPayments'>MyPayments</Link></Button>
-                                            <Button color="inherit"><Link to='/Teachers'>Teachers List</Link></Button>
+                                       <div> </div>
+                                           <div> <Button color="inherit" className="center"><Link to='/Dashboard' style={{'color': 'white'}}>Dashboard</Link></Button></div>
+                                           <div> <Button color="inherit" className="center"><Link to='/SubjectsList' style={{'color': 'white'}}>Subjects List</Link></Button></div>
+                                           <div> <Button color="inherit" className="center"><Link to='/AddSubject' style={{'color': 'white'}}>Add Subject</Link></Button></div>
+                                           <div> <Button color="inherit" className="center"><Link to='/Profile1' style={{'color': 'white'}}>Profile</Link></Button></div>
+                                           <div> <Button color="inherit" className="center"><Link to='/MySchedule' style={{'color': 'white'}}>MySchedule</Link></Button></div>
+                                           <div> <Button color="inherit" className="center"><Link to='/MyPayments' style={{'color': 'white'}}>MyPayments</Link></Button></div>
+                                           <div> <Button color="inherit" className="center"><Link to='/Teachers' style={{'color': 'white'}}>Teachers List</Link></Button></div>
                                         </div>
                                     </div>
                             </Grid>

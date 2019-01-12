@@ -22,7 +22,6 @@ class Search extends React.Component {
     var obj = { name: this.state.name }
     axios.post('get/specTeacher', obj)
       .then((res) => {
-        console.log('tet', res)
         this.props.search(res)
       })
       .catch((error) => {

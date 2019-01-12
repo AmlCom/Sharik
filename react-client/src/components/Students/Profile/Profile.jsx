@@ -38,6 +38,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
 import { storage } from '../../../firebase/index'
 import Student from '../Student.js'
+import Nav from '../../Nav.js'
 
 // Image Upload:
 // import Upload from 'material-ui-upload/Upload';
@@ -341,7 +342,12 @@ class Profile extends Component {
 
 		return (
 			<div>
-                <Student/>
+				<div style={{ height: '100%' }}>
+                    <Nav />
+                </div>
+				<div className='row' style={{ minHeight: document.body.clientWidth}}>
+				<div className='col-md-2'><Student/></div>
+				<div className='col-md-10'>
 				<div className={classes.root}>
 					<Grid container spacing={24}>
 						<Grid item xs={12}>
@@ -501,7 +507,8 @@ class Profile extends Component {
 				</div>
 
 			</div>
-
+            </div>
+			</div>
 		)
 	}
 }

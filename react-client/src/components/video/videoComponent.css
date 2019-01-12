@@ -1,0 +1,6 @@
+#local-media > video {
+    max-width: 200px;
+}
+#remote-media > video {
+    max-width: 600px;
+}
