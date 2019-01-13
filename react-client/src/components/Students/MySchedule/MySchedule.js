@@ -60,8 +60,13 @@ class MySchedule extends Component {
 			)
 		} else {
 		return (
-			<div>
-				<Student/>
+			<div >
+				<div style={{ height: '100%' }}>
+                    <Nav />
+                </div>
+				<div className='row' style={{ minHeight: document.body.clientWidth}}>
+				<div className='col-md-2'><Student/></div>
+				<div className='col-md-10'>
 				{this.state.messages.map((message) => {
 					var array = message.split(' ')
 					var teacher = array[0]
@@ -108,6 +113,8 @@ class MySchedule extends Component {
 
 					 }
 				})}
+			</div>
+			</div>
 			</div>
 		    )
 		}

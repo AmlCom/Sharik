@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Student from '../Student.js'
+import Nav from '../../Nav.js'
 
 class AddSubject extends Component {
 	constructor(props) {
@@ -12,9 +13,16 @@ class AddSubject extends Component {
 	render() {
 
 		return (
-			<div>
-				<Student/>
-				<h1>Student AddSubject Page</h1>
+			<div >
+				<div style={{ height: '100%' }}>
+                    <Nav />
+                </div>
+				<div className='row' style={{ minHeight: document.body.clientWidth}}>
+				    <div className='col-md-2'><Student/></div>
+				    <div className='col-md-10'>
+				        <h1>Student AddSubject Page</h1>
+				    </div>
+				    </div>
 			</div>
 
 		)
