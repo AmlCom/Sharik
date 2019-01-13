@@ -13,7 +13,6 @@ import CreateTeacher from '../CreateTeacher'
 import Search from '../search'
 import student from '../Students/Student.js'
 import VideoComponent from '../video/VideoComponent'
-import Payment from '../Payment';
 import Videos from '../Teachers/videos';
 import Requests from '../Teachers/Requests'
 import { BrowserRouter, Route, Switch,History } from 'react-router-dom'
@@ -22,6 +21,8 @@ import Comments from '../Teachers/comments'
 import Schedule from '../Teachers/schedule'
 import MySchedule from '../Students/MySchedule/MySchedule'
 import Message from '../message'
+import Profile1 from '../Students/Profile/Profile.jsx';
+
 
 
 
@@ -51,14 +52,18 @@ class App extends Component {
               <Route path='/search' exact component={Search}/>
               <Route path='/student' exact component={student}/>
               <Route path='/video' exact component={VideoComponent} />
-              <Route path='/Payment' exact component ={Payment}/>
               <Route path='/Lectures' exact component = {Videos}/>
               <Route path='/Requests' exact component ={Requests}/>
               <Route path='/HomePage1' exact component = {HomePage1}/>
               <Route path='/comments' exact component={Comments} />
               <Route path='/schedule' exact component={Schedule} />
+              <Route path='/MySchedule' exact component={MySchedule} />
               <Route path='/message' exact component={Message} />
-              <Route path='/MySchedule' exact component={MySchedule} />            </Switch>
+              <Route path='/Profile1' exact component={Profile1} />
+
+
+              {/* <Route path='/Rating' exact component={Rate}/> */}
+            </Switch>
           </div>
           
         </div>
