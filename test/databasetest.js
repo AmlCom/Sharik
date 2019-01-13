@@ -3,6 +3,7 @@ const assert = require('assert');
 var request = require('supertest');
 var mocha = require('mocha');
 const signupuser = require('../DB/MongoDB/schema/sharik_db__users_schema.js');
+const Teacher = require('../DB/MongoDB/schema/teacherSchema')
 const express = require('express')
 
 
@@ -44,6 +45,38 @@ describe('save',function(){
       });
   });
 
+  //save new teacher to database
+  it('save new Teacher to database',function(){
+    const newTeacher = new Teacher({
+            firstname: 'Yahye',
+            lastname: 'Farag',
+            email: 'yahya@gmail.com',
+            password:  'yahya1234'
+          });
+
+          newTeacher.save().then(function(){
+          assert(newTeacher.isNew === false);
+    });
+    
+    //Delete specific teacher from the database based on his name
+    it('Delete specific teacher from the database', function(){
+    	Teacher.findOneAndRemove({firstname:'Yahye'}).then(function(){
+			Teacher.findOne({firstname:'Yahye'}).then(function(result){
+        		assert(result === null);
+      		});
+    	});
+      });
+    
+      //update the name of specific teacher in the database
+      it('Updates the saved data', function(){
+        Teacher.findOneAndUpdate({firstname:'Yahye'}, {firstname: 'Ahmed'}).then(function(teacher){
+            Teacher.findOne({_id: teacher._id}).then(function(result){
+                  assert(result.email === 'None');
+              });
+          });
+      });
+
+});
 
 
 });
