@@ -25,7 +25,7 @@
 .teacherSearch{
     margin-top: 3%;
     width: 40%;
-    margin-left: 100px;
+    margin-left: 30%;
 }
 
 .uploadVideo{
@@ -105,5 +105,9 @@ li{
 .studentpic {
     width: 50px;
     height: 50px;
+}
+
+.comments li h5 {
+    float: left;
 }
 

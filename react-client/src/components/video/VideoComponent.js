@@ -5,6 +5,7 @@ import Nav from '../Nav'
 import '../App/App.css';
 import {render} from 'react-dom'
 import {Launcher} from 'react-chat-window'
+import './videoComponent.css'
 
 
 export default class VideoComponent extends Component {
@@ -36,9 +37,16 @@ export default class VideoComponent extends Component {
         axios.post('/message/allmessages',this.props.location.state.detail)
         .then((res) => {
             console.log('all messages',res)
-            this.setState({
-                messageList:res.data.messagesTeacherStudent
-            })
+            if(res.data.messagesTeacherStudent){
+                this.setState({
+                    messageList:res.data.messagesTeacherStudent
+                })
+            }else {
+                this.setState({
+                    messageList:[]
+                }) 
+            }
+           
         })
         .catch((err) => {
             console.log(err)
@@ -259,7 +267,7 @@ export default class VideoComponent extends Component {
                 <div id="remote-media"></div>
                 <div className='VideoChat' id="controls">
                     <div id="preview">
-                        <p className="instructions">Video Call</p>
+                        <p className="instructions"></p>
                         <div ref="localMedia" id="local-media"></div>
                         <button  ref="buttonPreview" id="button-preview">Preview Your Camera</button>
                     </div>

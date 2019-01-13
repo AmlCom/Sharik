@@ -61,7 +61,7 @@ class HomePage extends Component {
         //   <Student />
 
         // </React.Fragment>
-        <Redirect to="/student" />
+        <Redirect to="/Dashboard" />
       )
     }
   }
