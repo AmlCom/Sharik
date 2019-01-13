@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import $ from 'jquery';
 import Nav from '../Nav'
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 
 class Schedule extends Component {
@@ -10,8 +10,8 @@ class Schedule extends Component {
         super(props);
         this.state = {
             schedule: null,
-            teacherid:null,
-            image:''
+            teacherid: null,
+            image: ''
         }
     }
 
@@ -21,8 +21,8 @@ class Schedule extends Component {
                 console.log('hello world', response.data.acceptedRequests)
                 this.setState({
                     schedule: response.data.acceptedRequests,
-                    teacherid:response.data._id,
-                    image:response.data.image
+                    teacherid: response.data._id,
+                    image: response.data.image
                 })
             })
             .catch((err) => {
@@ -36,24 +36,62 @@ class Schedule extends Component {
     //     })
     // }
 
-    message = (studentId,teacherid) => {
+    message = (studentId, teacherid) => {
 
-        
-            this.props.history.push({
-                pathname: '/video',
-                state: { detail: {studentid:studentId,teacherid:teacherid} }
-              })
-              
+
+        this.props.history.push({
+            pathname: '/video',
+            state: { detail: { studentid: studentId, teacherid: teacherid } }
+        })
+
     }
 
     render() {
         console.log('schedule', this.state.schedule)
-        if (this.state.schedule!== null) {
+        if (this.state.schedule !== null) {
             return (
                 <div>
                     <Nav />
+                    <div className='container'>
+                        <div className="panel requestTable">
+                            <div className="panel-heading ">
+                                <h3 className="panel-title">Your requests</h3>
+                            </div>
+                            <div className="panel-body">
+                                <div className="row">
+                                </div>
+                                <br />
+                                <table className="table table-striped">
+                                    <tr>
+                                        <th>Profile picture</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th></th>
+                                    </tr>
+                                    {this.state.schedule.map((student) => {
+                                        console.log('student', student)
+                                        return (
+                                            <tr >
+                                                <th><img className='studentpic' src={student.image} /></th>
+                                                <td>{student.student}</td>
+                                                <td>{student.email}</td>
+                                                <td><a className="btn btn-success" onClick={() => { this.message(student.id, this.state.teacherid) }}  >Message/Call</a></td>
+                                            </tr>
+                                        )
+                                    })}
+
+                                </table>
+                            </div>
+                        </div>
+                        <br />
+
+                    </div>
+                </div>
+            )
+        } else {
+            return (
                 <div className='container'>
-                    <div className="panel requestTable">
+                    <div className="panel">
                         <div className="panel-heading ">
                             <h3 className="panel-title">Your requests</h3>
                         </div>
@@ -63,54 +101,17 @@ class Schedule extends Component {
                             <br />
                             <table className="table table-striped">
                                 <tr>
-                                    <th>Profile picture</th>
                                     <th>Name</th>
                                     <th>Email</th>
-                                    <th></th>
-                                </tr>
-                                {this.state.schedule.map((student) =>{
-                                    console.log('student',student)
-                               return (
-                                    <tr >
-                                        <th><img className='studentpic' src ={student.image}/></th>
-                                        <td>{student.student}</td>
-                                        <td>{student.email}</td>
-                                        <td><a className="btn btn-success" onClick = {()=>{this.message(student.id,this.state.teacherid)}}  >Message/Call</a></td>
-                                    </tr>
-                                )})}
-    
-                            </table>
-                        </div>
-                    </div>
-                    <br />
-                  
-                </div>
-                </div>
-            )
-        } else {
-            return (
-            <div className='container'>
-                <div className="panel">
-                    <div className="panel-heading ">
-                        <h3 className="panel-title">Your requests</h3>
-                    </div>
-                    <div className="panel-body">
-                        <div className="row">
-                        </div>
-                        <br />
-                        <table className="table table-striped">
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
 
-                            </tr>
+                                </tr>
                             </table>
-                    </div>
-                </div>           }
+                        </div>
+                    </div>           
             </div>
-            )}
-                }
-            }
-                
-                export default  withRouter(Schedule);
-                
+            )
+        }
+    }
+}
+
+export default withRouter(Schedule);
