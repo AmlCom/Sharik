@@ -31,6 +31,8 @@ router.post('/teacher', function (req, res, next) {
 //find specific teacher or teachers
 
 router.post('/specTeacher', function (req, res, next) {
+  console.log('teachr',req.body.name)
+
   Teacher.findOne({'firstname':req.body.name}).then(function (teacher) {
     console.log('teacheer',teacher)
     //res.send('hello')

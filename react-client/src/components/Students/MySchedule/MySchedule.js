@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import Nav from '../../Nav'
 import './MySchedule.css'
+import Student from '../Student.js'
 
 class MySchedule extends Component {
 	constructor(props) {
@@ -57,10 +58,10 @@ class MySchedule extends Component {
 			return (
 				<h5>Loading....</h5>
 			)
-		}else {
+		} else {
 		return (
 			<div>
-				<Nav />
+				<Student/>
 				{this.state.messages.map((message) => {
 					var array = message.split(' ')
 					var teacher = array[0]
@@ -106,12 +107,10 @@ class MySchedule extends Component {
 						)
 
 					 }
-
-
 				})}
 			</div>
-		)
-			}
+		    )
+		}
 	}
 }
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Slideshow from '../Slideshow/Slideshow.jsx';
 import axios from 'axios';
 import '../../Teachers/Teacher.css'
-
+import Student from '../Student.js'
 class Dashboard extends Component {
 	constructor(props) {
 		super(props);
@@ -44,14 +44,18 @@ class Dashboard extends Component {
 
 		if (this.state.videos.length === 1) {
 			return (
-				<div className='container'>
-					<iframe className='teacherVideo' src={this.state.videos[0]} />
+				<div>
+					<Student/>
+					<div className='container'>
+						<iframe className='teacherVideo' src={this.state.videos[0]} />
+					</div>
 				</div>
 
 			)
 		} else {
 			return (
 				<div>
+					<Student/>
 					{this.state.videos.map((video) =>
 						<div className='container'>
 							<div className='videoWrapper'>
