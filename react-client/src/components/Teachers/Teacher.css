@@ -115,3 +115,7 @@ li{
 .comments li h5 {
     float: left;
 }
+
+.card-header h5 {
+    color :white;
+}
