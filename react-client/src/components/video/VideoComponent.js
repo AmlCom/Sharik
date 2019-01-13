@@ -7,7 +7,6 @@ import {render} from 'react-dom'
 import {Launcher} from 'react-chat-window'
 import './videoComponent.css'
 
-
 export default class VideoComponent extends Component {
     constructor(props) {
         super(props);
@@ -37,16 +36,9 @@ export default class VideoComponent extends Component {
         axios.post('/message/allmessages',this.props.location.state.detail)
         .then((res) => {
             console.log('all messages',res)
-            if(res.data.messagesTeacherStudent){
-                this.setState({
-                    messageList:res.data.messagesTeacherStudent
-                })
-            }else {
-                this.setState({
-                    messageList:[]
-                }) 
-            }
-           
+            this.setState({
+                messageList:res.data.messagesTeacherStudent
+            })
         })
         .catch((err) => {
             console.log(err)
@@ -84,7 +76,7 @@ export default class VideoComponent extends Component {
                     return;
                 }
 
-                this.log("Joining room '" + this.roomName + "'...");
+               // this.log("Joining room '" + this.roomName + "'...");
                 var connectOptions = {
                     name: this.roomName,
                     logLevel: "debug"
@@ -103,7 +95,7 @@ export default class VideoComponent extends Component {
 
             // Bind button to leave Room.
             this.refs.buttonLeave.onclick = ()=> {
-                this.log("Leaving room...");
+               // this.log("Leaving room...");
                 this.activeRoom.disconnect();
             };
         });
@@ -140,12 +132,11 @@ export default class VideoComponent extends Component {
         logDiv.scrollTop = logDiv.scrollHeight;
     }
 
-
     roomJoined(room) {
         this.activeRoom = room;
         window.room = room.name;
 
-        this.log("Joined as '" + this.identity + "'");
+       // this.log("Joined as '" + this.identity + "'");
         this.refs.buttonJoin.style.display = "none";
         this.refs.buttonLeave.style.display = "inline";
 
@@ -157,39 +148,39 @@ export default class VideoComponent extends Component {
 
         // Attach the Tracks of the Room's Participants.
         room.participants.forEach((participant)=> {
-            this.log("Already in Room: '" + participant.identity + "'");
+            //this.log("Already in Room: '" + participant.identity + "'");
             var previewContainer = document.getElementById("remote-media");
             this.attachParticipantTracks(participant, previewContainer);
         });
 
         // When a Participant joins the Room, log the event.
         room.on("participantConnected", (participant)=> {
-            this.log("Joining: '" + participant.identity + "'");
+            //this.log("Joining: '" + participant.identity + "'");
         });
 
         // When a Participant adds a Track, attach it to the DOM.
         room.on("trackAdded", (track, participant)=> {
-            this.log(participant.identity + " added track: " + track.kind);
+           // this.log(participant.identity + " added track: " + track.kind);
             var previewContainer = document.getElementById("remote-media");
             this.attachTracks([track], previewContainer);
         });
 
         // When a Participant removes a Track, detach it from the DOM.
         room.on("trackRemoved", (track, participant)=> {
-            this.log(participant.identity + " removed track: " + track.kind);
+           // this.log(participant.identity + " removed track: " + track.kind);
             this.detachTracks([track]);
         });
 
         // When a Participant leaves the Room, detach its Tracks.
         room.on("participantDisconnected", (participant)=> {
-            this.log("Participant '" + participant.identity + "' left the room");
+          //  this.log("Participant '" + participant.identity + "' left the room");
             this.detachParticipantTracks(participant);
         });
 
         // Once the LocalParticipant leaves the room, detach the Tracks
         // of all Participants, including that of the LocalParticipant.
         room.on("disconnected", ()=> {
-            this.log("Left");
+           // this.log("Left");
             if (this.previewTracks) {
                 this.previewTracks.forEach((track)=> {
                     track.stop();
@@ -296,7 +287,6 @@ export default class VideoComponent extends Component {
 }
 
 
-
 // import React, {Component} from 'react'
 // import {render} from 'react-dom'
 // import {Launcher} from 'react-chat-window'
@@ -362,7 +352,6 @@ export default class VideoComponent extends Component {
 
 
 
-
 //     this.setState({
 //       messageList: [...this.state.messageList, message]
 //     })
@@ -401,3 +390,4 @@ export default class VideoComponent extends Component {
 // }
 
 // export default Message;
+
