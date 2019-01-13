@@ -30,7 +30,8 @@
     "react-star-rating-component": "^1.4.1",
     "stripe": "^6.20.0",
     "supertest": "^3.3.0",
-    "twilio": "^3.26.0"
+    "twilio": "^3.26.0",
+    "twilio-video": "^1.15.0"
   },
   "devDependencies": {
     "concurrently": "^4.0.1"
