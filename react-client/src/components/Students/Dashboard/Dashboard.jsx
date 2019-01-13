@@ -3,6 +3,8 @@ import Slideshow from '../Slideshow/Slideshow.jsx';
 import axios from 'axios';
 import '../../Teachers/Teacher.css'
 import Student from '../Student.js'
+import Nav from '../../Nav.js'
+
 class Dashboard extends Component {
 	constructor(props) {
 		super(props);
@@ -54,17 +56,25 @@ class Dashboard extends Component {
 			)
 		} else {
 			return (
-				<div>
-					<Student/>
-					{this.state.videos.map((video) =>
-						<div className='container'>
-							<div className='videoWrapper'>
-							<video controls="true">
-								<source src={video} type="video/mp4" />
-							</video>
+				
+				<div >
+					<div style={{ height: '100%' }}>
+							<Nav />
+					</div>
+					<div className='row' style={{ minHeight: document.body.clientWidth}}>
+					<div className='col-md-2'><Student/></div>
+					<div className='col-md-10'>
+						{this.state.videos.map((video) =>
+							<div className='container'>
+								<div className='videoWrapper'>
+								<video controls="true">
+									<source src={video} type="video/mp4" />
+								</video>
+							</div>
+							</div>
+						)}
 						</div>
-						</div>
-					)}
+					</div>
 				</div>
 			)
 		}
