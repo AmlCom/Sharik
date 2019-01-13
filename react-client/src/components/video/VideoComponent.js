@@ -7,7 +7,6 @@ import {render} from 'react-dom'
 import {Launcher} from 'react-chat-window'
 import './videoComponent.css'
 
-
 export default class VideoComponent extends Component {
     constructor(props) {
         super(props);
@@ -37,16 +36,9 @@ export default class VideoComponent extends Component {
         axios.post('/message/allmessages',this.props.location.state.detail)
         .then((res) => {
             console.log('all messages',res)
-            if(res.data.messagesTeacherStudent){
-                this.setState({
-                    messageList:res.data.messagesTeacherStudent
-                })
-            }else {
-                this.setState({
-                    messageList:[]
-                }) 
-            }
-           
+            this.setState({
+                messageList:res.data.messagesTeacherStudent
+            })
         })
         .catch((err) => {
             console.log(err)
@@ -139,7 +131,6 @@ export default class VideoComponent extends Component {
         logDiv.innerHTML += "<p>&gt;&nbsp;" + message + "</p>";
         logDiv.scrollTop = logDiv.scrollHeight;
     }
-
 
     roomJoined(room) {
         this.activeRoom = room;
@@ -296,7 +287,6 @@ export default class VideoComponent extends Component {
 }
 
 
-
 // import React, {Component} from 'react'
 // import {render} from 'react-dom'
 // import {Launcher} from 'react-chat-window'
@@ -362,7 +352,6 @@ export default class VideoComponent extends Component {
 
 
 
-
 //     this.setState({
 //       messageList: [...this.state.messageList, message]
 //     })
@@ -401,3 +390,4 @@ export default class VideoComponent extends Component {
 // }
 
 // export default Message;
+

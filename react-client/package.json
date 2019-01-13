@@ -20,7 +20,7 @@
     "react-star-rating-component": "^1.4.1",
     "reactstrap": "^6.5.0",
     "stripe": "^6.20.0",
-    "twilio-video": "^1.14.2"
+    "twilio-video": "^1.15.0"
   },
   "scripts": {
     "start": "react-scripts start",
