@@ -5,8 +5,7 @@ import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import './Profile.css'
 import Nav from './Nav'
-
-
+import Comments2 from './Teachers/comments2';
 var user = ''
 
 
@@ -22,8 +21,8 @@ class Profile extends Component {
             studentList: [],
             requestsNumber: 0,
             comments: 0,
-            lectures:0,
-            schedule:0 
+            lectures: 0,
+            schedule: 0
         }
     }
 
@@ -33,10 +32,10 @@ class Profile extends Component {
                 if (response.data.email) {
                     user = response.data.firstname
                     this.setState({
-                        teacherName:response.data.firstname,
-                        comments : response.data.comments.length,
-                        lectures : response.data.video.length,
-                        schedule : response.data.acceptedRequests.length
+                        teacherName: response.data.firstname + " " + response.data.lastname,
+                        comments: response.data.comments.length,
+                        lectures: response.data.video.length,
+                        schedule: response.data.acceptedRequests.length
 
                     })
                     //get authorized teacher from the database
@@ -73,14 +72,14 @@ class Profile extends Component {
         axios.get('/studentList').then((res) => {
             this.setState({
                 requestsNumber: res.data.length,
-                studentList: res.data 
+                studentList: res.data
             })
         })
     }
 
 
 
-    
+
 
     uploadImage = (e) => {
         this.setState({
@@ -114,75 +113,76 @@ class Profile extends Component {
 
 
     render() {
-            return (
-                <div>
-                    <div style={{ height: '100%' }}>
-                        <Nav />
-                    </div>
-                    <div className="container">
-                        <div className='row'>
-                        <div className='col-md-2'></div>
+        return (
+            <div>
+                <div style={{ height: '100%' }}>
+                    <Nav />
+                </div>
+                <div className="container">
+                    <div className='row' style={{ marginTop: '1%' }}>
+                        <div class="container-fluid page-cont">
+                            <h6 className="list-group-item">
+                                Dashboard
+                           </h6>
+                            <div class="row dash-row">
+                                <div class="col-4 data-box">
+                                    <div>
+                                        <a href="./lectures"><h5><span>{this.state.lectures}</span> Lectures</h5></a>
+                                    </div>
+                                </div>
+                                <div class="col-4 data-box ">
+                                    <Link to={{ pathname: '/Requests', state: { students: this.state.studentList } }}>
+                                        <h5><span>{this.state.requestsNumber}</span> Requests</h5>
+                                    </Link>
+                                </div>
+                                <div class="col-4 data-box">
 
-                            <div className='col-md-2'>
-                              <Link to={{ pathname: '/Requests', state: { students: this.state.studentList} }} className="mainLinks list-group-item justify-content-between">
-                              <h5 className='dashbored'>Requests</h5><span class="badge badge-primary number">{this.state.requestsNumber}</span>
-                              </Link>
+                                    <Link to={{ pathname: '/schedule', state: { students: this.state.studentList } }}>
+                                        <h5><span>{this.state.schedule}</span> Schedule</h5>
+                                    </Link>
+                                </div>
                             </div>
-                            <div className='col-md-2'>
-                                <a href="./comments" className="mainLinks list-group-item justify-content-between">
-                                    <h5 className='dashbored'>Comments</h5><span className="badge badge-primary number">{this.state.comments}</span>
-                                </a>
-                            </div>
-                            <div className='col-md-2'>
-                                <a href="./lectures" className="mainLinks list-group-item justify-content-between">
-                                   <h5 className='dashbored'>Lectures</h5><span className="badge badge-primary number">{this.state.lectures}</span>
-                                </a>
-                            </div>
-                            <div className='col-md-2'>
-                            <Link to={{ pathname: '/schedule', state: { students: this.state.studentList} }} className="mainLinks list-group-item justify-content-between">
-                              <h5 className='dashbored'>Schedule</h5><span class="badge badge-primary number">{this.state.schedule}</span>
-                              </Link>
-                            </div>
-
                         </div>
-                        <hr />
+                    </div>
+                    <hr />
 
+                    <div className='row'>
+                        <div classNam='col-md-4'>
+                            <div className="list-group">
+                                <a className="list-group-item">
+                                    <span className="glyphicon glyphicon-cog" aria-hidden="true"></span> <h4> {this.state.teacherName}</h4>
+                                    <div><h5 className="font-weight-light font-weight-bold "> {this.state.teacherMajor}</h5></div>
+                                    <div><h6 className="font-weight-light font-weight-bold ">{this.state.info}</h6></div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
-                        <div className='row'>
-                        <div className="pic col-md-4"  ></div>
-                            <div className="pic col-md-4"  >
-                                <img src={this.state.image} alt="" className="rounded" />
-                                <br />
-                                <br />
-
-                                <div className="input-group mb-3">
-                                    <div className="custom-file">
-                                        <input type="file" className="custom-file-input" id="inputGroupFile02" onChange={this.uploadImage} />
-                                        <label className="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
-                                    </div>
-                                    <div className="input-group-append">
-                                        <button className="input-group-text" id="inputGroupFileAddon02" onClick={this.submitImage}>Upload</button>
-                                        
-                                    </div>
+                    <div className='row'>
+                        <div className="pic col-md-4"  >
+                            <img src={this.state.image} alt="" className="rounded" />
+                            <br />
+                            <br />
+                            <div className="input-group mb-3">
+                                <div className="custom-file">
+                                    <input type="file" className="custom-file-input" id="inputGroupFile02" onChange={this.uploadImage} />
+                                    <label className="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
                                 </div>
-                                <div className="list-group">
-                                    <a className="list-group-item">
-                                        <span className="glyphicon glyphicon-cog" aria-hidden="true"></span> <h4> {this.state.teacherName}</h4>
-                                        <div><h5 className="font-weight-light font-weight-bold "> {this.state.teacherMajor} teacher </h5></div>
-                                        <div><h6 className="font-weight-light font-weight-bold ">{this.state.info}</h6></div>
-                                        <h4> <span class="badge badge-info">Class price {this.state.price}JD/Hour</span></h4>
-                                    </a>
+                                <div className="input-group-append">
+                                    <button className="input-group-text" id="inputGroupFileAddon02" onClick={this.submitImage}>Upload</button>
                                 </div>
                             </div>
-
-                            {/* <div classNam='col-md-8'> */}
-                               
-                            {/* </div> */}
-
+                        </div>
+                        <div className='col-md-8'>
+                            <Comments2 />
                         </div>
                     </div>
                 </div>
-            )
+            </div>
+        )
     }
 }
 export default Profile;
+
+
+

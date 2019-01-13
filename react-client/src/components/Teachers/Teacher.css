@@ -107,3 +107,7 @@ li{
     height: 50px;
 }
 
+.comments li h5 {
+    float: left;
+}
+

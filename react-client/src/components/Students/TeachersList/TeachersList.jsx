@@ -4,6 +4,7 @@ import axios from 'axios';
 // import Search from '../search'
 import {Redirect} from  'react-router-dom'
 import Teacher from './Teacher'
+import Nav from '../../Nav.js'
 
 class Teachers extends Component {
     state = {

@@ -1,7 +1,6 @@
-/* #local-media > video {
-    max-width: 100px;
-  }
-  
- #remote-media > video {
-     max-width: 500px
- } */
+#local-media > video {
+    max-width: 200px;
+}
+#remote-media > video {
+    max-width: 600px;
+}
