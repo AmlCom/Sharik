@@ -107,7 +107,15 @@ li{
     height: 50px;
 }
 
+.commentCol{
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
 .comments li h5 {
     float: left;
 }
 
+.card-header h5 {
+    color :white;
+}
