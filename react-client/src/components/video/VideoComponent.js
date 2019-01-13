@@ -6,7 +6,6 @@ import '../App/App.css';
 import {render} from 'react-dom'
 import {Launcher} from 'react-chat-window'
 
-
 export default class VideoComponent extends Component {
     constructor(props) {
         super(props);
@@ -131,7 +130,6 @@ export default class VideoComponent extends Component {
         logDiv.innerHTML += "<p>&gt;&nbsp;" + message + "</p>";
         logDiv.scrollTop = logDiv.scrollHeight;
     }
-
 
     roomJoined(room) {
         this.activeRoom = room;
@@ -288,7 +286,6 @@ export default class VideoComponent extends Component {
 }
 
 
-
 // import React, {Component} from 'react'
 // import {render} from 'react-dom'
 // import {Launcher} from 'react-chat-window'
@@ -354,7 +351,6 @@ export default class VideoComponent extends Component {
 
 
 
-
 //     this.setState({
 //       messageList: [...this.state.messageList, message]
 //     })
@@ -393,3 +389,4 @@ export default class VideoComponent extends Component {
 // }
 
 // export default Message;
+
