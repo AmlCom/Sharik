@@ -103,13 +103,13 @@ class Comments2 extends Component {
             (
                 <div>
                     <div className='row '>
-                        <div className="col-md-8">
-                            <div className="card-header profileComments">Comments </div>
+                        <div className="col-md-8 commentCol">
+                            <div className="card-header">Comments </div>
                             {this.state.comments.map((comment) => {
                                 return (
                                     <div>
                                         <ul className='comments'>
-                                            <li><h5 > {comment.madeby}</h5></li>
+                                            <li><h5> {comment.madeby}</h5></li>
                                             <li><p> {comment.comment}</p> </li>
                                             <hr/>
                                         </ul>
