@@ -1,6 +1,6 @@
 .pic{
-    width: 100%;
-    height: 400px; 
+    width: 30%;
+    height:300px ; 
 }
 
 /* resize images */
@@ -35,4 +35,36 @@ background-color :rgb(49, 164, 221)
     top:0;
     left: 0;
 }
+
+.page-cont h6{
+    font-size: 20px;
+    background-color: rgb(49, 164, 221);
+}
+
+.dash-row{
+    margin:15px;
+    /* height:auto; */
+  }
+  .dash-row .data-box{
+    /* padding:0px 5px; */
+    /* height:auto; */
+    /* min-height:180px; */
+  }
+  .dash-row .data-box > div{
+    display:inline-flex;
+    width:100%;
+    height:auto;
+    min-height:100%;
+    background-color:rgba(255,255,255,0.8);
+    justify-content: center;
+    align-items: center;
+  }
+  .dash-row .data-box h5 {
+    font-size:18px;
+    color: black;
+  }
+  .dash-row .data-box span{
+    font-size:20px;
+    color:rgba(47,88,139,1.00);
+  }
 
