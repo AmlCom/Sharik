@@ -104,36 +104,12 @@ var SerEx_DB_MongoDB_Students = require('./Students/SerEx_DB_MongoDB_Students.js
 
 // Student - Get One Student Info:
 app.post('/S_Get_Student_Info', function (request, response) {
-    console.log('<<<<<<<<<<<<<<<<');
-    console.log('Data:');
-    console.log('@ >> Sharik/Server_Express/server.js');
-    console.log('@ >> app.post(\'/S_Get_Student_Info\', ...');
-    console.log('Request Data msg:');
-    console.log(request.body)
-    console.log('>>>>>>>>>>>>>>>>');
+ 
 
     SerEx_DB_MongoDB_Students.selectOneStudent(request, response, function (selectOneStudentQueryErr, selectOneStudentsQueryResulte) {
         if (selectOneStudentQueryErr) {
-            console.log('<<<<<<<<<<<<<<<<');
-            console.log('Error:');
-            console.log('@ >> Sharik/Server_Express/server.js');
-            console.log('@ >> app.post(\'/S_Get_Student_Info\', ...');
-            console.log('@ >> SerEx_DB_MongoDB_Students.selectOneStudent');
-            console.log('selectOneStudent Error msg:');
-            console.log(selectOneStudentQueryErr)
-            console.log('>>>>>>>>>>>>>>>>');
-
             response.end(JSON.stringify(selectOneStudentQueryErr))
         }
-
-        console.log('<<<<<<<<<<<<<<<<');
-        console.log('Data:');
-        console.log('@ >> Sharik/Server_Express/server.js');
-        console.log('@ >> app.post(\'/S_Get_Student_Info\', ...');
-        console.log('@ >> SerEx_DB_MongoDB_Students.selectOneStudent');
-        console.log('selectOneStudent Data msg:');
-        console.log(selectOneStudentsQueryResulte)
-        console.log('>>>>>>>>>>>>>>>>');
         response.end(JSON.stringify(selectOneStudentsQueryResulte));
     });
 
@@ -142,51 +118,29 @@ app.post('/S_Get_Student_Info', function (request, response) {
 
 // Student - Set (Update) One Student Info:
 app.post('/S_Set_Student_Info', function (request, response) {
-    console.log('<<<<<<<<<<<<<<<<');
-    console.log('Data:');
-    console.log('@ >> Sharik/Server_Express/server.js');
-    console.log('@ >> app.post(\'/S_Get_Student_Info\', ...');
-    console.log('Request Data msg:');
-    console.log(request.body)
-    console.log('>>>>>>>>>>>>>>>>');
-
     SerEx_DB_MongoDB_Students.updateOneStudent(request, response, function (updateOneStudentQueryErr, updateOneStudentsQueryResulte) {
         if (updateOneStudentQueryErr) {
-            console.log('<<<<<<<<<<<<<<<<');
-            console.log('Error:');
-            console.log('@ >> Sharik/Server_Express/server.js');
-            console.log('@ >> app.post(\'/S_Get_Student_Info\', ...');
-            console.log('@ >> SerEx_DB_MongoDB_Students.updateOneStudent');
-            console.log('updateOneStudent Error msg:');
-            console.log(updateOneStudentQueryErr)
-            console.log('>>>>>>>>>>>>>>>>');
-
             response.end(JSON.stringify(updateOneStudentQueryErr))
         }
-
-        console.log('<<<<<<<<<<<<<<<<');
-        console.log('Data:');
-        console.log('@ >> Sharik/Server_Express/server.js');
-        console.log('@ >> app.post(\'/S_Get_Student_Info\', ...');
-        console.log('@ >> SerEx_DB_MongoDB_Students.updateOneStudent');
-        console.log('updateOneStudent Data msg:');
-        console.log(updateOneStudentsQueryResulte)
-        console.log('>>>>>>>>>>>>>>>>');
         response.end(JSON.stringify(updateOneStudentsQueryResulte));
     });
 });
 
+<<<<<<< HEAD
+ if (process.env.NODE_ENV === 'production') {
+=======
 
 
 
 //  if (process.env.NODE_ENV === 'production') {
+>>>>>>> 684cc04c12ccf715435e988ab355bef4a1655416
 // // Serve any static files
 app.use(express.static(path.join(__dirname, '../react-client/build')));
 // // Handle React routing, return all requests to React app
 app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname, '../react-client/build', 'index.html'));
 });
-//  }
+  }
 
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
