@@ -63,7 +63,7 @@ class Teacher extends Component {
 
 
     addStudent = () => {
-        axios.post('/addStudent', {
+        axios.post('/get/addStudent', {
             teacherEmail: this.props.location.state.teacher.email,
             student_id: this.state.student_id
         })
