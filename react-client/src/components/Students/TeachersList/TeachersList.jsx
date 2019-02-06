@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Teacher.css';
 import axios from 'axios';
 // import Search from '../search'
-import {Redirect} from  'react-router-dom'
+import {Redirect, Link} from  'react-router-dom'
 import Teacher from './Teacher'
 import Nav from '../../Nav.js'
 
@@ -52,7 +52,7 @@ class Teachers extends Component {
                                 <h6> {this.state.teachers[0].firstname} </h6>
                                 <p> {this.state.teachers[0].lastname}</p>
                                 <br />
-                                <button type="submit" class="btn btn-primary" href="/teacher">Profile</button>
+                                <Link to="/teacher"><button class="btn btn-primary" >Profile</button></Link>
                                 <br />
                                 <br />
                             </td>

@@ -19,7 +19,6 @@ class Navbar extends Component {
     componentDidMount() {
         axios.get('/auth/checkLogging').
             then((res) => {
-                console.log('hsagjdagshdas',res.data)
                 if (res.data) {
                     this.setState({
                         Loggedin: true,
@@ -36,7 +35,7 @@ class Navbar extends Component {
 
     logOut = () => {
         axios.get('/auth/logout').then(() => {
-            window.location.assign("/");
+        window.location.assign("/");
         })
     }
 
@@ -76,7 +75,7 @@ class Navbar extends Component {
                                     <button className="nav-link  Navbar-text" onClick={()=>{this.redirect(this.state.isTeacher)}}> Profile <span className="sr-only">(current)</span></button>
                                 </li>
                                 <li className="nav-item active">
-                                    <a className="nav-link  Navbar-text" href="#" onClick={this.logOut} >Logout <span className="sr-only">(current)</span></a>
+                                    <Link to="/" className="nav-link  Navbar-text" onClick={this.logOut} >Logout <span className="sr-only">(current)</span></Link>
                                 </li>
                             </ul>
                         </div>
@@ -91,9 +90,9 @@ class Navbar extends Component {
                             <Link to="/">
                                 <ul className="navbar-nav">
                                     <li className="nav-item active">
-                                        <a href="/">
+                                        <Link to="/">
                                             <img src={Shariklogo} width="40" height="40" className="d-inline-block align-top" alt="Sharik Logo" />
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li className="nav-item active">
                                         <span className="shariklogo Navbar-text">Sharik</span>

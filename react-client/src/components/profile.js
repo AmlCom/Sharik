@@ -69,7 +69,7 @@ class Profile extends Component {
         }).catch((err) => {
             console.log('err', err)
         })
-        axios.get('/studentList').then((res) => {
+        axios.get('/get/studentList').then((res) => {
             this.setState({
                 requestsNumber: res.data.length,
                 studentList: res.data
@@ -142,7 +142,7 @@ class Profile extends Component {
                                 <div class="row dash-row">
                                     <div class="col-4 data-box">
                                         <div>
-                                            <a href="./lectures"><h5><span>{this.state.lectures}</span> Lectures</h5></a>
+                                            <Link to="./lectures"><h5><span>{this.state.lectures}</span> Lectures</h5></Link>
                                         </div>
                                     </div>
                                     <div class="col-4 data-box ">
