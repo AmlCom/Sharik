@@ -69,7 +69,7 @@ class Profile extends Component {
         }).catch((err) => {
             console.log('err', err)
         })
-        axios.get('/studentList').then((res) => {
+        axios.get('/get/studentList').then((res) => {
             this.setState({
                 requestsNumber: res.data.length,
                 studentList: res.data
@@ -118,47 +118,9 @@ class Profile extends Component {
                 <div style={{ height: '100%' }}>
                     <Nav />
                 </div>
+
                 <div className="container">
-                    <div className='row' style={{ marginTop: '1%' }}>
-                        <div class="container-fluid page-cont">
-                            <h6 className="list-group-item">
-                                Dashboard
-                           </h6>
-                            <div class="row dash-row">
-                                <div class="col-4 data-box">
-                                    <div>
-                                        <a href="./lectures"><h5><span>{this.state.lectures}</span> Lectures</h5></a>
-                                    </div>
-                                </div>
-                                <div class="col-4 data-box ">
-                                    <Link to={{ pathname: '/Requests', state: { students: this.state.studentList } }}>
-                                        <h5><span>{this.state.requestsNumber}</span> Requests</h5>
-                                    </Link>
-                                </div>
-                                <div class="col-4 data-box">
-
-                                    <Link to={{ pathname: '/schedule', state: { students: this.state.studentList } }}>
-                                        <h5><span>{this.state.schedule}</span> Schedule</h5>
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr />
-
-                    <div className='row'>
-                        <div classNam='col-md-4'>
-                            <div className="list-group">
-                                <a className="list-group-item">
-                                    <span className="glyphicon glyphicon-cog" aria-hidden="true"></span> <h4> {this.state.teacherName}</h4>
-                                    <div><h5 className="font-weight-light font-weight-bold "> {this.state.teacherMajor}</h5></div>
-                                    <div><h6 className="font-weight-light font-weight-bold ">{this.state.info}</h6></div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className='row'>
+                    <div className='row' style={{ marginTop: '5%' }}>
                         <div className="pic col-md-4"  >
                             <img src={this.state.image} alt="" className="rounded" />
                             <br />
@@ -173,10 +135,49 @@ class Profile extends Component {
                                 </div>
                             </div>
                         </div>
+
+
                         <div className='col-md-8'>
+                            <div class="container-fluid page-cont">
+                                <div class="row dash-row">
+                                    <div class="col-4 data-box">
+                                        <div>
+                                            <Link to="./lectures"><h5><span>{this.state.lectures}</span> Lectures</h5></Link>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 data-box ">
+                                        <Link to={{ pathname: '/Requests', state: { students: this.state.studentList } }}>
+                                            <h5><span>{this.state.requestsNumber}</span> Requests</h5>
+                                        </Link>
+                                    </div>
+                                    <div class="col-4 data-box">
+
+                                        <Link to={{ pathname: '/schedule', state: { students: this.state.studentList } }}>
+                                            <h5><span>{this.state.schedule}</span> Schedule</h5>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/> 
                             <Comments2 />
+
                         </div>
                     </div>
+                    {/* <div className='row teacherName container '>
+                         <h4> {this.state.teacherName}</h4>
+                        <div classNam='col-md-4'>
+                            <div className="list-group">
+                                <a className="list-group-item">
+                                    <span className="glyphicon glyphicon-cog" aria-hidden="true"></span> <h4> {this.state.teacherName}</h4>
+                                    <div><h5 className="font-weight-light font-weight-bold "> {this.state.teacherMajor}</h5></div>
+                                    <div><h6 className="font-weight-light font-weight-bold ">{this.state.info}</h6></div>
+                                </a>
+                            </div>
+                        </div>
+                    </div> */}
+
+
+
                 </div>
             </div>
         )

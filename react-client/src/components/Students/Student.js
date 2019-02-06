@@ -94,14 +94,7 @@ class Student extends Component {
     };
 
     render() {
-        if (this.state.isTeacher === '') {
-            return (
-                <div>
-                    <br />
-                    
-                </div>
-            )
-        } else if (!this.state.isTeacher) {
+       
             return (
                 <div style={{'height': '100%'}}>
                     {/* <div style={{ height: '100%' }}>
@@ -110,10 +103,10 @@ class Student extends Component {
 
                         <Grid container spacing={24} style={{'height': '100%'}}> 
                             <Grid item xs={12}>
-
-                                    <div className="App" style={{'backgroundColor': 'grey', 'height': '100%'}}>
+                                   
+                                    <div className="App" style={{'backgroundColor': 'black', 'height': '100%'}}>
                                         <div>
-                                       <div> </div>
+                                        <br/>
                                            <div> <Button color="inherit" className="center"><Link to='/Dashboard' style={{'color': 'white'}}>Dashboard</Link></Button></div>
                                            <div> <Button color="inherit" className="center"><Link to='/SubjectsList' style={{'color': 'white'}}>Subjects List</Link></Button></div>
                                            <div> <Button color="inherit" className="center"><Link to='/AddSubject' style={{'color': 'white'}}>Add Subject</Link></Button></div>
@@ -127,11 +120,7 @@ class Student extends Component {
                         </Grid>
                     </div>  
                  )
-        } else {
-            return (
-                <Redirect to="/profile" />
-            )
-        }
+       
 
     }
 }
