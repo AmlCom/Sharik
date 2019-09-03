@@ -76,6 +76,8 @@ Teacher.findOneAndUpdate({'firstname':req.body.name},{'rating':req.body.rating},
 }).catch(next)
 });
 
+
+
 router.post('/comment', function (req, res, next) {
 
   console.log('you reached yahya')

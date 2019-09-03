@@ -6,13 +6,14 @@ import StarRatingComponent from 'react-star-rating-component';
 
  
 class Rate extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
  
     this.state = {
-      rating: 0,
+      rating:(props.teacher.rating)? props.teacher.rating :1,
       name:'',
-      rate:''
+      rate:'',
+      count: 0
     };
   }
 
@@ -39,12 +40,17 @@ class Rate extends React.Component {
     console.log('nextValue',nextValue)
   }
   submit = (name) =>{
-    console.log('mustaf',this.state.rating)
+    console.log('Rating',this.state.rating)
+    console.log('mustaf',this.props.teacher.rating )
     console.log('teacher firsname',this.props.teacher.firstname)
-    var count = this.props.teacher.rateCount + 1
+    var count = this.props.teacher.rateCount 
 
-   var rating = Math.floor((this.props.teacher.rating*5+this.state.rating)/count)
-   console.log('math.floor', rating)
+  //  var rating = Math.floor((this.props.teacher.rating*5+this.state.rating)/count)
+  // var rating = Math.floor((this.props.teacher.rating+ this.state.rating)/count)
+  var rating = Math.floor((Math.random() * 5)); 
+  //  console.log('math.floor', rating)
+
+
 
 
     //axi
@@ -90,7 +96,7 @@ class Rate extends React.Component {
           onStarClick={this.onStarClick.bind(this)}
         /> */}
       
-      <button onClick = {this.submit}>Rate</button>
+      <button type="button" className="btn btn-info" onClick = {this.submit}>Rate</button>
       </div>
     );
   }
